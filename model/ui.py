@@ -38,7 +38,7 @@ b_simple_test = st.sidebar.button("Simple tests")
 if b_plot_randize:
 
     # Generates a random array of points in a plane simulating a forest.
-    points = np.random.uniform(low=0, high=100, size=(ti_ammount, 2))
+    points = np.random.uniform(low=0, high=10, size=(ti_ammount, 2))
 
     # Triangulate the points according to Delaunay. Mercedes is working on another
     # triangulation
@@ -46,7 +46,7 @@ if b_plot_randize:
 
     # Plot the main tree deck forest
     plt.triplot(points[:,0], points[:,1], tri.simplices)
-    plt.plot(points[:,0], points[:,1], 'o')
+    plt.plot(points[:,0], points[:,1], '.')
     st.pyplot()
 
     # Area filter
@@ -120,7 +120,7 @@ if b_plot_randize:
     fig, ax = plt.subplots()
     ax.add_collection(lc)
 
-    plt.plot(points[:,0], points[:,1], 'o')
+    plt.plot(points[:,0], points[:,1], '.')
 
     st.pyplot()
 
