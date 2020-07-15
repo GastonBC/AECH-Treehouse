@@ -1,6 +1,7 @@
 import streamlit as st
 import numpy as np
 import math
+import random
 
 import matplotlib
 import matplotlib.pyplot as plt
@@ -37,6 +38,8 @@ def angle_degrees(tri):
     return (A_angle, B_angle, C_angle)
 
 
+# TODO paint result triangles
+
 st.title('AECH-Treehouse')
 st.subheader("Output")
 
@@ -59,6 +62,8 @@ b_simple_test = st.sidebar.button("Simple tests")
 
 if b_plot_randize:
     
+    
+
     # Generates a random array of points in a plane simulating a forest.
     points = np.random.rand(ti_ammount, 2)
 
@@ -71,34 +76,64 @@ if b_plot_randize:
     plt.plot(points[:,0], points[:,1], 'o')
     st.pyplot()
 
+    # Area filter
+    areas = []
+
+    for triangle_points in points[tri.simplices]:
+        areas.append(triangle_area(triangle_points))
+
+    area_range = max(areas) - min(areas)
+    min_area = min(areas)
+    max_area = max(areas)
+    low_mid = min_area + (area_range/3)
+    high_mid = min_area + ((area_range/3)*2)
+
+    low_range = ( min_area, low_mid  )
+    mid_range = ( low_mid, high_mid )
+    high_range = ( high_mid, max_area )
+    
+    if sb_area == "Small":
+        check_range = low_range
+
+    elif sb_area == "Medium":
+        check_range = mid_range
+
+    elif sb_area == "Big":
+        check_range = high_range
+
+    elif sb_area == "Surprise me":
+        check_range = random.choice([low_range, mid_range, high_range])
+
+
     clean_vertexes = []
 
     for triangle_points in points[tri.simplices]:
 
-        tri_area = triangle_area(triangle_points)        
+        # Area check
+        if check_range[0] < triangle_area(triangle_points) < check_range[1]:
+            
+            tri_angles = angle_degrees(triangle_points)
 
-        tri_angles = angle_degrees(triangle_points)
+            A_angle = tri_angles[0]
+            B_angle = tri_angles[1]
+            C_angle = tri_angles[2]
 
-        A_angle = tri_angles[0]
-        B_angle = tri_angles[1]
-        C_angle = tri_angles[2]
+            if A_angle <= ti_angle or B_angle <= ti_angle or C_angle <= ti_angle:
+                continue
 
-        if A_angle <= ti_angle or B_angle <= ti_angle or C_angle <= ti_angle:
-            continue
+            else:
+                # To plot the triangles again, we do it adding line by line to a list, and
+                # then plotting that list
+                Ax = triangle_points[0][0]
+                Ay = triangle_points[0][1]
+                Bx = triangle_points[1][0]
+                By = triangle_points[1][1]
+                Cx = triangle_points[2][0]
+                Cy = triangle_points[2][1]
 
-        else:
-            # To plot the triangles again, we do it adding line by line to a list, and
-            # then plotting that list
-            Ax = triangle_points[0][0]
-            Ay = triangle_points[0][1]
-            Bx = triangle_points[1][0]
-            By = triangle_points[1][1]
-            Cx = triangle_points[2][0]
-            Cy = triangle_points[2][1]
-
-            clean_vertexes.append([(Ax, Ay), (Bx, By)])
-            clean_vertexes.append([(Bx, By), (Cx, Cy)])
-            clean_vertexes.append([(Cx, Cy), (Ax, Ay)])
+                clean_vertexes.append([(Ax, Ay), (Bx, By)])
+                clean_vertexes.append([(Bx, By), (Cx, Cy)])
+                clean_vertexes.append([(Cx, Cy), (Ax, Ay)])
 
     # Plot the cleaned decks (plots lines, not triangles :( )
     lc = mc.LineCollection(clean_vertexes, linewidths=2)
