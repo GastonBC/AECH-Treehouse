@@ -1,11 +1,11 @@
 import streamlit as st
+import numpy as np
+import math
+
 import matplotlib
 import matplotlib.pyplot as plt
 from matplotlib import collections  as mc
-import numpy as np
-import model
-import math
-import numpy as np
+
 import scipy
 from scipy.spatial import Delaunay
 
@@ -25,7 +25,7 @@ b_plot_randize = st.sidebar.button("Generate random forest and plot")
 
 ti_angle = st.sidebar.number_input("Minimal angle")
 
-ti_ammount = st.sidebar.number_input("Tree quantity",min_value=0, max_value=None, value=0, step=1)
+ti_ammount = st.sidebar.number_input("Tree quantity",min_value=3, max_value=None, value=3, step=1)
 
 area_ops = ["Surprise me", "Small", "Medium", "Big"]
 sb_area = st.sidebar.selectbox("Deck area", area_ops)
@@ -33,6 +33,7 @@ sb_area = st.sidebar.selectbox("Deck area", area_ops)
 b_simple_test = st.sidebar.button("Simple tests")
 
 if b_plot_randize:
+    
     points = np.random.rand(ti_ammount, 2)
     tri = Delaunay(points)
 
