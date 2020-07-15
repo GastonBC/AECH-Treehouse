@@ -1,41 +1,17 @@
+# pylint: disable=locally-disabled, no-value-for-parameter
+
 import streamlit as st
 import numpy as np
 import math
 import random
+import utils
 
 import matplotlib
 import matplotlib.pyplot as plt
 from matplotlib import collections  as mc
 
 import scipy
-from scipy.spatial import Delaunay
-
-def calculate_distance(Ax,Ay,Bx,By):  
-     dist = math.sqrt((Bx - Ax)**2 + (By - Ay)**2)  
-     return dist  
-
-def triangle_area(tri):
-    Ax, Ay, Bx, By, Cx, Cy = tri[0][0], tri[0][1], tri[1][0], tri[1][1], tri[2][0], tri[2][1]
-    return abs(0.5 * (((Bx-Ax)*(Cy-Ay))-((Cx-Ax)*(By-Ay))))
-
-def angle_degrees(tri):
-    Ax, Ay, Bx, By, Cx, Cy = tri[0][0], tri[0][1], tri[1][0], tri[1][1], tri[2][0], tri[2][1]
-
-    a = calculate_distance(Bx, By, Cx, Cy)
-    b = calculate_distance(Cx, Cy, Ax, Ay)
-    c = calculate_distance(Ax, Ay, Bx, By)
-
-    # Get the angles
-    # Trigonometria
-    cos_A_angle = ( ((b**2) + (c**2) - (a**2)) / (2*b*c) )
-    cos_B_angle = ( ((c**2) + (a**2) - (b**2)) / (2*c*a) )
-    cos_C_angle = ( ((a**2) + (b**2) - (c**2)) / (2*a*b) )
-
-    A_angle = math.degrees(math.acos(cos_A_angle))
-    B_angle = math.degrees(math.acos(cos_B_angle))
-    C_angle = math.degrees(math.acos(cos_C_angle))
-
-    return (A_angle, B_angle, C_angle)
+from scipy.spatial import Delaunay # pylint: disable=locally-disabled, no-name-in-module
 
 
 # TODO paint result triangles
@@ -54,18 +30,15 @@ ti_angle = st.sidebar.number_input("Minimal angle")
 
 ti_ammount = st.sidebar.number_input("Tree quantity",min_value=3, max_value=None, value=3, step=1)
 
-area_ops = ["Surprise me", "Small", "Medium", "Big"]
-
+area_ops = ["No constraint", "Small", "Medium", "Big", "Surprise me"]
 sb_area = st.sidebar.selectbox("Deck area", area_ops)
 
 b_simple_test = st.sidebar.button("Simple tests")
 
 if b_plot_randize:
-    
-    
 
     # Generates a random array of points in a plane simulating a forest.
-    points = np.random.rand(ti_ammount, 2)
+    points = np.random.uniform(low=0, high=100, size=(ti_ammount, 2))
 
     # Triangulate the points according to Delaunay. Mercedes is working on another
     # triangulation
@@ -80,39 +53,44 @@ if b_plot_randize:
     areas = []
 
     for triangle_points in points[tri.simplices]:
-        areas.append(triangle_area(triangle_points))
+        areas.append(utils.triangle_area(triangle_points))
 
     area_range = max(areas) - min(areas)
     min_area = min(areas)
     max_area = max(areas)
     low_mid = min_area + (area_range/3)
     high_mid = min_area + ((area_range/3)*2)
-
+    
+    no_range = (min_area, max_area)
     low_range = ( min_area, low_mid  )
     mid_range = ( low_mid, high_mid )
     high_range = ( high_mid, max_area )
     
-    if sb_area == "Small":
+    if sb_area == area_ops[0]:
+        check_range = no_range
+
+    elif sb_area == area_ops[1]:
         check_range = low_range
 
-    elif sb_area == "Medium":
+    elif sb_area == area_ops[2]:
         check_range = mid_range
 
-    elif sb_area == "Big":
+    elif sb_area == area_ops[3]:
         check_range = high_range
 
-    elif sb_area == "Surprise me":
-        check_range = random.choice([low_range, mid_range, high_range])
+    elif sb_area == area_ops[4]:
+        check_range = random.choice([low_range, mid_range, high_range, no_range])
 
 
     clean_vertexes = []
+    deck_coords = []
 
     for triangle_points in points[tri.simplices]:
 
         # Area check
-        if check_range[0] < triangle_area(triangle_points) < check_range[1]:
+        if check_range[0] < utils.triangle_area(triangle_points) < check_range[1]:
             
-            tri_angles = angle_degrees(triangle_points)
+            tri_angles = utils.angle_degrees(triangle_points)
 
             A_angle = tri_angles[0]
             B_angle = tri_angles[1]
@@ -135,6 +113,8 @@ if b_plot_randize:
                 clean_vertexes.append([(Bx, By), (Cx, Cy)])
                 clean_vertexes.append([(Cx, Cy), (Ax, Ay)])
 
+                deck_coords.append(triangle_points)
+
     # Plot the cleaned decks (plots lines, not triangles :( )
     lc = mc.LineCollection(clean_vertexes, linewidths=2)
     fig, ax = plt.subplots()
@@ -142,4 +122,21 @@ if b_plot_randize:
 
     plt.plot(points[:,0], points[:,1], 'o')
 
+    st.pyplot()
+
+if b_simple_test:
+    raise NotImplementedError
+
+    single_triangles = [ [[0, 0], [1, 2], [1, 0]],
+                         [[1,1], [0, 1], [0.5, 0]] ]
+
+    d_tris = []
+    for t in single_triangles:
+        tr = Delaunay(single_triangles)
+        d_tris.append(tr)
+
+    # Plot the main tree deck forest
+    t1 = plt.fill( [single_triangles[0][0][0], single_triangles[0][1][0], single_triangles[0][2][0]],
+                   [single_triangles[0][0][1], single_triangles[0][1][1], single_triangles[0][2][1]] )
+    plt.gca().add_patch(t1)
     st.pyplot()
