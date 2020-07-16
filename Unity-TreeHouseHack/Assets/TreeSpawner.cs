@@ -46,19 +46,4 @@ public class TreeSpawner : MonoBehaviour
         IEnumerable<Triangle> triangulation = delaunay.BowyerWatson(points);
 
     }
-
-    void GenRandomTreeLayout()
-    {
-        System.Random rnd = new System.Random();
-
-        for (int ctr = 1; ctr <= TreeCount; ctr++)
-        {
-
-            Vector3 coords = new Vector3(Convert.ToSingle(rnd.NextDouble() * MaxCoordinate),
-                                         2,
-                                         Convert.ToSingle(rnd.NextDouble() * MaxCoordinate));
-
-            Quaternion rot = new Quaternion(0, 0, 0, 0);
-        }
-    }
 }
