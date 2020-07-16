@@ -322,12 +322,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1226025886}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7eadace62bf69a40bede021e0b96d38, type: 3}
+  m_Script: {fileID: 11500000, guid: 86c54a25f3eb85a439a89c27351bac43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MaxCoordinate: 50
   TreeCount: 35
-  TreeObj: {fileID: 8728668700136786126, guid: 37894f5e0458ab44592d22d274f28c5f, type: 3}
+  TreePrefab: {fileID: 8728668700136786126, guid: 37894f5e0458ab44592d22d274f28c5f,
+    type: 3}
 --- !u!4 &1226025888
 Transform:
   m_ObjectHideFlags: 0

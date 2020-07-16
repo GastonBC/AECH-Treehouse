@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Destroyer : MonoBehaviour
+public class TreeAbs : MonoBehaviour
 {
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && this.gameObject.activeInHierarchy)
         {
             Destroy(this.gameObject);
         }
-
     }
 }

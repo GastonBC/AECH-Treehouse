@@ -1,30 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 using DelaunayVoronoi;
+using System;
 
-internal class xyz
-{
-    double x;
-    double y;
-    double z;
-
-    internal xyz(double X, double Y, double Z)
-    {
-        x = X;
-        y = Y;
-        z = Z;
-    }
-}
-
-public class RandomTreeGen : MonoBehaviour
+public class TreeSpawner : MonoBehaviour
 {
     public float MaxCoordinate;
     public int TreeCount;
-    public GameObject TreeObj;
-
-    internal List<GameObject> TreeCollection;
+    public GameObject TreePrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -56,13 +40,14 @@ public class RandomTreeGen : MonoBehaviour
 
             Quaternion rot = new Quaternion(0, 0, 0, 0);
 
-            GameObject Tree = Instantiate(TreeObj, coords, rot);
+            Instantiate(TreePrefab, coords, rot);
         }
 
         IEnumerable<Triangle> triangulation = delaunay.BowyerWatson(points);
+
     }
 
-        void GenRandomTreeLayout()
+    void GenRandomTreeLayout()
     {
         System.Random rnd = new System.Random();
 
@@ -74,8 +59,6 @@ public class RandomTreeGen : MonoBehaviour
                                          Convert.ToSingle(rnd.NextDouble() * MaxCoordinate));
 
             Quaternion rot = new Quaternion(0, 0, 0, 0);
-
-            GameObject Tree = Instantiate(TreeObj, coords, rot);
         }
     }
 }
