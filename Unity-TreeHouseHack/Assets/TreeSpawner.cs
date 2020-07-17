@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DelaunayVoronoi;
 using System;
+using TriangleNet;
 
 public class TreeSpawner : MonoBehaviour
 {
@@ -33,24 +34,20 @@ public class TreeSpawner : MonoBehaviour
         System.Random rnd = new System.Random();
         IEnumerable<Point> points = delaunay.GeneratePoints(TreeCount, MaxCoordinate, MaxCoordinate);
 
-        IEnumerable<Triangle> triangulation = delaunay.BowyerWatson(points);
 
-        Debug.Log("Abajo, triangulacion");
-        Debug.Log(triangulation);
+        IEnumerable<Triangle> triangulation = delaunay.BowyerWatson(points);
 
         foreach (Triangle tri in triangulation) // Triangulation not working
         {
-            Debug.Log("Adentro de la loop");
-            Debug.Log(tri.Vertices);
-
             Point[] three_points = tri.Vertices;
 
             GameObject TreeDeck = Instantiate(DeckObject);
             Treehouse TreehouseComp = TreeDeck.AddComponent<Treehouse>();
             TreeHouseHack.Deck DeckComp = TreeDeck.AddComponent<TreeHouseHack.Deck>();
 
-            foreach (Point pt in three_points)
+            foreach (Point pt in tri.Vertices)
             {
+
                 Vector3 coords = new Vector3(Convert.ToSingle(pt.X),
                                          2f,  // this is 3rd dimension
                                          Convert.ToSingle(pt.Y));
@@ -59,7 +56,7 @@ public class TreeSpawner : MonoBehaviour
                 GameObject newTree = Instantiate(TreePrefab, coords, rot);
                 PineTree PineTreeComp = newTree.AddComponent<PineTree>();
 
-                //TreehouseComp.Trees.Add(newTree);
+                TreehouseComp.Trees.Add(newTree);
             }
 
         }
