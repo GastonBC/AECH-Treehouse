@@ -33,45 +33,36 @@ public class TreeSpawner : MonoBehaviour
         System.Random rnd = new System.Random();
         IEnumerable<Point> points = delaunay.GeneratePoints(TreeCount, MaxCoordinate, MaxCoordinate);
 
+
+        
+        IEnumerable<Triangle> triangulation = delaunay.BowyerWatson(points);
         
 
-        IEnumerable<Triangle> triangulation = delaunay.BowyerWatson(points);
-
-        foreach (Point pt in points)
+        foreach (Triangle tri in triangulation) // Triangulation not working
         {
-            Vector3 coords = new Vector3(Convert.ToSingle(pt.X),
-                                     2,  // this is 3rd dimension
-                                     Convert.ToSingle(pt.Y));
-            Quaternion rot = new Quaternion(0, 0, 0, 0);
+            Debug.Log("Works here");
+            Point[] three_points = tri.Vertices;
 
-            GameObject newTree = Instantiate(TreePrefab, coords, rot);
-            PineTree PineTreeComp = newTree.AddComponent<PineTree>();
+            //GameObject TreeDeck = Instantiate(DeckObject);
+            //Treehouse TreehouseComp = TreeDeck.AddComponent<Treehouse>();
+            //TreeHouseHack.Deck DeckComp = TreeDeck.AddComponent<TreeHouseHack.Deck>();
 
-            //TreehouseComp.Trees.Add(newTree);
+            foreach (Point pt in three_points)
+            {
+                Debug.Log(pt.X);
+                Debug.Log(pt.Y);
+                Vector3 coords = new Vector3(Convert.ToSingle(pt.X),
+                                         2f,  // this is 3rd dimension
+                                         Convert.ToSingle(pt.Y));
+                Quaternion rot = new Quaternion(0, 0, 0, 0);
+
+                GameObject newTree = Instantiate(TreePrefab, coords, rot);
+                PineTree PineTreeComp = newTree.AddComponent<PineTree>();
+
+                //TreehouseComp.Trees.Add(newTree);
+            }
+
         }
-
-        //foreach (Triangle tri in triangulation)
-        //{
-        //    Point[] three_points = tri.Vertices;
-
-        //    //GameObject TreeDeck = Instantiate(DeckObject);
-        //    //Treehouse TreehouseComp = TreeDeck.AddComponent<Treehouse>();
-        //    //TreeHouseHack.Deck DeckComp = TreeDeck.AddComponent<TreeHouseHack.Deck>();
-
-        //    foreach (Point pt in three_points)
-        //    {
-        //        Vector3 coords = new Vector3(Convert.ToSingle(pt.X),
-        //                                 2,  // this is 3rd dimension
-        //                                 Convert.ToSingle(pt.Y));
-        //        Quaternion rot = new Quaternion(0, 0, 0, 0);
-
-        //        GameObject newTree = Instantiate(TreePrefab, coords, rot);
-        //        PineTree PineTreeComp = newTree.AddComponent<PineTree>();
-
-        //        //TreehouseComp.Trees.Add(newTree);
-        //    }
-
-        //}
 
     }
 }
