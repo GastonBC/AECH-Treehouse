@@ -111,8 +111,8 @@ namespace RLD
         {
             if (points.Count == 0) return new List<Vector3>();
 
-            var transformedPts = new List<Vector3>(points.Count);
-            foreach (var pt in points)
+            List<Vector3> transformedPts = new List<Vector3>(points.Count);
+            foreach (Vector3 pt in points)
                 transformedPts.Add(matrix.MultiplyPoint(pt));
 
             return transformedPts;

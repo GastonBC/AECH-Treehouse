@@ -87,7 +87,7 @@ namespace RLD
             float minDistSqr = float.MaxValue;
 
             bool foundPoint = false;
-            foreach (var srcObject in gameObjects)
+            foreach (GameObject srcObject in gameObjects)
             {
                 Mesh mesh = srcObject.GetMesh();
                 if (mesh != null)
@@ -103,7 +103,7 @@ namespace RLD
                         if (closestChunk != null && closestChunk.VertexCount != 0) testChunks.Add(closestChunk);
                     }
 
-                    foreach (var chunk in testChunks)
+                    foreach (MeshVertexChunk chunk in testChunks)
                     {
                         Vector3 worldVert = chunk.GetWorldVertClosestToScreenPt(inputDeviceScreenPt, worldMtx, focusCamera);
                         Vector2 screenVert = focusCamera.WorldToScreenPoint(worldVert);
@@ -156,7 +156,7 @@ namespace RLD
             if (!inputDevice.HasPointer()) return;
             Vector2 inputDevicePos = inputDevice.GetPositionYAxisUp();
 
-            var boundsQConfig = new ObjectBounds.QueryConfig();
+            ObjectBounds.QueryConfig boundsQConfig = new ObjectBounds.QueryConfig();
             boundsQConfig.ObjectTypes = GameObjectTypeHelper.AllCombined;
             boundsQConfig.NoVolumeSize = Vector3Ex.FromValue(1e-5f);
 
@@ -166,7 +166,7 @@ namespace RLD
                                      !ObjectBounds.CalcScreenRect(a, focusCamera, boundsQConfig).Contains(inputDevicePos) ||
                                       targetObjects.FindAll(b => a.transform.IsChildOf(b.transform)).Count != 0);
 
-            foreach (var visibleObject in visibleObjects)
+            foreach (GameObject visibleObject in visibleObjects)
             {
                 if (!CanUseObjectAsSnapDestination(visibleObject)) continue;
 

@@ -91,7 +91,7 @@ namespace RLD
 
         private void OnPointsFoundDirty()
         {
-            var points = TriangleMath.CalcEqTriangle2DPoints(_centroid, _sideLength, Rotation);
+            List<Vector2> points = TriangleMath.CalcEqTriangle2DPoints(_centroid, _sideLength, Rotation);
             _points[(int)EqTrianglePoint.Left] = points[(int)EqTrianglePoint.Left];
             _points[(int)EqTrianglePoint.Top] = points[(int)EqTrianglePoint.Top];
             _points[(int)EqTrianglePoint.Right] = points[(int)EqTrianglePoint.Right];

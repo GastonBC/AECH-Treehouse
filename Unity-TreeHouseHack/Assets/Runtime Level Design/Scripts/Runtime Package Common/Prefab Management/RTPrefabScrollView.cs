@@ -25,8 +25,8 @@ namespace RLD
 
             Image image = previewButton.GetComponent<Image>();
             if (image != null) image.sprite = prefab.PreviewSprite;
-        
-            var previewBtnScript = previewButton.GetComponent<RTPrefabPreviewButton>();
+
+            RTPrefabPreviewButton previewBtnScript = previewButton.GetComponent<RTPrefabPreviewButton>();
             previewBtnScript.Prefab = prefab;
             previewBtnScript.Text = prefab.UnityPrefab.name;
             previewBtnScript.HoverEnter -= OnPrefabPreviewHoverEnter;
@@ -73,10 +73,10 @@ namespace RLD
 
         private void OnPreviewButtonClicked()
         {
-            var hoveredUIElements = RTScene.Get.GetHoveredUIElements();
+            System.Collections.Generic.List<RaycastResult> hoveredUIElements = RTScene.Get.GetHoveredUIElements();
             if (hoveredUIElements.Count != 0)
             {
-                foreach(var uiElement in hoveredUIElements)
+                foreach(RaycastResult uiElement in hoveredUIElements)
                 {
                     RTPrefabPreviewButton prefabPreviewBtn = uiElement.gameObject.GetComponent<RTPrefabPreviewButton>();
                     if (prefabPreviewBtn != null)

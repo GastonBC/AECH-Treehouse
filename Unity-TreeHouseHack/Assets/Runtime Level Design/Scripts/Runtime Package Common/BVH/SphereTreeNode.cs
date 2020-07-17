@@ -144,13 +144,13 @@ namespace RLD
                     // First, we will calculate the new sphere center as the average
                     // of all child node centers.
                     Vector3 centerSum = Vector3.zero;
-                    foreach (var child in parent._children) centerSum += child.Center;
+                    foreach (SphereTreeNode<T> child in parent._children) centerSum += child.Center;
                     parent.Center = centerSum * (1.0f / parent.NumChildren);
 
                     // Now we will calculate the radius which the node must have so that
                     // it can encapsulate all its children.
                     float maxRadius = float.MinValue;
-                    foreach (var child in parent._children)
+                    foreach (SphereTreeNode<T> child in parent._children)
                     {
                         float distToExitPt = (child.Center - parent._sphere.Center).magnitude + child.Radius;
                         if (distToExitPt > maxRadius) maxRadius = distToExitPt;
@@ -178,7 +178,7 @@ namespace RLD
             Graphics.DrawMeshNow(MeshPool.Get.UnitSphere, nodeTransform);
 
             // Draw the node's children
-            foreach (var child in _children) child.DebugDraw();
+            foreach (SphereTreeNode<T> child in _children) child.DebugDraw();
         }
     }
 }

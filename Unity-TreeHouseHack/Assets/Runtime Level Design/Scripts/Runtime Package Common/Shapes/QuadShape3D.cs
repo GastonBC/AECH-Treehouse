@@ -98,7 +98,7 @@ namespace RLD
                 Graphics.DrawMeshNow(MeshPool.Get.UnitWireQuadXY, Matrix4x4.TRS(_center, _rotation, new Vector3(_size.x, _size.y, 1.0f)));
             else
             {
-                var cornerPoints = GetCornerPoints();
+                List<Vector3> cornerPoints = GetCornerPoints();
                 if ((_wireRenderDesc.WireEdgeFlags & WireEdgeFlags.Top) != 0)
                     GLRenderer.DrawLine3D(cornerPoints[(int)QuadCorner.TopLeft], cornerPoints[(int)QuadCorner.TopRight]);
                 if ((_wireRenderDesc.WireEdgeFlags & WireEdgeFlags.Right) != 0)

@@ -24,7 +24,7 @@ namespace RLD
 
         public void OnGUI()
         {
-            var sgLookAndFeel = _sceneGizmo.LookAndFeel;
+            SceneGizmoLookAndFeel sgLookAndFeel = _sceneGizmo.LookAndFeel;
             Camera gizmoCamera = _sceneGizmo.SceneGizmoCamera.Camera;
             if (sgLookAndFeel.IsCamPrjSwitchLabelVisible)
             {
@@ -79,7 +79,7 @@ namespace RLD
 
         private void UpdateTransform()
         {
-            var sgLookAndFeel = _sceneGizmo.LookAndFeel;
+            SceneGizmoLookAndFeel sgLookAndFeel = _sceneGizmo.LookAndFeel;
             Camera gizmoCamera = _sceneGizmo.SceneGizmoCamera.Camera;
 
             Texture2D labelTexture = gizmoCamera.orthographic ? sgLookAndFeel.CamOrthoModeLabelTexture : sgLookAndFeel.CamPerspModeLabelTexture;

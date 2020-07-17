@@ -49,7 +49,7 @@ namespace RLD
             float newFloat;
 
             EditorGUILayoutEx.SectionHeader("Snapping");
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
             content.text = "X";
             content.tooltip = "The snap step for the X axis.";
             newFloat = EditorGUILayout.FloatField(content, XSnapStep);

@@ -29,8 +29,8 @@ namespace RLD
 
         public static List<GameObjectRayHit> Create(Ray hitRay, IEnumerable<RaycastHit> hits3D)
         {
-            var hits = new List<GameObjectRayHit>(10);
-            foreach(var hit3D in hits3D)
+            List<GameObjectRayHit> hits = new List<GameObjectRayHit>(10);
+            foreach(RaycastHit hit3D in hits3D)
             {
                 hits.Add(new GameObjectRayHit(hitRay, hit3D));
             }
@@ -40,8 +40,8 @@ namespace RLD
 
         public static List<GameObjectRayHit> Create(Ray hitRay, IEnumerable<RaycastHit2D> hits2D)
         {
-            var hits = new List<GameObjectRayHit>(10);
-            foreach (var hit2D in hits2D)
+            List<GameObjectRayHit> hits = new List<GameObjectRayHit>(10);
+            foreach (RaycastHit2D hit2D in hits2D)
             {
                 hits.Add(new GameObjectRayHit(hitRay, hit2D));
             }

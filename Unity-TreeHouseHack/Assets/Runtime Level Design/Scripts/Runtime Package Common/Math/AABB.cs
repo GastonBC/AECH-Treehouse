@@ -116,7 +116,7 @@ namespace RLD
 
         public void Encapsulate(IEnumerable<Vector3> points)
         {
-            foreach (var pt in points)
+            foreach (Vector3 pt in points)
                 Encapsulate(pt);
         }
 
@@ -170,18 +170,18 @@ namespace RLD
         public List<Vector2> GetScreenCornerPoints(Camera camera)
         {
             List<Vector3> cornerPoints = GetCornerPoints();
-            var screenCornerPoints = new List<Vector2>(cornerPoints.Count);
+            List<Vector2> screenCornerPoints = new List<Vector2>(cornerPoints.Count);
 
-            foreach (var pt in cornerPoints) screenCornerPoints.Add(camera.WorldToScreenPoint(pt));
+            foreach (Vector3 pt in cornerPoints) screenCornerPoints.Add(camera.WorldToScreenPoint(pt));
             return screenCornerPoints;
         }
 
         public List<Vector2> GetScreenCenterAndCornerPoints(Camera camera)
         {
             List<Vector3> allPoints = GetCenterAndCornerPoints();
-            var screenPoints = new List<Vector2>(allPoints.Count);
+            List<Vector2> screenPoints = new List<Vector2>(allPoints.Count);
 
-            foreach (var pt in allPoints) screenPoints.Add(camera.WorldToScreenPoint(pt));
+            foreach (Vector3 pt in allPoints) screenPoints.Add(camera.WorldToScreenPoint(pt));
             return screenPoints;
         }
 

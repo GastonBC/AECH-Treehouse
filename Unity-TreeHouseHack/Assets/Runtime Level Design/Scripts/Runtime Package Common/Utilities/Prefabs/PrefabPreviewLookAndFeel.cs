@@ -30,7 +30,7 @@ namespace RLD
         {
             Color newColor; int newInt; float newFloat;
 
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
             content.text = "Bk color";
             content.tooltip = "The background color of the prefab previews.";
             newColor = EditorGUILayout.ColorField(content, BkColor);

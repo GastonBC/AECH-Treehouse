@@ -70,43 +70,43 @@ namespace RLD
 
         public void SetTickBorderColor(Color color)
         {
-            foreach (var lookAndFeel in _tickLookAndFeel)
+            foreach (GizmoCap2DLookAndFeel lookAndFeel in _tickLookAndFeel)
                 lookAndFeel.BorderColor = color;
         }
 
         public void SetTickHoveredColor(Color color)
         {
-            foreach (var lookAndFeel in _tickLookAndFeel)
+            foreach (GizmoCap2DLookAndFeel lookAndFeel in _tickLookAndFeel)
                 lookAndFeel.HoveredColor = color;
         }
 
         public void SetTickHoveredBorderColor(Color color)
         {
-            foreach (var lookAndFeel in _tickLookAndFeel)
+            foreach (GizmoCap2DLookAndFeel lookAndFeel in _tickLookAndFeel)
                 lookAndFeel.HoveredBorderColor = color;
         }
 
         public void SetTickType(GizmoCap2DType tickType)
         {
-            foreach (var lookAndFeel in _tickLookAndFeel)
+            foreach (GizmoCap2DLookAndFeel lookAndFeel in _tickLookAndFeel)
                 lookAndFeel.CapType = tickType;
         }
 
         public void SetTickQuadWidth(float width)
         {
-            foreach (var lookAndFeel in _tickLookAndFeel)
+            foreach (GizmoCap2DLookAndFeel lookAndFeel in _tickLookAndFeel)
                 lookAndFeel.QuadWidth = width;
         }
 
         public void SetTickQuadHeight(float height)
         {
-            foreach (var lookAndFeel in _tickLookAndFeel)
+            foreach (GizmoCap2DLookAndFeel lookAndFeel in _tickLookAndFeel)
                 lookAndFeel.QuadHeight = height;
         }
 
         public void SetTickCircleRadius(float radius)
         {
-            foreach (var lookAndFeel in _tickLookAndFeel)
+            foreach (GizmoCap2DLookAndFeel lookAndFeel in _tickLookAndFeel)
                 lookAndFeel.CircleRadius = radius;
         }
 
@@ -127,7 +127,7 @@ namespace RLD
             Color newColor; float newFloat;
             GizmoCap2DType newTickType;
 
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
             EditorGUILayoutEx.SectionHeader("Tick shape");
             content.text = "Tick type";
             content.tooltip = "The type of shape which is used to draw the ticks.";

@@ -43,7 +43,7 @@ namespace RLD
 
         public GameObject GetGroupByName(string name)
         {
-            var gameObjects = _objectGroups.FindAll(item => item.name == name);
+            List<GameObject> gameObjects = _objectGroups.FindAll(item => item.name == name);
             return gameObjects.Count != 0 ? gameObjects[0] : null;
         }
 

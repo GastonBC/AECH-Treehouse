@@ -24,8 +24,8 @@ namespace RLD
 
         public override void UpdateTransforms(float zoomFactor)
         {
-            var targetCircle = _data.TargetCircle;
-            var borderCircle = _data.BorderCircle;
+            CircleShape3D targetCircle = _data.TargetCircle;
+            CircleShape3D borderCircle = _data.BorderCircle;
 
             borderCircle.Rotation = targetCircle.Rotation;
             borderCircle.Center = targetCircle.Center;

@@ -159,7 +159,7 @@ namespace RLD
 
         public void RegisterObjectRestrictions(List<GameObject> targetObjects, ObjectTransformGizmo.ObjectRestrictions restrictions)
         {
-            foreach (var targetObject in targetObjects)
+            foreach (GameObject targetObject in targetObjects)
                 RegisterObjectRestrictions(targetObject, restrictions);
         }
 
@@ -276,9 +276,9 @@ namespace RLD
         {
             if (_targetObjects == null) return AABB.GetInvalid();
 
-            var boundsQConfig = GetObjectBoundsQConfig();
+            ObjectBounds.QueryConfig boundsQConfig = GetObjectBoundsQConfig();
             AABB targetGroupAABB = AABB.GetInvalid();
-            foreach(var targetObject in _targetObjects)
+            foreach(GameObject targetObject in _targetObjects)
             {
                 AABB targetAABB = ObjectBounds.CalcWorldAABB(targetObject, boundsQConfig);
                 if (targetGroupAABB.IsValid) targetGroupAABB.Encapsulate(targetAABB);
@@ -312,7 +312,7 @@ namespace RLD
                 if (_targetPivotObject == null) gizmoTransform.Position3D = GetTargetObjectGroupWorldAABB().Center;
                 else
                 {
-                    var boundsQConfig = GetObjectBoundsQConfig();
+                    ObjectBounds.QueryConfig boundsQConfig = GetObjectBoundsQConfig();
                     AABB worldAABB = ObjectBounds.CalcWorldAABB(_targetPivotObject, boundsQConfig);
                     if (worldAABB.IsValid) gizmoTransform.Position3D = worldAABB.Center;
                 }
@@ -363,7 +363,7 @@ namespace RLD
         {
             if (_transformableParents.Count != 0)
             {
-                var postObjectTransformChangedAction = new PostObjectTransformsChangedAction(_preTransformSnapshots, LocalTransformSnapshot.GetSnapshotCollection(_targetObjects));
+                PostObjectTransformsChangedAction postObjectTransformChangedAction = new PostObjectTransformsChangedAction(_preTransformSnapshots, LocalTransformSnapshot.GetSnapshotCollection(_targetObjects));
                 postObjectTransformChangedAction.Execute();
             }
 
@@ -374,7 +374,7 @@ namespace RLD
         {
             List<GameObject> targetParents = GameObjectEx.FilterParentsOnly(_targetObjects);
             List<GameObject> transformableParents = new List<GameObject>();
-            foreach (var parent in targetParents)
+            foreach (GameObject parent in targetParents)
             {
                 IRTTransformGizmoListener transformGizmoListener = parent.GetComponent<IRTTransformGizmoListener>();
                 if (transformGizmoListener != null && !transformGizmoListener.OnCanBeTransformed(Gizmo)) continue;
@@ -394,7 +394,7 @@ namespace RLD
 
         private void MoveObjects(Vector3 moveVector)
         {
-            foreach (var trParent in _transformableParents)
+            foreach (GameObject trParent in _transformableParents)
             {
                 MoveObject(trParent, moveVector);
             }
@@ -419,7 +419,7 @@ namespace RLD
         {
             if (TransformPivot == GizmoObjectTransformPivot.ObjectGroupCenter)
             {
-                foreach (var trParent in _transformableParents)
+                foreach (GameObject trParent in _transformableParents)
                 {
                     RotateObject(trParent, rotation, _targetGroupAABBOnDragBegin.Center);
                 }
@@ -427,7 +427,7 @@ namespace RLD
             else
             if (TransformPivot == GizmoObjectTransformPivot.ObjectMeshPivot)
             {
-                foreach (var trParent in _transformableParents)
+                foreach (GameObject trParent in _transformableParents)
                 {
                     RotateObject(trParent, rotation, trParent.transform.position);
                 }
@@ -435,7 +435,7 @@ namespace RLD
             else
             if (TransformPivot == GizmoObjectTransformPivot.CustomWorldPivot)
             {
-                foreach (var trParent in _transformableParents)
+                foreach (GameObject trParent in _transformableParents)
                 {
                     RotateObject(trParent, rotation, CustomWorldPivot);
                 }
@@ -443,8 +443,8 @@ namespace RLD
             else
             if (TransformPivot == GizmoObjectTransformPivot.ObjectCenterPivot)
             {
-                var boundsQConfig = GetObjectBoundsQConfig();
-                foreach (var trParent in _transformableParents)
+                ObjectBounds.QueryConfig boundsQConfig = GetObjectBoundsQConfig();
+                foreach (GameObject trParent in _transformableParents)
                 {
                     AABB worldAABB = ObjectBounds.CalcWorldAABB(trParent, boundsQConfig);
                     if (worldAABB.IsValid) RotateObject(trParent, rotation, worldAABB.Center);
@@ -453,7 +453,7 @@ namespace RLD
             else
             if (TransformPivot == GizmoObjectTransformPivot.CustomObjectLocalPivot)
             {
-                foreach (var trParent in _transformableParents)
+                foreach (GameObject trParent in _transformableParents)
                 {
                     Transform objectTransform = trParent.transform;
                     Vector3 worldPivot = objectTransform.TransformPoint(GetObjectCustomLocalPivot(trParent));
@@ -478,7 +478,7 @@ namespace RLD
         {
             if (TransformPivot == GizmoObjectTransformPivot.ObjectGroupCenter)
             {
-                foreach (var trParent in _transformableParents)
+                foreach (GameObject trParent in _transformableParents)
                 {
                     ScaleObject(trParent, _targetGroupAABBOnDragBegin.Center);
                 }
@@ -486,7 +486,7 @@ namespace RLD
             else
             if (TransformPivot == GizmoObjectTransformPivot.ObjectMeshPivot)
             {
-                foreach (var trParent in _transformableParents)
+                foreach (GameObject trParent in _transformableParents)
                 {
                     ScaleObject(trParent, trParent.transform.position);
                 }
@@ -494,7 +494,7 @@ namespace RLD
             else
             if (TransformPivot == GizmoObjectTransformPivot.CustomWorldPivot)
             {
-                foreach (var trParent in _transformableParents)
+                foreach (GameObject trParent in _transformableParents)
                 {
                     ScaleObject(trParent, CustomWorldPivot);
                 }
@@ -502,8 +502,8 @@ namespace RLD
             else
             if (TransformPivot == GizmoObjectTransformPivot.ObjectCenterPivot)
             {
-                var boundsQConfig = GetObjectBoundsQConfig();
-                foreach (var trParent in _transformableParents)
+                ObjectBounds.QueryConfig boundsQConfig = GetObjectBoundsQConfig();
+                foreach (GameObject trParent in _transformableParents)
                 {
                     AABB worldAABB = ObjectBounds.CalcWorldAABB(trParent, boundsQConfig);
                     if (worldAABB.IsValid) ScaleObject(trParent, worldAABB.Center);
@@ -512,7 +512,7 @@ namespace RLD
             else
             if (TransformPivot == GizmoObjectTransformPivot.CustomObjectLocalPivot)
             {
-                foreach (var trParent in _transformableParents)
+                foreach (GameObject trParent in _transformableParents)
                 {
                     Transform objectTransform = trParent.transform;
                     Vector3 worldPivot = objectTransform.TransformPoint(GetObjectCustomLocalPivot(trParent));
@@ -541,7 +541,7 @@ namespace RLD
 
         private ObjectBounds.QueryConfig GetObjectBoundsQConfig()
         {
-            var config = new ObjectBounds.QueryConfig();
+            ObjectBounds.QueryConfig config = new ObjectBounds.QueryConfig();
             config.NoVolumeSize = Vector3Ex.FromValue(1e-6f);
             config.ObjectTypes = GameObjectTypeHelper.AllCombined;
 

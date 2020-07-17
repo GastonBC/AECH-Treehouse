@@ -22,7 +22,7 @@ namespace RLD
         {
             if (_spawnedParents != null)
             {
-                foreach (var parent in _spawnedParents)
+                foreach (GameObject parent in _spawnedParents)
                 {
                     parent.SetActive(false);
                 }
@@ -34,7 +34,7 @@ namespace RLD
         {
             if (_spawnedParents != null)
             {
-                foreach (var parent in _spawnedParents)
+                foreach (GameObject parent in _spawnedParents)
                 {
                     parent.SetActive(true);
                 }
@@ -46,7 +46,7 @@ namespace RLD
         {
             if (_cleanupOnRemovedFromStack && _spawnedParents.Count != 0)
             {
-                foreach (var parent in _spawnedParents) GameObject.Destroy(parent);
+                foreach (GameObject parent in _spawnedParents) GameObject.Destroy(parent);
                 _spawnedParents.Clear();
             }
         }
@@ -71,7 +71,7 @@ namespace RLD
 
         public void Undo()
         {
-            foreach (var snapshot in _preChangeTransformSnapshots)
+            foreach (LocalTransformSnapshot snapshot in _preChangeTransformSnapshots)
             {
                 snapshot.Apply();
             }
@@ -79,7 +79,7 @@ namespace RLD
 
         public void Redo()
         {
-            foreach (var snapshot in _postChangeTransformSnapshots)
+            foreach (LocalTransformSnapshot snapshot in _postChangeTransformSnapshots)
             {
                 snapshot.Apply();
             }
@@ -109,7 +109,7 @@ namespace RLD
 
         public void Undo()
         {
-            foreach (var snapshot in _preChangeTransformSnapshots)
+            foreach (LocalGizmoTransformSnapshot snapshot in _preChangeTransformSnapshots)
             {
                 snapshot.Apply();
             }
@@ -117,7 +117,7 @@ namespace RLD
 
         public void Redo()
         {
-            foreach (var snapshot in _postChangeTransformSnapshots)
+            foreach (LocalGizmoTransformSnapshot snapshot in _postChangeTransformSnapshots)
             {
                 snapshot.Apply();
             }
@@ -145,9 +145,9 @@ namespace RLD
         {
             if (_rootsToDuplicate.Count != 0)
             {
-                var cloneConfig = ObjectCloning.DefaultConfig;
+                ObjectCloning.Config cloneConfig = ObjectCloning.DefaultConfig;
 
-                foreach (var root in _rootsToDuplicate)
+                foreach (GameObject root in _rootsToDuplicate)
                 {
                     Transform rootTransform = root.transform;
                     cloneConfig.Layer = root.layer;
@@ -165,7 +165,7 @@ namespace RLD
         {
             if (_duplicateResult != null)
             {
-                foreach (var duplicateRoot in _duplicateResult)
+                foreach (GameObject duplicateRoot in _duplicateResult)
                 {
                     duplicateRoot.SetActive(false);
                 }
@@ -177,7 +177,7 @@ namespace RLD
         {
             if (_duplicateResult != null)
             {
-                foreach (var duplicateRoot in _duplicateResult)
+                foreach (GameObject duplicateRoot in _duplicateResult)
                 {
                     duplicateRoot.SetActive(true);
                 }
@@ -189,7 +189,7 @@ namespace RLD
         {
             if (_cleanupOnRemovedFromStack && _duplicateResult.Count != 0)
             {
-                foreach (var duplicateRoot in _duplicateResult) GameObject.Destroy(duplicateRoot);
+                foreach (GameObject duplicateRoot in _duplicateResult) GameObject.Destroy(duplicateRoot);
                 _duplicateResult.Clear();
             }
         }

@@ -120,7 +120,7 @@ namespace RLD
             _isHoverable = isHoverable;
 
             _targetHandle.Set3DShapeHoverable(_borderQuadIndex, isHoverable);
-            foreach (var boxIndex in _sortedBoxIndices)
+            foreach (int boxIndex in _sortedBoxIndices)
                 _targetHandle.Set3DShapeHoverable(boxIndex, isHoverable);
         }
 
@@ -149,7 +149,7 @@ namespace RLD
         {
             if (!IsVisible) return;
 
-            var lookAndFeel = _planeSlider.LookAndFeel;
+            GizmoPlaneSlider3DLookAndFeel lookAndFeel = _planeSlider.LookAndFeel;
             Color color = lookAndFeel.BorderColor;
             if (Gizmo.HoverHandleId == _targetHandle.Id) color = lookAndFeel.HoveredBorderColor;
 
@@ -185,12 +185,12 @@ namespace RLD
 
                 if (lookAndFeel.BorderFillMode == GizmoFillMode3D.Filled)
                 {
-                    foreach (var boxIndex in _sortedBoxIndices)
+                    foreach (int boxIndex in _sortedBoxIndices)
                         _targetHandle.Render3DSolid(boxIndex);
                 }
                 else
                 {
-                    foreach (var boxIndex in _sortedBoxIndices)
+                    foreach (int boxIndex in _sortedBoxIndices)
                         _targetHandle.Render3DWire(boxIndex);
                 }
             }

@@ -14,7 +14,7 @@ namespace RLD
 
         public static void Snap(List<GameObject> roots, Vector3 pivot, Vector3 dest)
         {
-            foreach (var root in roots) Snap(root, pivot, dest);
+            foreach (GameObject root in roots) Snap(root, pivot, dest);
         }
     }
 }

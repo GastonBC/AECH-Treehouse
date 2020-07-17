@@ -24,8 +24,8 @@ namespace RLD
 
         public override void UpdateTransforms(float zoomFactor)
         {
-            var borderTorus = _data.BorderCylTorus;
-            var targetCircle = _data.TargetCircle;
+            CylTorusShape3D borderTorus = _data.BorderCylTorus;
+            CircleShape3D targetCircle = _data.TargetCircle;
 
             // Note: Rotate around the X axis first because circles exist in the XY plane in model space.
             borderTorus.Rotation = targetCircle.Rotation * Quaternion.Euler(-90.0f, 0.0f, 0.0f);

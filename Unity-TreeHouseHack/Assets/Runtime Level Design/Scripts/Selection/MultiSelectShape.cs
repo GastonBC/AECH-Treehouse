@@ -29,10 +29,10 @@ namespace RLD
         {
             if (gameObjects.Count == 0 || !IsBigEnoughForOverlap()) return new List<GameObject>();
 
-            var overlappedObjects = new List<GameObject>(gameObjects.Count);
+            List<GameObject> overlappedObjects = new List<GameObject>(gameObjects.Count);
             if (overlapMode == MultiSelectOverlapMode.Partial)
             {
-                foreach (var gameObject in gameObjects)
+                foreach (GameObject gameObject in gameObjects)
                 {
                     Rect objectScreenRect = ObjectBounds.CalcScreenRect(gameObject, camera, boundsQConfig);
                     if (_enclosingRect.Overlaps(objectScreenRect, true)) overlappedObjects.Add(gameObject);
@@ -40,7 +40,7 @@ namespace RLD
             }
             else
             {
-                foreach (var gameObject in gameObjects)
+                foreach (GameObject gameObject in gameObjects)
                 {
                     Rect objectScreenRect = ObjectBounds.CalcScreenRect(gameObject, camera, boundsQConfig);
                     if (_enclosingRect.ContainsAllPoints(objectScreenRect.GetCornerPoints())) overlappedObjects.Add(gameObject);

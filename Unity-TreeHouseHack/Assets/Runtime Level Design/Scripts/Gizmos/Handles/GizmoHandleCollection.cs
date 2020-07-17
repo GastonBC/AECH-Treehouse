@@ -61,10 +61,10 @@ namespace RLD
 
         public List<GizmoHandleHoverData> GetAllHandlesHoverData(Ray hoverRay)
         {
-            var hoverDataCollection = new List<GizmoHandleHoverData>(10);
-            foreach (var handle in _handles)
+            List<GizmoHandleHoverData> hoverDataCollection = new List<GizmoHandleHoverData>(10);
+            foreach (IGizmoHandle handle in _handles)
             {
-                var hoverData = handle.GetHoverData(hoverRay);
+                GizmoHandleHoverData hoverData = handle.GetHoverData(hoverRay);
                 if (hoverData != null) hoverDataCollection.Add(hoverData);
             }
 

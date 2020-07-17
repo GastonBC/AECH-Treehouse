@@ -21,7 +21,7 @@ namespace RLD
 
         public override void UpdateEpsilons()
         {
-            var poly = _data.Polygon;
+            PolygonShape2D poly = _data.Polygon;
             poly.AreaEps = _data.Slider.Settings.AreaHoverEps;
         }
 

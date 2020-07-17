@@ -125,13 +125,13 @@ namespace RLD
         #region Move
         public void SetMvLineSliderHoverEps(float eps)
         {
-            foreach (var settings in _mvSglSliderSettings)
+            foreach (GizmoLineSlider3DSettings settings in _mvSglSliderSettings)
                 settings.LineHoverEps = eps;
         }
 
         public void SetMvBoxSliderHoverEps(float eps)
         {
-            foreach (var settings in _mvSglSliderSettings)
+            foreach (GizmoLineSlider3DSettings settings in _mvSglSliderSettings)
             {
                 settings.BoxHoverEps = eps;
             }
@@ -139,7 +139,7 @@ namespace RLD
 
         public void SetMvCylinderSliderHoverEps(float eps)
         {
-            foreach (var settings in _mvSglSliderSettings)
+            foreach (GizmoLineSlider3DSettings settings in _mvSglSliderSettings)
             {
                 settings.CylinderHoverEps = eps;
             }
@@ -171,10 +171,10 @@ namespace RLD
 
         public void SetMvDragSensitivity(float sensitivity)
         {
-            foreach (var settings in _mvSglSliderSettings)
+            foreach (GizmoLineSlider3DSettings settings in _mvSglSliderSettings)
                 settings.OffsetSensitivity = sensitivity;
 
-            foreach (var settings in _mvDblSliderSettings)
+            foreach (GizmoPlaneSlider3DSettings settings in _mvDblSliderSettings)
                 settings.OffsetSensitivity = sensitivity;
         }
 
@@ -216,19 +216,19 @@ namespace RLD
         #region Rotation
         public void SetRtCanHoverCulledPixels(bool canHover)
         {
-            foreach (var settings in _rtSliderSettings)
+            foreach (GizmoPlaneSlider3DSettings settings in _rtSliderSettings)
                 settings.IsCircleHoverCullEnabled = !canHover;
         }
 
         public void SetRtAxisLineHoverEps(float eps)
         {
-            foreach (var settings in _rtSliderSettings)
+            foreach (GizmoPlaneSlider3DSettings settings in _rtSliderSettings)
                 settings.BorderLineHoverEps = eps;
         }
 
         public void SetRtAxisTorusHoverEps(float eps)
         {
-            foreach (var settings in _rtSliderSettings)
+            foreach (GizmoPlaneSlider3DSettings settings in _rtSliderSettings)
                 settings.BorderTorusHoverEps = eps;
         }
 
@@ -264,7 +264,7 @@ namespace RLD
 
         public void SetRtSnapMode(GizmoSnapMode snapMode)
         {
-            foreach (var settings in _rtSliderSettings)
+            foreach (GizmoPlaneSlider3DSettings settings in _rtSliderSettings)
                 settings.RotationSnapMode = snapMode;
 
             _rtCamLookSliderSettings.RotationSnapMode = snapMode;
@@ -272,7 +272,7 @@ namespace RLD
 
         public void SetRtDragSensitivity(float sensitivity)
         {
-            foreach (var settings in _rtSliderSettings)
+            foreach (GizmoPlaneSlider3DSettings settings in _rtSliderSettings)
                 settings.RotationSensitivity = sensitivity;
 
             _rtCamLookSliderSettings.RotationSensitivity = sensitivity;
@@ -309,13 +309,13 @@ namespace RLD
         #region Scale
         public void SetScLineSliderHoverEps(float eps)
         {
-            foreach (var settings in _scSglSliderSettings)
+            foreach (GizmoLineSlider3DSettings settings in _scSglSliderSettings)
                 settings.LineHoverEps = eps;
         }
 
         public void SetScBoxSliderHoverEps(float eps)
         {
-            foreach (var settings in _scSglSliderSettings)
+            foreach (GizmoLineSlider3DSettings settings in _scSglSliderSettings)
             {
                 settings.BoxHoverEps = eps;
             }
@@ -323,7 +323,7 @@ namespace RLD
 
         public void SetScCylinderSliderHoverEps(float eps)
         {
-            foreach (var settings in _scSglSliderSettings)
+            foreach (GizmoLineSlider3DSettings settings in _scSglSliderSettings)
             {
                 settings.CylinderHoverEps = eps;
             }
@@ -375,7 +375,7 @@ namespace RLD
 
         public void SetScDragSensitivity(float sensitivity)
         {
-            foreach (var settings in _scSglSliderSettings)
+            foreach (GizmoLineSlider3DSettings settings in _scSglSliderSettings)
                 settings.ScaleSensitivity = sensitivity;
         }
 
@@ -429,7 +429,7 @@ namespace RLD
             float newFloat;
 
             EditorGUILayoutEx.SectionHeader("Hover epsilon");
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
             content.text = "Line slider";
             content.tooltip = "Controls the precision used when hovering line sliders.";
             newFloat = EditorGUILayout.FloatField(content, MvLineSliderHoverEps);
@@ -508,7 +508,7 @@ namespace RLD
             GizmoSnapMode newSnapMode;
 
             EditorGUILayoutEx.SectionHeader("Hover epsilon/misc");
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
             content.text = "Axis line eps";
             content.tooltip = "Controls the precision used when hovering the axes rotation circles.";
             newFloat = EditorGUILayout.FloatField(content, RtAxisLineHoverEps);
@@ -636,7 +636,7 @@ namespace RLD
             float newFloat;
 
             EditorGUILayoutEx.SectionHeader("Hover epsilon");
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
             content.text = "Line slider";
             content.tooltip = "Controls the precision used when hovering line sliders.";
             newFloat = EditorGUILayout.FloatField(content, ScLineSliderHoverEps);

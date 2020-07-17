@@ -43,7 +43,7 @@ namespace RLD
         {
             int newInt; bool newBool;
 
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
             content.text = "Can snap to grid";
             content.tooltip = "When turned on, vertices can be snapped to grid cells.";
             newBool = EditorGUILayout.ToggleLeft(content, CanSnapToGrid);

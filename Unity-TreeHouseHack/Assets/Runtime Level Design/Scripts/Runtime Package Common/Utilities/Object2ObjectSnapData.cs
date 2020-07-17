@@ -36,12 +36,12 @@ namespace RLD
             if (vertOverlapAABBs.Count == 0) return false;
 
             AABB modelAABB = useMesh ? rtMesh.AABB : ObjectBounds.CalcSpriteModelAABB(gameObject);
-            var aabbFaces = BoxMath.AllBoxFaces;
+            List<BoxFace> aabbFaces = BoxMath.AllBoxFaces;
 
             _gameObject = gameObject;
             if (useMesh)
             {
-                foreach (var aabbFace in aabbFaces)
+                foreach (BoxFace aabbFace in aabbFaces)
                 {
                     AABB overlapAABB = vertOverlapAABBs[(int)aabbFace];
                     List<Vector3> overlappedVerts = rtMesh.OverlapModelVerts(overlapAABB);
@@ -53,7 +53,7 @@ namespace RLD
             }
             else
             {
-                foreach (var aabbFace in aabbFaces)
+                foreach (BoxFace aabbFace in aabbFaces)
                 {
                     if (aabbFace != BoxFace.Front && aabbFace != BoxFace.Back)
                     {
@@ -88,8 +88,8 @@ namespace RLD
             if (_gameObject == null) return new List<OBB>();
 
             Transform objectTransform = _gameObject.transform;
-            var worldSnapOBBs = new List<OBB>(_snapAreaBounds.Length);
-            foreach (var aabb in _snapAreaBounds)
+            List<OBB> worldSnapOBBs = new List<OBB>(_snapAreaBounds.Length);
+            foreach (AABB aabb in _snapAreaBounds)
             {
                 worldSnapOBBs.Add(new OBB(aabb, objectTransform));
             }
@@ -124,7 +124,7 @@ namespace RLD
             overlapAABBSizes[(int)BoxFace.Back] = new Vector3(modelAABBSize.x + sizeEps, modelAABBSize.y + sizeEps, overlapAmount);
             overlapAABBSizes[(int)BoxFace.Front] = new Vector3(modelAABBSize.x + sizeEps, modelAABBSize.y + sizeEps, overlapAmount);
 
-            var overlapAABBs = new List<AABB>();
+            List<AABB> overlapAABBs = new List<AABB>();
             for (int boxFaceIndex = 0; boxFaceIndex < modelAABBFaces.Count; ++boxFaceIndex)
             {
                 BoxFace modelAABBFace = modelAABBFaces[boxFaceIndex];

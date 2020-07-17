@@ -18,7 +18,7 @@ namespace RLD
         {
             bool newBool;
 
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
             content.text = "Can process input";
             content.tooltip = "Allows you to toggle input handling. You will usually want to turn this off when you have " +
                               "your own camera class that handles user input. Note: Turning this off will disable all actions " +

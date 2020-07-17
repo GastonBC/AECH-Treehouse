@@ -39,13 +39,13 @@ namespace RLD
         #region Move
         public void SetMvLineSliderHoverEps(float eps)
         {
-            foreach (var settings in _mvSglSliderSettings)
+            foreach (GizmoLineSlider2DSettings settings in _mvSglSliderSettings)
                 settings.LineHoverEps = eps;
         }
 
         public void SetMvBoxSliderHoverEps(float eps)
         {
-            foreach (var settings in _mvSglSliderSettings)
+            foreach (GizmoLineSlider2DSettings settings in _mvSglSliderSettings)
                 settings.BoxHoverEps = eps;
         }
 
@@ -65,7 +65,7 @@ namespace RLD
 
         public void SetMvDragSensitivity(float sensitivity)
         {
-            foreach (var settings in _mvSglSliderSettings)
+            foreach (GizmoLineSlider2DSettings settings in _mvSglSliderSettings)
                 settings.OffsetSensitivity = sensitivity;
 
             _mvDblSliderSettings.OffsetSensitivity = sensitivity;
@@ -108,7 +108,7 @@ namespace RLD
             float newFloat;
 
             EditorGUILayoutEx.SectionHeader("Hover epsilon");
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
             content.text = "Line slider";
             content.tooltip = "Controls the precision used when hovering line sliders.";
             newFloat = EditorGUILayout.FloatField(content, MvLineSliderHoverEps);

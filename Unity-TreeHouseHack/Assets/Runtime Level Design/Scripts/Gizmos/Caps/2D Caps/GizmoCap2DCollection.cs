@@ -41,37 +41,37 @@ namespace RLD
 
         public void Make2DHoverPriorityLowerThan(Priority priority)
         {
-            foreach (var cap in _caps)
+            foreach (GizmoCap2D cap in _caps)
                 cap.HoverPriority2D.MakeLowerThan(priority);
         }
 
         public void Make2DHoverPriorityHigherThan(Priority priority)
         {
-            foreach (var cap in _caps)
+            foreach (GizmoCap2D cap in _caps)
                 cap.HoverPriority2D.MakeHigherThan(priority);
         }
 
         public void SetVisible(bool visible)
         {
-            foreach (var cap in _caps)
+            foreach (GizmoCap2D cap in _caps)
                 cap.SetVisible(visible);
         }
 
         public void SetHoverable(bool hoverable)
         {
-            foreach (var cap in _caps)
+            foreach (GizmoCap2D cap in _caps)
                 cap.SetHoverable(hoverable);
         }
 
         public void SetDragSession(IGizmoDragSession dragSession)
         {
-            foreach (var cap in _caps)
+            foreach (GizmoCap2D cap in _caps)
                 cap.DragSession = dragSession;
         }
 
         public void Render(Camera camera)
         {
-            foreach (var cap in _caps)
+            foreach (GizmoCap2D cap in _caps)
                 cap.Render(camera);
         }
     }

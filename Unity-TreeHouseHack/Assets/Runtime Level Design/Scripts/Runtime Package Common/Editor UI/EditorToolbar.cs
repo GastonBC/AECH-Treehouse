@@ -40,7 +40,7 @@ namespace RLD
         #if UNITY_EDITOR
         public void RenderEditorGUI(UnityEngine.Object undoRecordObject)
         {
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
             for(int tabIndex = 0; tabIndex < _tabs.Length; ++tabIndex)
             {
                 if(tabIndex % _numTabsPerRow == 0)

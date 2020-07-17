@@ -11,7 +11,7 @@ namespace RLD
         {
             if (_objectToSnapData.ContainsKey(gameObject)) return _objectToSnapData[gameObject];
 
-            var snapData = new Object2ObjectSnapData();
+            Object2ObjectSnapData snapData = new Object2ObjectSnapData();
             if (!snapData.Initialize(gameObject)) return null;
 
             _objectToSnapData.Add(gameObject, snapData);

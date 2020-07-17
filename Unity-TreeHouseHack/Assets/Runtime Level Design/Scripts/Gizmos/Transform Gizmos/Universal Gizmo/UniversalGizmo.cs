@@ -580,8 +580,8 @@ namespace RLD
             _rtZSlider.Render(camera);
             _rtMidCap.Render(camera);
 
-            var sortedSliders = _mvAxesSliders.GetRenderSortedSliders(camera);
-            foreach (var slider in sortedSliders) slider.Render(camera);
+            List<GizmoLineSlider3D> sortedSliders = _mvAxesSliders.GetRenderSortedSliders(camera);
+            foreach (GizmoLineSlider3D slider in sortedSliders) slider.Render(camera);
 
             _rtCamLookSlider.Render(camera);
             _mvXYSlider.Render(camera);
@@ -635,7 +635,7 @@ namespace RLD
         {
             if (handleId == _rtMidCap.HandleId)
             {
-                var workData = new GizmoDblAxisRotationDrag3D.WorkData();
+                GizmoDblAxisRotationDrag3D.WorkData workData = new GizmoDblAxisRotationDrag3D.WorkData();
                 workData.Axis0 = Gizmo.FocusCamera.transform.up;
                 workData.Axis1 = Gizmo.FocusCamera.transform.right;
                 workData.ScreenAxis0 = -Vector3.right;
@@ -647,7 +647,7 @@ namespace RLD
             }
             else if (handleId == _scMidCap.HandleId)
             {
-                var workData = new GizmoUniformScaleDrag3D.WorkData();
+                GizmoUniformScaleDrag3D.WorkData workData = new GizmoUniformScaleDrag3D.WorkData();
                 workData.DragOrigin = _scMidCap.Position;
                 workData.CameraRight = Gizmo.FocusCamera.transform.right;
                 workData.CameraUp = Gizmo.FocusCamera.transform.up;

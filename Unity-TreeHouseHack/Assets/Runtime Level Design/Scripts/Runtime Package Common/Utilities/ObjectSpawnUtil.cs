@@ -20,7 +20,7 @@ namespace RLD
         {
             float halfSize = config.ObjectSize * 0.5f;
 
-            var boundsQConfig = new ObjectBounds.QueryConfig();
+            ObjectBounds.QueryConfig boundsQConfig = new ObjectBounds.QueryConfig();
             boundsQConfig.ObjectTypes = GameObjectTypeHelper.AllCombined;
             boundsQConfig.NoVolumeSize = Vector3Ex.FromValue(1.0f);
 
@@ -37,12 +37,12 @@ namespace RLD
             spawned.SetActive(true);
             OBB spawnedOBB = ObjectBounds.CalcHierarchyWorldOBB(spawned, boundsQConfig);
             Ray ray = new Ray(camera.transform.position, (spawnedOBB.Center - camera.transform.position).normalized);
-            var raycastFilter = new SceneRaycastFilter();
+            SceneRaycastFilter raycastFilter = new SceneRaycastFilter();
             raycastFilter.AllowedObjectTypes.Add(GameObjectType.Mesh);
             raycastFilter.AllowedObjectTypes.Add(GameObjectType.Terrain);
             raycastFilter.AllowedObjectTypes.Add(GameObjectType.Sprite);
 
-            var rayHit = RTScene.Get.Raycast(ray, SceneRaycastPrecision.BestFit, raycastFilter);
+            SceneRaycastHit rayHit = RTScene.Get.Raycast(ray, SceneRaycastPrecision.BestFit, raycastFilter);
             if (rayHit.WasAnObjectHit)
             {
                 Vector3 oldCenter = spawnedOBB.Center;

@@ -12,7 +12,7 @@ namespace RLD
             while(true)
             {
                 bool found = false;
-                foreach(var name in existingNames)
+                foreach(string name in existingNames)
                 {
                     if (name == finalName)
                     {

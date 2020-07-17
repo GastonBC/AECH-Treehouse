@@ -18,10 +18,10 @@ namespace RLD
         {
             if (gizmos == null) return new List<LocalGizmoTransformSnapshot>();
 
-            var localTransformSnapshots = new List<LocalGizmoTransformSnapshot>(20);
-            foreach (var gizmo in gizmos)
+            List<LocalGizmoTransformSnapshot> localTransformSnapshots = new List<LocalGizmoTransformSnapshot>(20);
+            foreach (Gizmo gizmo in gizmos)
             {
-                var snapshot = new LocalGizmoTransformSnapshot();
+                LocalGizmoTransformSnapshot snapshot = new LocalGizmoTransformSnapshot();
                 snapshot.Snapshot(gizmo.Transform);
                 localTransformSnapshots.Add(snapshot);
             }

@@ -28,8 +28,8 @@ namespace RLD
 
         public override void UpdateTransforms(float zoomFactor)
         {
-            var quad = _data.Quad;
-            var slider = _data.Slider;
+            QuadShape3D quad = _data.Quad;
+            GizmoPlaneSlider3D slider = _data.Slider;
 
             quad.Center = slider.Position;
             quad.Rotation = slider.Rotation;

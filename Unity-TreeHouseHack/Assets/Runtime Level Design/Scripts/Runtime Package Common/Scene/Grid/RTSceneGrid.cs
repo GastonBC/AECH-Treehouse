@@ -75,7 +75,7 @@ namespace RLD
             {
                 if (Hotkeys.SnapToCursorPickPoint.IsActive())
                 {
-                    var rayHit = GetSceneHitForGridSnap();
+                    SceneRaycastHit rayHit = GetSceneHitForGridSnap();
                     if (rayHit.WasAnObjectHit) SnapToObjectHitPoint(rayHit.ObjectHit, SnapToPointMode.Exact);
                 }
             }
@@ -200,8 +200,8 @@ namespace RLD
 
         private SceneRaycastHit GetSceneHitForGridSnap()
         {
-            var pickRay = RTInputDevice.Get.Device.GetRay(RTFocusCamera.Get.TargetCamera);
-            var raycastFilter = new SceneRaycastFilter();
+            Ray pickRay = RTInputDevice.Get.Device.GetRay(RTFocusCamera.Get.TargetCamera);
+            SceneRaycastFilter raycastFilter = new SceneRaycastFilter();
             raycastFilter.AllowedObjectTypes.Add(GameObjectType.Mesh);
 
             return RTScene.Get.Raycast(pickRay, SceneRaycastPrecision.BestFit, raycastFilter);
@@ -211,7 +211,7 @@ namespace RLD
         {
             if (Hotkeys.SnapToCursorPickPoint.IsActive())
             {
-                var rayHit = GetSceneHitForGridSnap();
+                SceneRaycastHit rayHit = GetSceneHitForGridSnap();
                 if (rayHit.WasAnObjectHit) SnapToObjectHitPoint(rayHit.ObjectHit, SnapToPointMode.ClosestExtremity);
             }
         }
@@ -225,7 +225,7 @@ namespace RLD
             }
             else
             {
-                var boundsQConfig = new ObjectBounds.QueryConfig();
+                ObjectBounds.QueryConfig boundsQConfig = new ObjectBounds.QueryConfig();
                 boundsQConfig.ObjectTypes = GameObjectType.Mesh;
 
                 OBB worldOBB = ObjectBounds.CalcWorldOBB(objectHit.HitObject, boundsQConfig);
@@ -233,7 +233,7 @@ namespace RLD
                 {
                     Plane slicePlane = new Plane(Normal, worldOBB.Center);
                     Vector3 destPt = worldOBB.Center;
-                    var obbCorners = BoxMath.CalcBoxCornerPoints(worldOBB.Center, worldOBB.Size, worldOBB.Rotation);
+                    List<Vector3> obbCorners = BoxMath.CalcBoxCornerPoints(worldOBB.Center, worldOBB.Size, worldOBB.Rotation);
 
                     float sign = Mathf.Sign(slicePlane.GetDistanceToPoint(objectHit.HitPoint));
                     if (sign > 0.0f)

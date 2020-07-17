@@ -57,7 +57,7 @@ namespace RLD
             SelectionBoxRenderMode newBoxRenderMode;
 
             // Can draw?
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
             content.text = "Draw highlight";
             content.tooltip = "Allows you to toggle selection highlight drawing on/off.";
             newBool = EditorGUILayout.ToggleLeft(content, DrawHighlight);

@@ -47,8 +47,8 @@ namespace RLD
             Graphics.DrawMeshNow(MeshPool.Get.UnitWireCircleXY, Matrix4x4.TRS(_baseCenter, circleRotation, circleMeshScale));
             Graphics.DrawMeshNow(MeshPool.Get.UnitWireCircleXY, Matrix4x4.TRS(TopCenter, circleRotation, circleMeshScale));
 
-            var bottomCapPts = GetBottomCapExtentPoints();
-            var topCapPts = GetTopCapExtentPoints();
+            List<Vector3> bottomCapPts = GetBottomCapExtentPoints();
+            List<Vector3> topCapPts = GetTopCapExtentPoints();
             GLRenderer.DrawLinePairs3D(new List<Vector3>() { bottomCapPts[0], topCapPts[0], bottomCapPts[1], topCapPts[1], bottomCapPts[2], topCapPts[2], bottomCapPts[3], topCapPts[3], });
         }
 

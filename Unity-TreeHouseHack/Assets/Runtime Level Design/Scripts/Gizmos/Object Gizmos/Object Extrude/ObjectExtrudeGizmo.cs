@@ -106,7 +106,7 @@ namespace RLD
         public void SetIgnoredParentObjects(IEnumerable<GameObject> ignoredParentObjects)
         {
             _ignoredParentObjects.Clear();
-            foreach (var ignoredParent in ignoredParentObjects)
+            foreach (GameObject ignoredParent in ignoredParentObjects)
                 _ignoredParentObjects.Add(ignoredParent);
         }
 
@@ -142,7 +142,7 @@ namespace RLD
             if (ExtrudeSpace == GizmoSpace.Global)
             {
                 AABB worldAABB = AABB.GetInvalid();
-                foreach(var parent in _targetParents)
+                foreach(GameObject parent in _targetParents)
                 {
                     if (_ignoredParentObjects.Contains(parent)) continue;
 
@@ -276,7 +276,7 @@ namespace RLD
 
         public override void OnGizmoRender(Camera camera)
         {
-            var boxWireMaterial = GizmoLineMaterial.Get;
+            GizmoLineMaterial boxWireMaterial = GizmoLineMaterial.Get;
             boxWireMaterial.ResetValuesToSensibleDefaults();
             boxWireMaterial.SetColor(LookAndFeel3D.BoxWireColor);
             boxWireMaterial.SetPass(0);
@@ -289,8 +289,8 @@ namespace RLD
                 UpdateExtrudeSliderTransforms();
             }
 
-            var sortedSliders = _extrudeSliders.GetRenderSortedSliders(camera);
-            foreach (var slider in sortedSliders) slider.Render(camera);
+            List<GizmoLineSlider3D> sortedSliders = _extrudeSliders.GetRenderSortedSliders(camera);
+            foreach (GizmoLineSlider3D slider in sortedSliders) slider.Render(camera);
         }
 
         public override void OnGizmoDragBegin(int handleId)
@@ -298,7 +298,7 @@ namespace RLD
             if (OwnsHandle(handleId))
             {
                 _sceneOverlapFilter.IgnoreObjects.Clear();
-                foreach (var targetParent in _targetParents)
+                foreach (GameObject targetParent in _targetParents)
                     _sceneOverlapFilter.IgnoreObjects.AddRange(targetParent.GetAllChildrenAndSelf());
 
                 _dragEndAction = new ObjectExtrudeGizmoDragEnd();
@@ -356,19 +356,19 @@ namespace RLD
                 float absFractional = Mathf.Abs(fNumClones - (int)fNumClones);
                 if (iNumClones == 0 && Mathf.Abs(absFractional - 1.0f) < 1e-5f) ++iNumClones;
 
-                var createdClones = new List<GameObject>(10);
-                var cloneConfig = ObjectCloning.DefaultConfig;
-                var cloneOffset = _handleDragExtrData.ExtrudeDir * boxSize;
+                List<GameObject> createdClones = new List<GameObject>(10);
+                ObjectCloning.Config cloneConfig = ObjectCloning.DefaultConfig;
+                Vector3 cloneOffset = _handleDragExtrData.ExtrudeDir * boxSize;
                 for(int cloneIndex = 0; cloneIndex < iNumClones; ++cloneIndex)
                 {
-                    foreach(var targetParent in _targetParents)
+                    foreach(GameObject targetParent in _targetParents)
                     {
                         if (_ignoredParentObjects.Contains(targetParent)) continue;
 
                         if (!Hotkeys.EnableOverlapTest.IsActive())
                         {
                             cloneConfig.Parent = targetParent.transform.parent;
-                            var clonedHierarchy = ObjectCloning.CloneHierarchy(targetParent, cloneConfig);
+                            GameObject clonedHierarchy = ObjectCloning.CloneHierarchy(targetParent, cloneConfig);
                             if (clonedHierarchy != null)
                             {
                                 _sceneOverlapFilter.IgnoreObjects.AddRange(clonedHierarchy.GetAllChildrenAndSelf());
@@ -386,11 +386,11 @@ namespace RLD
                             // Bring the size down a tad. Otherwise, we can get false positives when objects are really close to 
                             // each other even if they do not intersect.
                             targetOBB.Inflate(-1e-2f);
-                            var overlappedObjects = RTScene.Get.OverlapBox(targetOBB, _sceneOverlapFilter);
+                            List<GameObject> overlappedObjects = RTScene.Get.OverlapBox(targetOBB, _sceneOverlapFilter);
                             if (overlappedObjects.Count != 0) continue;
 
                             cloneConfig.Parent = targetParent.transform.parent;
-                            var clonedHierarchy = ObjectCloning.CloneHierarchy(targetParent, cloneConfig);
+                            GameObject clonedHierarchy = ObjectCloning.CloneHierarchy(targetParent, cloneConfig);
                             if (clonedHierarchy != null)
                             {
                                 _sceneOverlapFilter.IgnoreObjects.AddRange(clonedHierarchy.GetAllChildrenAndSelf());
@@ -403,7 +403,7 @@ namespace RLD
                 }
                 _handleDragExtrData.ExtrudeCenter += Gizmo.RelativeDragOffset;
 
-                foreach (var targetParent in _targetParents)
+                foreach (GameObject targetParent in _targetParents)
                 {
                     if (!_ignoredParentObjects.Contains(targetParent))
                         targetParent.transform.position += Gizmo.RelativeDragOffset;

@@ -148,7 +148,7 @@ namespace RLD
             CreateAppModuleObject<RTPrefabLibDb>(appTransform);
             CreateAppModuleObject<RTGizmosEngine>(appTransform);
 
-            var scene = CreateAppModuleObject<RTScene>(appTransform);
+            RTScene scene = CreateAppModuleObject<RTScene>(appTransform);
             scene.LookAndFeel.LightIcon = TexturePool.Get.MainLightIcon;
             scene.LookAndFeel.ParticleSystemIcon = TexturePool.Get.MainParticleSystemIcon;
             scene.LookAndFeel.CameraIcon = TexturePool.Get.CameraIcon;
@@ -159,7 +159,7 @@ namespace RLD
 
             CreateAppModuleObject<RTObjectGroupDb>(appTransform);
 
-            var focusCamera = CreateAppModuleObject<RTFocusCamera>(appTransform);
+            RTFocusCamera focusCamera = CreateAppModuleObject<RTFocusCamera>(appTransform);
             focusCamera.SetTargetCamera(Camera.main);
             CreateAppModuleObject<RTCameraBackground>(appTransform);
 
@@ -188,10 +188,10 @@ namespace RLD
         private static void DestroyAppAndModules()
         {
             Type[] allModuleTypes = GetAppModuleTypes();
-            foreach (var moduleType in allModuleTypes)
+            foreach (Type moduleType in allModuleTypes)
             {
-                var allModulesInScene = MonoBehaviour.FindObjectsOfType(moduleType);
-                foreach(var module in allModulesInScene)
+                UnityEngine.Object[] allModulesInScene = MonoBehaviour.FindObjectsOfType(moduleType);
+                foreach(UnityEngine.Object module in allModulesInScene)
                 {
                     MonoBehaviour moduleMono = module as MonoBehaviour;
                     if (moduleMono != null) DestroyImmediate(moduleMono.gameObject);

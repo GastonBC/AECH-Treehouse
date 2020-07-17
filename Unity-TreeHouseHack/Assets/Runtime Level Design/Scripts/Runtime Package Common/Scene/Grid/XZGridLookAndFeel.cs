@@ -28,7 +28,7 @@ namespace RLD
             Color newColor; bool newBool;
 
             // Grid line color
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
             content.text = "Line color";
             content.tooltip = "Allows you to control the color of the grid lines.";
             newColor = EditorGUILayout.ColorField(content, LineColor);

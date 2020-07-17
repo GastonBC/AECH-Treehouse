@@ -46,8 +46,8 @@ namespace RLD
                     material.SetZTestEnabled(true);
                     material.SetPass(0);
 
-                    var boundsQConfig = GetObjectBoundsQConfig();
-                    foreach (var targetObject in _targetObjects)
+                    ObjectBounds.QueryConfig boundsQConfig = GetObjectBoundsQConfig();
+                    foreach (GameObject targetObject in _targetObjects)
                     {
                         if (targetObject == null) continue;
 
@@ -122,7 +122,7 @@ namespace RLD
             _targetObjects.Clear();
             _state = State.Inactive;
 
-            var postObjectTransformChangedAction = new PostObjectTransformsChangedAction(_preTargetTransformSnapshots, LocalTransformSnapshot.GetSnapshotCollection(_targetParents));
+            PostObjectTransformsChangedAction postObjectTransformChangedAction = new PostObjectTransformsChangedAction(_preTargetTransformSnapshots, LocalTransformSnapshot.GetSnapshotCollection(_targetParents));
             postObjectTransformChangedAction.Execute();
             _targetParents.Clear();
 
@@ -160,7 +160,7 @@ namespace RLD
         {
             _targetObjects.Clear();
 
-            foreach(var targetObject in targetObjects)
+            foreach(GameObject targetObject in targetObjects)
             {
                 if (targetObject == null) continue;
 
@@ -181,11 +181,11 @@ namespace RLD
         {
             if (!RTInputDevice.Get.Device.HasPointer()) return;
 
-            var boundsQConfig = GetObjectBoundsQConfig();
+            ObjectBounds.QueryConfig boundsQConfig = GetObjectBoundsQConfig();
 
             Vector2 inputDevicePos = RTInputDevice.Get.Device.GetPositionYAxisUp();
             float minDistFromDevice = float.MaxValue;
-            foreach(var targetObject in _targetObjects)
+            foreach(GameObject targetObject in _targetObjects)
             {
                 if (targetObject == null) continue;
 
@@ -210,7 +210,7 @@ namespace RLD
 
         private ObjectBounds.QueryConfig GetObjectBoundsQConfig()
         {
-            var boundsQConfig = new ObjectBounds.QueryConfig();
+            ObjectBounds.QueryConfig boundsQConfig = new ObjectBounds.QueryConfig();
             boundsQConfig.ObjectTypes = GameObjectType.Mesh | GameObjectType.Sprite;
             return boundsQConfig;
         }
@@ -227,7 +227,7 @@ namespace RLD
 
             Vector3 snapDestination = hitCellPoints[destPtIndex];
             Vector3 snapVector = (snapDestination - _snapPivotPoint);
-            foreach (var targetParent in _targetParents)
+            foreach (GameObject targetParent in _targetParents)
             {
                 if (targetParent == null) continue;
 

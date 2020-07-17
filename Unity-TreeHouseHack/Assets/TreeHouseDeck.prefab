@@ -9,10 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2269118682193857274}
-  - component: {fileID: 2269118682193857277}
-  - component: {fileID: 2269118682193857276}
   m_Layer: 0
-  m_Name: New tree house
+  m_Name: TreeHouseDeck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,57 +30,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2269118682193857277
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2269118682193857279}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b2191a2acc53e1488aa835e4e9fbfec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Trees:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  OrderedTrees: []
-  NeedRefresh: 0
-  Elevation: 2
-  RailElevation: 1
-  testSphere: {fileID: 0}
---- !u!114 &2269118682193857276
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2269118682193857279}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90271d75ac415fc4e9354ca5a0491dc1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Plates: []
-  Beams: []
-  Rails: []
-  BeamPlateOverlap: 1
-  PlateType: {fileID: 2264039783735056949, guid: ef68455eb73ba4e408002e77cb6da4fc,
-    type: 3}
-  BeamType: {fileID: 0}
-  RailType: {fileID: 0}
-  PlateWidth: 0.1
-  ActivePlates: 0
-  ActiveBeams: 0
-  ActiveRails: 0
-  ProjectionPoint: {x: 0, y: 0, z: 0}
-  test1: {x: 0, y: 0, z: 0}
-  test2: {x: 0, y: 0, z: 0}
-  test3: {x: 0, y: 0, z: 0}
-  testsphere: {fileID: 0}
-  GenerationDirection: {x: 0, y: 0, z: 0}
-  Orientation: {x: 0, y: 0, z: 0}
-  PrimaryAngle: 0
-  SecondaryAngle: 0

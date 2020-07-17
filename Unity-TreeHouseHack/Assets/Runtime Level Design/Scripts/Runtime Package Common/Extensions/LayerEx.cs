@@ -37,7 +37,7 @@ namespace RLD
 
         public static List<string> GetAllLayerNames()
         {
-            var layerNames = new List<string>();
+            List<string> layerNames = new List<string>();
             for (int layerIndex = 0; layerIndex <= 31; ++layerIndex)
             {
                 string layerName = LayerMask.LayerToName(layerIndex);

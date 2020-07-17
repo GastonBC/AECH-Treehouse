@@ -42,7 +42,7 @@ namespace RLD
             bool newBool; Color newColor; float newFloat;
             PivotPointShapeType newPivotShapeType;
 
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
             content.text = "Pivot shape type";
             content.tooltip = "Allows you to choose the shape that is drawn for the snap pivot point.";
             newPivotShapeType = (PivotPointShapeType)EditorGUILayout.EnumPopup(content, PivotShapeType);

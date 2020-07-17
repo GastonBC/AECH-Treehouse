@@ -46,43 +46,43 @@ namespace RLD
 
         public void Make2DHoverPriorityLowerThan(Priority priority)
         {
-            foreach (var slider in _sliders)
+            foreach (GizmoLineSlider2D slider in _sliders)
                 slider.HoverPriority2D.MakeLowerThan(priority);
         }
 
         public void Make2DHoverPriorityHigherThan(Priority priority)
         {
-            foreach (var slider in _sliders)
+            foreach (GizmoLineSlider2D slider in _sliders)
                 slider.HoverPriority2D.MakeHigherThan(priority);
         }
 
         public void SetSnapEnabled(bool isEnabled)
         {
-            foreach (var slider in _sliders)
+            foreach (GizmoLineSlider2D slider in _sliders)
                 slider.SetSnapEnabled(isEnabled);
         }
 
         public void SetVisible(bool visible)
         {
-            foreach (var slider in _sliders)
+            foreach (GizmoLineSlider2D slider in _sliders)
                 slider.SetVisible(visible);
         }
 
         public void Set2DCapsVisible(bool visible)
         {
-            foreach (var slider in _sliders)
+            foreach (GizmoLineSlider2D slider in _sliders)
                 slider.Set2DCapVisible(visible);
         }
 
         public void SetOffsetDragOrigin(Vector3 dragOrigin)
         {
-            foreach (var slider in _sliders)
+            foreach (GizmoLineSlider2D slider in _sliders)
                 slider.OffsetDragOrigin = dragOrigin;
         }
 
         public void Render(Camera camera)
         {
-            foreach (var slider in _sliders)
+            foreach (GizmoLineSlider2D slider in _sliders)
                 slider.Render(camera);
         }
     }

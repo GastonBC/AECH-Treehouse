@@ -21,14 +21,14 @@ namespace RLD
 
         public override void UpdateEpsilons()
         {
-            var quad = _data.Quad;
+            QuadShape2D quad = _data.Quad;
             quad.SizeEps = Vector2Ex.FromValue(_data.Slider.Settings.AreaHoverEps);
         }
 
         public override void UpdateTransforms()
         {
-            var quad = _data.Quad;
-            var slider = _data.Slider;
+            QuadShape2D quad = _data.Quad;
+            GizmoPlaneSlider2D slider = _data.Slider;
 
             quad.Center = slider.Position;
             quad.RotationDegrees = slider.RotationDegrees;

@@ -38,8 +38,8 @@ namespace RLD
         {
             if(roots.Count == 0) return new List<GameObject>();
 
-            var clones = new List<GameObject>(roots.Count);
-            foreach(var root in roots)
+            List<GameObject> clones = new List<GameObject>(roots.Count);
+            foreach(GameObject root in roots)
             {
                 GameObject clone = CloneHierarchy(root, cloneConfig);
                 if (clone != null) clones.Add(clone);

@@ -401,8 +401,8 @@ namespace RLD
                 if (_is2DModeEnabled) Update2DModeHandlePositions();
             }
 
-            var sortedSliders = _axesSliders.GetRenderSortedSliders(camera);
-            foreach (var slider in sortedSliders) slider.Render(camera);
+            List<GizmoLineSlider3D> sortedSliders = _axesSliders.GetRenderSortedSliders(camera);
+            foreach (GizmoLineSlider3D slider in sortedSliders) slider.Render(camera);
 
             _midCap.Render(camera);
             _xySlider.Render(camera);

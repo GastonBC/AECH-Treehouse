@@ -30,7 +30,7 @@ namespace RLD
         public Type GetFirstBehaviourOfType<Type>()
              where Type : class, IGizmoBehaviour
         {
-            var list = GetBehavioursOfType<Type>();
+            List<Type> list = GetBehavioursOfType<Type>();
             if (list.Count != 0) return list[0];
 
             return null;
@@ -38,7 +38,7 @@ namespace RLD
 
         public IGizmoBehaviour GetFirstBehaviourOfType(Type behaviourType)
         {
-            var list = GetBehavioursOfType(behaviourType);
+            List<IGizmoBehaviour> list = GetBehavioursOfType(behaviourType);
             if (list.Count != 0) return list[0];
 
             return null;
@@ -49,11 +49,11 @@ namespace RLD
         {
             if(Count == 0) return new List<Type>();
 
-            var outputList = new List<Type>(Count);
-            var queryType = typeof(Type);
-            foreach(var behaviour in _behaviours)
+            List<Type> outputList = new List<Type>(Count);
+            System.Type queryType = typeof(Type);
+            foreach(IGizmoBehaviour behaviour in _behaviours)
             {
-                var bhvType = behaviour.GetType();
+                System.Type bhvType = behaviour.GetType();
                 if (bhvType == queryType || bhvType.IsSubclassOf(queryType)) outputList.Add(behaviour as Type);
             }
             return outputList;
@@ -63,10 +63,10 @@ namespace RLD
         {
             if (Count == 0) return new List<IGizmoBehaviour>();
 
-            var outputList = new List<IGizmoBehaviour>(Count);
-            foreach (var behaviour in _behaviours)
+            List<IGizmoBehaviour> outputList = new List<IGizmoBehaviour>(Count);
+            foreach (IGizmoBehaviour behaviour in _behaviours)
             {
-                var bhvType = behaviour.GetType();
+                Type bhvType = behaviour.GetType();
                 if (bhvType == behaviourType || bhvType.IsSubclassOf(behaviourType)) outputList.Add(behaviour);
             }
             return outputList;

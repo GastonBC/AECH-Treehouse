@@ -57,19 +57,19 @@ namespace RLD
 
         public AABB CalculateBounds()
         {
-            var activeScene = SceneManager.GetActiveScene();
-            var roots = new List<GameObject>(Mathf.Max(10, activeScene.rootCount));
+            Scene activeScene = SceneManager.GetActiveScene();
+            List<GameObject> roots = new List<GameObject>(Mathf.Max(10, activeScene.rootCount));
             SceneManager.GetActiveScene().GetRootGameObjects(roots);
 
-            var boundsQConfig = new ObjectBounds.QueryConfig();
+            ObjectBounds.QueryConfig boundsQConfig = new ObjectBounds.QueryConfig();
             boundsQConfig.NoVolumeSize = Vector3.zero;
             boundsQConfig.ObjectTypes = GameObjectType.Mesh | GameObjectType.Sprite;
 
             AABB sceneAABB = new AABB();
-            foreach(var root in roots)
+            foreach(GameObject root in roots)
             {
-                var allChildrenAndSelf = root.GetAllChildrenAndSelf();
-                foreach(var sceneObject in allChildrenAndSelf)
+                List<GameObject> allChildrenAndSelf = root.GetAllChildrenAndSelf();
+                foreach(GameObject sceneObject in allChildrenAndSelf)
                 {
                     AABB aabb = ObjectBounds.CalcWorldAABB(sceneObject, boundsQConfig);
                     if(aabb.IsValid)
@@ -85,7 +85,7 @@ namespace RLD
 
         public bool IsAnySceneEntityHovered()
         {
-            foreach (var container in _hoverableSceneEntityContainers)
+            foreach (IHoverableSceneEntityContainer container in _hoverableSceneEntityContainers)
                 if (container.HasHoveredSceneEntity) return true;
 
             return IsAnyUIElementHovered();
@@ -134,8 +134,8 @@ namespace RLD
             {
                 // Retrieve the overlapped 3D objects and store them inside the output list
                 Collider[] overlapped3DColliders = Physics.OverlapBox(obb.Center, obb.Extents, obb.Rotation);
-                var overlappedObjects = new List<GameObject>(50);
-                foreach (var collider in overlapped3DColliders) overlappedObjects.Add(collider.gameObject);
+                List<GameObject> overlappedObjects = new List<GameObject>(50);
+                foreach (Collider collider in overlapped3DColliders) overlappedObjects.Add(collider.gameObject);
 
                 // Retrieve the overlapped 2D objects. This requires some further calculations
                 // because colliders of 2D sprites exist in the XY plane, so we must project the
@@ -149,7 +149,7 @@ namespace RLD
                 // extents to construct the overlap area and use the 'OverlapAreaAll' function to retrieve the
                 // overlapped 2D colliders.
                 Collider2D[] overlapped2DColliders = Physics2D.OverlapAreaAll(projectedPtsAABB.Min, projectedPtsAABB.Max);
-                foreach (var collider in overlapped2DColliders) overlappedObjects.Add(collider.gameObject);
+                foreach (Collider2D collider in overlapped2DColliders) overlappedObjects.Add(collider.gameObject);
                
                 return overlappedObjects;
             }
@@ -158,7 +158,7 @@ namespace RLD
 
         public List<GameObject> OverlapBox(OBB obb, SceneOverlapFilter overlapFilter)
         {
-            var gameObjects = OverlapBox(obb);
+            List<GameObject> gameObjects = OverlapBox(obb);
             overlapFilter.FilterOverlaps(gameObjects);
 
             return gameObjects;
@@ -339,8 +339,8 @@ namespace RLD
 
         public void Render_SystemCall()
         {
-            var iconMaterial = MaterialPool.Get.TintedTexture;
-            var iconMesh = MeshPool.Get.UnitQuadXY;
+            Material iconMaterial = MaterialPool.Get.TintedTexture;
+            Mesh iconMesh = MeshPool.Get.UnitQuadXY;
 
             Camera renderCam = Camera.current;
             if (IsIconRenderIgnoreCamera(renderCam)) return;
@@ -390,7 +390,7 @@ namespace RLD
                 Vector3 scale = new Vector3(Settings.NonMeshObjectSize, Settings.NonMeshObjectSize, 1.0f);
                 for (int psIndex = 0; psIndex < _particleSystems.Count; ++psIndex)
                 {
-                    var particleSystem = _particleSystems[psIndex];
+                    ParticleSystem particleSystem = _particleSystems[psIndex];
                     if (particleSystem != null && particleSystem.gameObject.activeInHierarchy)
                     {
                         Transform objectTransform = particleSystem.gameObject.transform;

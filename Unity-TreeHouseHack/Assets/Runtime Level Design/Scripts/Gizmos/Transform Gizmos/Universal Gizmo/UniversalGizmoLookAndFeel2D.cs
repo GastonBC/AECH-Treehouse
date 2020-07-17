@@ -154,7 +154,7 @@ namespace RLD
 
         public void SetMvSliderHoveredFillColor(Color color)
         {
-            foreach (var lookAndFeel in _mvSglSliderLookAndFeel)
+            foreach (GizmoLineSlider2DLookAndFeel lookAndFeel in _mvSglSliderLookAndFeel)
             {
                 lookAndFeel.HoveredColor = color;
                 lookAndFeel.CapLookAndFeel.HoveredColor = color;
@@ -163,7 +163,7 @@ namespace RLD
 
         public void SetMvSliderHoveredBorderColor(Color color)
         {
-            foreach (var lookAndFeel in _mvSglSliderLookAndFeel)
+            foreach (GizmoLineSlider2DLookAndFeel lookAndFeel in _mvSglSliderLookAndFeel)
             {
                 lookAndFeel.HoveredBorderColor = color;
                 lookAndFeel.CapLookAndFeel.HoveredBorderColor = color;
@@ -172,7 +172,7 @@ namespace RLD
 
         public void SetMvSliderFillMode(GizmoFillMode2D fillMode)
         {
-            foreach (var lookAndFeel in _mvSglSliderLookAndFeel)
+            foreach (GizmoLineSlider2DLookAndFeel lookAndFeel in _mvSglSliderLookAndFeel)
                 lookAndFeel.FillMode = fillMode;
         }
 
@@ -183,61 +183,61 @@ namespace RLD
 
         public void SetMvSliderCapFillMode(GizmoFillMode2D fillMode)
         {
-            foreach (var lookAndFeel in _mvSglSliderLookAndFeel)
+            foreach (GizmoLineSlider2DLookAndFeel lookAndFeel in _mvSglSliderLookAndFeel)
                 lookAndFeel.CapLookAndFeel.FillMode = fillMode;
         }
 
         public void SetMvSliderLineType(GizmoLine2DType lineType)
         {
-            foreach (var lookAndFeel in _mvSglSliderLookAndFeel)
+            foreach (GizmoLineSlider2DLookAndFeel lookAndFeel in _mvSglSliderLookAndFeel)
                 lookAndFeel.LineType = lineType;
         }
 
         public void SetMvBoxSliderThickness(float thickness)
         {
-            foreach (var lookAndFeel in _mvSglSliderLookAndFeel)
+            foreach (GizmoLineSlider2DLookAndFeel lookAndFeel in _mvSglSliderLookAndFeel)
                 lookAndFeel.BoxThickness = thickness;
         }
 
         public void SetMvSliderLength(float length)
         {
-            foreach (var lookAndFeel in _mvSglSliderLookAndFeel)
+            foreach (GizmoLineSlider2DLookAndFeel lookAndFeel in _mvSglSliderLookAndFeel)
                 lookAndFeel.Length = length;
         }
 
         public void SetMvSliderCapType(GizmoCap2DType capType)
         {
-            foreach (var lookAndFeel in _mvSglSliderLookAndFeel)
+            foreach (GizmoLineSlider2DLookAndFeel lookAndFeel in _mvSglSliderLookAndFeel)
                 lookAndFeel.CapLookAndFeel.CapType = capType;
         }
 
         public void SetMvSliderArrowCapBaseRadius(float radius)
         {
-            foreach (var lookAndFeel in _mvSglSliderLookAndFeel)
+            foreach (GizmoLineSlider2DLookAndFeel lookAndFeel in _mvSglSliderLookAndFeel)
                 lookAndFeel.CapLookAndFeel.ArrowBaseRadius = radius;
         }
 
         public void SetMvSliderArrowCapHeight(float height)
         {
-            foreach (var lookAndFeel in _mvSglSliderLookAndFeel)
+            foreach (GizmoLineSlider2DLookAndFeel lookAndFeel in _mvSglSliderLookAndFeel)
                 lookAndFeel.CapLookAndFeel.ArrowHeight = height;
         }
 
         public void SetMvSliderQuadCapWidth(float width)
         {
-            foreach (var lookAndFeel in _mvSglSliderLookAndFeel)
+            foreach (GizmoLineSlider2DLookAndFeel lookAndFeel in _mvSglSliderLookAndFeel)
                 lookAndFeel.CapLookAndFeel.QuadWidth = width;
         }
 
         public void SetMvSliderQuadCapHeight(float height)
         {
-            foreach (var lookAndFeel in _mvSglSliderLookAndFeel)
+            foreach (GizmoLineSlider2DLookAndFeel lookAndFeel in _mvSglSliderLookAndFeel)
                 lookAndFeel.CapLookAndFeel.QuadHeight = height;
         }
 
         public void SetMvSliderCircleCapRadius(float radius)
         {
-            foreach (var lookAndFeel in _mvSglSliderLookAndFeel)
+            foreach (GizmoLineSlider2DLookAndFeel lookAndFeel in _mvSglSliderLookAndFeel)
                 lookAndFeel.CapLookAndFeel.CircleRadius = radius;
         }
 
@@ -283,7 +283,7 @@ namespace RLD
 
         public void SetMvScale(float scale)
         {
-            foreach (var lookAndFeel in _mvSglSliderLookAndFeel)
+            foreach (GizmoLineSlider2DLookAndFeel lookAndFeel in _mvSglSliderLookAndFeel)
             {
                 lookAndFeel.Scale = scale;
                 lookAndFeel.CapLookAndFeel.Scale = scale;
@@ -364,7 +364,7 @@ namespace RLD
             GizmoPlane2DType newPlane2DType;
 
             EditorGUILayoutEx.SectionHeader("Scale");
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
             content.text = "Scale";
             content.tooltip = "The gizmo 2D scale. This is useful when you need to make the gizmo bigger or smaller because it maintains the relationship between different size properties.";
             newFloat = EditorGUILayout.FloatField(content, MvScale);
@@ -661,7 +661,7 @@ namespace RLD
 
         private void DrawMvSliderVisibilityControls(AxisSign axisSign, UnityEngine.Object undoRecordObject)
         {
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
             EditorGUILayout.BeginHorizontal();
             string[] sliderLabels = axisSign == AxisSign.Positive ? new string[] { "+X", "+Y" } : new string[] { "-X", "-Y" };
             for (int sliderIndex = 0; sliderIndex < 2; ++sliderIndex)
@@ -682,7 +682,7 @@ namespace RLD
 
         private void DrawMvSliderCapVisibilityControls(AxisSign axisSign, UnityEngine.Object undoRecordObject)
         {
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
             EditorGUILayout.BeginHorizontal();
             string[] sliderLabels = axisSign == AxisSign.Positive ? new string[] { "+X", "+Y" } : new string[] { "-X", "-Y" };
             for (int sliderIndex = 0; sliderIndex < 2; ++sliderIndex)
@@ -704,13 +704,13 @@ namespace RLD
         private void DrawMvCheckUncheckAllSlidersVisButtons(bool forCaps, UnityEngine.Object undoRecordObject)
         {
             EditorGUILayout.BeginHorizontal();
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
             content.text = "Show all";
             content.tooltip = "Show all " + (forCaps ? "caps." : "sliders.");
             if (GUILayout.Button(content, GUILayout.Width(80.0f)))
             {
                 EditorUndoEx.Record(undoRecordObject);
-                var visFlags = forCaps ? _mvSglSliderCapVis : _mvSglSliderVis;
+                bool[] visFlags = forCaps ? _mvSglSliderCapVis : _mvSglSliderVis;
                 for (int index = 0; index < visFlags.Length; ++index) visFlags[index] = true;
             }
 
@@ -719,7 +719,7 @@ namespace RLD
             if (GUILayout.Button(content, GUILayout.Width(80.0f)))
             {
                 EditorUndoEx.Record(undoRecordObject);
-                var visFlags = forCaps ? _mvSglSliderCapVis : _mvSglSliderVis;
+                bool[] visFlags = forCaps ? _mvSglSliderCapVis : _mvSglSliderVis;
                 for (int index = 0; index < visFlags.Length; ++index) visFlags[index] = false;
             }
             EditorGUILayout.EndHorizontal();

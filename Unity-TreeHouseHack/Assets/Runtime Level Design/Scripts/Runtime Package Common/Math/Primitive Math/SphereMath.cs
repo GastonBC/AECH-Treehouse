@@ -15,7 +15,7 @@ namespace RLD
     {
         public static List<Vector3> CalcRightUpExtents(Vector3 sphereCenter, float sphereRadius, Vector3 right, Vector3 up)
         {
-            var extents = new List<Vector3>(4);
+            List<Vector3> extents = new List<Vector3>(4);
             extents.Add(sphereCenter - right * sphereRadius);
             extents.Add(sphereCenter + up * sphereRadius);
             extents.Add(sphereCenter + right * sphereRadius);

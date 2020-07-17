@@ -174,7 +174,7 @@ namespace RLD
         {
             if (handleId == _midCap.HandleId)
             {
-                var workData = new GizmoDblAxisRotationDrag3D.WorkData();
+                GizmoDblAxisRotationDrag3D.WorkData workData = new GizmoDblAxisRotationDrag3D.WorkData();
                 workData.Axis0 = Gizmo.FocusCamera.transform.up;
                 workData.Axis1 = Gizmo.FocusCamera.transform.right;
                 workData.ScreenAxis0 = -Vector3.right;

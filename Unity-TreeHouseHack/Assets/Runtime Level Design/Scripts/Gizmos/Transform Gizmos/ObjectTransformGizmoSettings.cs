@@ -43,7 +43,7 @@ namespace RLD
 
         public void SetObjectCollectionTransformable(List<GameObject> gameObjectCollection, bool areTransformable)
         {
-            foreach (var gameObject in gameObjectCollection)
+            foreach (GameObject gameObject in gameObjectCollection)
             {
                 SetObjectTransformable(gameObject, areTransformable);
             }
@@ -54,7 +54,7 @@ namespace RLD
         {
             int newInt;
 
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
             content.text = "Transformable layers";
             content.tooltip = "Allows you to specify which layers can be transformed by the gizmo. Objects which do not belong to a transformable layer will not be transformed by the gizmo.";
             newInt = EditorGUILayoutEx.LayerMaskField(content, TransformableLayers);

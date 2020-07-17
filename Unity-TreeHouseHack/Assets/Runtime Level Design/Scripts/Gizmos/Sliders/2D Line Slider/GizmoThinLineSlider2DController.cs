@@ -21,8 +21,8 @@ namespace RLD
 
         public override void UpdateTransforms()
         {
-            var segment = _data.Segment;
-            var slider = _data.Slider;
+            SegmentShape2D segment = _data.Segment;
+            GizmoLineSlider2D slider = _data.Slider;
 
             segment.StartPoint = slider.StartPosition;
             segment.SetEndPtFromStart(slider.Direction, slider.GetRealLength());

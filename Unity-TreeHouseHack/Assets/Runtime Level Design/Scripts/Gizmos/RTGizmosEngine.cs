@@ -100,7 +100,7 @@ namespace RLD
 
         public ISceneGizmo GetSceneGizmoByCamera(Camera sceneCamera)
         {
-            foreach (var sceneGizmo in _sceneGizmos)
+            foreach (ISceneGizmo sceneGizmo in _sceneGizmos)
                 if (sceneGizmo.SceneCamera == sceneCamera) return sceneGizmo;
 
             return null;
@@ -118,10 +118,10 @@ namespace RLD
         {
             if (GetSceneGizmoByCamera(sceneCamera) != null) return null;
 
-            var gizmo = new Gizmo();
+            Gizmo gizmo = new Gizmo();
             RegisterGizmo(gizmo);
 
-            var sceneGizmo = gizmo.AddBehaviour<SceneGizmo>();
+            SceneGizmo sceneGizmo = gizmo.AddBehaviour<SceneGizmo>();
             sceneGizmo.SceneGizmoCamera.SceneCamera = sceneCamera;
             sceneGizmo.SharedLookAndFeel = SharedSceneGizmoLookAndFeel;
 
@@ -142,7 +142,7 @@ namespace RLD
         public ObjectTransformGizmo CreateObjectMoveGizmo()
         {
             MoveGizmo moveGizmo = CreateMoveGizmo();
-            var transformGizmo = moveGizmo.Gizmo.AddBehaviour<ObjectTransformGizmo>();
+            ObjectTransformGizmo transformGizmo = moveGizmo.Gizmo.AddBehaviour<ObjectTransformGizmo>();
             transformGizmo.SetTransformChannelFlags(ObjectTransformGizmo.Channels.Position);
 
             return transformGizmo;
@@ -160,7 +160,7 @@ namespace RLD
         public ObjectTransformGizmo CreateObjectRotationGizmo()
         {
             RotationGizmo rotationGizmo = CreateRotationGizmo();
-            var transformGizmo = rotationGizmo.Gizmo.AddBehaviour<ObjectTransformGizmo>();
+            ObjectTransformGizmo transformGizmo = rotationGizmo.Gizmo.AddBehaviour<ObjectTransformGizmo>();
             transformGizmo.SetTransformChannelFlags(ObjectTransformGizmo.Channels.Rotation);
 
             return transformGizmo;
@@ -178,7 +178,7 @@ namespace RLD
         public ObjectTransformGizmo CreateObjectScaleGizmo()
         {
             ScaleGizmo scaleGizmo = CreateScaleGizmo();
-            var transformGizmo = scaleGizmo.Gizmo.AddBehaviour<ObjectTransformGizmo>();
+            ObjectTransformGizmo transformGizmo = scaleGizmo.Gizmo.AddBehaviour<ObjectTransformGizmo>();
             transformGizmo.SetTransformChannelFlags(ObjectTransformGizmo.Channels.Scale);
             transformGizmo.SetTransformSpace(GizmoSpace.Local);
             transformGizmo.MakeTransformSpacePermanent();
@@ -198,7 +198,7 @@ namespace RLD
         public ObjectTransformGizmo CreateObjectUniversalGizmo()
         {
             UniversalGizmo universalGizmo = CreateUniversalGizmo();
-            var transformGizmo = universalGizmo.Gizmo.AddBehaviour<ObjectTransformGizmo>();
+            ObjectTransformGizmo transformGizmo = universalGizmo.Gizmo.AddBehaviour<ObjectTransformGizmo>();
             transformGizmo.SetTransformChannelFlags(ObjectTransformGizmo.Channels.Position | ObjectTransformGizmo.Channels.Rotation | ObjectTransformGizmo.Channels.Scale);
 
             return transformGizmo;
@@ -233,7 +233,7 @@ namespace RLD
 
         public void Update_SystemCall()
         {
-            foreach (var sceneGizmoCam in _sceneGizmoCameras)
+            foreach (RTSceneGizmoCamera sceneGizmoCam in _sceneGizmoCameras)
                 sceneGizmoCam.Update_SystemCall();
 
             _pipelineStage = GizmosEnginePipelineStage.Update;
@@ -259,14 +259,14 @@ namespace RLD
 
             bool isDeviceInsideFocusCamera = deviceHasPointer && RTFocusCamera.Get.IsViewportHoveredByDevice(); //RTFocusCamera.Get.TargetCamera.pixelRect.Contains(inputDevicePos);
             bool focusCameraCanRenderGizmos = IsRenderCamera(RTFocusCamera.Get.TargetCamera);
-            var hoverDataCollection = new List<GizmoHandleHoverData>(10);
-            foreach (var gizmo in _gizmos)
+            List<GizmoHandleHoverData> hoverDataCollection = new List<GizmoHandleHoverData>(10);
+            foreach (Gizmo gizmo in _gizmos)
             {
                 gizmo.OnUpdateBegin_SystemCall();
                 if (canUpdateHoverInfo && gizmo.IsEnabled &&
                     isDeviceInsideFocusCamera && deviceHasPointer && focusCameraCanRenderGizmos)
                 {
-                    var handleHoverData = GetGizmoHandleHoverData(gizmo);
+                    GizmoHandleHoverData handleHoverData = GetGizmoHandleHoverData(gizmo);
                     if (handleHoverData != null) hoverDataCollection.Add(handleHoverData);
                 }
             }
@@ -284,7 +284,7 @@ namespace RLD
                 _gizmoHoverInfo.IsHovered = true;
             }
 
-            foreach (var gizmo in _gizmos)
+            foreach (Gizmo gizmo in _gizmos)
             {
                 _gizmoHoverInfo.IsHovered = (gizmo == _hoveredGizmo);
                 gizmo.UpdateHandleHoverInfo_SystemCall(_gizmoHoverInfo);
@@ -300,13 +300,13 @@ namespace RLD
         {
             Camera focusCamera = gizmo.FocusCamera;
             Ray hoverRay = RTInputDevice.Get.Device.GetRay(focusCamera);
-            var hoverDataCollection = gizmo.GetAllHandlesHoverData(hoverRay);
+            List<GizmoHandleHoverData> hoverDataCollection = gizmo.GetAllHandlesHoverData(hoverRay);
 
             Vector3 screenRayOrigin = focusCamera.WorldToScreenPoint(hoverRay.origin);
             hoverDataCollection.Sort(delegate(GizmoHandleHoverData h0, GizmoHandleHoverData h1)
             {
-                var handle0 = gizmo.GetHandleById_SystemCall(h0.HandleId);
-                var handle1 = gizmo.GetHandleById_SystemCall(h1.HandleId);
+                IGizmoHandle handle0 = gizmo.GetHandleById_SystemCall(h0.HandleId);
+                IGizmoHandle handle1 = gizmo.GetHandleById_SystemCall(h1.HandleId);
 
                 // Same dimensions?
                 bool sameDims = (h0.HandleDimension == h1.HandleDimension);
@@ -363,7 +363,7 @@ namespace RLD
             if (Settings.EnableGizmoSorting)
             {
                 Vector3 camPos = RenderStageCamera.transform.position;
-                var sortedGizmos = new List<Gizmo>(_gizmos);
+                List<Gizmo> sortedGizmos = new List<Gizmo>(_gizmos);
                 sortedGizmos.Sort(delegate(Gizmo g0, Gizmo g1)
                 {
                     float d0 = (g0.Transform.Position3D - camPos).sqrMagnitude;
@@ -372,16 +372,16 @@ namespace RLD
                     return d1.CompareTo(d0);
                 });
 
-                var worldFrustumPlanes = CameraViewVolume.GetCameraWorldPlanes(renderCamera);
-                foreach (var gizmo in sortedGizmos)
+                Plane[] worldFrustumPlanes = CameraViewVolume.GetCameraWorldPlanes(renderCamera);
+                foreach (Gizmo gizmo in sortedGizmos)
                 {
                     gizmo.Render_SystemCall(renderCamera, worldFrustumPlanes);
                 }
             }
             else
             {
-                var worldFrustumPlanes = CameraViewVolume.GetCameraWorldPlanes(renderCamera);
-                foreach (var gizmo in _gizmos)
+                Plane[] worldFrustumPlanes = CameraViewVolume.GetCameraWorldPlanes(renderCamera);
+                foreach (Gizmo gizmo in _gizmos)
                 {
                     gizmo.Render_SystemCall(renderCamera, worldFrustumPlanes);
                 }
@@ -447,7 +447,7 @@ namespace RLD
         private void OnGUI()
         {
             _pipelineStage = GizmosEnginePipelineStage.GUI;
-            foreach (var gizmo in _gizmos)
+            foreach (Gizmo gizmo in _gizmos)
             {
                 gizmo.OnGUI_SystemCall();
             }

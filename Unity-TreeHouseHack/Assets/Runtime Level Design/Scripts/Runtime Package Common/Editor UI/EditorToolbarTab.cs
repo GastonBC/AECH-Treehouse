@@ -36,7 +36,7 @@ namespace RLD
         #if UNITY_EDITOR
         public void RenderTargetSettingsEditorGUI(UnityEngine.Object undoRecordObject)
         {
-            foreach(var targetSettings in _targetSettings)
+            foreach(Settings targetSettings in _targetSettings)
             {
                 targetSettings.RenderEditorGUI(undoRecordObject);
             }

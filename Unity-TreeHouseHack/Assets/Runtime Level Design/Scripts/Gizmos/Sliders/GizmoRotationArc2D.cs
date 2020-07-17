@@ -56,7 +56,7 @@ namespace RLD
             else
             if (_type == ArcType.PolyProjected && _projectionPoly != null)
             {
-                var arcBorderPoints = PrimitiveFactory.Generate2DArcBorderPoints(_arc.Origin, _arc.StartPoint, _arc.DegreeAngleFromStart, lookAndFeel.UseShortestRotation, NumProjectedPoints);
+                List<Vector2> arcBorderPoints = PrimitiveFactory.Generate2DArcBorderPoints(_arc.Origin, _arc.StartPoint, _arc.DegreeAngleFromStart, lookAndFeel.UseShortestRotation, NumProjectedPoints);
                 arcBorderPoints = PrimitiveFactory.ProjectArcPointsOnPoly2DBorder(_arc.Origin, arcBorderPoints, _projectionPoly.GetPoints());
 
                 if ((lookAndFeel.FillFlags & GizmoRotationArcFillFlags.Area) != 0)

@@ -28,8 +28,8 @@ namespace RLD
 
         public override void UpdateTransforms(float zoomFactor)
         {
-            var circle = _data.Circle;
-            var slider = _data.Slider;
+            CircleShape3D circle = _data.Circle;
+            GizmoPlaneSlider3D slider = _data.Slider;
 
             circle.Center = slider.Position;
             circle.Radius = slider.GetRealCircleRadius(zoomFactor);

@@ -98,7 +98,7 @@ namespace RLD
 
         private void EstablishPotentialOverlaps()
         {
-            var list = new List<Hotkeys>()
+            List<Hotkeys> list = new List<Hotkeys>()
             {
                 EnableRotation, EnableRotationAroundAnchor, EnableScaling,
                 EnableOffsetFromSurface, EnableAnchorAdjust, EnableOffsetFromAnchor

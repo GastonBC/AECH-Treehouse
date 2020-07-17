@@ -79,7 +79,7 @@ namespace RLD
             _targetObjects.Clear();
             _state = State.Inactive;
 
-            var postObjectTransformChangedAction = new PostObjectTransformsChangedAction(_preTargetTransformSnapshots, LocalTransformSnapshot.GetSnapshotCollection(_targetParents));
+            PostObjectTransformsChangedAction postObjectTransformChangedAction = new PostObjectTransformsChangedAction(_preTargetTransformSnapshots, LocalTransformSnapshot.GetSnapshotCollection(_targetParents));
             postObjectTransformChangedAction.Execute();
             _targetParents.Clear();
 
@@ -122,19 +122,19 @@ namespace RLD
             _targetAABB.Center += sitOnPlaneOffset;
 
             Vector3 parentMove = _targetAABB.Center - oldCenter;
-            foreach (var parent in _targetParents)
+            foreach (GameObject parent in _targetParents)
                 parent.transform.position += parentMove;
 
             if (!SharedHotkeys.EnableFlexiSnap.IsActive())
             {
-                var snapConfig = new Object2ObjectSnap.Config();
+                Object2ObjectSnap.Config snapConfig = new Object2ObjectSnap.Config();
                 snapConfig.Prefs = SharedHotkeys.EnableMoreControl.IsActive() ? Object2ObjectSnap.Prefs.None : Object2ObjectSnap.Prefs.TryMatchArea;
                 snapConfig.AreaMatchEps = 1e-2f;
                 snapConfig.SnapRadius = SharedSettings.SnapRadius;
                 snapConfig.DestinationLayers = SharedSettings.SnapDestinationLayers;
                 snapConfig.IgnoreDestObjects = new List<GameObject>();
                 snapConfig.IgnoreDestObjects.AddRange(_targetParents);
-                foreach (var parent in _targetParents)
+                foreach (GameObject parent in _targetParents)
                     snapConfig.IgnoreDestObjects.AddRange(parent.GetAllChildren());
 
                 Object2ObjectSnap.Snap(_targetParents, snapConfig);
@@ -143,7 +143,7 @@ namespace RLD
 
         private bool CalculateTargetAABB()
         {
-            var boundsQConfig = new ObjectBounds.QueryConfig();
+            ObjectBounds.QueryConfig boundsQConfig = new ObjectBounds.QueryConfig();
             boundsQConfig.ObjectTypes = GameObjectType.Mesh | GameObjectType.Sprite;
 
             _targetAABB = ObjectBounds.CalcHierarchyCollectionWorldAABB(_targetParents, boundsQConfig);
@@ -156,7 +156,7 @@ namespace RLD
 
             SceneRaycastFilter raycastFilter = new SceneRaycastFilter();
             if (SharedSettings.CanClimbObjects) raycastFilter.AllowedObjectTypes.Add(GameObjectType.Mesh);
-            foreach (var target in _targetParents)
+            foreach (GameObject target in _targetParents)
                 raycastFilter.IgnoreObjects.AddRange(target.GetAllChildrenAndSelf());
 
             IInputDevice inputDevice = RTInputDevice.Get.Device;

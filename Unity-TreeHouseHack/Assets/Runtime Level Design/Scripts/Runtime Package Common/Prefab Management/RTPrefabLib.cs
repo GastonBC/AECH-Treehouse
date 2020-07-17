@@ -27,7 +27,7 @@ namespace RLD
         {
             if (Contains(unityPrefab) || unityPrefab == null) return null;
 
-            var prefab = new RTPrefab();
+            RTPrefab prefab = new RTPrefab();
             prefab.UnityPrefab = unityPrefab;
             prefab.PreviewTexture = prefabPreview;
 
@@ -46,7 +46,7 @@ namespace RLD
             RTPrefabLibDb.Get.EditorPrefabPreviewGen.EndGenSession();
             unityPrefab.SetActive(false);
 
-            var prefab = new RTPrefab();
+            RTPrefab prefab = new RTPrefab();
             prefab.UnityPrefab = unityPrefab;
             prefab.PreviewTexture = prefabPreview;
 
@@ -59,14 +59,14 @@ namespace RLD
         public List<RTPrefab> CreatePrefabsFromSceneObjects(List<GameObject> sceneObjects)
         {
             RTPrefabLibDb.Get.EditorPrefabPreviewGen.BeginGenSession(RTPrefabLibDb.Get.PrefabPreviewLookAndFeel);
-            var createdPrefabs = new List<RTPrefab>();
-            foreach(var sceneObject in sceneObjects)
+            List<RTPrefab> createdPrefabs = new List<RTPrefab>();
+            foreach(GameObject sceneObject in sceneObjects)
             {
                 GameObject unityPrefab = GameObject.Instantiate(sceneObject);
                 Texture2D prefabPreview = RTPrefabLibDb.Get.EditorPrefabPreviewGen.Generate(unityPrefab);
                 unityPrefab.SetActive(false);
 
-                var prefab = new RTPrefab();
+                RTPrefab prefab = new RTPrefab();
                 prefab.UnityPrefab = unityPrefab;
                 prefab.PreviewTexture = prefabPreview;
 
@@ -83,7 +83,7 @@ namespace RLD
         {
             if (prefabIndex >= 0 && prefabIndex < NumPrefabs)
             {
-                var removedPrefab = _prefabs[prefabIndex];
+                RTPrefab removedPrefab = _prefabs[prefabIndex];
 
                 _prefabs.RemoveAt(prefabIndex);
                 if (PrefabRemoved != null) PrefabRemoved(this, removedPrefab);
@@ -124,7 +124,7 @@ namespace RLD
 
         public RTPrefab GetPrefab(GameObject unityPrefab)
         {
-            var prefabs = _prefabs.FindAll(item => item.UnityPrefab == unityPrefab);
+            List<RTPrefab> prefabs = _prefabs.FindAll(item => item.UnityPrefab == unityPrefab);
             return prefabs.Count != 0 ? prefabs[0] : null;
         }
     }

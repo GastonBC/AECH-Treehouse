@@ -36,7 +36,7 @@ namespace RLD
 
         static PlaneIdHelper()
         {
-            var planeIdInfo = new PlaneInfo();
+            PlaneInfo planeIdInfo = new PlaneInfo();
             planeIdInfo.PlaneId = PlaneId.XY;
             planeIdInfo.QuadrantInfo = new List<PlaneQuadrantInfo>()
             {
@@ -153,19 +153,19 @@ namespace RLD
 
         public static AxisSign GetFirstAxisSign(PlaneId planeId, PlaneQuadrantId planeQuadrant)
         {
-            var quadrantInfo = _planeInfo[(int)planeId].QuadrantInfo.FindAll(item => item.Quadrant == planeQuadrant)[0];
+            PlaneQuadrantInfo quadrantInfo = _planeInfo[(int)planeId].QuadrantInfo.FindAll(item => item.Quadrant == planeQuadrant)[0];
             return quadrantInfo.FirstAxisSign;
         }
 
         public static AxisSign GetSecondAxisSign(PlaneId planeId, PlaneQuadrantId planeQuadrant)
         {
-            var quadrantInfo = _planeInfo[(int)planeId].QuadrantInfo.FindAll(item => item.Quadrant == planeQuadrant)[0];
+            PlaneQuadrantInfo quadrantInfo = _planeInfo[(int)planeId].QuadrantInfo.FindAll(item => item.Quadrant == planeQuadrant)[0];
             return quadrantInfo.SecondAxisSign;
         }
 
         public static PlaneQuadrantId GetQuadrantFromAxesSigns(PlaneId planeId, AxisSign firstAxisSign, AxisSign secondAxisSign)
         {
-            var quadrantInfo = _planeInfo[(int)planeId].
+            PlaneQuadrantInfo quadrantInfo = _planeInfo[(int)planeId].
                 QuadrantInfo.FindAll(item => item.FirstAxisSign == firstAxisSign && item.SecondAxisSign == secondAxisSign)[0];
             return quadrantInfo.Quadrant;
         }

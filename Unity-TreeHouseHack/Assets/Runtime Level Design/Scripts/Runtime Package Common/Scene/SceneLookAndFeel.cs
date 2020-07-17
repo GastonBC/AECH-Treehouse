@@ -44,7 +44,7 @@ namespace RLD
         protected override void RenderContent(UnityEngine.Object undoRecordObject)
         {
             bool newBool; Texture2D newTexture; float newFloat;
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
 
             content.text = "Draw light icons";
             content.tooltip = "If this is checked, there will be an icon drawn in the scene for each light object.";

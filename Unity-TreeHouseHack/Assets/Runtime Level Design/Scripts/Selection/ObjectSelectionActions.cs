@@ -27,7 +27,7 @@ namespace RLD
             {
                 // Loop through each selected object
                 _deletedObjects = new List<GameObject>(_selectedObjects.Count);
-                foreach (var selectedObject in _selectedObjects)
+                foreach (GameObject selectedObject in _selectedObjects)
                 {
                     // Add the object to the deleted list and make it inactive
                     _deletedObjects.Add(selectedObject);
@@ -50,7 +50,7 @@ namespace RLD
             if(_deletedObjects != null)
             {
                 // Enable the objects
-                foreach (var deletedObject in _deletedObjects)
+                foreach (GameObject deletedObject in _deletedObjects)
                 {
                     deletedObject.SetActive(true);
                 }
@@ -64,7 +64,7 @@ namespace RLD
             if (_deletedObjects != null)
             {
                 // Disable the objects
-                foreach (var deletedObject in _deletedObjects)
+                foreach (GameObject deletedObject in _deletedObjects)
                 {
                     deletedObject.SetActive(false);
                 }
@@ -79,7 +79,7 @@ namespace RLD
                 if (_canDestroyObjects)
                 {
                     // Delete the objects
-                    foreach (var gameObject in _deletedObjects) GameObject.Destroy(gameObject);
+                    foreach (GameObject gameObject in _deletedObjects) GameObject.Destroy(gameObject);
                     _deletedObjects.Clear();
                     _deletedObjects = null;
                 }

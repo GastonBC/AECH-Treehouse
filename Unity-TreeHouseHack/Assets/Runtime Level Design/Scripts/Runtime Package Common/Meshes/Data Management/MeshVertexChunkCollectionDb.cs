@@ -37,7 +37,7 @@ namespace RLD
 
         private bool CreateMeshVertChunkCollection(Mesh mesh)
         {
-            var meshVertexChunkCollection = new MeshVertexChunkCollection();
+            MeshVertexChunkCollection meshVertexChunkCollection = new MeshVertexChunkCollection();
             if(!meshVertexChunkCollection.FromMesh(mesh)) return false;
 
             _vertexChunkCollections.Add(meshVertexChunkCollection);

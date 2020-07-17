@@ -105,14 +105,14 @@ namespace RLD
         {
             if (!_isEnabled || _stackPointer < 0) return;
 
-            var group = _actionGroupStack[_stackPointer];
+            ActionGroup group = _actionGroupStack[_stackPointer];
             YesNoAnswer answer = new YesNoAnswer();
             if (CanUndoRedo != null) CanUndoRedo(UndoRedoOpType.Undo, answer);
             if (answer.HasNo) return;
 
             --_stackPointer;
 
-            foreach(var action in group.Actions)
+            foreach(IUndoRedoAction action in group.Actions)
             {
                 if (UndoStart != null) UndoStart(action);
                 action.Undo();
@@ -125,14 +125,14 @@ namespace RLD
             if (!_isEnabled) return;
             if (_actionGroupStack.Count == 0 || _stackPointer == _actionGroupStack.Count - 1) return;
 
-            var group = _actionGroupStack[_stackPointer + 1];
+            ActionGroup group = _actionGroupStack[_stackPointer + 1];
             YesNoAnswer answer = new YesNoAnswer();
             if (CanUndoRedo != null) CanUndoRedo(UndoRedoOpType.Redo, answer);
             if (answer.HasNo) return;
 
             ++_stackPointer;
 
-            foreach (var action in group.Actions)
+            foreach (IUndoRedoAction action in group.Actions)
             {
                 if (RedoStart != null) RedoStart(action);
                 action.Redo();
@@ -145,9 +145,9 @@ namespace RLD
             List<ActionGroup> groupsToRemove = _actionGroupStack.GetRange(startIndex, count);
         
             _actionGroupStack.RemoveRange(startIndex, count);
-            foreach (var group in groupsToRemove)
+            foreach (ActionGroup group in groupsToRemove)
             {
-                foreach(var action in group.Actions)
+                foreach(IUndoRedoAction action in group.Actions)
                     action.OnRemovedFromUndoRedoStack();
             }
         }

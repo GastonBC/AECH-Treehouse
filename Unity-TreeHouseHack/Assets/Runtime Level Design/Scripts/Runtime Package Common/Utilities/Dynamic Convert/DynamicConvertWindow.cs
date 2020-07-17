@@ -12,10 +12,10 @@ namespace RLD
         {
             protected override void PerformDrop()
             {
-                var rldApp = RLDApp.Get;
+                RLDApp rldApp = RLDApp.Get;
                 if (rldApp == null) return;
 
-                var paths = DragAndDrop.paths;
+                string[] paths = DragAndDrop.paths;
                 if (paths == null || paths.Length == 0) return;
 
                 string prefabFolder = paths[0];
@@ -30,16 +30,16 @@ namespace RLD
 
         private void OnGUI()
         {
-            var rldApp = RLDApp.Get;
+            RLDApp rldApp = RLDApp.Get;
             if (rldApp == null) return;
 
-            var settings = rldApp.DynamicConvertSettings;
+            DynamicConvertSettings settings = rldApp.DynamicConvertSettings;
             settings.RenderEditorGUI(rldApp);
 
             _prefabFolderDropHandler.Handle(Event.current, settings.PrefabFolderDropRect);
 
             const float btnWidth = 110.0f;
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
 
             EditorGUILayout.BeginHorizontal();
             content.text = "Convert scene";
@@ -60,13 +60,13 @@ namespace RLD
 
         private void ConvertScene(DynamicConvertSettings settings)
         {
-            var activeScene = SceneManager.GetActiveScene();
+            Scene activeScene = SceneManager.GetActiveScene();
             if (activeScene.rootCount == 0) return;
 
-            var sceneRoots = new List<GameObject>(activeScene.rootCount);
+            List<GameObject> sceneRoots = new List<GameObject>(activeScene.rootCount);
             activeScene.GetRootGameObjects(sceneRoots);
 
-            foreach (var root in sceneRoots)
+            foreach (GameObject root in sceneRoots)
             {
                 if (root.HierarchyHasObjectsOfType(settings.ConvertableObjectTypes))
                     root.SetStatic(false, true);
@@ -80,8 +80,8 @@ namespace RLD
         {
             if (string.IsNullOrEmpty(settings.PrefabFolder)) return;
 
-            var allPrefabs = AssetDatabaseEx.LoadPrefabsInFolder(settings.PrefabFolder, settings.ProcessPrefabSubfolders, true);
-            foreach(var prefab in allPrefabs)
+            List<GameObject> allPrefabs = AssetDatabaseEx.LoadPrefabsInFolder(settings.PrefabFolder, settings.ProcessPrefabSubfolders, true);
+            foreach(GameObject prefab in allPrefabs)
             {
                 if (prefab.HierarchyHasObjectsOfType(settings.ConvertableObjectTypes))
                     prefab.SetStatic(false, true);

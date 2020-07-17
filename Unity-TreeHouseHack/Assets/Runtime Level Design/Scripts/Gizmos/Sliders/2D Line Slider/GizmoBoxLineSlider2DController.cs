@@ -21,8 +21,8 @@ namespace RLD
 
         public override void UpdateTransforms()
         {
-            var quad = _data.Quad;
-            var slider = _data.Slider;
+            QuadShape2D quad = _data.Quad;
+            GizmoLineSlider2D slider = _data.Slider;
             float sliderLength = slider.GetRealLength();
             Vector2 sliderDirection = slider.GetRealDirection();
 

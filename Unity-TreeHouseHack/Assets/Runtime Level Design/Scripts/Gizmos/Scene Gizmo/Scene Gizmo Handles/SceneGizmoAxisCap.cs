@@ -34,7 +34,7 @@ namespace RLD
 
         public override void Render(Camera camera)
         {
-            var sgLookAndFeel = _sceneGizmo.LookAndFeel;
+            SceneGizmoLookAndFeel sgLookAndFeel = _sceneGizmo.LookAndFeel;
             RTSceneGizmoCamera sceneGizmoCamera = _sceneGizmo.SceneGizmoCamera;
 
             _cap.Render(camera);
@@ -84,7 +84,7 @@ namespace RLD
 
         private void UpdateColor()
         {
-            var sgLookAndFeel = _sceneGizmo.LookAndFeel;
+            SceneGizmoLookAndFeel sgLookAndFeel = _sceneGizmo.LookAndFeel;
             Color lookAndFeelColor = sgLookAndFeel.GetAxisCapColor(_axisDesc.Index, _axisDesc.Sign);
             if (_cap.IsHovered) lookAndFeelColor = sgLookAndFeel.HoveredColor;
             ColorTransition.State ctState = _colorTransition.TransitionState;

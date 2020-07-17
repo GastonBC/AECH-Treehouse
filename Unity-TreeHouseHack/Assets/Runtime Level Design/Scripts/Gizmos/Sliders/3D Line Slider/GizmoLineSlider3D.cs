@@ -229,7 +229,7 @@ namespace RLD
         /// </summary>
         public bool IsScalerHandleRegistered(int handleId, int scaleDragAxisIndex)
         {
-            var scalerHandles = _scalerHandles.FindAll(item => item.HandleId == handleId);
+            List<GizmoScalerHandle> scalerHandles = _scalerHandles.FindAll(item => item.HandleId == handleId);
             if (scalerHandles.Count == 0) return false;
 
             return scalerHandles[0].ContainsScaleDragAxisIndex(scaleDragAxisIndex);

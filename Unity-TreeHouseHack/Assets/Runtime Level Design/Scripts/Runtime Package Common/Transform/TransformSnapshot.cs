@@ -17,12 +17,12 @@ namespace RLD
         {
             if (gameObjects == null) return new List<LocalTransformSnapshot>();
 
-            var localTransformSnapshots = new List<LocalTransformSnapshot>(20);
-            foreach(var gameObject in gameObjects)
+            List<LocalTransformSnapshot> localTransformSnapshots = new List<LocalTransformSnapshot>(20);
+            foreach(GameObject gameObject in gameObjects)
             {
                 if (gameObject != null)
                 {
-                    var snapshot = new LocalTransformSnapshot();
+                    LocalTransformSnapshot snapshot = new LocalTransformSnapshot();
                     snapshot.Snapshot(gameObject.transform);
                     localTransformSnapshots.Add(snapshot);
                 }

@@ -6,12 +6,12 @@ namespace DelaunayVoronoi
     {
         public IEnumerable<Edge> GenerateEdgesFromDelaunay(IEnumerable<Triangle> triangulation)
         {
-            var voronoiEdges = new HashSet<Edge>();
-            foreach (var triangle in triangulation)
+            HashSet<Edge> voronoiEdges = new HashSet<Edge>();
+            foreach (Triangle triangle in triangulation)
             {
-                foreach (var neighbor in triangle.TrianglesWithSharedEdge)
+                foreach (Triangle neighbor in triangle.TrianglesWithSharedEdge)
                 {
-                    var edge = new Edge(triangle.Circumcenter, neighbor.Circumcenter);
+                    Edge edge = new Edge(triangle.Circumcenter, neighbor.Circumcenter);
                     voronoiEdges.Add(edge);
                 }
             }

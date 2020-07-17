@@ -6,7 +6,7 @@ public class PineTree : MonoBehaviour
 {
     void Update()
     {
-        if (Input.GetMouseButton(0) && this.gameObject.activeInHierarchy)
+        if (Input.GetMouseButton(0))
         {
             Destroy(this.gameObject);
         }

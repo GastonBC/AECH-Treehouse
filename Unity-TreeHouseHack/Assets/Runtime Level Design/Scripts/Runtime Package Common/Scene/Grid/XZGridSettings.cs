@@ -35,7 +35,7 @@ namespace RLD
             float newFloat; bool newBool; Vector3 newVec3;
 
             EditorGUILayout.BeginVertical();
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
             content.text = "Is visible";
             content.tooltip = "Allows you to specify if the grid is visible in the scene. If the grid is not visible, it can not be interacted with.";
             newBool = EditorGUILayout.ToggleLeft(content, IsVisible);

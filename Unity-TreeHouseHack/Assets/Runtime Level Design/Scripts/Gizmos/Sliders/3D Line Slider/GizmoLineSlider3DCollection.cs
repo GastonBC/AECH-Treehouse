@@ -46,61 +46,61 @@ namespace RLD
 
         public void ApplyZoomFactor(Camera camera)
         {
-            foreach (var slider in _sliders)
+            foreach (GizmoLineSlider3D slider in _sliders)
                 slider.ApplyZoomFactor(camera);
         }
 
         public void SetZoomFactorTransform(GizmoTransform zoomFactorTransform)
         {
-            foreach (var slider in _sliders)
+            foreach (GizmoLineSlider3D slider in _sliders)
                 slider.SetZoomFactorTransform(zoomFactorTransform);
         }
 
         public void Make3DHoverPriorityLowerThan(Priority priority)
         {
-            foreach (var slider in _sliders)
+            foreach (GizmoLineSlider3D slider in _sliders)
                 slider.HoverPriority3D.MakeLowerThan(priority);
         }
 
         public void Make3DHoverPriorityHigherThan(Priority priority)
         {
-            foreach (var slider in _sliders)
+            foreach (GizmoLineSlider3D slider in _sliders)
                 slider.HoverPriority3D.MakeHigherThan(priority);
         }
 
         public void SetSnapEnabled(bool isEnabled)
         {
-            foreach (var slider in _sliders)
+            foreach (GizmoLineSlider3D slider in _sliders)
                 slider.SetSnapEnabled(isEnabled);
         }
 
         public void SetVisible(bool visible)
         {
-            foreach (var slider in _sliders)
+            foreach (GizmoLineSlider3D slider in _sliders)
                 slider.SetVisible(visible);
         }
 
         public void Set3DCapsVisible(bool visible)
         {
-            foreach (var slider in _sliders)
+            foreach (GizmoLineSlider3D slider in _sliders)
                 slider.Set3DCapVisible(visible);
         }
 
         public void SetDragChannel(GizmoDragChannel dragChannel)
         {
-            foreach (var slider in _sliders)
+            foreach (GizmoLineSlider3D slider in _sliders)
                 slider.SetDragChannel(dragChannel);
         }
 
         public void RegisterScalerHandle(int handleId, IEnumerable<int> scaleDragAxisIndices)
         {
-            foreach (var slider in _sliders)
+            foreach (GizmoLineSlider3D slider in _sliders)
                 slider.RegisterScalerHandle(handleId, scaleDragAxisIndices);
         }
 
         public List<GizmoLineSlider3D> GetRenderSortedSliders(Camera renderCamera)
         {
-            var sortedSliders = new List<GizmoLineSlider3D>(_sliders);
+            List<GizmoLineSlider3D> sortedSliders = new List<GizmoLineSlider3D>(_sliders);
             Vector3 cameraPos = renderCamera.transform.position;
 
             sortedSliders.Sort(delegate(GizmoLineSlider3D s0, GizmoLineSlider3D s1)

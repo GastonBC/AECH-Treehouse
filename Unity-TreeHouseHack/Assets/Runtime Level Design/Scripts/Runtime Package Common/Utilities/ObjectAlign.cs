@@ -23,7 +23,7 @@ namespace RLD
 
         public static ObjectAlign.Result AlignToWorldPlane(IEnumerable<GameObject> gameObjects, Plane alignmentPlane)
         {
-            var parents = GameObjectEx.FilterParentsOnly(gameObjects);
+            List<GameObject> parents = GameObjectEx.FilterParentsOnly(gameObjects);
             if (parents.Count == 0) return Result.Err_NoObjects;
 
             AlignRootsToPlane(parents, alignmentPlane);
@@ -33,11 +33,11 @@ namespace RLD
 
         private static void AlignRootsToPlane(List<GameObject> roots, Plane alignmentPlane)
         {
-            var boundsQConfig = new ObjectBounds.QueryConfig();
+            ObjectBounds.QueryConfig boundsQConfig = new ObjectBounds.QueryConfig();
             boundsQConfig.NoVolumeSize = Vector3.zero;
             boundsQConfig.ObjectTypes = GameObjectTypeHelper.AllCombined;
 
-            foreach (var root in roots)
+            foreach (GameObject root in roots)
             {
                 OBB worldOBB = ObjectBounds.CalcHierarchyWorldOBB(root, boundsQConfig);
                 if (worldOBB.IsValid)

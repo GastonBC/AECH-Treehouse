@@ -23,7 +23,7 @@ namespace RLD
             _dropDown.onValueChanged.RemoveAllListeners();
             _dropDown.value = activeLibIndex;
 
-            foreach (var listener in _valueChangedListeners)
+            foreach (UnityAction<int> listener in _valueChangedListeners)
                 _dropDown.onValueChanged.AddListener(listener);
         }
 
@@ -38,7 +38,7 @@ namespace RLD
 
             if (RTPrefabLibDb.Get.NumLibs != 0)
             {
-                var allLibNames = RTPrefabLibDb.Get.GetAllLibNames();
+                List<string> allLibNames = RTPrefabLibDb.Get.GetAllLibNames();
                 _dropDown.AddOptions(allLibNames);
 
                 SetActiveLibIndex(RTPrefabLibDb.Get.ActiveLibIndex);

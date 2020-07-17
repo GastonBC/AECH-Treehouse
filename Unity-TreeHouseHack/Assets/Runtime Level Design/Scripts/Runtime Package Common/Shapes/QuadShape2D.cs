@@ -68,7 +68,7 @@ namespace RLD
 
         public override void RenderArea(Camera camera)
         {
-            var cornerPoints = QuadMath.Calc2DQuadCornerPoints(_center, _size, _rotationDegrees);
+            System.Collections.Generic.List<Vector2> cornerPoints = QuadMath.Calc2DQuadCornerPoints(_center, _size, _rotationDegrees);
             Vector2 topLeft = cornerPoints[(int)QuadCorner.TopLeft];
             cornerPoints.RemoveAt((int)QuadCorner.TopLeft);
 
@@ -77,7 +77,7 @@ namespace RLD
 
         public override void RenderBorder(Camera camera)
         {
-            var cornerPoints = QuadMath.Calc2DQuadCornerPoints(_center, _size, _rotationDegrees);
+            System.Collections.Generic.List<Vector2> cornerPoints = QuadMath.Calc2DQuadCornerPoints(_center, _size, _rotationDegrees);
             GLRenderer.DrawLineLoop2D(cornerPoints, camera);
         }
 
@@ -91,7 +91,7 @@ namespace RLD
 
         public override Rect GetEncapsulatingRect()
         {
-            var cornerPoints = QuadMath.Calc2DQuadCornerPoints(_center, _size, _rotationDegrees);
+            System.Collections.Generic.List<Vector2> cornerPoints = QuadMath.Calc2DQuadCornerPoints(_center, _size, _rotationDegrees);
             return RectEx.FromPoints(cornerPoints);
         }
     }

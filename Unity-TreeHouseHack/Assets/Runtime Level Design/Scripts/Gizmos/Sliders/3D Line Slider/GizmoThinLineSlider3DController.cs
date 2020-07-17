@@ -18,7 +18,7 @@ namespace RLD
 
         public override void UpdateTransforms(float zoomFactor)
         {
-            var slider = _data.Slider;
+            GizmoLineSlider3D slider = _data.Slider;
             _data.Segment.StartPoint = slider.StartPosition;
             _data.Segment.SetEndPtFromStart(slider.Direction, slider.GetRealLength(zoomFactor));
         }
@@ -30,7 +30,7 @@ namespace RLD
 
         public override float GetRealSizeAlongDirection(Vector3 direction, float zoomFactor)
         {
-            var slider = _data.Slider;
+            GizmoLineSlider3D slider = _data.Slider;
             return Vector3Ex.AbsDot(direction, slider.Direction * slider.GetRealLength(zoomFactor));
         }
     }

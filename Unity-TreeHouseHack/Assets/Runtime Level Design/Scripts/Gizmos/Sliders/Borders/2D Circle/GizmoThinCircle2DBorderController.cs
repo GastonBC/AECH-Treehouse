@@ -21,8 +21,8 @@ namespace RLD
 
         public override void UpdateTransforms()
         {
-            var targetCircle = _data.TargetCircle;
-            var borderCircle = _data.BorderCircle;
+            CircleShape2D targetCircle = _data.TargetCircle;
+            CircleShape2D borderCircle = _data.BorderCircle;
 
             borderCircle.Center = targetCircle.Center;
             borderCircle.RotationDegrees = targetCircle.RotationDegrees;

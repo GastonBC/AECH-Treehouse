@@ -167,17 +167,17 @@ namespace RLD
         private void CreateNonMeshPreviewObject()
         {
             _nonMeshPreviewObject = new GameObject("Non-mesh preview object");
-            var meshRenderer = _nonMeshPreviewObject.AddComponent<MeshRenderer>();
+            MeshRenderer meshRenderer = _nonMeshPreviewObject.AddComponent<MeshRenderer>();
             meshRenderer.sharedMaterial = MaterialPool.Get.TintedTexture;
-            var meshFilter = _nonMeshPreviewObject.AddComponent<MeshFilter>();
+            MeshFilter meshFilter = _nonMeshPreviewObject.AddComponent<MeshFilter>();
             meshFilter.sharedMesh = MeshPool.Get.UnitQuadXY;
         }
 
         private void DisableSceneLights()
         {
             _lightToState.Clear();
-            var sceneLights = GameObject.FindObjectsOfType<Light>();
-            foreach (var light in sceneLights)
+            Light[] sceneLights = GameObject.FindObjectsOfType<Light>();
+            foreach (Light light in sceneLights)
             {
                 _lightToState.Add(light, light.enabled);
                 light.enabled = false;
@@ -186,7 +186,7 @@ namespace RLD
 
         private void RestoreSceneLights()
         {
-            foreach(var pair in _lightToState)
+            foreach(KeyValuePair<Light, bool> pair in _lightToState)
             {
                 Light light = pair.Key;
                 if (light == null) continue;

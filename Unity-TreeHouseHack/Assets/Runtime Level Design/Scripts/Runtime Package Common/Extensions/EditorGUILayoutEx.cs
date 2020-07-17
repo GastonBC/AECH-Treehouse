@@ -10,7 +10,7 @@ namespace RLD
     {
         public static void SectionHeader(string title)
         {
-            var style = new GUIStyle("Label");
+            GUIStyle style = new GUIStyle("Label");
             style.fontStyle = FontStyle.BoldAndItalic;
             EditorGUILayout.LabelField(title, style);
         }
@@ -22,8 +22,8 @@ namespace RLD
             int selectedIndex = allowedValues.IndexOf(selected);
             if (selectedIndex < 0) return selected;
 
-            var allowedLabels = new List<GUIContent>(allowedValues.Count);
-            foreach (var enumValue in allowedValues) allowedLabels.Add(new GUIContent(enumValue.ToString()));
+            List<GUIContent> allowedLabels = new List<GUIContent>(allowedValues.Count);
+            foreach (Enum enumValue in allowedValues) allowedLabels.Add(new GUIContent(enumValue.ToString()));
 
             int newSelectedIndex = EditorGUILayout.Popup(content, selectedIndex, allowedLabels.ToArray());
             return allowedValues[newSelectedIndex];

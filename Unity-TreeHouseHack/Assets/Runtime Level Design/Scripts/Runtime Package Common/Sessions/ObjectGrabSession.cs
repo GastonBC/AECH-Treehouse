@@ -100,8 +100,8 @@ namespace RLD
                 Material material = MaterialPool.Get.SimpleColor;
                 if (SharedLookAndFeel.DrawAnchorLines)
                 {
-                    var linePoints = new List<Vector3>(_grabTargets.Count * 2);
-                    foreach (var grabTarget in _grabTargets)
+                    List<Vector3> linePoints = new List<Vector3>(_grabTargets.Count * 2);
+                    foreach (GrabTarget grabTarget in _grabTargets)
                     {
                         linePoints.Add(grabTarget.Transform.position);
                         linePoints.Add(_grabSurfaceInfo.AnchorPoint);
@@ -119,8 +119,8 @@ namespace RLD
                     material.SetColor(SharedLookAndFeel.ObjectBoxWireColor);
                     material.SetPass(0);
 
-                    var boundsQConfig = GetObjectBoundsQConfig();
-                    foreach (var grabTarget in _grabTargets)
+                    ObjectBounds.QueryConfig boundsQConfig = GetObjectBoundsQConfig();
+                    foreach (GrabTarget grabTarget in _grabTargets)
                     {
                         OBB obb = ObjectBounds.CalcHierarchyWorldOBB(grabTarget.GameObject, boundsQConfig);
                         if (obb.IsValid) GraphicsEx.DrawWireBox(obb);
@@ -132,7 +132,7 @@ namespace RLD
                     material.SetColor(SharedLookAndFeel.ObjectPosTickColor);
                     material.SetPass(0);
 
-                    foreach (var grabTarget in _grabTargets)
+                    foreach (GrabTarget grabTarget in _grabTargets)
                     {
                         Vector2 screenPos = Camera.current.WorldToScreenPoint(grabTarget.Transform.position);
                         GLRenderer.DrawRect2D(RectEx.FromCenterAndSize(screenPos, Vector2Ex.FromValue(SharedLookAndFeel.ObjectPosTickSize)), Camera.current);
@@ -232,7 +232,7 @@ namespace RLD
             _state = State.Inactive;
             _grabSurfaceInfo.SurfaceType = GrabSurfaceType.Invalid;
 
-            var postObjectTransformChangedAction = new PostObjectTransformsChangedAction(_preTargetTransformSnapshots, LocalTransformSnapshot.GetSnapshotCollection(_targetParents));
+            PostObjectTransformsChangedAction postObjectTransformChangedAction = new PostObjectTransformsChangedAction(_preTargetTransformSnapshots, LocalTransformSnapshot.GetSnapshotCollection(_targetParents));
             postObjectTransformChangedAction.Execute();
             _targetParents.Clear();
 
@@ -278,12 +278,12 @@ namespace RLD
             else if (_grabSurfaceInfo.SurfaceType == GrabSurfaceType.SphericalMesh) snapConfig.SurfaceType = ObjectSurfaceSnap.Type.SphericalMesh;
             else if (_grabSurfaceInfo.SurfaceType == GrabSurfaceType.TerrainMesh) snapConfig.SurfaceType = ObjectSurfaceSnap.Type.TerrainMesh;
 
-            foreach (var grabTarget in _grabTargets)
+            foreach (GrabTarget grabTarget in _grabTargets)
             {
                 if (grabTarget.GameObject == null) continue;
                 grabTarget.Transform.position = _grabSurfaceInfo.AnchorPoint + grabTarget.AnchorVector;
 
-                var layerGrabSettings = SharedSettings.GetLayerGrabSettings(grabTarget.GameObject.layer);
+                ObjectLayerGrabSettings layerGrabSettings = SharedSettings.GetLayerGrabSettings(grabTarget.GameObject.layer);
                 if (layerGrabSettings.IsActive)
                 {
                     snapConfig.AlignAxis = layerGrabSettings.AlignAxis;
@@ -297,7 +297,7 @@ namespace RLD
                     snapConfig.OffsetFromSurface = SharedSettings.DefaultOffsetFromSurface + grabTarget.OffsetFromSurface;
                 }
 
-                var snapResult = ObjectSurfaceSnap.SnapHierarchy(grabTarget.GameObject, snapConfig);
+                ObjectSurfaceSnap.SnapResult snapResult = ObjectSurfaceSnap.SnapHierarchy(grabTarget.GameObject, snapConfig);
                 if (snapResult.Success)
                 {
                     grabTarget.SittingPlane = snapResult.SittingPlane;
@@ -312,11 +312,11 @@ namespace RLD
             if (!inputDevice.WasMoved()) return;
 
             float rotationAmount = inputDevice.GetFrameDelta().x * SharedSettings.RotationSensitivity;
-            foreach (var grabTarget in _grabTargets)
+            foreach (GrabTarget grabTarget in _grabTargets)
             {
                 if (grabTarget == null) continue;
 
-                var layerGrabSettings = SharedSettings.GetLayerGrabSettings(grabTarget.GameObject.layer);
+                ObjectLayerGrabSettings layerGrabSettings = SharedSettings.GetLayerGrabSettings(grabTarget.GameObject.layer);
                 if (layerGrabSettings.IsActive)
                 {
                     if (layerGrabSettings.AlignAxis) grabTarget.Transform.Rotate(grabTarget.SittingPlane.normal, rotationAmount, Space.World);
@@ -338,11 +338,11 @@ namespace RLD
             if (!inputDevice.WasMoved()) return;
 
             float rotationAmount = inputDevice.GetFrameDelta().x * SharedSettings.RotationSensitivity;
-            foreach(var grabTarget in _grabTargets)
+            foreach(GrabTarget grabTarget in _grabTargets)
             {
                 if (grabTarget == null) continue;
 
-                var layerGrabSettings = SharedSettings.GetLayerGrabSettings(grabTarget.GameObject.layer);
+                ObjectLayerGrabSettings layerGrabSettings = SharedSettings.GetLayerGrabSettings(grabTarget.GameObject.layer);
                 if (layerGrabSettings.IsActive)
                 {
                     if (layerGrabSettings.AlignAxis)
@@ -383,7 +383,7 @@ namespace RLD
             IInputDevice inputDevice = RTInputDevice.Get.Device;
             if (!inputDevice.WasMoved()) return;
 
-            foreach (var grabTarget in _grabTargets)
+            foreach (GrabTarget grabTarget in _grabTargets)
             {
                 if (grabTarget == null) continue;
 
@@ -401,11 +401,11 @@ namespace RLD
             if (!inputDevice.WasMoved()) return;
 
             float offsetAmount = inputDevice.GetFrameDelta().x * SharedSettings.OffsetFromSurfaceSensitivity;
-            foreach (var grabTarget in _grabTargets)
+            foreach (GrabTarget grabTarget in _grabTargets)
             {
                 if (grabTarget == null) continue;
 
-                var layerGrabSettings = SharedSettings.GetLayerGrabSettings(grabTarget.GameObject.layer);
+                ObjectLayerGrabSettings layerGrabSettings = SharedSettings.GetLayerGrabSettings(grabTarget.GameObject.layer);
                 if (layerGrabSettings.IsActive)
                 {
                     if (layerGrabSettings.AlignAxis)
@@ -443,7 +443,7 @@ namespace RLD
             if (!inputDevice.WasMoved()) return;
 
             float scaleFactor = 1.0f + inputDevice.GetCaptureDelta(_deltaCaptureId).x * SharedSettings.OffsetFromAnchorSensitivity;
-            foreach (var grabTarget in _grabTargets)
+            foreach (GrabTarget grabTarget in _grabTargets)
             {
                 if (grabTarget == null) continue;
                 grabTarget.Transform.position = (_grabSurfaceInfo.AnchorPoint + grabTarget.AnchorVectorSnapshot * scaleFactor);
@@ -459,7 +459,7 @@ namespace RLD
             if (_targetParents == null || _targetParents.Count == 0) return false;
 
             _grabTargets.Clear();
-            foreach (var targetObject in _targetParents)
+            foreach (GameObject targetObject in _targetParents)
             {
                 if (targetObject.HierarchyHasObjectsOfType(GameObjectType.Terrain)) continue;
                 _grabTargets.Add(new GrabTarget(targetObject));
@@ -470,19 +470,19 @@ namespace RLD
 
         private void CalculateGrabTargetsAnchorVectors()
         {
-            foreach (var grabTarget in _grabTargets)
+            foreach (GrabTarget grabTarget in _grabTargets)
                 grabTarget.AnchorVector = grabTarget.Transform.position - _grabSurfaceInfo.AnchorPoint;
         }
 
         private void StoreGrabTargetsWorldScaleSnapshots()
         {
-            foreach (var grabTarget in _grabTargets)
+            foreach (GrabTarget grabTarget in _grabTargets)
                 grabTarget.WorldScaleSnapshot = grabTarget.Transform.lossyScale;
         }
 
         private void StoreGrabTargetsAnchorVectorSnapshots()
         {
-            foreach (var grabTarget in _grabTargets)
+            foreach (GrabTarget grabTarget in _grabTargets)
                 grabTarget.AnchorVectorSnapshot = grabTarget.AnchorVector;
         }
 
@@ -494,7 +494,7 @@ namespace RLD
             raycastFilter.LayerMask = SharedSettings.SurfaceLayers;
             if ((SharedSettings.SurfaceFlags & ObjectGrabSurfaceFlags.Mesh) != 0) raycastFilter.AllowedObjectTypes.Add(GameObjectType.Mesh);
             if ((SharedSettings.SurfaceFlags & ObjectGrabSurfaceFlags.Terrain) != 0) raycastFilter.AllowedObjectTypes.Add(GameObjectType.Terrain);
-            foreach (var grabTarget in _grabTargets)
+            foreach (GrabTarget grabTarget in _grabTargets)
                 raycastFilter.IgnoreObjects.AddRange(grabTarget.GameObject.GetAllChildrenAndSelf());
 
             IInputDevice inputDevice = RTInputDevice.Get.Device;
@@ -543,7 +543,7 @@ namespace RLD
                 SharedSettings.AlignmentAxis = _possibleAlignmentAxes[axisIndex];
             }
 
-            foreach (var grabTarget in _grabTargets)
+            foreach (GrabTarget grabTarget in _grabTargets)
             {
                 if (grabTarget.GameObject != null)
                     grabTarget.Transform.rotation = Quaternion.identity;
@@ -555,7 +555,7 @@ namespace RLD
 
         private ObjectBounds.QueryConfig GetObjectBoundsQConfig()
         {
-            var boundsQConfig = new ObjectBounds.QueryConfig();
+            ObjectBounds.QueryConfig boundsQConfig = new ObjectBounds.QueryConfig();
             boundsQConfig.NoVolumeSize = Vector3.zero;
             boundsQConfig.ObjectTypes = GameObjectType.Mesh | GameObjectType.Sprite;
 

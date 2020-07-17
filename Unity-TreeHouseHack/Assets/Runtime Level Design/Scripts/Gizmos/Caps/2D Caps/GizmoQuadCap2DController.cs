@@ -17,7 +17,7 @@ namespace RLD
 
         public override void UpdateTransforms()
         {
-            var cap = _data.Cap;
+            GizmoCap2D cap = _data.Cap;
             _data.Quad.Width = cap.GetRealQuadWidth();
             _data.Quad.Height = cap.GetRealQuadHeight();
             _data.Quad.Center = cap.Position;

@@ -74,7 +74,7 @@ namespace RLD
         public static AABB CalcObjectCollectionWorldAABB(IEnumerable<GameObject> gameObjectCollection, QueryConfig queryConfig)
         {
             AABB aabb = AABB.GetInvalid();
-            foreach (var gameObject in gameObjectCollection)
+            foreach (GameObject gameObject in gameObjectCollection)
             {
                 AABB worldAABB = CalcWorldAABB(gameObject, queryConfig);
                 if (worldAABB.IsValid)
@@ -90,7 +90,7 @@ namespace RLD
         public static AABB CalcHierarchyCollectionWorldAABB(List<GameObject> roots, QueryConfig queryConfig)
         {
             AABB aabb = AABB.GetInvalid();
-            foreach (var root in roots)
+            foreach (GameObject root in roots)
             {
                 AABB hierarchyAABB = CalcHierarchyWorldAABB(root, queryConfig);
                 if (hierarchyAABB.IsValid)
@@ -152,7 +152,7 @@ namespace RLD
             AABB finalAABB = CalcModelAABB(root, queryConfig, root.GetGameObjectType());
 
             List<GameObject> allChildren = root.GetAllChildren();
-            foreach (var child in allChildren)
+            foreach (GameObject child in allChildren)
             {
                 AABB modelAABB = CalcModelAABB(child, queryConfig, child.GetGameObjectType());
                 if (modelAABB.IsValid)

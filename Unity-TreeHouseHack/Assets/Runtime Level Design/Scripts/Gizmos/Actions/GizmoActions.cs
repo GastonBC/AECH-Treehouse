@@ -36,7 +36,7 @@ namespace RLD
         public void AddExtrudeClones(List<GameObject> extrudeClones)
         {
             if (_wasExecuted) return;
-            foreach (var clone in extrudeClones)
+            foreach (GameObject clone in extrudeClones)
                 AddExtrudeClone(clone);
         }
 
@@ -54,10 +54,10 @@ namespace RLD
 
         public void Undo()
         {
-            foreach (var snapshot in _undoTargetSnapshots)
+            foreach (LocalTransformSnapshot snapshot in _undoTargetSnapshots)
                 snapshot.Apply();
 
-            foreach (var clone in _extrudeClones)
+            foreach (GameObject clone in _extrudeClones)
                 if (clone != null) clone.SetActive(false);
 
             _destroyClones = true;
@@ -65,10 +65,10 @@ namespace RLD
 
         public void Redo()
         {
-            foreach (var snapshot in _redoTargetSnapshots)
+            foreach (LocalTransformSnapshot snapshot in _redoTargetSnapshots)
                 snapshot.Apply();
 
-            foreach (var clone in _extrudeClones)
+            foreach (GameObject clone in _extrudeClones)
                 if (clone != null) clone.SetActive(true);
 
             _destroyClones = false;
@@ -78,7 +78,7 @@ namespace RLD
         {
             if (_destroyClones && _extrudeClones.Count != 0)
             {
-                foreach (var clone in _extrudeClones) GameObject.Destroy(clone);
+                foreach (GameObject clone in _extrudeClones) GameObject.Destroy(clone);
                 _extrudeClones.Clear();
             }
         }

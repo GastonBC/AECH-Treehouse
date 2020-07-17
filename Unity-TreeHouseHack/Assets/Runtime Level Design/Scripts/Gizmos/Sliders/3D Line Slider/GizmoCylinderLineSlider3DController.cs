@@ -18,7 +18,7 @@ namespace RLD
 
         public override void UpdateTransforms(float zoomFactor)
         {
-            var slider = _data.Slider;
+            GizmoLineSlider3D slider = _data.Slider;
 
             _data.Cylinder.AlignCentralAxis(slider.GetRealDirection());
             _data.Cylinder.Radius = slider.GetRealCylinderRadius(zoomFactor);
@@ -33,7 +33,7 @@ namespace RLD
 
         public override float GetRealSizeAlongDirection(Vector3 direction, float zoomFactor)
         {
-            var slider = _data.Slider;
+            GizmoLineSlider3D slider = _data.Slider;
             float cylinderLength = slider.GetRealLength(zoomFactor);
             float cylinderRadius = slider.GetRealCylinderRadius(zoomFactor);
             Vector3 size = _data.Cylinder.Rotation * new Vector3(cylinderRadius * 2.0f, cylinderLength, cylinderRadius * 2.0f);

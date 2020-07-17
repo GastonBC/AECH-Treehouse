@@ -20,7 +20,7 @@ namespace RLD
 
         public override void UpdateTransforms(float zoomFactor)
         {
-            var cap = _data.Cap;
+            GizmoCap3D cap = _data.Cap;
 
             _data.TrPrism.Rotation = cap.Rotation;
             _data.TrPrism.Width = cap.GetRealTriPrismWidth(zoomFactor);

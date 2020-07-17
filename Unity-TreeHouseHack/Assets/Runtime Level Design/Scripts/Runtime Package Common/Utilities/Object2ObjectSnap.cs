@@ -98,9 +98,9 @@ namespace RLD
             float minSnapDistance = float.MaxValue;
             SnapResult bestResult = new SnapResult(SnapFailReson.NoDestinationFound);
 
-            foreach(var root in roots)
+            foreach(GameObject root in roots)
             {
-                var snapResult = CalculateSnapResult(root, snapConfig);
+                SnapResult snapResult = CalculateSnapResult(root, snapConfig);
 
                 if (snapResult.FailReason == SnapFailReson.MaxObjectsExceeded) return snapResult;
                 else if(snapResult.FailReason == SnapFailReson.None)
@@ -119,7 +119,7 @@ namespace RLD
 
         public static SnapResult Snap(GameObject root, Config snapConfig)
         {
-            var snapResult = CalculateSnapResult(root, snapConfig);
+            SnapResult snapResult = CalculateSnapResult(root, snapConfig);
             if (snapResult.Success) ObjectSnap.Snap(root, snapResult.SnapPivot, snapResult.SnapDestination);
 
             return snapResult;
@@ -136,17 +136,17 @@ namespace RLD
             List<GameObject> sourceSpriteObjects = root.GetSpriteObjectsInHierarchy();
             if (sourceMeshObjects.Count == 0 && sourceSpriteObjects.Count == 0) return new SnapResult(SnapFailReson.InvalidSourceObjects);
 
-            var boundsQConfig = new ObjectBounds.QueryConfig();
+            ObjectBounds.QueryConfig boundsQConfig = new ObjectBounds.QueryConfig();
             boundsQConfig.ObjectTypes = GameObjectType.Mesh | GameObjectType.Sprite;
 
             Vector3 overlapSizeAdd = Vector3.one * snapConfig.SnapRadius * 2.0f;
-            var allSnapFaces = BoxMath.AllBoxFaces;
+            List<BoxFace> allSnapFaces = BoxMath.AllBoxFaces;
             bool tryMatchAreas = (snapConfig.Prefs & Prefs.TryMatchArea) != 0;
             bool foundMatchingAreas = false;
             List<SnapSortData> sortedSnapData = new List<SnapSortData>(10);
             SnapSortData sortData = new SnapSortData();
 
-            foreach (var sourceObject in sourceObjects)
+            foreach (GameObject sourceObject in sourceObjects)
             {
                 OBB overlapOBB = ObjectBounds.CalcWorldOBB(sourceObject, boundsQConfig);
                 overlapOBB.Size = overlapOBB.Size + overlapSizeAdd;
@@ -156,27 +156,27 @@ namespace RLD
                                         snapConfig.IgnoreDestObjects.Contains(item) || !LayerEx.IsLayerBitSet(snapConfig.DestinationLayers, item.layer));
                 if (nearbyObjects.Count == 0) continue;
 
-                var sourceSnapData = Object2ObjectSnapDataDb.Get.GetObject2ObjectSnapData(sourceObject);
+                Object2ObjectSnapData sourceSnapData = Object2ObjectSnapDataDb.Get.GetObject2ObjectSnapData(sourceObject);
                 if (sourceSnapData == null) continue;
 
                 sortData.SrcObject = sourceObject;
-                foreach(var srcSnapFace in allSnapFaces)
+                foreach(BoxFace srcSnapFace in allSnapFaces)
                 {
-                    var srcAreaDesc = sourceSnapData.GetWorldSnapAreaDesc(srcSnapFace);
-                    var srcAreaBounds = sourceSnapData.GetWorldSnapAreaBounds(srcSnapFace);
-                    var srcAreaPts = srcAreaBounds.GetCenterAndCornerPoints();
+                    BoxFaceAreaDesc srcAreaDesc = sourceSnapData.GetWorldSnapAreaDesc(srcSnapFace);
+                    OBB srcAreaBounds = sourceSnapData.GetWorldSnapAreaBounds(srcSnapFace);
+                    List<Vector3> srcAreaPts = srcAreaBounds.GetCenterAndCornerPoints();
                     sortData.SrcSnapFace = srcSnapFace;
 
-                    foreach (var destObject in nearbyObjects)
+                    foreach (GameObject destObject in nearbyObjects)
                     {
-                        var destSnapData = Object2ObjectSnapDataDb.Get.GetObject2ObjectSnapData(destObject);
+                        Object2ObjectSnapData destSnapData = Object2ObjectSnapDataDb.Get.GetObject2ObjectSnapData(destObject);
                         if (destSnapData == null) continue;
 
                         sortData.DestObject = destObject;
-                        foreach(var destSnapFace in allSnapFaces)
+                        foreach(BoxFace destSnapFace in allSnapFaces)
                         {
                             sortData.DestSnapFace = destSnapFace;
-                            var destAreaDesc = destSnapData.GetWorldSnapAreaDesc(destSnapFace);
+                            BoxFaceAreaDesc destAreaDesc = destSnapData.GetWorldSnapAreaDesc(destSnapFace);
 
                             sortData.FaceAreasMatch = false;
 
@@ -186,13 +186,13 @@ namespace RLD
                                 if (sortData.FaceAreaDiff <= 1000.0f) sortData.FaceAreasMatch = true;
                             }
 
-                            var destAreaBounds = destSnapData.GetWorldSnapAreaBounds(destSnapFace);
-                            var destAreaPts = destAreaBounds.GetCenterAndCornerPoints();
+                            OBB destAreaBounds = destSnapData.GetWorldSnapAreaBounds(destSnapFace);
+                            List<Vector3> destAreaPts = destAreaBounds.GetCenterAndCornerPoints();
 
-                            foreach (var srcPt in srcAreaPts)
+                            foreach (Vector3 srcPt in srcAreaPts)
                             {
                                 sortData.SnapPivot = srcPt;
-                                foreach (var destPt in destAreaPts)
+                                foreach (Vector3 destPt in destAreaPts)
                                 {
                                     sortData.SnapDistance = (destPt - srcPt).magnitude;
                                     if (sortData.SnapDistance < snapConfig.SnapRadius)

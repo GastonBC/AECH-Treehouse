@@ -41,31 +41,31 @@ namespace RLD
 
         public void ApplyZoomFactor(Camera camera)
         {
-            foreach (var slider in _sliders)
+            foreach (GizmoPlaneSlider3D slider in _sliders)
                 slider.ApplyZoomFactor(camera);
         }
 
         public void SetZoomFactorTransform(GizmoTransform zoomFactorTransform)
         {
-            foreach (var slider in _sliders)
+            foreach (GizmoPlaneSlider3D slider in _sliders)
                 slider.SetZoomFactorTransform(zoomFactorTransform);
         }
 
         public void Make3DHoverPriorityLowerThan(Priority priority)
         {
-            foreach (var slider in _sliders)
+            foreach (GizmoPlaneSlider3D slider in _sliders)
                 slider.HoverPriority3D.MakeLowerThan(priority);
         }
 
         public void Make3DHoverPriorityHigherThan(Priority priority)
         {
-            foreach (var slider in _sliders)
+            foreach (GizmoPlaneSlider3D slider in _sliders)
                 slider.HoverPriority3D.MakeHigherThan(priority);
         }
 
         public void SetSnapEnabled(bool isEnabled)
         {
-            foreach (var slider in _sliders)
+            foreach (GizmoPlaneSlider3D slider in _sliders)
                 slider.SetSnapEnabled(isEnabled);
         }
 
@@ -73,7 +73,7 @@ namespace RLD
         {
             if (includeBorder)
             {
-                foreach (var slider in _sliders)
+                foreach (GizmoPlaneSlider3D slider in _sliders)
                 {
                     slider.SetVisible(isVisible);
                     slider.SetBorderVisible(isVisible);
@@ -81,14 +81,14 @@ namespace RLD
             }
             else
             {
-                foreach (var slider in _sliders)
+                foreach (GizmoPlaneSlider3D slider in _sliders)
                     slider.SetVisible(isVisible);
             }
         }
 
         public void SetBorderVisible(bool isVisible)
         {
-            foreach (var slider in _sliders)
+            foreach (GizmoPlaneSlider3D slider in _sliders)
                 slider.SetBorderVisible(isVisible);
         }
 
@@ -96,7 +96,7 @@ namespace RLD
         {
             if (includeBorder)
             {
-                foreach (var slider in _sliders)
+                foreach (GizmoPlaneSlider3D slider in _sliders)
                 {
                     slider.SetHoverable(isHoverable);
                     slider.SetBorderHoverable(isHoverable);
@@ -104,20 +104,20 @@ namespace RLD
             }
             else
             {
-                foreach (var slider in _sliders)
+                foreach (GizmoPlaneSlider3D slider in _sliders)
                     slider.SetHoverable(isHoverable);
             }
         }
 
         public void SetBorderHoverable(bool isHoverable)
         {
-            foreach (var slider in _sliders)
+            foreach (GizmoPlaneSlider3D slider in _sliders)
                 slider.SetBorderHoverable(isHoverable);
         }
 
         public List<GizmoPlaneSlider3D> GetRenderSortedSliders(Camera renderCamera)
         {
-            var sortedSliders = new List<GizmoPlaneSlider3D>(_sliders);
+            List<GizmoPlaneSlider3D> sortedSliders = new List<GizmoPlaneSlider3D>(_sliders);
             Vector3 cameraPos = renderCamera.transform.position;
 
             sortedSliders.Sort(delegate(GizmoPlaneSlider3D s0, GizmoPlaneSlider3D s1)

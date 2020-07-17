@@ -61,7 +61,7 @@ namespace RLD
         {
             // Create the node instance and feed it to the 'AddNodeRecurse' method
             // to integrate it inside the tree properly.
-            var newNode = new SphereTreeNode<T>(nodeData, sphere);
+            SphereTreeNode<T> newNode = new SphereTreeNode<T>(nodeData, sphere);
             IntegrateNodeRecurse(newNode, _root);
 
             return newNode;
@@ -126,7 +126,7 @@ namespace RLD
         /// </summary>
         public List<SphereTreeNodeRayHit<T>> RaycastAll(Ray ray)
         {
-            var hitList = new List<SphereTreeNodeRayHit<T>>(10);
+            List<SphereTreeNodeRayHit<T>> hitList = new List<SphereTreeNodeRayHit<T>>(10);
             RaycastAllRecurse(ray, _root, hitList);
             return hitList;
         }
@@ -137,7 +137,7 @@ namespace RLD
         /// </summary>
         public List<SphereTreeNode<T>> OverlapBox(OBB box)
         {
-            var overlappedNodes = new List<SphereTreeNode<T>>(20);
+            List<SphereTreeNode<T>> overlappedNodes = new List<SphereTreeNode<T>>(20);
             OverlapBoxRecurse(box, _root, overlappedNodes);
             return overlappedNodes;
         }
@@ -203,7 +203,7 @@ namespace RLD
                 if (SphereMath.Raycast(ray, node.Center, node.Radius))
                 {
                     List<SphereTreeNode<T>> children = node.Children;
-                    foreach (var child in children) RaycastAllRecurse(ray, child, hitList);
+                    foreach (SphereTreeNode<T> child in children) RaycastAllRecurse(ray, child, hitList);
                 }
             }
             else
@@ -213,7 +213,7 @@ namespace RLD
                 float t;
                 if (SphereMath.Raycast(ray, out t, node.Center, node.Radius))
                 {
-                    var nodeHit = new SphereTreeNodeRayHit<T>(ray, node, t);
+                    SphereTreeNodeRayHit<T> nodeHit = new SphereTreeNodeRayHit<T>(ray, node, t);
                     hitList.Add(nodeHit);
                 }
             }

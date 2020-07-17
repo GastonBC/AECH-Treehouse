@@ -114,7 +114,7 @@ namespace RLD
 
         private void OnPointsFoundDirty()
         {
-            var points = TriangleMath.CalcEqTriangle3DPoints(_centroid, _sideLength, _rotation);
+            System.Collections.Generic.List<Vector3> points = TriangleMath.CalcEqTriangle3DPoints(_centroid, _sideLength, _rotation);
             _points[(int)EqTrianglePoint.Left] = points[(int)EqTrianglePoint.Left];
             _points[(int)EqTrianglePoint.Top] = points[(int)EqTrianglePoint.Top];
             _points[(int)EqTrianglePoint.Right] = points[(int)EqTrianglePoint.Right];

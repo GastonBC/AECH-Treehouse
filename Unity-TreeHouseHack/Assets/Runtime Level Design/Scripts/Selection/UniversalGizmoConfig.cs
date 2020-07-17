@@ -24,7 +24,7 @@ namespace RLD
         protected override void RenderContent(UnityEngine.Object undoRecordObject)
         {
             RTObjectSelectionGizmos gizmos = RTObjectSelectionGizmos.Get;
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
 
             EditorGUILayout.BeginHorizontal();
             content.text = "Inherit";

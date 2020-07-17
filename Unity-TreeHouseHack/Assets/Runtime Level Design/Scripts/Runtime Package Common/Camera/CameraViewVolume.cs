@@ -124,7 +124,7 @@ namespace RLD
 
         public static bool CheckAABB(Camera camera, AABB aabb)
         {
-            var planes = GeometryUtility.CalculateFrustumPlanes(camera.projectionMatrix * camera.worldToCameraMatrix);
+            Plane[] planes = GeometryUtility.CalculateFrustumPlanes(camera.projectionMatrix * camera.worldToCameraMatrix);
             return GeometryUtility.TestPlanesAABB(planes, aabb.ToBounds());
         }
 

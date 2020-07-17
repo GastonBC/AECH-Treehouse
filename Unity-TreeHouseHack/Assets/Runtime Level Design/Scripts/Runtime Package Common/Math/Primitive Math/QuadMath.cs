@@ -124,7 +124,7 @@ namespace RLD
             if (quadPlane.Raycast(ray, out rayEnter))
             {
                 Vector3 intersectPt = ray.GetPoint(rayEnter);
-                var cornerPoints = Calc3DQuadCornerPoints(quadCenter, quadSize, quadRotation);
+                List<Vector3> cornerPoints = Calc3DQuadCornerPoints(quadCenter, quadSize, quadRotation);
 
                 float distFromSegment = intersectPt.GetDistanceToSegment(cornerPoints[(int)QuadCorner.TopLeft], cornerPoints[(int)QuadCorner.TopRight]);
                 if (distFromSegment <= epsilon.WireEps)
@@ -222,10 +222,10 @@ namespace RLD
         public static bool Is2DPointOnBorder(Vector2 point, Vector2 quadCenter, float quadWidth, float quadHeight, Vector2 quadRight,
             Vector2 quadUp, QuadEpsilon epsilon = new QuadEpsilon())
         {
-            var segmentEps = new SegmentEpsilon();
+            SegmentEpsilon segmentEps = new SegmentEpsilon();
             segmentEps.PtOnSegmentEps = epsilon.WireEps;
 
-            var corners = Calc2DQuadCornerPoints(quadCenter, new Vector2(quadWidth, quadHeight), quadRight, quadUp);
+            List<Vector2> corners = Calc2DQuadCornerPoints(quadCenter, new Vector2(quadWidth, quadHeight), quadRight, quadUp);
             for(int ptIndex = 0; ptIndex < corners.Count; ++ptIndex)
             {
                 Vector2 startPt = corners[ptIndex];

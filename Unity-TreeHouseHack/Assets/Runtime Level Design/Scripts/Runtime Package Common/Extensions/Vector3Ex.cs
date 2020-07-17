@@ -118,7 +118,7 @@ namespace RLD
             Vector3 max = Vector3Ex.FromValue(float.MinValue);
             Vector3 min = Vector3Ex.FromValue(float.MaxValue);
 
-            foreach(var pt in ptCloud)
+            foreach(Vector3 pt in ptCloud)
             {
                 max = Vector3.Max(max, pt);
                 min = Vector3.Min(min, pt);

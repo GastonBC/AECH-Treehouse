@@ -41,37 +41,37 @@ namespace RLD
 
         public void ApplyZoomFactor(Camera camera)
         {
-            foreach (var cap in _caps)
+            foreach (GizmoCap3D cap in _caps)
                 cap.ApplyZoomFactor(camera);
         }
 
         public void SetZoomFactorTransform(GizmoTransform zoomFactorTransform)
         {
-            foreach (var cap in _caps)
+            foreach (GizmoCap3D cap in _caps)
                 cap.SetZoomFactorTransform(zoomFactorTransform);
         }
 
         public void Make3DHoverPriorityLowerThan(Priority priority)
         {
-            foreach (var cap in _caps)
+            foreach (GizmoCap3D cap in _caps)
                 cap.HoverPriority3D.MakeLowerThan(priority);
         }
 
         public void Make3DHoverPriorityHigherThan(Priority priority)
         {
-            foreach (var cap in _caps)
+            foreach (GizmoCap3D cap in _caps)
                 cap.HoverPriority3D.MakeHigherThan(priority);
         }
 
         public void SetVisible(bool visible)
         {
-            foreach (var cap in _caps)
+            foreach (GizmoCap3D cap in _caps)
                 cap.SetVisible(visible);
         }
 
         public List<GizmoCap3D> GetRenderSortedCaps(Camera renderCamera)
         {
-            var sortedCaps = new List<GizmoCap3D>(_caps);
+            List<GizmoCap3D> sortedCaps = new List<GizmoCap3D>(_caps);
             Vector3 cameraPos = renderCamera.transform.position;
 
             sortedCaps.Sort(delegate(GizmoCap3D c0, GizmoCap3D c1)

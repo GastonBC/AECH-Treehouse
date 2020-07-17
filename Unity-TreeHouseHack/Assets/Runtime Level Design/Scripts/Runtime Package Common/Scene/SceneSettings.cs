@@ -21,7 +21,7 @@ namespace RLD
         protected override void RenderContent(UnityEngine.Object undoRecordObject)
         {
             ScenePhysicsMode newPhysicsMode; float newFloat;
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
 
             content.text = "Physics mode";
             content.tooltip = "Controls the way in which raycasts, overlap tests etc are performed. It is recommended to leave this to \'RLD\'. Otherwise, some " + 

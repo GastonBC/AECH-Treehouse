@@ -25,7 +25,7 @@ namespace RLD
         {
             int newInt; bool newBool; float newFloat;
 
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
             content.text = "Snap destination layers";
             content.tooltip = "When snapping to nearby obejcts, only the objects which belong to one of these layers will be taken into account.";
             newInt = EditorGUILayoutEx.LayerMaskField(content, SnapDestinationLayers);

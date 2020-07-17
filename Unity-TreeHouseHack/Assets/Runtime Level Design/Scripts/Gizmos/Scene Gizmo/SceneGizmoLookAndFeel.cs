@@ -109,7 +109,7 @@ namespace RLD
 
         public void SetHoveredColor(Color hoveredColor)
         {
-            foreach (var lookAndFeel in _axesCapsLookAndFeel)
+            foreach (GizmoCap3DLookAndFeel lookAndFeel in _axesCapsLookAndFeel)
                 lookAndFeel.HoveredColor = hoveredColor;
 
             _midCapLookAndFeel.HoveredColor = hoveredColor;
@@ -122,7 +122,7 @@ namespace RLD
 
         public void SetAxisCapFillMode(GizmoFillMode3D fillMode)
         {
-            foreach (var lookAndFeel in _axesCapsLookAndFeel)
+            foreach (GizmoCap3DLookAndFeel lookAndFeel in _axesCapsLookAndFeel)
                 lookAndFeel.FillMode = fillMode;
         }
 
@@ -133,7 +133,7 @@ namespace RLD
 
         public void SetAxisCapShadeMode(GizmoShadeMode shadeMode)
         {
-            foreach (var lookAndFeel in _axesCapsLookAndFeel)
+            foreach (GizmoCap3DLookAndFeel lookAndFeel in _axesCapsLookAndFeel)
                 lookAndFeel.ShadeMode = shadeMode;
         }
 
@@ -164,7 +164,7 @@ namespace RLD
 
         public void SetAxisCapType(GizmoCap3DType capType)
         {
-            foreach (var lookAndFeel in _axesCapsLookAndFeel)
+            foreach (GizmoCap3DLookAndFeel lookAndFeel in _axesCapsLookAndFeel)
                 lookAndFeel.CapType = capType;
         }
 
@@ -203,7 +203,7 @@ namespace RLD
             _midCapLookAndFeel.BoxDepth = MidCapBoxSize;
             _midCapLookAndFeel.SphereRadius = MidCapSphereRadius;
 
-            foreach(var axisCapLookAndFeel in _axesCapsLookAndFeel)
+            foreach(GizmoCap3DLookAndFeel axisCapLookAndFeel in _axesCapsLookAndFeel)
             {
                 axisCapLookAndFeel.ConeHeight = AxisConeHeight;
                 axisCapLookAndFeel.ConeRadius = AxisConeRadius;
@@ -218,7 +218,7 @@ namespace RLD
             GizmoCap3DType newCapType;
 
             EditorGUILayoutEx.SectionHeader("Placement");
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
             content.text = "Screen corner";
             content.tooltip = "Allows you to specify the screen corner in which the gizmo will be rendered.";
             newScreenCorner = (SceneGizmoScreenCorner)EditorGUILayout.EnumPopup(content, ScreenCorner);
@@ -296,7 +296,7 @@ namespace RLD
                 content.text = axesCapLabels[axisIndex];
                 content.tooltip = "The color of the " + axesCapLabels[axisIndex].ToLower() + ".";
 
-                var lookAndFeel = GetAxisCapLookAndFeel(axesIndices[axisIndex], axesSigns[axisIndex]);
+                GizmoCap3DLookAndFeel lookAndFeel = GetAxisCapLookAndFeel(axesIndices[axisIndex], axesSigns[axisIndex]);
                 newColor = EditorGUILayout.ColorField(content, lookAndFeel.Color);
                 if (newColor != lookAndFeel.Color)
                 {

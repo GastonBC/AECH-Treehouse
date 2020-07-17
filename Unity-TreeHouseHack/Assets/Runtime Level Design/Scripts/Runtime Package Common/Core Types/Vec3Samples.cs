@@ -43,7 +43,7 @@ namespace RLD
         public Vector3 GetAverage()
         {
             Vector3 average = Vector3.zero;
-            foreach (var vec in _samples)
+            foreach (Vector3 vec in _samples)
                 average += vec;
 
             return average.normalized;

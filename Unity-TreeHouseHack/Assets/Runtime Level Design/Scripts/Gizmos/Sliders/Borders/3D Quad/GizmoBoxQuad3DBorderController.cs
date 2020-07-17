@@ -57,14 +57,14 @@ namespace RLD
 
         public override void UpdateTransforms(float zoomFactor)
         {
-            var lookAndFeel = _data.PlaneSlider.LookAndFeel;
+            GizmoPlaneSlider3DLookAndFeel lookAndFeel = _data.PlaneSlider.LookAndFeel;
             Vector3 quadRight = _data.TargetQuad.Right;
             Vector3 quadUp = _data.TargetQuad.Up;
             Vector3 quadNormal = _data.TargetQuad.Normal;
             float quadWidth = _data.TargetQuad.Width;
             float quadHeight = _data.TargetQuad.Height;
 
-            var corners = _data.TargetQuad.GetCornerPoints();
+            System.Collections.Generic.List<Vector3> corners = _data.TargetQuad.GetCornerPoints();
             Vector3 topLeft = corners[(int)QuadCorner.TopLeft];
             Vector3 topRight = corners[(int)QuadCorner.TopRight];
             Vector3 bottomRight = corners[(int)QuadCorner.BottomRight];
@@ -73,7 +73,7 @@ namespace RLD
             float boxHeight = _data.Border.GetRealBoxHeight(zoomFactor);
             float boxDepth = _data.Border.GetRealBoxDepth(zoomFactor);
 
-            var topLeftBox = _data.TopLeftBox;
+            BoxShape3D topLeftBox = _data.TopLeftBox;
             topLeftBox.AlignHeight(quadNormal);
             topLeftBox.AlignWidth(quadRight);
             topLeftBox.Width = boxDepth;
@@ -81,7 +81,7 @@ namespace RLD
             topLeftBox.Depth = boxDepth;
             topLeftBox.SetFaceCenter(BoxFace.Left, topLeft - quadUp * topLeftBox.GetSizeAlongDirection(quadUp) * 0.5f);
 
-            var topRightBox = _data.TopRightBox;
+            BoxShape3D topRightBox = _data.TopRightBox;
             topRightBox.AlignHeight(quadNormal);
             topRightBox.AlignWidth(quadRight);
             topRightBox.Width = boxDepth;
@@ -89,7 +89,7 @@ namespace RLD
             topRightBox.Depth = boxDepth;
             topRightBox.SetFaceCenter(BoxFace.Right, topRight - quadUp * topRightBox.GetSizeAlongDirection(quadUp) * 0.5f);
 
-            var bottomRightBox = _data.BottomRightBox;
+            BoxShape3D bottomRightBox = _data.BottomRightBox;
             bottomRightBox.AlignHeight(quadNormal);
             bottomRightBox.AlignWidth(quadRight);
             bottomRightBox.Width = boxDepth;
@@ -97,7 +97,7 @@ namespace RLD
             bottomRightBox.Depth = boxDepth;
             bottomRightBox.SetFaceCenter(BoxFace.Right, bottomRight + quadUp * bottomRightBox.GetSizeAlongDirection(quadUp) * 0.5f);
 
-            var bottomLeftBox = _data.BottomLeftBox;
+            BoxShape3D bottomLeftBox = _data.BottomLeftBox;
             bottomLeftBox.AlignHeight(quadNormal);
             bottomLeftBox.AlignWidth(quadRight);
             bottomLeftBox.Width = boxDepth;
@@ -105,7 +105,7 @@ namespace RLD
             bottomLeftBox.Depth = boxDepth;
             bottomLeftBox.SetFaceCenter(BoxFace.Left, bottomLeft + quadUp * bottomLeftBox.GetSizeAlongDirection(quadUp) * 0.5f);
 
-            var topBox = _data.TopBox;
+            BoxShape3D topBox = _data.TopBox;
             topBox.AlignHeight(quadNormal);
             topBox.AlignWidth(quadRight);
             topBox.Width = quadWidth - 2.0f * topLeftBox.GetSizeAlongDirection(quadRight);
@@ -113,7 +113,7 @@ namespace RLD
             topBox.Depth = boxDepth;
             topBox.SetFaceCenter(BoxFace.Left, topLeftBox.GetFaceCenter(BoxFace.Right));
 
-            var rightBox = _data.RightBox;
+            BoxShape3D rightBox = _data.RightBox;
             rightBox.AlignHeight(quadNormal);
             rightBox.AlignWidth(quadUp);
             rightBox.Width = quadHeight - 2.0f * topRightBox.GetSizeAlongDirection(quadUp);
@@ -121,7 +121,7 @@ namespace RLD
             rightBox.Depth = boxDepth;
             rightBox.SetFaceCenter(BoxFace.Right, topRightBox.GetFaceCenter(BoxFace.Back));
 
-            var bottomBox = _data.BottomBox;
+            BoxShape3D bottomBox = _data.BottomBox;
             bottomBox.AlignHeight(quadNormal);
             bottomBox.AlignWidth(quadRight);
             bottomBox.Width = quadWidth - 2.0f * bottomRightBox.GetSizeAlongDirection(quadRight);
@@ -129,7 +129,7 @@ namespace RLD
             bottomBox.Depth = boxDepth;
             bottomBox.SetFaceCenter(BoxFace.Left, bottomLeftBox.GetFaceCenter(BoxFace.Right));
 
-            var leftBox = _data.LeftBox;
+            BoxShape3D leftBox = _data.LeftBox;
             leftBox.AlignHeight(quadNormal);
             leftBox.AlignWidth(quadUp);
             leftBox.Width = quadHeight - 2.0f * topLeftBox.GetSizeAlongDirection(quadUp);

@@ -17,7 +17,7 @@ namespace RLD
 
         public override void UpdateTransforms()
         {
-            var cap = _data.Cap;
+            GizmoCap2D cap = _data.Cap;
             _data.Circle.Radius = cap.GetRealCircleRadius();
             _data.Circle.Center = cap.Position;
         }

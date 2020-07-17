@@ -48,14 +48,14 @@ namespace RLD
             string assetTypeFilter = "t:";
             if(assetType == AssetType.Prefab) assetTypeFilter += "GameObject";
 
-            var assetGUIDs = AssetDatabase.FindAssets(assetTypeFilter, new string[] { folderPath });
+            string[] assetGUIDs = AssetDatabase.FindAssets(assetTypeFilter, new string[] { folderPath });
             return ConvertGUIDsToAssets(assetGUIDs);
         }
 
         public static List<UnityEngine.Object> ConvertGUIDsToAssets(string[] assetGUIDs)
         {
-            var assets = new List<UnityEngine.Object>();
-            foreach (var guid in assetGUIDs)
+            List<Object> assets = new List<UnityEngine.Object>();
+            foreach (string guid in assetGUIDs)
             {
                 string assetPath = AssetDatabase.GUIDToAssetPath(guid);
                 UnityEngine.Object asset = AssetDatabase.LoadAssetAtPath(assetPath, typeof(UnityEngine.Object));
@@ -70,8 +70,8 @@ namespace RLD
         {
             if (assets == null || assets.Count == 0) return new List<GameObject>();
 
-            var prefabs = new List<GameObject>(assets.Count);
-            foreach(var asset in assets)
+            List<GameObject> prefabs = new List<GameObject>(assets.Count);
+            foreach(Object asset in assets)
             {
                 GameObject prefab = asset as GameObject;
                 if (prefab != null) prefabs.Add(prefab);
@@ -82,7 +82,7 @@ namespace RLD
 
         public static List<GameObject> GetPrefabsInAssets(List<string> assetPaths, bool showProgressBar = false)
         {
-            var prefabs = new List<GameObject>();
+            List<GameObject> prefabs = new List<GameObject>();
             if (showProgressBar)
             {
                 for (int pathIndex = 0; pathIndex < assetPaths.Count; ++pathIndex)

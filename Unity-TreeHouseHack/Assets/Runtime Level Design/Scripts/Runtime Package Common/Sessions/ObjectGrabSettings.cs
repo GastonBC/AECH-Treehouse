@@ -72,7 +72,7 @@ namespace RLD
             TransformAxis newTransformAxis;
 
             EditorGUILayoutEx.SectionHeader("Alignment");
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
             content.text = "Align axis";
             content.tooltip = "If this is checked, the grabbed objects will have their local axes aligned with the grab surface normal.";
             newBool = EditorGUILayout.ToggleLeft(content, AlignAxis);
@@ -197,7 +197,7 @@ namespace RLD
             }
             EditorGUILayout.EndHorizontal();
 
-            foreach(var layerGrabSettings in _layerGrabSettings)
+            foreach(ObjectLayerGrabSettings layerGrabSettings in _layerGrabSettings)
             {
                 if (layerGrabSettings.IsActive)
                 {

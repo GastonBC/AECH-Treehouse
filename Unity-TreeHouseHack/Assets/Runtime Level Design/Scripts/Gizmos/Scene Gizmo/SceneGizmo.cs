@@ -86,7 +86,7 @@ namespace RLD
             });
 
             // The handles have been sorted. Now we can render them.
-            foreach (var handle in _renderSortedHandles) handle.Render(_sceneGizmoCamera.Camera);
+            foreach (SceneGizmoCap handle in _renderSortedHandles) handle.Render(_sceneGizmoCamera.Camera);
         }
     }
 }

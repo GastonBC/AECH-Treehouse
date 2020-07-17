@@ -20,7 +20,7 @@ namespace RLD
 
         public override void UpdateTransforms(float zoomFactor)
         {
-            var cap = _data.Cap;
+            GizmoCap3D cap = _data.Cap;
 
             _data.Sphere.Center = cap.Position;
             _data.Sphere.Rotation = cap.Rotation;

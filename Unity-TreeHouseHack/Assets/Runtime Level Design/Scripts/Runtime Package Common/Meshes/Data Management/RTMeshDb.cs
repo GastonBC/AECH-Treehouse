@@ -40,8 +40,8 @@ namespace RLD
 
         public void RemoveNullMeshEntries()
         {
-            var newMeshDictionary = new Dictionary<Mesh, RTMesh>();
-            foreach (var pair in _meshes)
+            Dictionary<Mesh, RTMesh> newMeshDictionary = new Dictionary<Mesh, RTMesh>();
+            foreach (KeyValuePair<Mesh, RTMesh> pair in _meshes)
             {
                 if (pair.Key != null) newMeshDictionary.Add(pair.Key, pair.Value);
             }

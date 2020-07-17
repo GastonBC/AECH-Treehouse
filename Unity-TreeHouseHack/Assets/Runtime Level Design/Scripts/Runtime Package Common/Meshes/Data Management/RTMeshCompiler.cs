@@ -6,8 +6,8 @@ namespace RLD
     {
         public static void CompileEntireScene()
         {
-            var sceneObjects = RTScene.Get.GetSceneObjects();
-            foreach(var sceneObject in sceneObjects)
+            GameObject[] sceneObjects = RTScene.Get.GetSceneObjects();
+            foreach(GameObject sceneObject in sceneObjects)
                 CompileForObject(sceneObject);
         }
 
@@ -18,7 +18,7 @@ namespace RLD
             Mesh mesh = gameObject.GetMesh();
             if (mesh == null) return false;
 
-            var rtMesh = RTMeshDb.Get.GetRTMesh(mesh);
+            RTMesh rtMesh = RTMeshDb.Get.GetRTMesh(mesh);
             if (rtMesh == null) return false;
 
             if (!rtMesh.IsTreeBuilt) rtMesh.BuildTree();

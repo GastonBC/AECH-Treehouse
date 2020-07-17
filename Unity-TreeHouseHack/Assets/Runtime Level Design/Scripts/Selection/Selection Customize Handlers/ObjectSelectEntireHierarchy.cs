@@ -36,7 +36,7 @@ namespace RLD
                 if (roots.Count == 0) return;
 
                 List<GameObject> selectThese = new List<GameObject>(roots.Count * 10);
-                foreach (var root in roots)
+                foreach (GameObject root in roots)
                 {
                     selectThese.AddRange(root.GetAllChildrenAndSelf());
                 }
@@ -46,7 +46,7 @@ namespace RLD
             else
             {
                 HashSet<GameObject> selectedObjects = new HashSet<GameObject>();
-                foreach(var gameObj in toBeSelected)
+                foreach(GameObject gameObj in toBeSelected)
                 {
                     // If this is an object group, ignore it
                     if (RTObjectGroupDb.Get.IsGroup(gameObj)) continue;
@@ -56,8 +56,8 @@ namespace RLD
                     Transform parentTransform = GetFurthestParentNotGroup(gameObj);
 
                     // Store the parent and all its children
-                    var allObjectsInHierarchy = parentTransform.gameObject.GetAllChildrenAndSelf();
-                    foreach (var hierarchyObject in allObjectsInHierarchy) selectedObjects.Add(hierarchyObject);
+                    List<GameObject> allObjectsInHierarchy = parentTransform.gameObject.GetAllChildrenAndSelf();
+                    foreach (GameObject hierarchyObject in allObjectsInHierarchy) selectedObjects.Add(hierarchyObject);
                 }
 
                 // Select the objects
@@ -73,7 +73,7 @@ namespace RLD
                 if (roots.Count == 0) return;
 
                 List<GameObject> deselectThese = new List<GameObject>(roots.Count * 10);
-                foreach (var root in roots)
+                foreach (GameObject root in roots)
                 {
                     deselectThese.AddRange(root.GetAllChildrenAndSelf());
                 }
@@ -82,14 +82,14 @@ namespace RLD
             else
             {
                 HashSet<GameObject> deselectedObjects = new HashSet<GameObject>();
-                foreach (var gameObj in toBeDeselected)
+                foreach (GameObject gameObj in toBeDeselected)
                 {
                     if (RTObjectGroupDb.Get.IsGroup(gameObj)) continue;
 
                     Transform parentTransform = GetFurthestParentNotGroup(gameObj);
 
-                    var allObjectsInHierarchy = parentTransform.gameObject.GetAllChildrenAndSelf();
-                    foreach (var hierarchyObject in allObjectsInHierarchy) deselectedObjects.Add(hierarchyObject);
+                    List<GameObject> allObjectsInHierarchy = parentTransform.gameObject.GetAllChildrenAndSelf();
+                    foreach (GameObject hierarchyObject in allObjectsInHierarchy) deselectedObjects.Add(hierarchyObject);
                 }
 
                 customizeInfo.DeselectThese(deselectedObjects);

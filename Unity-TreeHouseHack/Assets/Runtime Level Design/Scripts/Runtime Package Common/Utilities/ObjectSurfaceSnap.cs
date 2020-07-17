@@ -59,14 +59,14 @@ namespace RLD
                 return new SnapResult(snapConfig.SurfaceHitPlane, rootTransform.position);
             }
 
-            var boundsQConfig = new ObjectBounds.QueryConfig();
+            ObjectBounds.QueryConfig boundsQConfig = new ObjectBounds.QueryConfig();
             boundsQConfig.ObjectTypes = GameObjectType.Sprite | GameObjectType.Mesh;
 
             bool isSurfaceSpherical = snapConfig.SurfaceType == Type.SphericalMesh;
             bool isSurfaceTerrain = snapConfig.SurfaceType == Type.UnityTerrain || snapConfig.SurfaceType == Type.TerrainMesh;
             bool isSurfaceUnityTerrain = snapConfig.SurfaceType == Type.UnityTerrain;
 
-            var raycaster = CreateSurfaceRaycaster(snapConfig.SurfaceType, snapConfig.SurfaceObject, true);
+            SurfaceRaycaster raycaster = CreateSurfaceRaycaster(snapConfig.SurfaceType, snapConfig.SurfaceObject, true);
             if (snapConfig.SurfaceType != Type.SceneGrid)
             {
                 Transform rootTransform = root.transform;
@@ -80,7 +80,7 @@ namespace RLD
                         if (!hierarchyOBB.IsValid) return new SnapResult();
 
                         BoxFace pivotFace = BoxMath.GetMostAlignedFace(hierarchyOBB.Center, hierarchyOBB.Size, hierarchyOBB.Rotation, -Vector3.up);
-                        var collectedVerts = ObjectVertexCollect.CollectHierarchyVerts(root, pivotFace, collectBoxScale, collectEps);
+                        List<Vector3> collectedVerts = ObjectVertexCollect.CollectHierarchyVerts(root, pivotFace, collectBoxScale, collectEps);
 
                         if (collectedVerts.Count != 0)
                         {
@@ -121,7 +121,7 @@ namespace RLD
                             if (!hierarchyOBB.IsValid) return new SnapResult();
 
                             BoxFace pivotFace = BoxMath.GetMostAlignedFace(hierarchyOBB.Center, hierarchyOBB.Size, hierarchyOBB.Rotation, -snapConfig.SurfaceHitNormal);
-                            var collectedVerts = ObjectVertexCollect.CollectHierarchyVerts(root, pivotFace, collectBoxScale, collectEps);
+                            List<Vector3> collectedVerts = ObjectVertexCollect.CollectHierarchyVerts(root, pivotFace, collectBoxScale, collectEps);
 
                             if (collectedVerts.Count != 0)
                             {
@@ -172,7 +172,7 @@ namespace RLD
                             if (!hierarchyOBB.IsValid) return new SnapResult();
 
                             BoxFace pivotFace = BoxMath.GetMostAlignedFace(hierarchyOBB.Center, hierarchyOBB.Size, hierarchyOBB.Rotation, -radiusDir);
-                            var collectedVerts = ObjectVertexCollect.CollectHierarchyVerts(root, pivotFace, collectBoxScale, collectEps);
+                            List<Vector3> collectedVerts = ObjectVertexCollect.CollectHierarchyVerts(root, pivotFace, collectBoxScale, collectEps);
 
                             Vector3 sitPoint = sphereCenter + radiusDir * sphereRadius;
                             Plane sitPlane = new Plane(radiusDir, sitPoint);
@@ -205,7 +205,7 @@ namespace RLD
                             {
                                 hierarchyOBB.Center += sitOnPlaneOffset;
                                 BoxFace pivotFace = BoxMath.GetMostAlignedFace(hierarchyOBB.Center, hierarchyOBB.Size, hierarchyOBB.Rotation, -surfaceHit.HitNormal);
-                                var collectedVerts = ObjectVertexCollect.CollectHierarchyVerts(root, pivotFace, collectBoxScale, collectEps);
+                                List<Vector3> collectedVerts = ObjectVertexCollect.CollectHierarchyVerts(root, pivotFace, collectBoxScale, collectEps);
 
                                 Vector3 embedVector = ObjectSurfaceSnap.CalculateEmbedVector(collectedVerts, snapConfig.SurfaceObject, -Vector3.up, snapConfig.SurfaceType);
                                 rootTransform.position += embedVector;
@@ -232,7 +232,7 @@ namespace RLD
                         float sphereRadius = surfaceObjectTransform.lossyScale.GetMaxAbsComp() * 0.5f;
 
                         BoxFace pivotFace = BoxMath.GetMostAlignedFace(hierarchyOBB.Center, hierarchyOBB.Size, hierarchyOBB.Rotation, -radiusDir);
-                        var collectedVerts = ObjectVertexCollect.CollectHierarchyVerts(root, pivotFace, collectBoxScale, collectEps);
+                        List<Vector3> collectedVerts = ObjectVertexCollect.CollectHierarchyVerts(root, pivotFace, collectBoxScale, collectEps);
 
                         Vector3 sitPoint = sphereCenter + radiusDir * sphereRadius;
                         Plane sitPlane = new Plane(radiusDir, sitPoint);
@@ -300,12 +300,12 @@ namespace RLD
 
         public static Vector3 CalculateEmbedVector(List<Vector3> embedPoints, GameObject embedSurface, Vector3 embedDirection, Type surfaceType)
         {
-            var raycaster = CreateSurfaceRaycaster(surfaceType, embedSurface, false);
+            SurfaceRaycaster raycaster = CreateSurfaceRaycaster(surfaceType, embedSurface, false);
 
             bool needToMove = false;
             float maxDistSq = float.MinValue;
             GameObjectRayHit objectHit;
-            foreach (var point in embedPoints)
+            foreach (Vector3 point in embedPoints)
             {
                 Ray ray = new Ray(point, -embedDirection);
                 objectHit = raycaster.Raycast(ray);

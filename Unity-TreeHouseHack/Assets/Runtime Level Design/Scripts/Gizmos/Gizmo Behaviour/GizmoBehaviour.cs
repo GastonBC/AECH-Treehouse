@@ -59,9 +59,9 @@ namespace RLD
 
         protected void CheckRequiredBehaviours(List<Type> reqBehaviourTypes)
         {
-            foreach(var bhvType in reqBehaviourTypes)
+            foreach(Type bhvType in reqBehaviourTypes)
             {
-                var behaviour = Gizmo.GetFirstBehaviourOfType(bhvType);
+                IGizmoBehaviour behaviour = Gizmo.GetFirstBehaviourOfType(bhvType);
                 if(behaviour == null)
                 {
                     ThrowReqBehaviourExeception(bhvType);

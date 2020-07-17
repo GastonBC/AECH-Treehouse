@@ -169,29 +169,29 @@ namespace RLD
 
         public void Initialize_SystemCall()
         {
-            var objectMoveGizmo = RTGizmosEngine.Get.CreateObjectMoveGizmo();
+            ObjectTransformGizmo objectMoveGizmo = RTGizmosEngine.Get.CreateObjectMoveGizmo();
             RegisterGizmo(ObjectSelectionGizmoId.MoveGizmo, objectMoveGizmo.Gizmo);
             _workGizmo = GetObjectSelectionGizmo(objectMoveGizmo.Gizmo);
             _workGizmo.Gizmo.SetEnabled(false);
             _workGizmoId = ObjectSelectionGizmoId.MoveGizmo;
 
-            var objectRotationGizmo = RTGizmosEngine.Get.CreateObjectRotationGizmo();
+            ObjectTransformGizmo objectRotationGizmo = RTGizmosEngine.Get.CreateObjectRotationGizmo();
             RegisterGizmo(ObjectSelectionGizmoId.RotationGizmo, objectRotationGizmo.Gizmo);
             objectRotationGizmo.Gizmo.SetEnabled(false);
 
-            var objectScaleGizmo = RTGizmosEngine.Get.CreateObjectScaleGizmo();
+            ObjectTransformGizmo objectScaleGizmo = RTGizmosEngine.Get.CreateObjectScaleGizmo();
             RegisterGizmo(ObjectSelectionGizmoId.ScaleGizmo, objectScaleGizmo.Gizmo);
             objectScaleGizmo.Gizmo.SetEnabled(false);
 
-            var objectBoxScaleGizmo = RTGizmosEngine.Get.CreateObjectBoxScaleGizmo();
+            BoxGizmo objectBoxScaleGizmo = RTGizmosEngine.Get.CreateObjectBoxScaleGizmo();
             RegisterGizmo(ObjectSelectionGizmoId.BoxScaleGizmo, objectBoxScaleGizmo.Gizmo);
             objectBoxScaleGizmo.Gizmo.SetEnabled(false);
 
-            var objectUniversalGizmo = RTGizmosEngine.Get.CreateObjectUniversalGizmo();
+            ObjectTransformGizmo objectUniversalGizmo = RTGizmosEngine.Get.CreateObjectUniversalGizmo();
             RegisterGizmo(ObjectSelectionGizmoId.UniversalGizmo, objectUniversalGizmo.Gizmo);
             objectUniversalGizmo.Gizmo.SetEnabled(false);
 
-            var objectExtrudeGizmo = RTGizmosEngine.Get.CreateObjectExtrudeGizmo();
+            ObjectExtrudeGizmo objectExtrudeGizmo = RTGizmosEngine.Get.CreateObjectExtrudeGizmo();
             RegisterGizmo(ObjectSelectionGizmoId.ExtrudeGizmo, objectExtrudeGizmo.Gizmo);
             objectExtrudeGizmo.Gizmo.SetEnabled(false);
 
@@ -210,7 +210,7 @@ namespace RLD
 
         public void SetGizmoUsable(int gizmoId, bool isUsable)
         {
-            var selectionGizmo = GetObjectSelectionGizmo(gizmoId);
+            ObjectSelectionGizmo selectionGizmo = GetObjectSelectionGizmo(gizmoId);
             if (selectionGizmo != null)
             {
                 if (selectionGizmo.IsUsable != isUsable)
@@ -234,8 +234,8 @@ namespace RLD
         {
             if (_allGizmos.Count == 0) return new List<Gizmo>();
 
-            var allGizmos = new List<Gizmo>(_allGizmos.Count);
-            foreach(var selectionGizmo in _allGizmos)
+            List<Gizmo> allGizmos = new List<Gizmo>(_allGizmos.Count);
+            foreach(ObjectSelectionGizmo selectionGizmo in _allGizmos)
             {
                 allGizmos.Add(selectionGizmo.Gizmo);
             }
@@ -245,7 +245,7 @@ namespace RLD
 
         public int GetGizmoId(Gizmo gizmo)
         {
-            var selectionGizmos = _allGizmos.FindAll(item => item.Gizmo == gizmo);
+            List<ObjectSelectionGizmo> selectionGizmos = _allGizmos.FindAll(item => item.Gizmo == gizmo);
             if (selectionGizmos.Count == 0) return ObjectSelectionGizmoId.None;
 
             return selectionGizmos[0].Id;
@@ -253,7 +253,7 @@ namespace RLD
 
         public ObjectTransformGizmo GetTransformGizmoById(int id)
         {
-            var gizmos = _allGizmos.FindAll(item => item.Id == id);
+            List<ObjectSelectionGizmo> gizmos = _allGizmos.FindAll(item => item.Id == id);
             if (gizmos.Count == 0) return null;
 
             return gizmos[0].Gizmo.GetFirstBehaviourOfType<ObjectTransformGizmo>();
@@ -261,7 +261,7 @@ namespace RLD
 
         public void SetTransformPivot(GizmoObjectTransformPivot transformPivot)
         {
-            foreach (var transformGizmo in _objectTransformGizmos)
+            foreach (ObjectTransformGizmo transformGizmo in _objectTransformGizmos)
                 transformGizmo.SetTransformPivot(transformPivot);
         }
 
@@ -270,7 +270,7 @@ namespace RLD
             if (_transformSpace == transformSpace) return;
 
             _transformSpace = transformSpace;
-            foreach(var gizmo in _allGizmos)
+            foreach(ObjectSelectionGizmo gizmo in _allGizmos)
             {
                 if (gizmo.IsTransformGizmo) gizmo.TransformGizmo.SetTransformSpace(transformSpace);
                 else if (gizmo.IsExtrudeGizmo) gizmo.ExtrudeGizmo.SetExtrudeSpace(transformSpace);
@@ -302,8 +302,8 @@ namespace RLD
             _areGizmosVisible = visible;
             if (!_areGizmosVisible)
             {
-                var allGizmos = GetAllGizmos();
-                foreach (var gizmo in allGizmos)
+                List<Gizmo> allGizmos = GetAllGizmos();
+                foreach (Gizmo gizmo in allGizmos)
                     gizmo.SetEnabled(false);
             }
             OnTargetObjectGroupUpdated();
@@ -386,7 +386,7 @@ namespace RLD
 
         private void OnGizmoPostEnabled(Gizmo gizmo)
         {
-            var selectionGizmo = GetObjectSelectionGizmo(gizmo);
+            ObjectSelectionGizmo selectionGizmo = GetObjectSelectionGizmo(gizmo);
             if (selectionGizmo.IsTransformGizmo) selectionGizmo.TransformGizmo.RefreshPositionAndRotation();
             else if (selectionGizmo.IsBoxScaleGizmo) _workGizmo.BoxScaleGizmo.SetTargetHierarchy(_pivotObject);
             else if (selectionGizmo.IsExtrudeGizmo) _workGizmo.ExtrudeGizmo.SetExtrudeTargets(_targetObjectCollection);
@@ -394,7 +394,7 @@ namespace RLD
 
         private void OnTargetObjectGroupUpdated()
         {
-            foreach (var transformGizmo in _objectTransformGizmos)
+            foreach (ObjectTransformGizmo transformGizmo in _objectTransformGizmos)
             {
                 transformGizmo.SetTargetPivotObject(_pivotObject);
             }
@@ -411,10 +411,10 @@ namespace RLD
 
         private void OnObjectSelectionManipSessionBegin(ObjectSelectionManipSession manipSession)
         {
-            var allGizmos = GetAllGizmos();
+            List<Gizmo> allGizmos = GetAllGizmos();
             _gizmosEnabledStateSnapshot.Snapshot(allGizmos);
 
-            foreach (var gizmo in allGizmos) gizmo.SetEnabled(false);
+            foreach (Gizmo gizmo in allGizmos) gizmo.SetEnabled(false);
         }
 
         private void OnObjectSelectionManipSessionEnd(ObjectSelectionManipSession manipSession)
@@ -424,7 +424,7 @@ namespace RLD
 
         private void OnObjectSelectionRotated()
         {
-            foreach (var gizmo in _allGizmos)
+            foreach (ObjectSelectionGizmo gizmo in _allGizmos)
             {
                 if (gizmo.IsTransformGizmo) gizmo.TransformGizmo.RefreshPositionAndRotation();
                 else if (gizmo.IsBoxScaleGizmo) gizmo.BoxScaleGizmo.FitBoxToTargetHierarchy();
@@ -439,15 +439,15 @@ namespace RLD
 
         private void OnObjectSelectionDisabled()
         {
-            var allGizmos = GetAllGizmos();
+            List<Gizmo> allGizmos = GetAllGizmos();
             _gizmosEnabledStateSnapshot.Snapshot(allGizmos);
 
-            foreach (var gizmo in allGizmos) gizmo.SetEnabled(false);
+            foreach (Gizmo gizmo in allGizmos) gizmo.SetEnabled(false);
         }
 
         private ObjectSelectionGizmo GetObjectSelectionGizmo(Gizmo gizmo)
         {
-            foreach(var objectSelectionGizmo in _allGizmos)
+            foreach(ObjectSelectionGizmo objectSelectionGizmo in _allGizmos)
             {
                 if (objectSelectionGizmo.Gizmo == gizmo) return objectSelectionGizmo;
             }
@@ -457,7 +457,7 @@ namespace RLD
 
         private ObjectSelectionGizmo GetObjectSelectionGizmo(int id)
         {
-            foreach (var objectSelectionGizmo in _allGizmos)
+            foreach (ObjectSelectionGizmo objectSelectionGizmo in _allGizmos)
             {
                 if (objectSelectionGizmo.Id == id) return objectSelectionGizmo;
             }
@@ -487,7 +487,7 @@ namespace RLD
                 transformGizmo.SetTargetObjects(_targetObjectCollection);
             }
 
-            var moveGizmo = gizmo.GetFirstBehaviourOfType<MoveGizmo>();
+            MoveGizmo moveGizmo = gizmo.GetFirstBehaviourOfType<MoveGizmo>();
             if (moveGizmo != null)
             {
                 moveGizmo.SharedSettings2D = MoveGizmoSettings2D;
@@ -499,7 +499,7 @@ namespace RLD
                 if (transformGizmo != null) transformGizmo.SharedSettings = ObjectMoveGizmoSettings;
             }
 
-            var rotationGizmo = gizmo.GetFirstBehaviourOfType<RotationGizmo>();
+            RotationGizmo rotationGizmo = gizmo.GetFirstBehaviourOfType<RotationGizmo>();
             if (rotationGizmo != null)
             {
                 rotationGizmo.SharedSettings3D = RotationGizmoSettings3D;
@@ -508,7 +508,7 @@ namespace RLD
                 if (transformGizmo != null) transformGizmo.SharedSettings = ObjectRotationGizmoSettings;
             }
 
-            var scaleGizmo = gizmo.GetFirstBehaviourOfType<ScaleGizmo>();
+            ScaleGizmo scaleGizmo = gizmo.GetFirstBehaviourOfType<ScaleGizmo>();
             if (scaleGizmo != null)
             {
                 scaleGizmo.SharedSettings3D = ScaleGizmoSettings3D;
@@ -518,7 +518,7 @@ namespace RLD
                 if (transformGizmo != null) transformGizmo.SharedSettings = ObjectScaleGizmoSettings;
             }
 
-            var boxScaleGizmo = gizmo.GetFirstBehaviourOfType<BoxGizmo>();
+            BoxGizmo boxScaleGizmo = gizmo.GetFirstBehaviourOfType<BoxGizmo>();
             if (boxScaleGizmo != null)
             {
                 boxScaleGizmo.SharedSettings3D = BoxScaleGizmoSettings3D;
@@ -526,7 +526,7 @@ namespace RLD
                 boxScaleGizmo.SharedHotkeys = BoxScaleGizmoHotkeys;
             }
 
-            var universalGizmo = gizmo.GetFirstBehaviourOfType<UniversalGizmo>();
+            UniversalGizmo universalGizmo = gizmo.GetFirstBehaviourOfType<UniversalGizmo>();
             if (universalGizmo != null)
             {
                 universalGizmo.SharedSettings2D = UniversalGizmoSettings2D;
@@ -539,7 +539,7 @@ namespace RLD
                 if (transformGizmo != null) transformGizmo.SharedSettings = ObjectUniversalGizmoSettings;
             }
 
-            var extrudeGizmo = gizmo.GetFirstBehaviourOfType<ObjectExtrudeGizmo>();
+            ObjectExtrudeGizmo extrudeGizmo = gizmo.GetFirstBehaviourOfType<ObjectExtrudeGizmo>();
             if (extrudeGizmo != null)
             {
                 extrudeGizmo.SharedLookAndFeel3D = ExtrudeGizmoLookAndFeel3D;

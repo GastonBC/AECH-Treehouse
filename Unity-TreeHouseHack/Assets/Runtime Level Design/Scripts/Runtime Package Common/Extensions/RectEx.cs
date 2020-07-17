@@ -65,7 +65,7 @@ namespace RLD
             Rect rect = new Rect();
 
             Vector2 minPt = Vector2Ex.FromValue(float.MaxValue), maxPt = Vector2Ex.FromValue(float.MinValue);
-            foreach(var pt in points)
+            foreach(Vector2 pt in points)
             {
                 minPt = Vector2.Min(pt, minPt);
                 maxPt = Vector2.Max(pt, maxPt);
@@ -95,7 +95,7 @@ namespace RLD
 
         public static bool ContainsAllPoints(this Rect rect, IEnumerable<Vector2> points)
         {
-            foreach(var pt in points)
+            foreach(Vector2 pt in points)
             {
                 if (!rect.Contains(pt, true)) return false;
             }

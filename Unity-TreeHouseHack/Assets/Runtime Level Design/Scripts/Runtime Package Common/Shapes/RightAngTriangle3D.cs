@@ -57,7 +57,7 @@ namespace RLD
 
         public override bool Raycast(Ray ray, out float t)
         {
-            var trianglePoints = GetPoints();
+            List<Vector3> trianglePoints = GetPoints();
 
             if (_raycastMode == Shape3DRaycastMode.Solid)
                 return TriangleMath.Raycast(ray, out t, trianglePoints[0], trianglePoints[1], trianglePoints[2], _epsilon);
@@ -67,7 +67,7 @@ namespace RLD
 
         public override bool RaycastWire(Ray ray, out float t)
         {
-            var trianglePoints = GetPoints();
+            List<Vector3> trianglePoints = GetPoints();
             return TriangleMath.RaycastWire(ray, out t, trianglePoints[0], trianglePoints[1], trianglePoints[2], _epsilon);
         }
 
@@ -93,7 +93,7 @@ namespace RLD
 
         public bool ContainsPoint(Vector3 point, bool checkOnPlane)
         {
-            var points = GetPoints();
+            List<Vector3> points = GetPoints();
             return TriangleMath.Contains3DPoint(point, checkOnPlane, points[0], points[1], points[2], _epsilon);
         }
     }

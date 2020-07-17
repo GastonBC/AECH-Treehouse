@@ -123,10 +123,10 @@ namespace RLD
 
         public void Encapsulate(OBB otherOBB)
         {
-            var otherPts = BoxMath.CalcBoxCornerPoints(otherOBB.Center, otherOBB.Size, otherOBB.Rotation);
+            List<Vector3> otherPts = BoxMath.CalcBoxCornerPoints(otherOBB.Center, otherOBB.Size, otherOBB.Rotation);
 
             Matrix4x4 transformMtx = Matrix4x4.TRS(Center, Rotation, Vector3.one);
-            var modelPts = transformMtx.inverse.TransformPoints(otherPts);
+            List<Vector3> modelPts = transformMtx.inverse.TransformPoints(otherPts);
 
             AABB modelAABB = new AABB(Vector3.zero, Size);
             modelAABB.Encapsulate(modelPts);

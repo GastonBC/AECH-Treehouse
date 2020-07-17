@@ -35,15 +35,15 @@ namespace RLD
 
             OBB meshSpaceOBB = meshTransform.InverseTransformOBB(obb);
             HashSet<int> usedIndices = new HashSet<int>();
-            var overlappedNodes = _tree.OverlapBox(meshSpaceOBB);
+            List<SphereTreeNode<MeshTriangle>> overlappedNodes = _tree.OverlapBox(meshSpaceOBB);
             if (overlappedNodes.Count == 0) return new List<Vector3>();
 
-            var overlappedVerts = new List<Vector3>(50);
-            foreach (var node in overlappedNodes)
+            List<Vector3> overlappedVerts = new List<Vector3>(50);
+            foreach (SphereTreeNode<MeshTriangle> node in overlappedNodes)
             {
                 int triangleIndex = node.Data.TriangleIndex;
                 MeshTriangle triangleInfo = _mesh.GetTriangle(triangleIndex);
-                var modelVerts = triangleInfo.Vertices;
+                Vector3[] modelVerts = triangleInfo.Vertices;
 
                 for (int ptIndex = 0; ptIndex < modelVerts.Length; ++ptIndex)
                 {
@@ -67,15 +67,15 @@ namespace RLD
             if (!_isBuilt) Build();
 
             HashSet<int> usedIndices = new HashSet<int>();
-            var overlappedNodes = _tree.OverlapBox(modelOBB);
+            List<SphereTreeNode<MeshTriangle>> overlappedNodes = _tree.OverlapBox(modelOBB);
             if (overlappedNodes.Count == 0) return new List<Vector3>();
 
-            var overlappedVerts = new List<Vector3>(50);
-            foreach (var node in overlappedNodes)
+            List<Vector3> overlappedVerts = new List<Vector3>(50);
+            foreach (SphereTreeNode<MeshTriangle> node in overlappedNodes)
             {
                 int triangleIndex = node.Data.TriangleIndex;
                 MeshTriangle triangleInfo = _mesh.GetTriangle(triangleIndex);
-                var modelVerts = triangleInfo.Vertices;
+                Vector3[] modelVerts = triangleInfo.Vertices;
 
                 for (int ptIndex = 0; ptIndex < modelVerts.Length; ++ptIndex)
                 {
@@ -126,7 +126,7 @@ namespace RLD
             bool foundTriangle = false;
 
             // Loop through each node hit
-            foreach(var nodeHit in nodeHits)
+            foreach(SphereTreeNodeRayHit<MeshTriangle> nodeHit in nodeHits)
             {
                 // Get the associated mesh triangle and check if the ray intersects it
                 MeshTriangle meshTriangle = nodeHit.HitNode.Data;

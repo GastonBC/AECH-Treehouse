@@ -120,9 +120,9 @@ namespace RLD
 
         public static void EstablishPotentialOverlaps(List<Hotkeys> hotkeysCollection)
         {
-            foreach (var shKeys in hotkeysCollection)
+            foreach (Hotkeys shKeys in hotkeysCollection)
             {
-                foreach (var sh in hotkeysCollection)
+                foreach (Hotkeys sh in hotkeysCollection)
                 {
                     shKeys.AddPotentialOverlap(sh);
                 }
@@ -153,7 +153,7 @@ namespace RLD
         {
             if (GetNumMouseButtons() == 0) return new List<MouseButton>();
 
-            var buttons = new List<MouseButton>(3);
+            List<MouseButton> buttons = new List<MouseButton>(3);
             if (LMouseButton) buttons.Add(MouseButton.Left);
             if (RMouseButton) buttons.Add(MouseButton.Right);
             if (MMouseButton) buttons.Add(MouseButton.Middle);
@@ -163,8 +163,8 @@ namespace RLD
 
         public bool UsesMouseButtons(List<MouseButton> buttons)
         {
-            var allButtons = GetAllUsedMouseButtons();
-            foreach (var btn in buttons)
+            List<MouseButton> allButtons = GetAllUsedMouseButtons();
+            foreach (MouseButton btn in buttons)
             {
                 if (!allButtons.Contains(btn)) return false;
             }
@@ -176,7 +176,7 @@ namespace RLD
         {
             if (GetNumMouseButtons() == 0) return new List<KeyCode>();
 
-            var modifiers = new List<KeyCode>(3);
+            List<KeyCode> modifiers = new List<KeyCode>(3);
             if (LAlt) modifiers.Add(KeyCode.LeftAlt);
             if (LShift) modifiers.Add(KeyCode.LeftShift);
             if (LCtrl) modifiers.Add(KeyCode.LeftControl);
@@ -186,8 +186,8 @@ namespace RLD
 
         public bool UsesModifiers(List<KeyCode> modifiers)
         {
-            var allModifiers = GetAllUsedModifiers();
-            foreach (var modifier in modifiers)
+            List<KeyCode> allModifiers = GetAllUsedModifiers();
+            foreach (KeyCode modifier in modifiers)
             {
                 if (!allModifiers.Contains(modifier)) return false;
             }
@@ -248,7 +248,7 @@ namespace RLD
 
             if (checkForOverlaps)
             {
-                foreach (var potentialOverlap in _potentialOverlaps)
+                foreach (Hotkeys potentialOverlap in _potentialOverlaps)
                 {
                     if (potentialOverlap.IsActive(false) &&
                         IsOverlappedBy(potentialOverlap))
@@ -287,7 +287,7 @@ namespace RLD
 
             if (checkForOverlaps)
             {
-                foreach (var potentialOverlap in _potentialOverlaps)
+                foreach (Hotkeys potentialOverlap in _potentialOverlaps)
                 {
                     if (potentialOverlap.IsActiveInFrame(false) &&
                         IsOverlappedBy(potentialOverlap))
@@ -340,7 +340,7 @@ namespace RLD
             EditorGUILayoutEx.SectionHeader(Name);
 
             // Enabled/disabled
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
             content.text = "Is enabled";
             content.tooltip = "Allows you to enable/disable a shortcut key.";
             newBool = EditorGUILayout.ToggleLeft(content, IsEnabled);

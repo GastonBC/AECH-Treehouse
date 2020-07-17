@@ -22,7 +22,7 @@ namespace RLD
         {
             ObjectRotationPivot newRotationPivot;
 
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
             content.text = "Rotation pivot";
             content.tooltip = "Allows you to specify the rotation pivot.";
             newRotationPivot = (ObjectRotationPivot)EditorGUILayout.EnumPopup(content, RotationPivot);

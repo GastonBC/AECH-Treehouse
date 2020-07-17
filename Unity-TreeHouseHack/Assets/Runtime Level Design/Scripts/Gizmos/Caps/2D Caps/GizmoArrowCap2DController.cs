@@ -17,7 +17,7 @@ namespace RLD
 
         public override void UpdateTransforms()
         {
-            var cap = _data.Cap;
+            GizmoCap2D cap = _data.Cap;
             _data.Arrow.Height = cap.GetRealArrowHeight();
             _data.Arrow.BaseRadius = cap.GetRealArrowBaseRadius();
             _data.Arrow.RotationDegrees = cap.RotationDegrees;

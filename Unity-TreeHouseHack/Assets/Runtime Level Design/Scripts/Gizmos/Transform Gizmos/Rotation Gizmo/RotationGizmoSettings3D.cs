@@ -47,19 +47,19 @@ namespace RLD
 
         public void SetCanHoverCulledPixels(bool canHover)
         {
-            foreach (var settings in _sliderSettings)
+            foreach (GizmoPlaneSlider3DSettings settings in _sliderSettings)
                 settings.IsCircleHoverCullEnabled = !canHover;
         }
 
         public void SetAxisLineHoverEps(float eps)
         {
-            foreach (var settings in _sliderSettings)
+            foreach (GizmoPlaneSlider3DSettings settings in _sliderSettings)
                 settings.BorderLineHoverEps = eps;
         }
 
         public void SetAxisTorusHoverEps(float eps)
         {
-            foreach (var settings in _sliderSettings)
+            foreach (GizmoPlaneSlider3DSettings settings in _sliderSettings)
                 settings.BorderTorusHoverEps = eps;
         }
 
@@ -95,7 +95,7 @@ namespace RLD
 
         public void SetSnapMode(GizmoSnapMode snapMode)
         {
-            foreach (var settings in _sliderSettings)
+            foreach (GizmoPlaneSlider3DSettings settings in _sliderSettings)
                 settings.RotationSnapMode = snapMode;
 
             _camLookSliderSettings.RotationSnapMode = snapMode;
@@ -103,7 +103,7 @@ namespace RLD
 
         public void SetDragSensitivity(float sensitivity)
         {
-            foreach (var settings in _sliderSettings)
+            foreach (GizmoPlaneSlider3DSettings settings in _sliderSettings)
                 settings.RotationSensitivity = sensitivity;
 
             _camLookSliderSettings.RotationSensitivity = sensitivity;
@@ -126,7 +126,7 @@ namespace RLD
             GizmoSnapMode newSnapMode;
 
             EditorGUILayoutEx.SectionHeader("Hover epsilon/misc");
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
             content.text = "Axis line eps";
             content.tooltip = "Controls the precision used when hovering the axes rotation circles.";
             newFloat = EditorGUILayout.FloatField(content, AxisLineHoverEps);

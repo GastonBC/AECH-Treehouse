@@ -41,7 +41,7 @@ namespace RLD
         {
             if (FolderExists(folderPath))
             {
-                var subfolderPaths = new List<string>();
+                List<string> subfolderPaths = new List<string>();
                 GetSubfolderPathsInFolderRecurse(folderPath, subfolderPaths);
 
                 if (includeSelf) subfolderPaths.Add(folderPath);
@@ -58,7 +58,7 @@ namespace RLD
 
         public static List<string> GetFoldersAndChildFolderPaths(IEnumerable<string> folderPaths)
         {
-            var folderAndChildFolderPaths = new HashSet<string>();
+            HashSet<string> folderAndChildFolderPaths = new HashSet<string>();
             foreach (string folderPath in folderPaths)
             {
                 List<string> paths = new List<string>(FileSystem.GetSubfolderPathsInFolder(folderPath, true));

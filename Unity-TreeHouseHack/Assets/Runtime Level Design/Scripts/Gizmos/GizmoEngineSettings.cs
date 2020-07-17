@@ -19,7 +19,7 @@ namespace RLD
         {
             bool newBool;
 
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
             content.text = "Enable gizmo sorting";
             content.tooltip = "If this is checked, the gizmos wil be sorted by their distance from the camera so that they can be rendered in back to front order.";
             newBool = EditorGUILayout.ToggleLeft(content, EnableGizmoSorting);

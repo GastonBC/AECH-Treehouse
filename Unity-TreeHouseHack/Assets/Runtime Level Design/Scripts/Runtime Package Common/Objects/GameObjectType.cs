@@ -30,11 +30,11 @@ namespace RLD
 
         static GameObjectTypeHelper()
         {
-            var allTypes = Enum.GetValues(typeof(GameObjectType));
+            Array allTypes = Enum.GetValues(typeof(GameObjectType));
             _numTypes = allTypes.Length;
 
             _allObjectTypes = new List<GameObjectType>(_numTypes);
-            foreach (var type in allTypes) _allObjectTypes.Add((GameObjectType)type);
+            foreach (object type in allTypes) _allObjectTypes.Add((GameObjectType)type);
         }
 
         public static int NumTypes { get { return _numTypes; } }

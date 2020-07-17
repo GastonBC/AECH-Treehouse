@@ -19,7 +19,7 @@ namespace RLD
             if (isClosed && numQuads < 3) return new List<Vector2>();
             if (!isClosed && numQuads < 2) return new List<Vector2>();
 
-            var quadPoints = new List<Vector2>(numQuads * 4);
+            List<Vector2> quadPoints = new List<Vector2>(numQuads * 4);
 
             if (borderDirection == PolyBorderDirection.Outward)
             {
@@ -57,7 +57,7 @@ namespace RLD
             if (!isClosed && numSegments < 2) return new List<Vector2>();
 
             float borderWidth = borderThickness * PolyBorderDirToSign(borderDirection);
-            var outputPoints = new List<Vector2>(cwPolyPoints.Count);
+            List<Vector2> outputPoints = new List<Vector2>(cwPolyPoints.Count);
 
             if (isClosed)
             {
@@ -133,7 +133,7 @@ namespace RLD
         public static List<Vector2> Generate2DCircleBorderPointsCW(Vector2 circleCenter, float circleRadius, int numPoints)
         {
             numPoints = Mathf.Max(numPoints, 4);
-            var points = new List<Vector2>(numPoints);
+            List<Vector2> points = new List<Vector2>(numPoints);
 
             float angleStep = 360.0f / (numPoints - 1);
             for (int ptIndex = 0; ptIndex < numPoints; ++ptIndex)
@@ -148,7 +148,7 @@ namespace RLD
         public static List<Vector3> Generate3DCircleBorderPoints(Vector3 circleCenter, float circleRadius, Vector3 circleRight, Vector3 circleUp, int numPoints)
         {
             numPoints = Mathf.Max(numPoints, 4);
-            var points = new List<Vector3>(numPoints);
+            List<Vector3> points = new List<Vector3>(numPoints);
 
             float angleStep = 360.0f / (numPoints - 1);
             for (int ptIndex = 0; ptIndex < numPoints; ++ptIndex)
@@ -194,7 +194,7 @@ namespace RLD
         {
             if (numPoints < 2) return new List<Vector2>();
 
-            var arcPoints = new List<Vector2>(numPoints);
+            List<Vector2> arcPoints = new List<Vector2>(numPoints);
             degreesFromStart %= 360.0f;
 
             Vector2 toStartPt = (arcStartPoint - arcOrigin);
@@ -221,8 +221,8 @@ namespace RLD
             if (arcPoints.Count < 2 || clockwisePolyPoints.Count < 3) return new List<Vector2>();
 
             int numPolyPoints = clockwisePolyPoints.Count;
-            var projectedPoints = new List<Vector2>(arcPoints.Count);
-            foreach (var arcPoint in arcPoints)
+            List<Vector2> projectedPoints = new List<Vector2>(arcPoints.Count);
+            foreach (Vector2 arcPoint in arcPoints)
             {
                 for (int polyPointIndex = 0; polyPointIndex < numPolyPoints; ++polyPointIndex)
                 {
@@ -255,7 +255,7 @@ namespace RLD
         {
             if (numPoints < 2) return new List<Vector3>();
 
-            var arcPoints = new List<Vector3>(numPoints);
+            List<Vector3> arcPoints = new List<Vector3>(numPoints);
             degreesFromStart %= 360.0f;
 
             arcOrigin = arcPlane.ProjectPoint(arcOrigin);

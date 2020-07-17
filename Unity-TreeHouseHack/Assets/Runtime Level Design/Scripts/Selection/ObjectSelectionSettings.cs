@@ -58,7 +58,7 @@ namespace RLD
 
         public void SetCameraCollectionSelectable(List<Camera> cameraCollection, bool areSelectable)
         {
-            foreach (var camera in cameraCollection)
+            foreach (Camera camera in cameraCollection)
             {
                 SetCameraSelectable(camera, areSelectable);
             }
@@ -101,7 +101,7 @@ namespace RLD
 
         public void SetObjectCollectionSelectable(List<GameObject> gameObjectCollection, bool areSelectable)
         {
-            foreach(var gameObject in gameObjectCollection)
+            foreach(GameObject gameObject in gameObjectCollection)
             {
                 SetObjectSelectable(gameObject, areSelectable);
             }
@@ -135,7 +135,7 @@ namespace RLD
             MultiSelectOverlapMode newMultiSelectOverlapMode;
 
             // Can click select
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
             content.text = "Can click select";
             content.tooltip = "Allows you to specify if objects can be selected via mouse clicks.";
             newBool = EditorGUILayout.ToggleLeft(content, CanClickSelect);

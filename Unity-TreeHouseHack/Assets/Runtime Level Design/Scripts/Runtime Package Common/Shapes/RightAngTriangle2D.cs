@@ -26,7 +26,7 @@ namespace RLD
 
         public override void RenderArea(Camera camera)
         {
-            var points = GetPoints();
+            List<Vector2> points = GetPoints();
             Vector2 origin = points[0];
             points.RemoveAt(0);
 
@@ -35,7 +35,7 @@ namespace RLD
 
         public override void RenderBorder(Camera camera)
         {
-            var points = GetPoints();
+            List<Vector2> points = GetPoints();
             GLRenderer.DrawLineLoop2D(points, camera);
         }
 
@@ -46,7 +46,7 @@ namespace RLD
 
         public override bool ContainsPoint(Vector2 point)
         {
-            var points = GetPoints();
+            List<Vector2> points = GetPoints();
             return TriangleMath.Contains2DPoint(point, points[0], points[1], points[2], _epsilon);
         }
 

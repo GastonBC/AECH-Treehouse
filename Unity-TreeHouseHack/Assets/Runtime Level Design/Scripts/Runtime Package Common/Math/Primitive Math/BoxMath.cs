@@ -86,9 +86,9 @@ namespace RLD
             float minDist = float.MaxValue;
             Plane bestPlane = new Plane();
             BoxFace bestFace = BoxFace.Front;
-            var allFaces = AllBoxFaces;
+            List<BoxFace> allFaces = AllBoxFaces;
 
-            foreach(var face in allFaces)
+            foreach(BoxFace face in allFaces)
             {
                 Plane facePlane = BoxMath.CalcBoxFacePlane(boxCenter, boxSize, boxRotation, face);
                 float dist = facePlane.GetAbsDistanceToPoint(point);
@@ -113,9 +113,9 @@ namespace RLD
             float minDist = float.MaxValue;
             Plane bestPlane = new Plane();
             BoxFace bestFace = BoxFace.Front;
-            var allFaces = AllBoxFaces;
+            List<BoxFace> allFaces = AllBoxFaces;
 
-            foreach (var face in allFaces)
+            foreach (BoxFace face in allFaces)
             {
                 Plane facePlane = BoxMath.CalcBoxFacePlane(boxCenter, boxSize, boxRotation, face);
                 float dotView = Vector3.Dot(viewVector, facePlane.normal);
@@ -140,7 +140,7 @@ namespace RLD
 
         public static BoxFace GetMostAlignedFace(Vector3 boxCenter, Vector3 boxSize, Quaternion boxRotation, Vector3 direction)
         {
-            var allFaces = AllBoxFaces;
+            List<BoxFace> allFaces = AllBoxFaces;
             int bestFaceIndex = 0;
             float bestScore = Vector3.Dot(direction, CalcBoxFaceNormal(boxCenter, boxSize, boxRotation, allFaces[0]));
 
@@ -301,7 +301,7 @@ namespace RLD
             Vector3 upAxis = boxRotation * Vector3.up;
             Vector3 lookAxis = boxRotation * Vector3.forward;
 
-            var cornerPoints = new Vector3[8];
+            Vector3[] cornerPoints = new Vector3[8];
             Vector3 faceCenter = boxCenter - lookAxis * extents.z;
             cornerPoints[(int)BoxCorner.FrontTopLeft] = faceCenter - rightAxis * extents.x + upAxis * extents.y;
             cornerPoints[(int)BoxCorner.FrontTopRight] = faceCenter + rightAxis * extents.x + upAxis * extents.y;

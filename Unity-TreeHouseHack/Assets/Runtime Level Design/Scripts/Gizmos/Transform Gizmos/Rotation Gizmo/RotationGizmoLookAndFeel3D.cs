@@ -101,7 +101,7 @@ namespace RLD
 
         public void SetShadeMode(GizmoShadeMode shadeMode)
         {
-            foreach (var lookAndFeel in _axesLookAndFeel)
+            foreach (GizmoPlaneSlider3DLookAndFeel lookAndFeel in _axesLookAndFeel)
             {
                 lookAndFeel.ShadeMode = shadeMode;
                 lookAndFeel.BorderShadeMode = shadeMode;
@@ -112,19 +112,19 @@ namespace RLD
 
         public void SetAxisBorderFillMode(GizmoFillMode3D fillMode)
         {
-            foreach (var lookAndFeel in _axesLookAndFeel)
+            foreach (GizmoPlaneSlider3DLookAndFeel lookAndFeel in _axesLookAndFeel)
                 lookAndFeel.BorderFillMode = fillMode;
         }
 
         public void SetNumAxisTorusWireAxialSlices(int numSlices)
         {
-            foreach (var lookAndFeel in _axesLookAndFeel)
+            foreach (GizmoPlaneSlider3DLookAndFeel lookAndFeel in _axesLookAndFeel)
                 lookAndFeel.NumBorderTorusWireAxialSlices = numSlices;
         }
 
         public void SetUseZoomFactor(bool useZoomFactor)
         {
-            foreach (var lookAndFeel in _axesLookAndFeel)
+            foreach (GizmoPlaneSlider3DLookAndFeel lookAndFeel in _axesLookAndFeel)
                 lookAndFeel.UseZoomFactor = useZoomFactor;
 
             _midCapLookAndFeel.UseZoomFactor = useZoomFactor;
@@ -132,7 +132,7 @@ namespace RLD
 
         public void SetScale(float scale)
         {
-            foreach (var lookAndFeel in _axesLookAndFeel)
+            foreach (GizmoPlaneSlider3DLookAndFeel lookAndFeel in _axesLookAndFeel)
                 lookAndFeel.Scale = scale;
 
             _midCapLookAndFeel.Scale = scale;
@@ -140,7 +140,7 @@ namespace RLD
 
         public void SetRadius(float radius)
         {
-            foreach (var lookAndFeel in _axesLookAndFeel)
+            foreach (GizmoPlaneSlider3DLookAndFeel lookAndFeel in _axesLookAndFeel)
                 lookAndFeel.CircleRadius = radius;
 
             _midCapLookAndFeel.SphereRadius = radius;
@@ -148,31 +148,31 @@ namespace RLD
 
         public void SetAxisBorderCullAlphaScale(float scale)
         {
-            foreach (var lookAndFeel in _axesLookAndFeel)
+            foreach (GizmoPlaneSlider3DLookAndFeel lookAndFeel in _axesLookAndFeel)
                 lookAndFeel.BorderCircleCullAlphaScale = scale;
         }
 
         public void SetAxisBorderType(GizmoCircle3DBorderType borderType)
         {
-            foreach (var lookAndFeel in _axesLookAndFeel)
+            foreach (GizmoPlaneSlider3DLookAndFeel lookAndFeel in _axesLookAndFeel)
                 lookAndFeel.CircleBorderType = borderType;
         }
 
         public void SetAxisTorusThickness(float thickness)
         {
-            foreach (var lookAndFeel in _axesLookAndFeel)
+            foreach (GizmoPlaneSlider3DLookAndFeel lookAndFeel in _axesLookAndFeel)
                 lookAndFeel.BorderTorusThickness = thickness;
         }
 
         public void SetAxisCylTorusWidth(float width)
         {
-            foreach (var lookAndFeel in _axesLookAndFeel)
+            foreach (GizmoPlaneSlider3DLookAndFeel lookAndFeel in _axesLookAndFeel)
                 lookAndFeel.BorderCylTorusWidth = width;
         }
 
         public void SetAxisCylTorusHeight(float height)
         {
-            foreach (var lookAndFeel in _axesLookAndFeel)
+            foreach (GizmoPlaneSlider3DLookAndFeel lookAndFeel in _axesLookAndFeel)
                 lookAndFeel.BorderCylTorusHeight = height;
         }
 
@@ -208,7 +208,7 @@ namespace RLD
 
         public void SetHoveredColor(Color hoveredColor)
         {
-            foreach (var lookAndFeel in _axesLookAndFeel)
+            foreach (GizmoPlaneSlider3DLookAndFeel lookAndFeel in _axesLookAndFeel)
             {
                 lookAndFeel.HoveredColor = hoveredColor;
                 lookAndFeel.HoveredBorderColor = hoveredColor;
@@ -217,7 +217,7 @@ namespace RLD
 
         public void SetRotationArcColor(Color color)
         {
-            foreach (var lookAndFeel in _axesLookAndFeel)
+            foreach (GizmoPlaneSlider3DLookAndFeel lookAndFeel in _axesLookAndFeel)
                 lookAndFeel.RotationArcLookAndFeel.Color = color;
 
             _camLookSliderLookAndFeel.RotationArcLookAndFeel.Color = color;
@@ -225,7 +225,7 @@ namespace RLD
 
         public void SetRotationArcBorderColor(Color color)
         {
-            foreach (var lookAndFeel in _axesLookAndFeel)
+            foreach (GizmoPlaneSlider3DLookAndFeel lookAndFeel in _axesLookAndFeel)
                 lookAndFeel.RotationArcLookAndFeel.BorderColor = color;
 
             _camLookSliderLookAndFeel.RotationArcLookAndFeel.BorderColor = color;
@@ -233,7 +233,7 @@ namespace RLD
 
         public void SetUseShortestRotationArc(bool useShortest)
         {
-            foreach (var lookAndFeel in _axesLookAndFeel)
+            foreach (GizmoPlaneSlider3DLookAndFeel lookAndFeel in _axesLookAndFeel)
                 lookAndFeel.RotationArcLookAndFeel.UseShortestRotation = useShortest;
 
             _camLookSliderLookAndFeel.RotationArcLookAndFeel.UseShortestRotation = useShortest;
@@ -241,7 +241,7 @@ namespace RLD
 
         public void SetRotationArcVisible(bool isVisible)
         {
-            foreach (var lookAndFeel in _axesLookAndFeel)
+            foreach (GizmoPlaneSlider3DLookAndFeel lookAndFeel in _axesLookAndFeel)
                 lookAndFeel.IsRotationArcVisible = isVisible;
 
             _camLookSliderLookAndFeel.IsRotationArcVisible = isVisible;
@@ -302,7 +302,7 @@ namespace RLD
             GizmoPolygon2DBorderType newPolyBorder2DType;
 
             EditorGUILayoutEx.SectionHeader("Scale and size");
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
             content.text = "Use zoom factor";
             content.tooltip = "If this is checked, the gizmo will maintain a constant size regardless of its distance from the camera.";
             newBool = EditorGUILayout.ToggleLeft(content, UseZoomFactor);

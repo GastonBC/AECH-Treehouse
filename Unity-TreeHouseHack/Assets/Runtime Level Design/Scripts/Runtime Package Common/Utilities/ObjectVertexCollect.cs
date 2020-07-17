@@ -7,10 +7,10 @@ namespace RLD
     {
         public static List<Vector3> CollectModelSpriteVerts(Sprite sprite, AABB collectAABB)
         {
-            var spriteModelVerts = sprite.vertices;
-            var collectedVerts = new List<Vector3>(7);
+            Vector2[] spriteModelVerts = sprite.vertices;
+            List<Vector3> collectedVerts = new List<Vector3>(7);
 
-            foreach(var vertPos in spriteModelVerts)
+            foreach(Vector2 vertPos in spriteModelVerts)
             {
                 if(BoxMath.ContainsPoint(vertPos, collectAABB.Center, collectAABB.Size, Quaternion.identity))
                     collectedVerts.Add(vertPos);
@@ -21,10 +21,10 @@ namespace RLD
 
         public static List<Vector3> CollectWorldSpriteVerts(Sprite sprite, Transform spriteTransform, OBB collectOBB)
         {
-            var spriteWorldVerts = sprite.GetWorldVerts(spriteTransform);
-            var collectedVerts = new List<Vector3>(7);
+            List<Vector3> spriteWorldVerts = sprite.GetWorldVerts(spriteTransform);
+            List<Vector3> collectedVerts = new List<Vector3>(7);
 
-            foreach (var vertPos in spriteWorldVerts)
+            foreach (Vector3 vertPos in spriteWorldVerts)
             {
                 if (BoxMath.ContainsPoint(vertPos, collectOBB.Center, collectOBB.Size, collectOBB.Rotation))
                     collectedVerts.Add(vertPos);
@@ -35,11 +35,11 @@ namespace RLD
 
         public static List<Vector3> CollectHierarchyVerts(GameObject root, BoxFace collectFace, float collectBoxScale, float collectEps)
         {
-            var meshObjects = root.GetMeshObjectsInHierarchy();
-            var spriteObjects = root.GetSpriteObjectsInHierarchy();
+            List<GameObject> meshObjects = root.GetMeshObjectsInHierarchy();
+            List<GameObject> spriteObjects = root.GetSpriteObjectsInHierarchy();
             if (meshObjects.Count == 0 && spriteObjects.Count == 0) return new List<Vector3>();
 
-            var boundsQConfig = new ObjectBounds.QueryConfig();
+            ObjectBounds.QueryConfig boundsQConfig = new ObjectBounds.QueryConfig();
             boundsQConfig.ObjectTypes = GameObjectType.Mesh | GameObjectType.Sprite;
 
             OBB hierarchyOBB = ObjectBounds.CalcHierarchyWorldOBB(root, boundsQConfig);
@@ -58,20 +58,20 @@ namespace RLD
             OBB collectOBB = new OBB(faceCenter + faceNormal * (-collectAABBSize[faceAxisIndex] * 0.5f + collectEps), collectAABBSize);
             collectOBB.Rotation = hierarchyOBB.Rotation;
 
-            var collectedVerts = new List<Vector3>(80);
-            foreach(var meshObject in meshObjects)
+            List<Vector3> collectedVerts = new List<Vector3>(80);
+            foreach(GameObject meshObject in meshObjects)
             {
                 Mesh mesh = meshObject.GetMesh();
                 RTMesh rtMesh = RTMeshDb.Get.GetRTMesh(mesh);
                 if (rtMesh == null) continue;
 
-                var verts = rtMesh.OverlapVerts(collectOBB, meshObject.transform);
+                List<Vector3> verts = rtMesh.OverlapVerts(collectOBB, meshObject.transform);
                 if (verts.Count != 0) collectedVerts.AddRange(verts);
             }
 
-            foreach (var spriteObject in spriteObjects)
+            foreach (GameObject spriteObject in spriteObjects)
             {
-                var verts = CollectWorldSpriteVerts(spriteObject.GetSprite(), spriteObject.transform, collectOBB);
+                List<Vector3> verts = CollectWorldSpriteVerts(spriteObject.GetSprite(), spriteObject.transform, collectOBB);
                 if (verts.Count != 0) collectedVerts.AddRange(verts);
             }
 

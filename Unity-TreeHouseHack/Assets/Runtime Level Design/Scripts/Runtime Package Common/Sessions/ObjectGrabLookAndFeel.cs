@@ -47,7 +47,7 @@ namespace RLD
             bool newBool; Color newColor; float newFloat;
 
             EditorGUILayoutEx.SectionHeader("Anchor lines");
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
             content.text = "Visible";
             content.tooltip = "If this is checked, a line will be drawn between each object's position and the anchor position.";
             newBool = EditorGUILayout.ToggleLeft(content, DrawAnchorLines);

@@ -84,7 +84,7 @@ namespace RLD
                 _runtimeUI = uiObject.GetComponent<RTPrefabLibDbUI>();
             }
 
-            var eventSystem = GameObject.FindObjectOfType<EventSystem>();
+            EventSystem eventSystem = GameObject.FindObjectOfType<EventSystem>();
             if (eventSystem == null)
             {
                 GameObject esObject = new GameObject("Event System");
@@ -98,8 +98,8 @@ namespace RLD
         {
             if (string.IsNullOrEmpty(libName)) return null;
 
-            var finalName = UniqueNameGen.Generate(libName, GetAllLibNames());
-            var lib = new RTPrefabLib();
+            string finalName = UniqueNameGen.Generate(libName, GetAllLibNames());
+            RTPrefabLib lib = new RTPrefabLib();
             lib.Name = finalName;
             _libs.Add(lib);
 
@@ -115,7 +115,7 @@ namespace RLD
 
         public void SortLibsByName()
         {
-            var activeLib = ActiveLib;
+            RTPrefabLib activeLib = ActiveLib;
 
             _libs.Sort(delegate(RTPrefabLib l0, RTPrefabLib l1)
             { return l0.Name.CompareTo(l1.Name); });
@@ -128,7 +128,7 @@ namespace RLD
             if (lib.Name == newLibName || !Contains(lib)) return false;
             if (string.IsNullOrEmpty(newLibName)) return false;
 
-            var finalName = UniqueNameGen.Generate(newLibName, GetAllLibNames());
+            string finalName = UniqueNameGen.Generate(newLibName, GetAllLibNames());
             lib.Name = finalName;
 
             if (HasRuntimeUI && Application.isPlaying) _runtimeUI.ActiveLibDropDown.SyncWithLibDb();
@@ -178,8 +178,8 @@ namespace RLD
         {
             if (libIndex >= 0 && libIndex < NumLibs)
             {
-                var removedLib = _libs[libIndex];
-                var activeLib = ActiveLib;
+                RTPrefabLib removedLib = _libs[libIndex];
+                RTPrefabLib activeLib = ActiveLib;
          
                 _libs.RemoveAt(libIndex);
                 _activeLibIndex = _libs.IndexOf(activeLib);
@@ -203,14 +203,14 @@ namespace RLD
 
         public void Remove(List<RTPrefabLib> libs)
         {
-            foreach (var lib in libs)
+            foreach (RTPrefabLib lib in libs)
                 Remove(lib);
         }
 
         public List<RTPrefabLib> GetEmptyLibs()
         {
-            var emptyLibs = new List<RTPrefabLib>(10);
-            foreach (var lib in _libs)
+            List<RTPrefabLib> emptyLibs = new List<RTPrefabLib>(10);
+            foreach (RTPrefabLib lib in _libs)
                 if (lib.NumPrefabs == 0) emptyLibs.Add(lib);
 
             return emptyLibs;
@@ -233,8 +233,8 @@ namespace RLD
 
         public List<string> GetAllLibNames()
         {
-            var libNames = new List<string>(10);
-            foreach (var lib in _libs) libNames.Add(lib.Name);
+            List<string> libNames = new List<string>(10);
+            foreach (RTPrefabLib lib in _libs) libNames.Add(lib.Name);
 
             return libNames;
         }
@@ -256,7 +256,7 @@ namespace RLD
 
         public RTPrefabLib GetLib(string libName)
         {
-            var libs = _libs.FindAll(item => item.Name == libName);
+            List<RTPrefabLib> libs = _libs.FindAll(item => item.Name == libName);
             return libs.Count != 0 ? libs[0] : null;
         }
 
@@ -264,7 +264,7 @@ namespace RLD
         {
             if (Application.isPlaying)
             {
-                foreach (var lib in _libs)
+                foreach (RTPrefabLib lib in _libs)
                 {
                     lib.PrefabCreated += OnPrefabCreatedInLib;
                     lib.PrefabRemoved += OnPrefabRemovedFromLib;
@@ -282,7 +282,7 @@ namespace RLD
                     // !!--- NOTE ---!!
                     // For some weird reason, we need to create a dummy UI object to make the prefab previews 
                     // appear correctly inside the build. Note: Only occurs in build. 
-                    var dummyButton = new GameObject("Dummy");
+                    GameObject dummyButton = new GameObject("Dummy");
                     dummyButton.AddComponent<RectTransform>();
                     dummyButton.transform.SetParent(_runtimeUI.PrefabScrollView.transform, false);
                     GameObject.Destroy(dummyButton);
@@ -321,8 +321,8 @@ namespace RLD
         {
             if (Settings.SpawnPrefabOnPreviewClick)
             {
-                var spawnedObject = ObjectSpawnUtil.SpawnInFrontOfCamera(prefab.UnityPrefab, RTFocusCamera.Get.TargetCamera, ObjectSpawnUtil.DefaultConfig);
-                var action = new PostObjectSpawnAction(new List<GameObject>() { spawnedObject });
+                GameObject spawnedObject = ObjectSpawnUtil.SpawnInFrontOfCamera(prefab.UnityPrefab, RTFocusCamera.Get.TargetCamera, ObjectSpawnUtil.DefaultConfig);
+                PostObjectSpawnAction action = new PostObjectSpawnAction(new List<GameObject>() { spawnedObject });
                 action.Execute();
 
                 if (PrefabSpawned != null) PrefabSpawned(prefab, spawnedObject);

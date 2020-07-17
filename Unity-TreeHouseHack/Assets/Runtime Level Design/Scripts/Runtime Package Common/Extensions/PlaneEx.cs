@@ -25,8 +25,8 @@ namespace RLD
         {
             if (points.Count == 0) return new List<Vector3>();
 
-            var projectedPoints = new List<Vector3>(points.Count);
-            foreach (var pt in points) projectedPoints.Add(plane.ProjectPoint(pt));
+            List<Vector3> projectedPoints = new List<Vector3>(points.Count);
+            foreach (Vector3 pt in points) projectedPoints.Add(plane.ProjectPoint(pt));
 
             return projectedPoints;
         }

@@ -37,7 +37,7 @@ namespace RLD
             CameraFocusMode newFocusMode;
 
             // Focus mode
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
             content.text = "Focus mode";
             content.tooltip = "Allows you to control the focus mode.";
             newFocusMode = (CameraFocusMode)EditorGUILayout.EnumPopup(content, FocusMode);

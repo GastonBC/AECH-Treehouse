@@ -254,8 +254,8 @@ namespace RLD
                 if(_multiAxisScaleMode == GizmoMultiAxisScaleMode.DoubleAxis) PlaceDblSlidersInSliderPlanes(camera);
             }
 
-            var sortedSliders = _axesSliders.GetRenderSortedSliders(camera);
-            foreach (var slider in sortedSliders) slider.Render(camera);
+            List<GizmoLineSlider3D> sortedSliders = _axesSliders.GetRenderSortedSliders(camera);
+            foreach (GizmoLineSlider3D slider in sortedSliders) slider.Render(camera);
 
             _xySlider.Render(camera);
             _yzSlider.Render(camera);
@@ -270,7 +270,7 @@ namespace RLD
         {
             if (handleId == _midCap.HandleId)
             {
-                var workData = new GizmoUniformScaleDrag3D.WorkData();
+                GizmoUniformScaleDrag3D.WorkData workData = new GizmoUniformScaleDrag3D.WorkData();
                 workData.DragOrigin = _midCap.Position;
                 workData.CameraRight = Gizmo.FocusCamera.transform.right;
                 workData.CameraUp = Gizmo.FocusCamera.transform.up;

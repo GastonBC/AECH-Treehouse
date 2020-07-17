@@ -116,11 +116,11 @@ namespace RLD
         {
             if (transforms == null) return new List<GizmoTransform>();
 
-            var parents = new List<GizmoTransform>(10);
-            foreach(var transform in transforms)
+            List<GizmoTransform> parents = new List<GizmoTransform>(10);
+            foreach(GizmoTransform transform in transforms)
             {
                 bool foundParent = false;
-                foreach(var possibleParent in transforms)
+                foreach(GizmoTransform possibleParent in transforms)
                 {
                     if (possibleParent == transform) continue;
                     if (transform.IsChildOf(possibleParent))
@@ -258,7 +258,7 @@ namespace RLD
             if (!CanChange3D) return;
             if (_parent == newParent) return;
 
-            var oldParent = _parent;
+            GizmoTransform oldParent = _parent;
             if (oldParent != null) oldParent._children.Remove(this);
 
             _parent = newParent;
@@ -495,7 +495,7 @@ namespace RLD
 
         private void UpdateChildTransforms3D()
         {
-            foreach(var child in _children)
+            foreach(GizmoTransform child in _children)
             {
                 child._position3D = _rotation3D * child._localPosition3D + _position3D;
                 child._rotation3D = QuaternionEx.Normalize(_rotation3D * child._localRotation3D);
@@ -508,7 +508,7 @@ namespace RLD
 
         private void UpdateChildTransforms2D()
         {
-            foreach (var child in _children)
+            foreach (GizmoTransform child in _children)
             {
                 Vector2 rotatedPos = _rotation2D * child._localPosition2D;
                 child._position2D = rotatedPos + _position2D;

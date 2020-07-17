@@ -21,8 +21,8 @@ namespace RLD
 
         public override void UpdateTransforms()
         {
-            var targetQuad = _data.TargetQuad;
-            var borderQuad = _data.BorderQuad;
+            QuadShape2D targetQuad = _data.TargetQuad;
+            QuadShape2D borderQuad = _data.BorderQuad;
 
             borderQuad.Center = targetQuad.Center;
             borderQuad.RotationDegrees = targetQuad.RotationDegrees;

@@ -15,8 +15,8 @@ namespace RLD
 
         public static List<Transform> GetGameObjectTransformCollection(IEnumerable<GameObject> gameObjects)
         {
-            var transforms = new List<Transform>(10);
-            foreach (var gameObject in gameObjects) transforms.Add(gameObject.transform);
+            List<Transform> transforms = new List<Transform>(10);
+            foreach (GameObject gameObject in gameObjects) transforms.Add(gameObject.transform);
 
             return transforms;
         }
@@ -25,11 +25,11 @@ namespace RLD
         {
             if (transforms == null) return new List<Transform>();
 
-            var parents = new List<Transform>(10);
-            foreach (var transform in transforms)
+            List<Transform> parents = new List<Transform>(10);
+            foreach (Transform transform in transforms)
             {
                 bool foundParent = false;
-                foreach (var possibleParent in transforms)
+                foreach (Transform possibleParent in transforms)
                 {
                     if (possibleParent != transform)
                     {

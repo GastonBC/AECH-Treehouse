@@ -28,7 +28,7 @@ namespace RLD
         {
             if (toBeIgnored == null) return;
 
-            foreach (var ignoreObject in toBeIgnored)
+            foreach (GameObject ignoreObject in toBeIgnored)
             {
                 _toBeDeselected.Remove(ignoreObject);
             }

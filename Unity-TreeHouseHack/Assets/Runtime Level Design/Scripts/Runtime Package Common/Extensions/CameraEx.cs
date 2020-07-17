@@ -141,8 +141,8 @@ namespace RLD
         {
             if (worldPoints.Count == 0) return new List<Vector2>();
 
-            var screenPoints = new List<Vector2>(worldPoints.Count);
-            foreach(var pt in worldPoints)
+            List<Vector2> screenPoints = new List<Vector2>(worldPoints.Count);
+            foreach(Vector3 pt in worldPoints)
             {
                 screenPoints.Add(camera.WorldToScreenPoint(pt));
             }
@@ -200,12 +200,12 @@ namespace RLD
             if (overlappedObjects.Count == 0) return new List<GameObject>();
 
             // Loop through each overlapped object
-            var boundsQConfig = new ObjectBounds.QueryConfig();
+            ObjectBounds.QueryConfig boundsQConfig = new ObjectBounds.QueryConfig();
             boundsQConfig.ObjectTypes = GameObjectTypeHelper.AllCombined;
             boundsQConfig.NoVolumeSize = Vector3Ex.FromValue(1e-5f);
 
-            var visibleObjects = new List<GameObject>(overlappedObjects.Count);
-            foreach (var gameObject in overlappedObjects)
+            List<GameObject> visibleObjects = new List<GameObject>(overlappedObjects.Count);
+            foreach (GameObject gameObject in overlappedObjects)
             {
                 // Retrieve the object's world AABB
                 AABB worldAABB = ObjectBounds.CalcWorldAABB(gameObject, boundsQConfig);

@@ -9,6 +9,7 @@ public class TreeSpawner : MonoBehaviour
     public float MaxCoordinate;
     public int TreeCount;
     public GameObject TreePrefab;
+    public GameObject DeckObject;
 
     // Start is called before the first frame update
     void Start()
@@ -32,18 +33,45 @@ public class TreeSpawner : MonoBehaviour
         System.Random rnd = new System.Random();
         IEnumerable<Point> points = delaunay.GeneratePoints(TreeCount, MaxCoordinate, MaxCoordinate);
 
-        foreach (Point point in points)
-        {
-            Vector3 coords = new Vector3(Convert.ToSingle(point.X),
-                                         2,  // this is 3rd dimension
-                                         Convert.ToSingle(point.Y));
-
-            Quaternion rot = new Quaternion(0, 0, 0, 0);
-
-            Instantiate(TreePrefab, coords, rot);
-        }
+        
 
         IEnumerable<Triangle> triangulation = delaunay.BowyerWatson(points);
+
+        foreach (Point pt in points)
+        {
+            Vector3 coords = new Vector3(Convert.ToSingle(pt.X),
+                                     2,  // this is 3rd dimension
+                                     Convert.ToSingle(pt.Y));
+            Quaternion rot = new Quaternion(0, 0, 0, 0);
+
+            GameObject newTree = Instantiate(TreePrefab, coords, rot);
+            PineTree PineTreeComp = newTree.AddComponent<PineTree>();
+
+            //TreehouseComp.Trees.Add(newTree);
+        }
+
+        //foreach (Triangle tri in triangulation)
+        //{
+        //    Point[] three_points = tri.Vertices;
+
+        //    //GameObject TreeDeck = Instantiate(DeckObject);
+        //    //Treehouse TreehouseComp = TreeDeck.AddComponent<Treehouse>();
+        //    //TreeHouseHack.Deck DeckComp = TreeDeck.AddComponent<TreeHouseHack.Deck>();
+
+        //    foreach (Point pt in three_points)
+        //    {
+        //        Vector3 coords = new Vector3(Convert.ToSingle(pt.X),
+        //                                 2,  // this is 3rd dimension
+        //                                 Convert.ToSingle(pt.Y));
+        //        Quaternion rot = new Quaternion(0, 0, 0, 0);
+
+        //        GameObject newTree = Instantiate(TreePrefab, coords, rot);
+        //        PineTree PineTreeComp = newTree.AddComponent<PineTree>();
+
+        //        //TreehouseComp.Trees.Add(newTree);
+        //    }
+
+        //}
 
     }
 }

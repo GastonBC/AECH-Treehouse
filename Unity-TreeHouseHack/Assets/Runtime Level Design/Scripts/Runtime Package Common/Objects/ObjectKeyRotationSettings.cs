@@ -25,7 +25,7 @@ namespace RLD
         {
             float newFloat;
 
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
             content.text = "X rotation step";
             content.tooltip = "The amount of rotation applied around the X axis.";
             newFloat = EditorGUILayout.FloatField(content, XRotationStep);

@@ -23,8 +23,8 @@ namespace RLD
 
         public override void UpdateTransforms(float zoomFactor)
         {
-            var borderTorus = _data.BorderTorus;
-            var targetCircle = _data.TargetCircle;
+            TorusShape3D borderTorus = _data.BorderTorus;
+            CircleShape3D targetCircle = _data.TargetCircle;
             float torusThickness = _data.Border.GetRealTorusThickness(zoomFactor);
 
             // Note: Rotate around the X axis first because circles exist in the XY plane in model space.

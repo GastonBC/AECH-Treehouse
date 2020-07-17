@@ -209,7 +209,7 @@ namespace RLD
         /// </summary>
         public void SetAll3DShapesVisible(bool visible)
         {
-            foreach (var shape in _3DShapes)
+            foreach (GizmoHandleShape3D shape in _3DShapes)
                 shape.IsVisible = visible;
         }
 
@@ -260,7 +260,7 @@ namespace RLD
         /// </summary>
         public void SetAll2DShapesVisible(bool visible)
         {
-            foreach (var shape in _2DShapes)
+            foreach (GizmoHandleShape2D shape in _2DShapes)
                 shape.IsVisible = visible;
         }
 
@@ -328,7 +328,7 @@ namespace RLD
         {
             if (!Contains3DShape(shape))
             {
-                var gizmoHandleShape = new GizmoHandleShape3D(shape);
+                GizmoHandleShape3D gizmoHandleShape = new GizmoHandleShape3D(shape);
                 _3DShapes.Add(gizmoHandleShape);
 
                 return _3DShapes.Count - 1;
@@ -348,7 +348,7 @@ namespace RLD
         {
             if (!Contains2DShape(shape))
             {
-                var gizmoHandleShape = new GizmoHandleShape2D(shape);
+                GizmoHandleShape2D gizmoHandleShape = new GizmoHandleShape2D(shape);
                 _2DShapes.Add(gizmoHandleShape);
 
                 return _2DShapes.Count - 1;
@@ -383,7 +383,7 @@ namespace RLD
         {
             if (Is3DVisible)
             {
-                foreach (var shape in _3DShapes)
+                foreach (GizmoHandleShape3D shape in _3DShapes)
                 {
                     if (shape.IsVisible)
                         shape.Shape.RenderSolid();
@@ -400,7 +400,7 @@ namespace RLD
         {
             if (Is3DVisible)
             {
-                foreach (var shape in _3DShapes)
+                foreach (GizmoHandleShape3D shape in _3DShapes)
                 {
                     if(shape.IsVisible)
                         shape.Shape.RenderWire();
@@ -436,7 +436,7 @@ namespace RLD
         {
             if (Is2DVisible && camera.IsPointInFrontNearPlane(Gizmo.Transform.Position3D))
             {
-                foreach (var shape in _2DShapes)
+                foreach (GizmoHandleShape2D shape in _2DShapes)
                 {
                     if (shape.IsVisible)
                         shape.Shape.RenderArea(camera);
@@ -453,7 +453,7 @@ namespace RLD
         {
             if (Is2DVisible && camera.IsPointInFrontNearPlane(Gizmo.Transform.Position3D))
             {
-                foreach (var shape in _2DShapes)
+                foreach (GizmoHandleShape2D shape in _2DShapes)
                 {
                     if(shape.IsVisible)
                         shape.Shape.RenderBorder(camera);
@@ -495,8 +495,8 @@ namespace RLD
             if (Num2DShapes == 0 || 
                !camera.IsPointInFrontNearPlane(Gizmo.Transform.Position3D)) return new Rect();
 
-            var allRectPts = new List<Vector2>(Num2DShapes * 4);
-            foreach (var shape in _2DShapes)
+            List<Vector2> allRectPts = new List<Vector2>(Num2DShapes * 4);
+            foreach (GizmoHandleShape2D shape in _2DShapes)
             {
                 if (!shape.IsVisible) continue;
          
@@ -518,7 +518,7 @@ namespace RLD
             AABB aabb = AABB.GetInvalid();
             if (Num3DShapes == 0) return aabb;
 
-            foreach(var shape in  _3DShapes)
+            foreach(GizmoHandleShape3D shape in  _3DShapes)
             {
                 if (!shape.IsVisible) continue;
 
@@ -552,7 +552,7 @@ namespace RLD
             {
                 if (camera.IsPointInFrontNearPlane(Gizmo.Transform.Position3D))
                 {
-                    foreach(var shape in _2DShapes)
+                    foreach(GizmoHandleShape2D shape in _2DShapes)
                     {
                         Rect enclosingRect = shape.Shape.GetEncapsulatingRect();
                         if(camera.pixelRect.Overlaps(enclosingRect, true))
@@ -568,7 +568,7 @@ namespace RLD
 
             if (Num3DShapes != 0)
             {
-                foreach (var shape in _3DShapes)
+                foreach (GizmoHandleShape3D shape in _3DShapes)
                 {
                     AABB aabb = shape.Shape.GetAABB();
                     if (CameraViewVolume.CheckAABB(camera, aabb, frustumWorldPlanes))
@@ -611,7 +611,7 @@ namespace RLD
             {
                 Vector2 screenRayOrigin = Gizmo.GetWorkCamera().WorldToScreenPoint(hoverRay.origin);
                 GizmoHandleShape2D hovered2DShape = null;
-                foreach (var shape in _2DShapes)
+                foreach (GizmoHandleShape2D shape in _2DShapes)
                 {
                     if (shape.IsVisible && shape.IsHoverable)
                     {
@@ -632,7 +632,7 @@ namespace RLD
                     handleHoverData = new GizmoHandleHoverData(hoverRay, this, screenRayOrigin);
                     if (CanHover != null)
                     {
-                        var answer = new YesNoAnswer();
+                        YesNoAnswer answer = new YesNoAnswer();
                         CanHover(Id, Gizmo, handleHoverData, answer);
                         if (answer.HasNo) return null;
                     }
@@ -644,7 +644,7 @@ namespace RLD
             {
                 minDist = float.MaxValue;
                 GizmoHandleShape3D hovered3DShape = null;
-                foreach (var shape in _3DShapes)
+                foreach (GizmoHandleShape3D shape in _3DShapes)
                 {
                     if(shape.IsVisible && shape.IsHoverable)
                     {
@@ -665,7 +665,7 @@ namespace RLD
                     handleHoverData = new GizmoHandleHoverData(hoverRay, this, minDist);
                     if (CanHover != null)
                     {
-                        var answer = new YesNoAnswer();
+                        YesNoAnswer answer = new YesNoAnswer();
                         CanHover(Id, Gizmo, handleHoverData, answer);
                         if (answer.HasNo) return null;
                     }

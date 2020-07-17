@@ -26,7 +26,7 @@ namespace RLD
 
         public override void UpdateEpsilons(float zoomFactor)
         {
-            var borderQuad = _data.BorderQuad;
+            QuadShape3D borderQuad = _data.BorderQuad;
 
             borderQuad.WireEps = _data.PlaneSlider.Settings.BorderLineHoverEps * zoomFactor;
             borderQuad.ExtrudeEps = borderQuad.WireEps;
@@ -34,8 +34,8 @@ namespace RLD
 
         public override void UpdateTransforms(float zoomFactor)
         {
-            var targetQuad = _data.TargetQuad;
-            var borderQuad = _data.BorderQuad;
+            QuadShape3D targetQuad = _data.TargetQuad;
+            QuadShape3D borderQuad = _data.BorderQuad;
 
             borderQuad.Center = targetQuad.Center;
             borderQuad.Rotation = targetQuad.Rotation;

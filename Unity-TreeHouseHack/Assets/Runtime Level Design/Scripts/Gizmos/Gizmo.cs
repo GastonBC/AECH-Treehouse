@@ -130,7 +130,7 @@ namespace RLD
         {
             if (_handles.Contains(id)) return null;
 
-            var handle = new GizmoHandle(this, id);
+            GizmoHandle handle = new GizmoHandle(this, id);
             _handles.Add(handle);
             return handle;
         }
@@ -148,7 +148,7 @@ namespace RLD
 
                 _isEnabled = false;
 
-                foreach (var behaviour in _behaviours) 
+                foreach (IGizmoBehaviour behaviour in _behaviours) 
                     if (behaviour.IsEnabled) behaviour.OnGizmoDisabled();
 
                 if (PostDisabled != null) PostDisabled(this);
@@ -157,7 +157,7 @@ namespace RLD
             {
                 _isEnabled = true;
 
-                foreach (var behaviour in _behaviours)
+                foreach (IGizmoBehaviour behaviour in _behaviours)
                     if (behaviour.IsEnabled) behaviour.OnGizmoEnabled();
 
                 if (PostEnabled != null) PostEnabled(this);
@@ -167,7 +167,7 @@ namespace RLD
         public BehaviourType AddBehaviour<BehaviourType>()
             where BehaviourType : class, IGizmoBehaviour, new()
         {
-            var newBehaviour = new BehaviourType();
+            BehaviourType newBehaviour = new BehaviourType();
             AddBehaviour(newBehaviour);
 
             return newBehaviour;
@@ -246,7 +246,7 @@ namespace RLD
         {
             if (!IsEnabled) return;
 
-            foreach (var behaviour in _behaviours) 
+            foreach (IGizmoBehaviour behaviour in _behaviours) 
                 if(behaviour.IsEnabled) behaviour.OnGUI();
         }
 
@@ -255,7 +255,7 @@ namespace RLD
             if (!IsEnabled) return;
 
             if (PreUpdateBegin != null) PreUpdateBegin(this);
-            foreach (var behaviour in _behaviours)
+            foreach (IGizmoBehaviour behaviour in _behaviours)
                 if (behaviour.IsEnabled) behaviour.OnGizmoUpdateBegin();
         }
 
@@ -263,7 +263,7 @@ namespace RLD
         {
             if (!IsEnabled) return;
 
-            foreach (var behaviour in _behaviours)
+            foreach (IGizmoBehaviour behaviour in _behaviours)
                 if (behaviour.IsEnabled) behaviour.OnGizmoUpdateEnd();
             if (PostUpdateEnd != null) PostUpdateEnd(this);
         }
@@ -290,7 +290,7 @@ namespace RLD
             if (wasHovered && !_hoverInfo.IsHovered)
             {
                 if (PreHoverExit != null) PreHoverExit(this, prevHoveredHandleId);
-                foreach (var behaviour in _behaviours)
+                foreach (IGizmoBehaviour behaviour in _behaviours)
                 {
                     if (behaviour.IsEnabled)
                         behaviour.OnGizmoHoverExit(prevHoveredHandleId);
@@ -300,7 +300,7 @@ namespace RLD
             else if (!wasHovered && _hoverInfo.IsHovered)
             {
                 if (PreHoverEnter != null) PreHoverEnter(this, _hoverInfo.HandleId);
-                foreach (var behaviour in _behaviours)
+                foreach (IGizmoBehaviour behaviour in _behaviours)
                 {
                     if (behaviour.IsEnabled)
                         behaviour.OnGizmoHoverEnter(_hoverInfo.HandleId);
@@ -313,7 +313,7 @@ namespace RLD
                 if (prevHoveredHandleId != _hoverInfo.HandleId)
                 {
                     if (PreHoverExit != null) PreHoverExit(this, prevHoveredHandleId);
-                    foreach (var behaviour in _behaviours)
+                    foreach (IGizmoBehaviour behaviour in _behaviours)
                     {
                         if (behaviour.IsEnabled)
                             behaviour.OnGizmoHoverExit(prevHoveredHandleId);
@@ -322,7 +322,7 @@ namespace RLD
                 }
 
                 if (PreHoverEnter != null) PreHoverEnter(this, _hoverInfo.HandleId);
-                foreach (var behaviour in _behaviours)
+                foreach (IGizmoBehaviour behaviour in _behaviours)
                 {
                     if (behaviour.IsEnabled)
                         behaviour.OnGizmoHoverEnter(_hoverInfo.HandleId);
@@ -337,7 +337,7 @@ namespace RLD
             int numHandles = _handles.Count;
             for (int handleIndex = 0; handleIndex < numHandles; ++handleIndex)
             {
-                var handle = _handles[handleIndex];
+                IGizmoHandle handle = _handles[handleIndex];
                 AABB handleAABB = handle.GetVisible3DShapesAABB();
                 if (handleAABB.IsValid)
                 {
@@ -351,11 +351,11 @@ namespace RLD
 
         public Rect GetVisible2DHandlesRect(Camera camera)
         {
-            var allRectPts = new List<Vector2>();
+            List<Vector2> allRectPts = new List<Vector2>();
             int numHandles = _handles.Count;
             for (int handleIndex = 0; handleIndex < numHandles; ++handleIndex)
             {
-                var handle = _handles[handleIndex];
+                IGizmoHandle handle = _handles[handleIndex];
                 Rect handleRect = handle.GetVisible2DShapesRect(camera);
                 if (handleRect.width != 0 || handleRect.height != 0) allRectPts.AddRange(handleRect.GetCornerPoints());
             }
@@ -372,7 +372,7 @@ namespace RLD
             if (SceneGizmo == null && isSceneGizmoCamera) return;
             else if (SceneGizmo != null && !isSceneGizmoCamera) return;
 
-            foreach (var behaviour in _behaviours) 
+            foreach (IGizmoBehaviour behaviour in _behaviours) 
                 if(behaviour.IsEnabled) behaviour.OnGizmoRender(camera);
         }
 
@@ -391,7 +391,7 @@ namespace RLD
             if (_hoveredHandle != null)
             {
                 if (PreHandlePicked != null) PreHandlePicked(this, _hoveredHandle.Id);
-                foreach (var behaviour in _behaviours)
+                foreach (IGizmoBehaviour behaviour in _behaviours)
                 {
                     if(behaviour.IsEnabled)
                         behaviour.OnGizmoHandlePicked(_hoveredHandle.Id);
@@ -415,7 +415,7 @@ namespace RLD
                 _dragInfo.IsDragged = false;
 
                 if (PreDragEnd != null) PreDragEnd(this, _dragInfo.HandleId);
-                foreach (var behaviour in _behaviours)
+                foreach (IGizmoBehaviour behaviour in _behaviours)
                     if (behaviour.IsEnabled) behaviour.OnGizmoDragEnd(_dragInfo.HandleId);
 
                 int dragHandleId = _dragInfo.HandleId;
@@ -444,7 +444,7 @@ namespace RLD
 
                         if (PreDragUpdate != null) PreDragUpdate(this, _dragInfo.HandleId);
 
-                        foreach (var behaviour in _behaviours)
+                        foreach (IGizmoBehaviour behaviour in _behaviours)
                             if (behaviour.IsEnabled) behaviour.OnGizmoDragUpdate(_dragInfo.HandleId);
 
                         if (PostDragUpdate != null) PostDragUpdate(this, _dragInfo.HandleId);
@@ -457,7 +457,7 @@ namespace RLD
         {
             if (_hoveredHandle != null && _hoveredHandle.DragSession != null)
             {
-                foreach (var behaviour in _behaviours)
+                foreach (IGizmoBehaviour behaviour in _behaviours)
                 {
                     if (behaviour.IsEnabled)
                     {
@@ -466,7 +466,7 @@ namespace RLD
                 }
 
                 if (PreDragBeginAttempt != null) PreDragBeginAttempt(this, _hoveredHandle.Id);
-                foreach (var behaviour in _behaviours)
+                foreach (IGizmoBehaviour behaviour in _behaviours)
                 {
                     if (behaviour.IsEnabled)
                         behaviour.OnGizmoAttemptHandleDragBegin(_hoveredHandle.Id);
@@ -484,7 +484,7 @@ namespace RLD
                     _dragInfo.DragBeginPoint = _hoverInfo.HoverPoint;
 
                     if (PreDragBegin != null) PreDragBegin(this, _dragInfo.HandleId);
-                    foreach (var behaviour in _behaviours)
+                    foreach (IGizmoBehaviour behaviour in _behaviours)
                         if (behaviour.IsEnabled) behaviour.OnGizmoDragBegin(_dragInfo.HandleId);
                     if (PostDragBegin != null) PostDragBegin(this, _dragInfo.HandleId);
                 }

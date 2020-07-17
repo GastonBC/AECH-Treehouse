@@ -191,7 +191,7 @@ namespace RLD
                     return false;
                 }
 
-                var obb = CalcTargetRootOBB(_targetHierarchy);
+                OBB obb = CalcTargetRootOBB(_targetHierarchy);
                 if (!obb.IsValid)
                 {
                     _boxSize = Vector3.zero;
@@ -255,7 +255,7 @@ namespace RLD
 
         public override void OnGizmoRender(Camera camera)
         {
-            var boxWireMaterial = GizmoLineMaterial.Get;
+            GizmoLineMaterial boxWireMaterial = GizmoLineMaterial.Get;
             boxWireMaterial.ResetValuesToSensibleDefaults();
             boxWireMaterial.SetColor(LookAndFeel3D.BoxWireColor);
             boxWireMaterial.SetPass(0);
@@ -374,9 +374,9 @@ namespace RLD
             {
                 if (BoxUsage == Usage.ObjectScale && _targetHierarchyTransform != null)
                 {
-                    var postSnapshot = new LocalTransformSnapshot();
+                    LocalTransformSnapshot postSnapshot = new LocalTransformSnapshot();
                     postSnapshot.Snapshot(_targetHierarchyTransform);
-                    var action = new PostObjectTransformsChangedAction(new List<LocalTransformSnapshot>() { _dragBeginTargetTransformSnapshot },
+                    PostObjectTransformsChangedAction action = new PostObjectTransformsChangedAction(new List<LocalTransformSnapshot>() { _dragBeginTargetTransformSnapshot },
                         new List<LocalTransformSnapshot>() { postSnapshot });
                     action.Execute();
                 }
@@ -474,7 +474,7 @@ namespace RLD
 
         private OBB CalcTargetRootOBB(GameObject targetRoot)
         {
-            var boundsQConfig = new ObjectBounds.QueryConfig();
+            ObjectBounds.QueryConfig boundsQConfig = new ObjectBounds.QueryConfig();
             boundsQConfig.ObjectTypes = GameObjectType.Mesh | GameObjectType.Sprite;
             return ObjectBounds.CalcHierarchyWorldOBB(targetRoot, boundsQConfig);
         }

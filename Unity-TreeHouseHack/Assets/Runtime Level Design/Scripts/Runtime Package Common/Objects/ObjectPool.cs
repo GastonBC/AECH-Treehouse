@@ -31,13 +31,13 @@ namespace RLD
         public void SetPooledObjectsParent(Transform parent)
         {
             _pooledParent = parent;
-            foreach (var pooledObject in _pooledObjects)
+            foreach (GameObject pooledObject in _pooledObjects)
                 if (pooledObject != null && !pooledObject.activeSelf) pooledObject.transform.SetParent(parent, false);
         }
 
         public GameObject GetPooledObject()
         {
-            foreach (var pooledObject in _pooledObjects)
+            foreach (GameObject pooledObject in _pooledObjects)
             {
                 if (pooledObject != null && !pooledObject.activeSelf)
                 {
@@ -68,7 +68,7 @@ namespace RLD
 
         public void MarkAllAsUnused()
         {
-            foreach(var poolObject in _pooledObjects)
+            foreach(GameObject poolObject in _pooledObjects)
             {
                 MarkAsUnused(poolObject);
             }

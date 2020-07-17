@@ -18,7 +18,7 @@ namespace RLD
 
         public override void UpdateTransforms(float zoomFactor)
         {
-            var slider = _data.Slider;
+            GizmoLineSlider3D slider = _data.Slider;
 
             _data.Box.AlignWidth(slider.GetRealDirection());
             _data.Box.Size = new Vector3(slider.GetRealLength(zoomFactor), slider.GetRealBoxHeight(zoomFactor), slider.GetRealBoxDepth(zoomFactor));
@@ -35,7 +35,7 @@ namespace RLD
         {
             direction.Normalize();
 
-            var slider = _data.Slider;
+            GizmoLineSlider3D slider = _data.Slider;
             float boxWidth = slider.GetRealLength(zoomFactor);
             float boxHeight = slider.GetRealBoxHeight(zoomFactor);
             float boxDepth = slider.GetRealBoxDepth(zoomFactor);

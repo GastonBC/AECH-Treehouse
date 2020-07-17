@@ -69,7 +69,7 @@ namespace RLD
                 // If the input device (e.g. mouse) was moved, call the 'OnInputDeviceMoved'
                 // function. This function will snap the target hierarchy to the scene objects
                 // or scene grid depending on settings and what lies under the mouse cursor.
-                var inputDevice = RTInputDevice.Get.Device;
+                IInputDevice inputDevice = RTInputDevice.Get.Device;
                 if (inputDevice.WasMoved()) OnInputDeviceMoved(inputDevice);
             }
         }
@@ -87,7 +87,7 @@ namespace RLD
         {
             // If the left mouse button was pressed in the current frame, return true
             // to indicate that the session must terminate.
-            var inputDevice = RTInputDevice.Get.Device;
+            IInputDevice inputDevice = RTInputDevice.Get.Device;
             if (inputDevice.WasButtonPressedInCurrentFrame(0)) return true;
 
             // Note: Calling 'inputDevice.WasButtonReleasedInCurrentFrame' won't work, so

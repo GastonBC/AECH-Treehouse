@@ -25,7 +25,7 @@ namespace RLD
             Vector3 newVector3;
 
             // No-volume object size
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
             content.text = "No-volume object size";
             content.tooltip = "The custom interaction system needs to know the size of objects that have no volume. This defines a volume for these objects in the 3D world so that they " +
                               "can still be involved in raycasts, overlap tests etc";

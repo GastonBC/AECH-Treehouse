@@ -30,13 +30,13 @@ namespace RLD
 
         public void SetLineSliderHoverEps(float eps)
         {
-            foreach (var settings in _sglSliderSettings)
+            foreach (GizmoLineSlider2DSettings settings in _sglSliderSettings)
                 settings.LineHoverEps = eps;
         }
 
         public void SetBoxSliderHoverEps(float eps)
         {
-            foreach (var settings in _sglSliderSettings)
+            foreach (GizmoLineSlider2DSettings settings in _sglSliderSettings)
                 settings.BoxHoverEps = eps;
         }
 
@@ -56,7 +56,7 @@ namespace RLD
 
         public void SetDragSensitivity(float sensitivity)
         {
-            foreach (var settings in _sglSliderSettings)
+            foreach (GizmoLineSlider2DSettings settings in _sglSliderSettings)
                 settings.OffsetSensitivity = sensitivity;
 
             _dblSliderSettings.OffsetSensitivity = sensitivity;
@@ -84,7 +84,7 @@ namespace RLD
             float newFloat;
 
             EditorGUILayoutEx.SectionHeader("Hover epsilon");
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
             content.text = "Line slider";
             content.tooltip = "Controls the precision used when hovering line sliders.";
             newFloat = EditorGUILayout.FloatField(content, LineSliderHoverEps);

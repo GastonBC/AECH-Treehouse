@@ -35,7 +35,7 @@ namespace RLD
             }
 
             // Toggle visibility
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
             content.text = "Is visible";
             content.tooltip = "Allows you to toggle the visibility of the camera background.";
             newBool = EditorGUILayout.ToggleLeft(content, IsVisible);

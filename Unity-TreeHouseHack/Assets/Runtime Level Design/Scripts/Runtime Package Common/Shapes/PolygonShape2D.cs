@@ -89,8 +89,8 @@ namespace RLD
                 }
                 else
                 {
-                    var borderDir = _borderRenderDesc.Direction == Shape2DBorderDirection.Inward ? PrimitiveFactory.PolyBorderDirection.Inward : PrimitiveFactory.PolyBorderDirection.Outward;
-                    var quadPts = PrimitiveFactory.Generate2DPolyBorderQuadsCW(_cwPolyPoints, _thickCwBorderPoints, borderDir, _isClosed);
+                    PrimitiveFactory.PolyBorderDirection borderDir = _borderRenderDesc.Direction == Shape2DBorderDirection.Inward ? PrimitiveFactory.PolyBorderDirection.Inward : PrimitiveFactory.PolyBorderDirection.Outward;
+                    List<Vector2> quadPts = PrimitiveFactory.Generate2DPolyBorderQuadsCW(_cwPolyPoints, _thickCwBorderPoints, borderDir, _isClosed);
                     GLRenderer.DrawQuads2D(quadPts, camera);
                 }
             }
@@ -136,7 +136,7 @@ namespace RLD
 
         public void MakeSphereBorder(Vector3 sphereCenter, float sphereRadius, int numPoints, Camera camera)
         {
-            var sphereBorderPoints = PrimitiveFactory.GenerateSphereBorderPoints(camera, sphereCenter, sphereRadius, numPoints);
+            List<Vector3> sphereBorderPoints = PrimitiveFactory.GenerateSphereBorderPoints(camera, sphereCenter, sphereRadius, numPoints);
             SetClockwisePoints(camera.ConvertWorldToScreenPoints(sphereBorderPoints), true);
         }
 
@@ -169,7 +169,7 @@ namespace RLD
 
         private void CalculateThickBorderPoints()
         {
-            var borderDir = _borderRenderDesc.Direction == Shape2DBorderDirection.Inward ? PrimitiveFactory.PolyBorderDirection.Inward : PrimitiveFactory.PolyBorderDirection.Outward;
+            PrimitiveFactory.PolyBorderDirection borderDir = _borderRenderDesc.Direction == Shape2DBorderDirection.Inward ? PrimitiveFactory.PolyBorderDirection.Inward : PrimitiveFactory.PolyBorderDirection.Outward;
             _thickCwBorderPoints = PrimitiveFactory.Generate2DPolyBorderPointsCW(_cwPolyPoints, borderDir, _borderRenderDesc.Thickness, _isClosed);
 
             _isThickBorderDirty = false;

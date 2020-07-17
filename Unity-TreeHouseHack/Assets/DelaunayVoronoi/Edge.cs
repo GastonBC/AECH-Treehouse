@@ -15,10 +15,10 @@
         {
             if (obj == null) return false;
             if (obj.GetType() != GetType()) return false;
-            var edge = obj as Edge;
+            Edge edge = obj as Edge;
 
-            var samePoints = Point1 == edge.Point1 && Point2 == edge.Point2;
-            var samePointsReversed = Point1 == edge.Point2 && Point2 == edge.Point1;
+            bool samePoints = Point1 == edge.Point1 && Point2 == edge.Point2;
+            bool samePointsReversed = Point1 == edge.Point2 && Point2 == edge.Point1;
             return samePoints || samePointsReversed;
         }
 

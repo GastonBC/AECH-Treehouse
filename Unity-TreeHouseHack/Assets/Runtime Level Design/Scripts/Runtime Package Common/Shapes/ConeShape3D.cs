@@ -87,7 +87,7 @@ namespace RLD
                 }
 
                 // Axial segments
-                var axialSegmentPts = new List<Vector3>(_wireRenderDesc.NumDetailAxialSegments * 2);
+                List<Vector3> axialSegmentPts = new List<Vector3>(_wireRenderDesc.NumDetailAxialSegments * 2);
                 float angleStep = 360.0f / (float)_wireRenderDesc.NumDetailAxialSegments;
                 for(int segIndex = 0; segIndex < _wireRenderDesc.NumDetailAxialSegments; ++segIndex)
                 {

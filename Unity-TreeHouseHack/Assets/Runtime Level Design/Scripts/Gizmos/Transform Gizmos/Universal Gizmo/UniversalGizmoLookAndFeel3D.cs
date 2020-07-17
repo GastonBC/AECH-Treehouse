@@ -442,55 +442,55 @@ namespace RLD
 
         public void SetMvSliderLength(float axisLength)
         {
-            foreach (var lookAndFeel in _mvSglSlidersLookAndFeel)
+            foreach (GizmoLineSlider3DLookAndFeel lookAndFeel in _mvSglSlidersLookAndFeel)
                 lookAndFeel.Length = axisLength;
         }
 
         public void SetMvSliderLineType(GizmoLine3DType lineType)
         {
-            foreach (var lookAndFeel in _mvSglSlidersLookAndFeel)
+            foreach (GizmoLineSlider3DLookAndFeel lookAndFeel in _mvSglSlidersLookAndFeel)
                 lookAndFeel.LineType = lineType;
         }
 
         public void SetMvDblSliderBorderType(GizmoQuad3DBorderType borderType)
         {
-            foreach (var lookAndFeel in _mvDblSlidersLookAndFeel)
+            foreach (GizmoPlaneSlider3DLookAndFeel lookAndFeel in _mvDblSlidersLookAndFeel)
                 lookAndFeel.QuadBorderType = borderType;
         }
 
         public void SetMvDblSliderBorderBoxHeight(float height)
         {
-            foreach (var lookAndFeel in _mvDblSlidersLookAndFeel)
+            foreach (GizmoPlaneSlider3DLookAndFeel lookAndFeel in _mvDblSlidersLookAndFeel)
                 lookAndFeel.BorderBoxHeight = height;
         }
 
         public void SetMvDblSliderBorderBoxDepth(float depth)
         {
-            foreach (var lookAndFeel in _mvDblSlidersLookAndFeel)
+            foreach (GizmoPlaneSlider3DLookAndFeel lookAndFeel in _mvDblSlidersLookAndFeel)
                 lookAndFeel.BorderBoxDepth = depth;
         }
 
         public void SetMvBoxSliderHeight(float height)
         {
-            foreach (var lookAndFeel in _mvSglSlidersLookAndFeel)
+            foreach (GizmoLineSlider3DLookAndFeel lookAndFeel in _mvSglSlidersLookAndFeel)
                 lookAndFeel.BoxHeight = height;
         }
 
         public void SetMvBoxSliderDepth(float depth)
         {
-            foreach (var lookAndFeel in _mvSglSlidersLookAndFeel)
+            foreach (GizmoLineSlider3DLookAndFeel lookAndFeel in _mvSglSlidersLookAndFeel)
                 lookAndFeel.BoxDepth = depth;
         }
 
         public void SetMvCylinderSliderRadius(float radius)
         {
-            foreach (var lookAndFeel in _mvSglSlidersLookAndFeel)
+            foreach (GizmoLineSlider3DLookAndFeel lookAndFeel in _mvSglSlidersLookAndFeel)
                 lookAndFeel.CylinderRadius = radius;
         }
 
         public void SetMvDblSliderSize(float size)
         {
-            foreach (var lookAndFeel in _mvDblSlidersLookAndFeel)
+            foreach (GizmoPlaneSlider3DLookAndFeel lookAndFeel in _mvDblSlidersLookAndFeel)
             {
                 lookAndFeel.QuadWidth = size;
                 lookAndFeel.QuadHeight = size;
@@ -499,13 +499,13 @@ namespace RLD
 
         public void SetMvScale(float scale)
         {
-            foreach (var lookAndFeel in _mvSglSlidersLookAndFeel)
+            foreach (GizmoLineSlider3DLookAndFeel lookAndFeel in _mvSglSlidersLookAndFeel)
             {
                 lookAndFeel.Scale = scale;
                 lookAndFeel.CapLookAndFeel.Scale = scale;
             }
 
-            foreach (var lookAndFeel in _mvDblSlidersLookAndFeel)
+            foreach (GizmoPlaneSlider3DLookAndFeel lookAndFeel in _mvDblSlidersLookAndFeel)
             {
                 lookAndFeel.Scale = scale;
             }
@@ -513,13 +513,13 @@ namespace RLD
 
         public void SetMvUseZoomFactor(bool useZoomFactor)
         {
-            foreach (var lookAndFeel in _mvSglSlidersLookAndFeel)
+            foreach (GizmoLineSlider3DLookAndFeel lookAndFeel in _mvSglSlidersLookAndFeel)
             {
                 lookAndFeel.UseZoomFactor = useZoomFactor;
                 lookAndFeel.CapLookAndFeel.UseZoomFactor = useZoomFactor;
             }
 
-            foreach (var lookAndFeel in _mvDblSlidersLookAndFeel)
+            foreach (GizmoPlaneSlider3DLookAndFeel lookAndFeel in _mvDblSlidersLookAndFeel)
                 lookAndFeel.UseZoomFactor = useZoomFactor;
         }
 
@@ -544,7 +544,7 @@ namespace RLD
         public void SetMvDblSliderFillAlpha(float alpha)
         {
             alpha = Mathf.Clamp(alpha, 0.0f, 1.0f);
-            foreach (var lookAndFeel in _mvDblSlidersLookAndFeel)
+            foreach (GizmoPlaneSlider3DLookAndFeel lookAndFeel in _mvDblSlidersLookAndFeel)
             {
                 lookAndFeel.Color = ColorEx.KeepAllButAlpha(lookAndFeel.Color, alpha);
                 lookAndFeel.HoveredColor = ColorEx.KeepAllButAlpha(lookAndFeel.HoveredColor, alpha);
@@ -553,13 +553,13 @@ namespace RLD
 
         public void SetMvHoveredColor(Color hoveredColor)
         {
-            foreach (var lookAndFeel in _mvSglSlidersLookAndFeel)
+            foreach (GizmoLineSlider3DLookAndFeel lookAndFeel in _mvSglSlidersLookAndFeel)
             {
                 lookAndFeel.HoveredColor = hoveredColor;
                 lookAndFeel.CapLookAndFeel.HoveredColor = hoveredColor;
             }
 
-            foreach (var lookAndFeel in _mvDblSlidersLookAndFeel)
+            foreach (GizmoPlaneSlider3DLookAndFeel lookAndFeel in _mvDblSlidersLookAndFeel)
             {
                 lookAndFeel.HoveredBorderColor = hoveredColor;
                 lookAndFeel.HoveredColor = ColorEx.KeepAllButAlpha(hoveredColor, lookAndFeel.Color.a);
@@ -568,115 +568,115 @@ namespace RLD
 
         public void SetMvSliderShadeMode(GizmoShadeMode shadeMode)
         {
-            foreach (var lookAndFeel in _mvSglSlidersLookAndFeel)
+            foreach (GizmoLineSlider3DLookAndFeel lookAndFeel in _mvSglSlidersLookAndFeel)
                 lookAndFeel.ShadeMode = shadeMode;
         }
 
         public void SetMvSliderCapShadeMode(GizmoShadeMode shadeMode)
         {
-            foreach (var lookAndFeel in _mvSglSlidersLookAndFeel)
+            foreach (GizmoLineSlider3DLookAndFeel lookAndFeel in _mvSglSlidersLookAndFeel)
                 lookAndFeel.CapLookAndFeel.ShadeMode = shadeMode;
         }
 
         public void SetMvDblSliderBorderShadeMode(GizmoShadeMode shadeMode)
         {
-            foreach (var lookAndFeel in _mvDblSlidersLookAndFeel)
+            foreach (GizmoPlaneSlider3DLookAndFeel lookAndFeel in _mvDblSlidersLookAndFeel)
                 lookAndFeel.BorderShadeMode = shadeMode;
         }
 
         public void SetMvSliderCapType(GizmoCap3DType capType)
         {
-            foreach (var lookAndFeel in _mvSglSlidersLookAndFeel)
+            foreach (GizmoLineSlider3DLookAndFeel lookAndFeel in _mvSglSlidersLookAndFeel)
                 lookAndFeel.CapLookAndFeel.CapType = capType;
         }
 
         public void SetMvSliderFillMode(GizmoFillMode3D fillMode)
         {
-            foreach (var lookAndFeel in _mvSglSlidersLookAndFeel)
+            foreach (GizmoLineSlider3DLookAndFeel lookAndFeel in _mvSglSlidersLookAndFeel)
                 lookAndFeel.FillMode = fillMode;
         }
 
         public void SetMvSliderCapFillMode(GizmoFillMode3D fillMode)
         {
-            foreach (var lookAndFeel in _mvSglSlidersLookAndFeel)
+            foreach (GizmoLineSlider3DLookAndFeel lookAndFeel in _mvSglSlidersLookAndFeel)
                 lookAndFeel.CapLookAndFeel.FillMode = fillMode;
         }
 
         public void SetMvDblSliderBorderFillMode(GizmoFillMode3D fillMode)
         {
-            foreach (var lookAndFeel in _mvDblSlidersLookAndFeel)
+            foreach (GizmoPlaneSlider3DLookAndFeel lookAndFeel in _mvDblSlidersLookAndFeel)
                 lookAndFeel.BorderFillMode = fillMode;
         }
 
         public void SetMvSliderBoxCapWidth(float width)
         {
-            foreach (var lookAndFeel in _mvSglSlidersLookAndFeel)
+            foreach (GizmoLineSlider3DLookAndFeel lookAndFeel in _mvSglSlidersLookAndFeel)
                 lookAndFeel.CapLookAndFeel.BoxWidth = width;
         }
 
         public void SetMvSliderBoxCapHeight(float height)
         {
-            foreach (var lookAndFeel in _mvSglSlidersLookAndFeel)
+            foreach (GizmoLineSlider3DLookAndFeel lookAndFeel in _mvSglSlidersLookAndFeel)
                 lookAndFeel.CapLookAndFeel.BoxHeight = height;
         }
 
         public void SetMvSliderBoxCapDepth(float depth)
         {
-            foreach (var lookAndFeel in _mvSglSlidersLookAndFeel)
+            foreach (GizmoLineSlider3DLookAndFeel lookAndFeel in _mvSglSlidersLookAndFeel)
                 lookAndFeel.CapLookAndFeel.BoxDepth = depth;
         }
 
         public void SetMvSliderConeCapHeight(float height)
         {
-            foreach (var lookAndFeel in _mvSglSlidersLookAndFeel)
+            foreach (GizmoLineSlider3DLookAndFeel lookAndFeel in _mvSglSlidersLookAndFeel)
                 lookAndFeel.CapLookAndFeel.ConeHeight = height;
         }
 
         public void SetMvSliderConeCapBaseRadius(float radius)
         {
-            foreach (var lookAndFeel in _mvSglSlidersLookAndFeel)
+            foreach (GizmoLineSlider3DLookAndFeel lookAndFeel in _mvSglSlidersLookAndFeel)
                 lookAndFeel.CapLookAndFeel.ConeRadius = radius;
         }
 
         public void SetMvSliderPyramidCapWidth(float width)
         {
-            foreach (var lookAndFeel in _mvSglSlidersLookAndFeel)
+            foreach (GizmoLineSlider3DLookAndFeel lookAndFeel in _mvSglSlidersLookAndFeel)
                 lookAndFeel.CapLookAndFeel.PyramidWidth = width;
         }
 
         public void SetMvSliderPyramidCapHeight(float height)
         {
-            foreach (var lookAndFeel in _mvSglSlidersLookAndFeel)
+            foreach (GizmoLineSlider3DLookAndFeel lookAndFeel in _mvSglSlidersLookAndFeel)
                 lookAndFeel.CapLookAndFeel.PyramidHeight = height;
         }
 
         public void SetMvSliderPyramidCapDepth(float depth)
         {
-            foreach (var lookAndFeel in _mvSglSlidersLookAndFeel)
+            foreach (GizmoLineSlider3DLookAndFeel lookAndFeel in _mvSglSlidersLookAndFeel)
                 lookAndFeel.CapLookAndFeel.PyramidDepth = depth;
         }
 
         public void SetMvSliderTriPrismCapWidth(float width)
         {
-            foreach (var lookAndFeel in _mvSglSlidersLookAndFeel)
+            foreach (GizmoLineSlider3DLookAndFeel lookAndFeel in _mvSglSlidersLookAndFeel)
                 lookAndFeel.CapLookAndFeel.TrPrismWidth = width;
         }
 
         public void SetMvSliderTriPrismCapHeight(float height)
         {
-            foreach (var lookAndFeel in _mvSglSlidersLookAndFeel)
+            foreach (GizmoLineSlider3DLookAndFeel lookAndFeel in _mvSglSlidersLookAndFeel)
                 lookAndFeel.CapLookAndFeel.TrPrismHeight = height;
         }
 
         public void SetMvSliderTriPrismCapDepth(float depth)
         {
-            foreach (var lookAndFeel in _mvSglSlidersLookAndFeel)
+            foreach (GizmoLineSlider3DLookAndFeel lookAndFeel in _mvSglSlidersLookAndFeel)
                 lookAndFeel.CapLookAndFeel.TrPrismDepth = depth;
         }
 
         public void SetMvSliderSphereCapRadius(float radius)
         {
-            foreach (var lookAndFeel in _mvSglSlidersLookAndFeel)
+            foreach (GizmoLineSlider3DLookAndFeel lookAndFeel in _mvSglSlidersLookAndFeel)
                 lookAndFeel.CapLookAndFeel.SphereRadius = radius;
         }
 
@@ -783,7 +783,7 @@ namespace RLD
 
         public void SetRtShadeMode(GizmoShadeMode shadeMode)
         {
-            foreach (var lookAndFeel in _rtAxesLookAndFeel)
+            foreach (GizmoPlaneSlider3DLookAndFeel lookAndFeel in _rtAxesLookAndFeel)
             {
                 lookAndFeel.ShadeMode = shadeMode;
                 lookAndFeel.BorderShadeMode = shadeMode;
@@ -794,19 +794,19 @@ namespace RLD
 
         public void SetRtAxisBorderFillMode(GizmoFillMode3D fillMode)
         {
-            foreach (var lookAndFeel in _rtAxesLookAndFeel)
+            foreach (GizmoPlaneSlider3DLookAndFeel lookAndFeel in _rtAxesLookAndFeel)
                 lookAndFeel.BorderFillMode = fillMode;
         }
 
         public void SetRtNumAxisTorusWireAxialSlices(int numSlices)
         {
-            foreach (var lookAndFeel in _rtAxesLookAndFeel)
+            foreach (GizmoPlaneSlider3DLookAndFeel lookAndFeel in _rtAxesLookAndFeel)
                 lookAndFeel.NumBorderTorusWireAxialSlices = numSlices;
         }
 
         public void SetRtUseZoomFactor(bool useZoomFactor)
         {
-            foreach (var lookAndFeel in _rtAxesLookAndFeel)
+            foreach (GizmoPlaneSlider3DLookAndFeel lookAndFeel in _rtAxesLookAndFeel)
                 lookAndFeel.UseZoomFactor = useZoomFactor;
 
             _rtMidCapLookAndFeel.UseZoomFactor = useZoomFactor;
@@ -814,7 +814,7 @@ namespace RLD
 
         public void SetRtScale(float scale)
         {
-            foreach (var lookAndFeel in _rtAxesLookAndFeel)
+            foreach (GizmoPlaneSlider3DLookAndFeel lookAndFeel in _rtAxesLookAndFeel)
                 lookAndFeel.Scale = scale;
 
             _rtMidCapLookAndFeel.Scale = scale;
@@ -822,7 +822,7 @@ namespace RLD
 
         public void SetRtRadius(float radius)
         {
-            foreach (var lookAndFeel in _rtAxesLookAndFeel)
+            foreach (GizmoPlaneSlider3DLookAndFeel lookAndFeel in _rtAxesLookAndFeel)
                 lookAndFeel.CircleRadius = radius;
 
             _rtMidCapLookAndFeel.SphereRadius = radius;
@@ -830,31 +830,31 @@ namespace RLD
 
         public void SetRtAxisBorderCullAlphaScale(float scale)
         {
-            foreach (var lookAndFeel in _rtAxesLookAndFeel)
+            foreach (GizmoPlaneSlider3DLookAndFeel lookAndFeel in _rtAxesLookAndFeel)
                 lookAndFeel.BorderCircleCullAlphaScale = scale;
         }
 
         public void SetRtAxisBorderType(GizmoCircle3DBorderType borderType)
         {
-            foreach (var lookAndFeel in _rtAxesLookAndFeel)
+            foreach (GizmoPlaneSlider3DLookAndFeel lookAndFeel in _rtAxesLookAndFeel)
                 lookAndFeel.CircleBorderType = borderType;
         }
 
         public void SetRtAxisTorusThickness(float thickness)
         {
-            foreach (var lookAndFeel in _rtAxesLookAndFeel)
+            foreach (GizmoPlaneSlider3DLookAndFeel lookAndFeel in _rtAxesLookAndFeel)
                 lookAndFeel.BorderTorusThickness = thickness;
         }
 
         public void SetRtAxisCylTorusWidth(float width)
         {
-            foreach (var lookAndFeel in _rtAxesLookAndFeel)
+            foreach (GizmoPlaneSlider3DLookAndFeel lookAndFeel in _rtAxesLookAndFeel)
                 lookAndFeel.BorderCylTorusWidth = width;
         }
 
         public void SetRtAxisCylTorusHeight(float height)
         {
-            foreach (var lookAndFeel in _rtAxesLookAndFeel)
+            foreach (GizmoPlaneSlider3DLookAndFeel lookAndFeel in _rtAxesLookAndFeel)
                 lookAndFeel.BorderCylTorusHeight = height;
         }
 
@@ -890,7 +890,7 @@ namespace RLD
 
         public void SetRtHoveredColor(Color hoveredColor)
         {
-            foreach (var lookAndFeel in _rtAxesLookAndFeel)
+            foreach (GizmoPlaneSlider3DLookAndFeel lookAndFeel in _rtAxesLookAndFeel)
             {
                 lookAndFeel.HoveredColor = hoveredColor;
                 lookAndFeel.HoveredBorderColor = hoveredColor;
@@ -899,7 +899,7 @@ namespace RLD
 
         public void SetRtRotationArcColor(Color color)
         {
-            foreach (var lookAndFeel in _rtAxesLookAndFeel)
+            foreach (GizmoPlaneSlider3DLookAndFeel lookAndFeel in _rtAxesLookAndFeel)
                 lookAndFeel.RotationArcLookAndFeel.Color = color;
 
             _rtCamLookSliderLookAndFeel.RotationArcLookAndFeel.Color = color;
@@ -907,7 +907,7 @@ namespace RLD
 
         public void SetRtRotationArcBorderColor(Color color)
         {
-            foreach (var lookAndFeel in _rtAxesLookAndFeel)
+            foreach (GizmoPlaneSlider3DLookAndFeel lookAndFeel in _rtAxesLookAndFeel)
                 lookAndFeel.RotationArcLookAndFeel.BorderColor = color;
 
             _rtCamLookSliderLookAndFeel.RotationArcLookAndFeel.BorderColor = color;
@@ -915,7 +915,7 @@ namespace RLD
 
         public void SetRtUseShortestRotationArc(bool useShortest)
         {
-            foreach (var lookAndFeel in _rtAxesLookAndFeel)
+            foreach (GizmoPlaneSlider3DLookAndFeel lookAndFeel in _rtAxesLookAndFeel)
                 lookAndFeel.RotationArcLookAndFeel.UseShortestRotation = useShortest;
 
             _rtCamLookSliderLookAndFeel.RotationArcLookAndFeel.UseShortestRotation = useShortest;
@@ -923,7 +923,7 @@ namespace RLD
 
         public void SetRtRotationArcVisible(bool isVisible)
         {
-            foreach (var lookAndFeel in _rtAxesLookAndFeel)
+            foreach (GizmoPlaneSlider3DLookAndFeel lookAndFeel in _rtAxesLookAndFeel)
                 lookAndFeel.IsRotationArcVisible = isVisible;
 
             _rtCamLookSliderLookAndFeel.IsRotationArcVisible = isVisible;
@@ -1094,43 +1094,43 @@ namespace RLD
 
         public void SetScSliderLength(float axisLength)
         {
-            foreach (var lookAndFeel in _scSglSlidersLookAndFeel)
+            foreach (GizmoLineSlider3DLookAndFeel lookAndFeel in _scSglSlidersLookAndFeel)
                 lookAndFeel.Length = axisLength;
         }
 
         public void SetScSliderLineType(GizmoLine3DType lineType)
         {
-            foreach (var lookAndFeel in _scSglSlidersLookAndFeel)
+            foreach (GizmoLineSlider3DLookAndFeel lookAndFeel in _scSglSlidersLookAndFeel)
                 lookAndFeel.LineType = lineType;
         }
 
         public void SetScBoxSliderHeight(float height)
         {
-            foreach (var lookAndFeel in _scSglSlidersLookAndFeel)
+            foreach (GizmoLineSlider3DLookAndFeel lookAndFeel in _scSglSlidersLookAndFeel)
                 lookAndFeel.BoxHeight = height;
         }
 
         public void SetScBoxSliderDepth(float depth)
         {
-            foreach (var lookAndFeel in _scSglSlidersLookAndFeel)
+            foreach (GizmoLineSlider3DLookAndFeel lookAndFeel in _scSglSlidersLookAndFeel)
                 lookAndFeel.BoxDepth = depth;
         }
 
         public void SetScCylinderSliderRadius(float radius)
         {
-            foreach (var lookAndFeel in _scSglSlidersLookAndFeel)
+            foreach (GizmoLineSlider3DLookAndFeel lookAndFeel in _scSglSlidersLookAndFeel)
                 lookAndFeel.CylinderRadius = radius;
         }
 
         public void SetScScale(float scale)
         {
-            foreach (var lookAndFeel in _scSglSlidersLookAndFeel)
+            foreach (GizmoLineSlider3DLookAndFeel lookAndFeel in _scSglSlidersLookAndFeel)
             {
                 lookAndFeel.Scale = scale;
                 lookAndFeel.CapLookAndFeel.Scale = scale;
             }
 
-            foreach (var lookAndFeel in _scDblSlidersLookAndFeel)
+            foreach (GizmoPlaneSlider3DLookAndFeel lookAndFeel in _scDblSlidersLookAndFeel)
                 lookAndFeel.Scale = scale;
 
             _scMidCapLookAndFeel.Scale = scale;
@@ -1138,13 +1138,13 @@ namespace RLD
 
         public void SetScUseZoomFactor(bool useZoomFactor)
         {
-            foreach (var lookAndFeel in _scSglSlidersLookAndFeel)
+            foreach (GizmoLineSlider3DLookAndFeel lookAndFeel in _scSglSlidersLookAndFeel)
             {
                 lookAndFeel.UseZoomFactor = useZoomFactor;
                 lookAndFeel.CapLookAndFeel.UseZoomFactor = useZoomFactor;
             }
 
-            foreach (var lookAndFeel in _scDblSlidersLookAndFeel)
+            foreach (GizmoPlaneSlider3DLookAndFeel lookAndFeel in _scDblSlidersLookAndFeel)
                 lookAndFeel.UseZoomFactor = useZoomFactor;
 
             _scMidCapLookAndFeel.UseZoomFactor = useZoomFactor;
@@ -1190,7 +1190,7 @@ namespace RLD
         public void SetScDblSliderFillAlpha(float alpha)
         {
             alpha = Mathf.Clamp(alpha, 0.0f, 1.0f);
-            foreach (var lookAndFeel in _scDblSlidersLookAndFeel)
+            foreach (GizmoPlaneSlider3DLookAndFeel lookAndFeel in _scDblSlidersLookAndFeel)
             {
                 lookAndFeel.Color = ColorEx.KeepAllButAlpha(lookAndFeel.Color, alpha);
                 lookAndFeel.HoveredColor = ColorEx.KeepAllButAlpha(lookAndFeel.HoveredColor, alpha);
@@ -1209,13 +1209,13 @@ namespace RLD
 
         public void SetScHoveredColor(Color hoveredColor)
         {
-            foreach (var lookAndFeel in _scSglSlidersLookAndFeel)
+            foreach (GizmoLineSlider3DLookAndFeel lookAndFeel in _scSglSlidersLookAndFeel)
             {
                 lookAndFeel.HoveredColor = hoveredColor;
                 lookAndFeel.CapLookAndFeel.HoveredColor = hoveredColor;
             }
 
-            foreach (var lookAndFeel in _scDblSlidersLookAndFeel)
+            foreach (GizmoPlaneSlider3DLookAndFeel lookAndFeel in _scDblSlidersLookAndFeel)
             {
                 lookAndFeel.HoveredBorderColor = hoveredColor;
                 lookAndFeel.HoveredColor = ColorEx.KeepAllButAlpha(hoveredColor, lookAndFeel.Color.a);
@@ -1226,13 +1226,13 @@ namespace RLD
 
         public void SetScSliderShadeMode(GizmoShadeMode shadeMode)
         {
-            foreach (var lookAndFeel in _scSglSlidersLookAndFeel)
+            foreach (GizmoLineSlider3DLookAndFeel lookAndFeel in _scSglSlidersLookAndFeel)
                 lookAndFeel.ShadeMode = shadeMode;
         }
 
         public void SetScSliderCapShadeMode(GizmoShadeMode shadeMode)
         {
-            foreach (var lookAndFeel in _scSglSlidersLookAndFeel)
+            foreach (GizmoLineSlider3DLookAndFeel lookAndFeel in _scSglSlidersLookAndFeel)
                 lookAndFeel.CapLookAndFeel.ShadeMode = shadeMode;
         }
 
@@ -1243,7 +1243,7 @@ namespace RLD
 
         public void SetScSliderCapType(GizmoCap3DType capType)
         {
-            foreach (var lookAndFeel in _scSglSlidersLookAndFeel)
+            foreach (GizmoLineSlider3DLookAndFeel lookAndFeel in _scSglSlidersLookAndFeel)
                 lookAndFeel.CapLookAndFeel.CapType = capType;
         }
 
@@ -1267,13 +1267,13 @@ namespace RLD
 
         public void SetScSliderFillMode(GizmoFillMode3D fillMode)
         {
-            foreach (var lookAndFeel in _scSglSlidersLookAndFeel)
+            foreach (GizmoLineSlider3DLookAndFeel lookAndFeel in _scSglSlidersLookAndFeel)
                 lookAndFeel.FillMode = fillMode;
         }
 
         public void SetScSliderCapFillMode(GizmoFillMode3D fillMode)
         {
-            foreach (var lookAndFeel in _scSglSlidersLookAndFeel)
+            foreach (GizmoLineSlider3DLookAndFeel lookAndFeel in _scSglSlidersLookAndFeel)
                 lookAndFeel.CapLookAndFeel.FillMode = fillMode;
         }
 
@@ -1284,73 +1284,73 @@ namespace RLD
 
         public void SetScSliderBoxCapWidth(float width)
         {
-            foreach (var lookAndFeel in _scSglSlidersLookAndFeel)
+            foreach (GizmoLineSlider3DLookAndFeel lookAndFeel in _scSglSlidersLookAndFeel)
                 lookAndFeel.CapLookAndFeel.BoxWidth = width;
         }
 
         public void SetScSliderBoxCapHeight(float height)
         {
-            foreach (var lookAndFeel in _scSglSlidersLookAndFeel)
+            foreach (GizmoLineSlider3DLookAndFeel lookAndFeel in _scSglSlidersLookAndFeel)
                 lookAndFeel.CapLookAndFeel.BoxHeight = height;
         }
 
         public void SetScSliderBoxCapDepth(float depth)
         {
-            foreach (var lookAndFeel in _scSglSlidersLookAndFeel)
+            foreach (GizmoLineSlider3DLookAndFeel lookAndFeel in _scSglSlidersLookAndFeel)
                 lookAndFeel.CapLookAndFeel.BoxDepth = depth;
         }
 
         public void SetScSliderConeCapHeight(float height)
         {
-            foreach (var lookAndFeel in _scSglSlidersLookAndFeel)
+            foreach (GizmoLineSlider3DLookAndFeel lookAndFeel in _scSglSlidersLookAndFeel)
                 lookAndFeel.CapLookAndFeel.ConeHeight = height;
         }
 
         public void SetScSliderConeCapBaseRadius(float radius)
         {
-            foreach (var lookAndFeel in _scSglSlidersLookAndFeel)
+            foreach (GizmoLineSlider3DLookAndFeel lookAndFeel in _scSglSlidersLookAndFeel)
                 lookAndFeel.CapLookAndFeel.ConeRadius = radius;
         }
 
         public void SetScSliderPyramidCapWidth(float width)
         {
-            foreach (var lookAndFeel in _scSglSlidersLookAndFeel)
+            foreach (GizmoLineSlider3DLookAndFeel lookAndFeel in _scSglSlidersLookAndFeel)
                 lookAndFeel.CapLookAndFeel.PyramidWidth = width;
         }
 
         public void SetScSliderPyramidCapHeight(float height)
         {
-            foreach (var lookAndFeel in _scSglSlidersLookAndFeel)
+            foreach (GizmoLineSlider3DLookAndFeel lookAndFeel in _scSglSlidersLookAndFeel)
                 lookAndFeel.CapLookAndFeel.PyramidHeight = height;
         }
 
         public void SetScSliderPyramidCapDepth(float depth)
         {
-            foreach (var lookAndFeel in _scSglSlidersLookAndFeel)
+            foreach (GizmoLineSlider3DLookAndFeel lookAndFeel in _scSglSlidersLookAndFeel)
                 lookAndFeel.CapLookAndFeel.PyramidDepth = depth;
         }
 
         public void SetScSliderTriPrismCapWidth(float width)
         {
-            foreach (var lookAndFeel in _scSglSlidersLookAndFeel)
+            foreach (GizmoLineSlider3DLookAndFeel lookAndFeel in _scSglSlidersLookAndFeel)
                 lookAndFeel.CapLookAndFeel.TrPrismWidth = width;
         }
 
         public void SetScSliderTriPrismCapHeight(float height)
         {
-            foreach (var lookAndFeel in _scSglSlidersLookAndFeel)
+            foreach (GizmoLineSlider3DLookAndFeel lookAndFeel in _scSglSlidersLookAndFeel)
                 lookAndFeel.CapLookAndFeel.TrPrismHeight = height;
         }
 
         public void SetScSliderTriPrismCapDepth(float depth)
         {
-            foreach (var lookAndFeel in _scSglSlidersLookAndFeel)
+            foreach (GizmoLineSlider3DLookAndFeel lookAndFeel in _scSglSlidersLookAndFeel)
                 lookAndFeel.CapLookAndFeel.TrPrismDepth = depth;
         }
 
         public void SetScSliderSphereCapRadius(float radius)
         {
-            foreach (var lookAndFeel in _scSglSlidersLookAndFeel)
+            foreach (GizmoLineSlider3DLookAndFeel lookAndFeel in _scSglSlidersLookAndFeel)
                 lookAndFeel.CapLookAndFeel.SphereRadius = radius;
         }
 
@@ -1376,7 +1376,7 @@ namespace RLD
 
         public void SetScDblSliderSize(float size)
         {
-            foreach (var lookAndFeel in _scDblSlidersLookAndFeel)
+            foreach (GizmoPlaneSlider3DLookAndFeel lookAndFeel in _scDblSlidersLookAndFeel)
             {
                 lookAndFeel.RATriangleXLength = size;
                 lookAndFeel.RATriangleYLength = size;
@@ -1493,7 +1493,7 @@ namespace RLD
             GizmoCap2DType newCap2DType;
 
             EditorGUILayoutEx.SectionHeader("Scale");
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
             content.text = "Use zoom factor";
             content.tooltip = "If this is checked, the gizmo will maintain a constant size regardless of its distance from the camera.";
             newBool = EditorGUILayout.ToggleLeft(content, MvUseZoomFactor);
@@ -1949,7 +1949,7 @@ namespace RLD
             GizmoPolygon2DBorderType newPolyBorder2DType;
 
             EditorGUILayoutEx.SectionHeader("Scale and size");
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
             content.text = "Use zoom factor";
             content.tooltip = "If this is checked, the gizmo will maintain a constant size regardless of its distance from the camera.";
             newBool = EditorGUILayout.ToggleLeft(content, RtUseZoomFactor);
@@ -2265,7 +2265,7 @@ namespace RLD
 
         private void RenderScaleContent(UnityEngine.Object undoRecordObject)
         {
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
             float newFloat; bool newBool; Color newColor;
             GizmoCap3DType newCap3DType;
             GizmoFillMode3D newFillMode3D;
@@ -2693,13 +2693,13 @@ namespace RLD
         private void DrawMvCheckUncheckAllSlidersVisButtons(bool forCaps, UnityEngine.Object undoRecordObject)
         {
             EditorGUILayout.BeginHorizontal();
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
             content.text = "Show all";
             content.tooltip = "Show all " + (forCaps ? "caps." : "sliders.");
             if (GUILayout.Button(content, GUILayout.Width(80.0f)))
             {
                 EditorUndoEx.Record(undoRecordObject);
-                var visFlags = forCaps ? _mvSglSliderCapVis : _mvSglSliderVis;
+                bool[] visFlags = forCaps ? _mvSglSliderCapVis : _mvSglSliderVis;
                 for (int index = 0; index < visFlags.Length; ++index) visFlags[index] = true;
             }
 
@@ -2708,7 +2708,7 @@ namespace RLD
             if (GUILayout.Button(content, GUILayout.Width(80.0f)))
             {
                 EditorUndoEx.Record(undoRecordObject);
-                var visFlags = forCaps ? _mvSglSliderCapVis : _mvSglSliderVis;
+                bool[] visFlags = forCaps ? _mvSglSliderCapVis : _mvSglSliderVis;
                 for (int index = 0; index < visFlags.Length; ++index) visFlags[index] = false;
             }
             EditorGUILayout.EndHorizontal();
@@ -2717,7 +2717,7 @@ namespace RLD
         private void DrawMvCheckUncheckAllDblSlidersVisButtons(UnityEngine.Object undoRecordObject)
         {
             EditorGUILayout.BeginHorizontal();
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
             content.text = "Show all";
             content.tooltip = "Show all double-axis sliders.";
             if (GUILayout.Button(content, GUILayout.Width(80.0f)))
@@ -2738,7 +2738,7 @@ namespace RLD
 
         private void DrawMvSliderVisibilityControls(AxisSign axisSign, UnityEngine.Object undoRecordObject)
         {
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
             EditorGUILayout.BeginHorizontal();
             string[] sliderLabels = axisSign == AxisSign.Positive ? new string[] { "+X", "+Y", "+Z" } : new string[] { "-X", "-Y", "-Z" };
             for (int sliderIndex = 0; sliderIndex < 3; ++sliderIndex)
@@ -2759,7 +2759,7 @@ namespace RLD
 
         private void DrawMvDblSliderVisibilityControls(UnityEngine.Object undoRecordObject)
         {
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
             EditorGUILayout.BeginHorizontal();
             string[] sliderLabels = new string[] { "XY", "YZ", "ZX" };
             for (int sliderIndex = 0; sliderIndex < 3; ++sliderIndex)
@@ -2780,7 +2780,7 @@ namespace RLD
 
         private void DrawMvSliderCapVisibilityControls(AxisSign axisSign, UnityEngine.Object undoRecordObject)
         {
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
             EditorGUILayout.BeginHorizontal();
             string[] sliderLabels = axisSign == AxisSign.Positive ? new string[] { "+X", "+Y", "+Z" } : new string[] { "-X", "-Y", "-Z" };
             for (int sliderIndex = 0; sliderIndex < 3; ++sliderIndex)
@@ -2802,13 +2802,13 @@ namespace RLD
         private void DrawScCheckUncheckAllSlidersVisButtons(bool forCaps, UnityEngine.Object undoRecordObject)
         {
             EditorGUILayout.BeginHorizontal();
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
             content.text = "Show all";
             content.tooltip = "Show all " + (forCaps ? "caps." : "sliders.");
             if (GUILayout.Button(content, GUILayout.Width(80.0f)))
             {
                 EditorUndoEx.Record(undoRecordObject);
-                var visFlags = forCaps ? _scSglSliderCapVis : _scSglSliderVis;
+                bool[] visFlags = forCaps ? _scSglSliderCapVis : _scSglSliderVis;
                 for (int index = 0; index < visFlags.Length; ++index) visFlags[index] = true;
             }
 
@@ -2817,7 +2817,7 @@ namespace RLD
             if (GUILayout.Button(content, GUILayout.Width(80.0f)))
             {
                 EditorUndoEx.Record(undoRecordObject);
-                var visFlags = forCaps ? _scSglSliderCapVis : _scSglSliderVis;
+                bool[] visFlags = forCaps ? _scSglSliderCapVis : _scSglSliderVis;
                 for (int index = 0; index < visFlags.Length; ++index) visFlags[index] = false;
             }
             EditorGUILayout.EndHorizontal();
@@ -2826,7 +2826,7 @@ namespace RLD
         private void DrawScCheckUncheckAllDblSlidersVisButtons(UnityEngine.Object undoRecordObject)
         {
             EditorGUILayout.BeginHorizontal();
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
             content.text = "Show all";
             content.tooltip = "Show all double-axis sliders.";
             if (GUILayout.Button(content, GUILayout.Width(80.0f)))
@@ -2847,7 +2847,7 @@ namespace RLD
 
         private void DrawScSliderVisibilityControls(AxisSign axisSign, UnityEngine.Object undoRecordObject)
         {
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
             EditorGUILayout.BeginHorizontal();
             string[] sliderLabels = axisSign == AxisSign.Positive ? new string[] { "+X", "+Y", "+Z" } : new string[] { "-X", "-Y", "-Z" };
             for (int sliderIndex = 0; sliderIndex < 3; ++sliderIndex)
@@ -2868,7 +2868,7 @@ namespace RLD
 
         private void DrawScDblSliderVisibilityControls(UnityEngine.Object undoRecordObject)
         {
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
             EditorGUILayout.BeginHorizontal();
             string[] sliderLabels = new string[] { "XY", "YZ", "ZX" };
             for (int sliderIndex = 0; sliderIndex < 3; ++sliderIndex)
@@ -2889,7 +2889,7 @@ namespace RLD
 
         private void DrawScSliderCapVisibilityControls(AxisSign axisSign, UnityEngine.Object undoRecordObject)
         {
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
             EditorGUILayout.BeginHorizontal();
             string[] sliderLabels = axisSign == AxisSign.Positive ? new string[] { "+X", "+Y", "+Z" } : new string[] { "-X", "-Y", "-Z" };
             for (int sliderIndex = 0; sliderIndex < 3; ++sliderIndex)

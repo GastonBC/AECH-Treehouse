@@ -50,18 +50,18 @@ namespace RLD
 
         public List<GameObjectRayHit> RaycastAll(Ray ray, SceneRaycastPrecision raycastPresicion)
         {
-            var nodeHits = _objectTree.RaycastAll(ray);
+            List<SphereTreeNodeRayHit<GameObject>> nodeHits = _objectTree.RaycastAll(ray);
             if (nodeHits.Count == 0) return new List<GameObjectRayHit>();
 
-            var boundsQConfig = new ObjectBounds.QueryConfig();
+            ObjectBounds.QueryConfig boundsQConfig = new ObjectBounds.QueryConfig();
             boundsQConfig.ObjectTypes = GameObjectTypeHelper.AllCombined;
             boundsQConfig.NoVolumeSize = Vector3Ex.FromValue(RTScene.Get.Settings.NonMeshObjectSize);
 
             Vector3 camLook = RTFocusCamera.Get.Look;
             if (raycastPresicion == SceneRaycastPrecision.BestFit)
             {
-                var hitList = new List<GameObjectRayHit>(10);
-                foreach (var nodeHit in nodeHits)
+                List<GameObjectRayHit> hitList = new List<GameObjectRayHit>(10);
+                foreach (SphereTreeNodeRayHit<GameObject> nodeHit in nodeHits)
                 {
                     GameObject sceneObject = nodeHit.HitNode.Data;
                     if (sceneObject == null || !sceneObject.activeInHierarchy) continue;
@@ -99,8 +99,8 @@ namespace RLD
                             float t;
                             if (BoxMath.Raycast(ray, out t, worldOBB.Center, worldOBB.Size, worldOBB.Rotation))
                             {
-                                var faceDesc = BoxMath.GetFaceClosestToPoint(ray.GetPoint(t), worldOBB.Center, worldOBB.Size, worldOBB.Rotation, camLook);
-                                var hit = new GameObjectRayHit(ray, sceneObject, faceDesc.Plane.normal, t);
+                                BoxFaceDesc faceDesc = BoxMath.GetFaceClosestToPoint(ray.GetPoint(t), worldOBB.Center, worldOBB.Size, worldOBB.Rotation, camLook);
+                                GameObjectRayHit hit = new GameObjectRayHit(ray, sceneObject, faceDesc.Plane.normal, t);
                                 hitList.Add(hit);
                             }
                         }
@@ -112,8 +112,8 @@ namespace RLD
             else
             if (raycastPresicion == SceneRaycastPrecision.Box)
             {
-                var hitList = new List<GameObjectRayHit>(10);
-                foreach (var nodeHit in nodeHits)
+                List<GameObjectRayHit> hitList = new List<GameObjectRayHit>(10);
+                foreach (SphereTreeNodeRayHit<GameObject> nodeHit in nodeHits)
                 {
                     GameObject sceneObject = nodeHit.HitNode.Data;
                     if (sceneObject == null || !sceneObject.activeInHierarchy) continue;
@@ -127,8 +127,8 @@ namespace RLD
                         float t;
                         if (BoxMath.Raycast(ray, out t, worldOBB.Center, worldOBB.Size, worldOBB.Rotation))
                         {
-                            var faceDesc = BoxMath.GetFaceClosestToPoint(ray.GetPoint(t), worldOBB.Center, worldOBB.Size, worldOBB.Rotation, camLook);
-                            var hit = new GameObjectRayHit(ray, sceneObject, faceDesc.Plane.normal, t);
+                            BoxFaceDesc faceDesc = BoxMath.GetFaceClosestToPoint(ray.GetPoint(t), worldOBB.Center, worldOBB.Size, worldOBB.Rotation, camLook);
+                            GameObjectRayHit hit = new GameObjectRayHit(ray, sceneObject, faceDesc.Plane.normal, t);
                             hitList.Add(hit);
                         }
                     }
@@ -145,11 +145,11 @@ namespace RLD
             List<SphereTreeNode<GameObject>> overlappedNodes = _objectTree.OverlapBox(obb);
             if (overlappedNodes.Count == 0) return new List<GameObject>();
 
-            var boundsQConfig = new ObjectBounds.QueryConfig();
+            ObjectBounds.QueryConfig boundsQConfig = new ObjectBounds.QueryConfig();
             boundsQConfig.ObjectTypes = GameObjectTypeHelper.AllCombined;
             boundsQConfig.NoVolumeSize = Vector3Ex.FromValue(RTScene.Get.Settings.NonMeshObjectSize);
 
-            var overlappedObjects = new List<GameObject>();
+            List<GameObject> overlappedObjects = new List<GameObject>();
             foreach (SphereTreeNode<GameObject> node in overlappedNodes)
             {
                 GameObject sceneObject = (GameObject)node.Data;
@@ -171,7 +171,7 @@ namespace RLD
         {
             if (!CanRegisterObject(gameObject)) return;
 
-            var boundsQConfig = new ObjectBounds.QueryConfig();
+            ObjectBounds.QueryConfig boundsQConfig = new ObjectBounds.QueryConfig();
             boundsQConfig.ObjectTypes = GameObjectTypeHelper.AllCombined;
             boundsQConfig.NoVolumeSize = Vector3Ex.FromValue(RTScene.Get.Settings.NonMeshObjectSize);
 
@@ -186,7 +186,7 @@ namespace RLD
 
         public void OnObjectTransformChanged(Transform objectTransform)
         {
-            var boundsQConfig = new ObjectBounds.QueryConfig();
+            ObjectBounds.QueryConfig boundsQConfig = new ObjectBounds.QueryConfig();
             boundsQConfig.ObjectTypes = GameObjectTypeHelper.AllCombined;
             boundsQConfig.NoVolumeSize = Vector3Ex.FromValue(RTScene.Get.Settings.NonMeshObjectSize);
 
@@ -202,8 +202,8 @@ namespace RLD
 
         public void RemoveNodesWithNullObjects()
         {
-            var newObjectToNodeDictionary = new Dictionary<GameObject, SphereTreeNode<GameObject>>();
-            foreach (var pair in _objectToNode)
+            Dictionary<GameObject, SphereTreeNode<GameObject>> newObjectToNodeDictionary = new Dictionary<GameObject, SphereTreeNode<GameObject>>();
+            foreach (KeyValuePair<GameObject, SphereTreeNode<GameObject>> pair in _objectToNode)
             {
                 if (pair.Key == null)  _objectTree.RemoveNode(pair.Value);
                 else newObjectToNodeDictionary.Add(pair.Key, pair.Value);

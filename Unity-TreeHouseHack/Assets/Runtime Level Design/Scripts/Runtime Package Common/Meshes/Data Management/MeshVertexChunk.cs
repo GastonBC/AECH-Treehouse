@@ -37,7 +37,7 @@ namespace RLD
             float minDistSqr = float.MaxValue;
             Vector3 closestWorldVert = Vector3.zero;
 
-            foreach(var vert in _modelSpaceVerts)
+            foreach(Vector3 vert in _modelSpaceVerts)
             {
                 Vector3 worldVert = worldMtx.MultiplyPoint(vert);
                 Vector2 screenVert = camera.WorldToScreenPoint(worldVert);

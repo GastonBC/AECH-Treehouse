@@ -52,7 +52,7 @@ namespace RLD
 
         public override AABB GetAABB()
         {
-            var pyramidPoints = GetBaseCornerPoints();
+            List<Vector3> pyramidPoints = GetBaseCornerPoints();
             pyramidPoints.Add(Tip);
 
             return new AABB(pyramidPoints);

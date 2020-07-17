@@ -21,14 +21,14 @@ namespace RLD
 
         public override void UpdateEpsilons()
         {
-            var circle = _data.Circle;
+            CircleShape2D circle = _data.Circle;
             circle.RadiusEps = _data.Slider.Settings.AreaHoverEps;
         }
 
         public override void UpdateTransforms()
         {
-            var circle = _data.Circle;
-            var slider = _data.Slider;
+            CircleShape2D circle = _data.Circle;
+            GizmoPlaneSlider2D slider = _data.Slider;
 
             circle.Center = slider.Position;
             circle.RotationDegrees = slider.RotationDegrees;

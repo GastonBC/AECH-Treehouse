@@ -15,10 +15,10 @@ namespace RLD
         {
             if (gameObjects == null) return;
 
-            var material = GizmoLineMaterial.Get;
+            GizmoLineMaterial material = GizmoLineMaterial.Get;
             material.ResetValuesToSensibleDefaults();
 
-            foreach(var gameObj in gameObjects)
+            foreach(GameObject gameObj in gameObjects)
             {
                 Transform transform = gameObj.transform;
                 Vector3 axesOrigin = transform.position;

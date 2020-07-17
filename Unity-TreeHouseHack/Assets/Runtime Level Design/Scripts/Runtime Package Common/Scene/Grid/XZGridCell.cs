@@ -46,7 +46,7 @@ namespace RLD
 
         public List<Vector3> GetCenterAndCorners()
         {
-            var centerAndCorners = new List<Vector3>();
+            List<Vector3> centerAndCorners = new List<Vector3>();
             centerAndCorners.Add(Center);
 
             Vector3 minToMax = _max - _min;

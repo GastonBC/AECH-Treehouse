@@ -10,12 +10,12 @@ namespace RLD
         public void Snapshot(IEnumerable<Gizmo> gizmos)
         {
             _gizmoToState.Clear();
-            foreach (var gizmo in gizmos) _gizmoToState.Add(gizmo, gizmo.IsEnabled);
+            foreach (Gizmo gizmo in gizmos) _gizmoToState.Add(gizmo, gizmo.IsEnabled);
         }
 
         public void Apply()
         {
-            foreach(var pair in _gizmoToState)
+            foreach(KeyValuePair<Gizmo, bool> pair in _gizmoToState)
             {
                 pair.Key.SetEnabled(pair.Value);
             }

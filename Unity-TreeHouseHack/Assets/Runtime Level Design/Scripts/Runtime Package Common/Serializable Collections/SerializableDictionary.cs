@@ -24,7 +24,7 @@ namespace RLD
             _serializedKeys.Clear();
             _serializedValues.Clear();
 
-            foreach (var keyValuePair in _dictionary)
+            foreach (KeyValuePair<SerializedKeyType, SerializedValueType> keyValuePair in _dictionary)
             {
                 _serializedKeys.Add(keyValuePair.Key);
                 _serializedValues.Add(keyValuePair.Value);
@@ -63,7 +63,7 @@ namespace RLD
         public void Copy(SerializableDictionary<SerializedKeyType, SerializedValueType> other)
         {
             Clear();
-            foreach(var pair in other.Dictionary)
+            foreach(KeyValuePair<SerializedKeyType, SerializedValueType> pair in other.Dictionary)
             {
                 _dictionary.Add(pair.Key, pair.Value);
             }

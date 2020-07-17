@@ -7,17 +7,17 @@ namespace RLD
     {
         public static List<Vector3> GetWorldVerts(this Sprite sprite, Transform spriteTransform)
         {
-            var verts = new List<Vector3>(sprite.GetModelVerts());
+            List<Vector3> verts = new List<Vector3>(sprite.GetModelVerts());
             spriteTransform.TransformPoints(verts);
             return verts;
         }
 
         public static List<Vector3> GetModelVerts(this Sprite sprite)
         {
-            var verts = new List<Vector3>(7);
-            var modelVerts = sprite.vertices;
+            List<Vector3> verts = new List<Vector3>(7);
+            Vector2[] modelVerts = sprite.vertices;
 
-            foreach (var pt in modelVerts)
+            foreach (Vector2 pt in modelVerts)
                 verts.Add(pt);
 
             return verts;

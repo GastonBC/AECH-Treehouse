@@ -11,7 +11,7 @@ namespace RLD
         #if UNITY_EDITOR
         public static bool IsSceneObject(this GameObject gameObject)
         {
-            var prefabAssetType = PrefabUtility.GetPrefabAssetType(gameObject);
+            PrefabAssetType prefabAssetType = PrefabUtility.GetPrefabAssetType(gameObject);
             return prefabAssetType == PrefabAssetType.NotAPrefab;
         }
         #endif
@@ -21,8 +21,8 @@ namespace RLD
             if (!affectChildren) gameObject.isStatic = isStatic;
             else
             {
-                var allObjects = gameObject.GetAllChildrenAndSelf();
-                foreach(var gameObj in allObjects)
+                List<GameObject> allObjects = gameObject.GetAllChildrenAndSelf();
+                foreach(GameObject gameObj in allObjects)
                 {
                     gameObj.isStatic = isStatic;
                 }
@@ -75,8 +75,8 @@ namespace RLD
 
         public static bool HierarchyHasMesh(this GameObject root)
         {
-            var allObjects = root.GetAllChildrenAndSelf();
-            foreach (var gameObj in allObjects)
+            List<GameObject> allObjects = root.GetAllChildrenAndSelf();
+            foreach (GameObject gameObj in allObjects)
             {
                 if (gameObj.GetMesh() != null) return true;
             }
@@ -86,8 +86,8 @@ namespace RLD
 
         public static bool HierarchyHasSprite(this GameObject root)
         {
-            var allObjects = root.GetAllChildrenAndSelf();
-            foreach (var gameObj in allObjects)
+            List<GameObject> allObjects = root.GetAllChildrenAndSelf();
+            foreach (GameObject gameObj in allObjects)
             {
                 if (gameObj.GetSprite() != null) return true;
             }
@@ -97,8 +97,8 @@ namespace RLD
 
         public static bool HierarchyHasObjectsOfType(this GameObject root, GameObjectType typeFlags)
         {
-            var allObjects = root.GetAllChildrenAndSelf();
-            foreach (var gameObj in allObjects)
+            List<GameObject> allObjects = root.GetAllChildrenAndSelf();
+            foreach (GameObject gameObj in allObjects)
             {
                 GameObjectType objectType = gameObj.GetGameObjectType();
                 if ((typeFlags & objectType) != 0) return true;
@@ -109,10 +109,10 @@ namespace RLD
 
         public static List<GameObject> GetMeshObjectsInHierarchy(this GameObject root)
         {
-            var allObjects = root.GetAllChildrenAndSelf();
-            var allMeshObjects = new List<GameObject>(allObjects.Count);
+            List<GameObject> allObjects = root.GetAllChildrenAndSelf();
+            List<GameObject> allMeshObjects = new List<GameObject>(allObjects.Count);
 
-            foreach(var gameObj in allObjects)
+            foreach(GameObject gameObj in allObjects)
             {
                 if (gameObj.GetMesh() != null) allMeshObjects.Add(gameObj);
             }
@@ -122,10 +122,10 @@ namespace RLD
 
         public static List<GameObject> GetSpriteObjectsInHierarchy(this GameObject root)
         {
-            var allObjects = root.GetAllChildrenAndSelf();
-            var allSpriteObjects = new List<GameObject>(allObjects.Count);
+            List<GameObject> allObjects = root.GetAllChildrenAndSelf();
+            List<GameObject> allSpriteObjects = new List<GameObject>(allObjects.Count);
 
-            foreach (var gameObj in allObjects)
+            foreach (GameObject gameObj in allObjects)
             {
                 if (gameObj.GetSprite() != null) allSpriteObjects.Add(gameObj);
             }
@@ -153,9 +153,9 @@ namespace RLD
         public static List<GameObject> GetAllChildren(this GameObject gameObject)
         {
             Transform[] childTransforms = gameObject.GetComponentsInChildren<Transform>();
-            var allChildren = new List<GameObject>(childTransforms.Length);
+            List<GameObject> allChildren = new List<GameObject>(childTransforms.Length);
 
-            foreach(var child in childTransforms)
+            foreach(Transform child in childTransforms)
             {
                 if(child.gameObject != gameObject) allChildren.Add(child.gameObject);
             }
@@ -166,7 +166,7 @@ namespace RLD
         public static List<GameObject> GetAllChildrenAndSelf(this GameObject gameObject)
         {
             Transform[] childTransforms = gameObject.GetComponentsInChildren<Transform>();
-            var allChildren = new List<GameObject>(childTransforms.Length);
+            List<GameObject> allChildren = new List<GameObject>(childTransforms.Length);
 
             for (int transformIndex = 0; transformIndex < childTransforms.Length; ++transformIndex)
             {
@@ -221,7 +221,7 @@ namespace RLD
 
             List<GameObject> roots = new List<GameObject>();
             HashSet<GameObject> rootHash = new HashSet<GameObject>();
-            foreach(var gameObject in gameObjects)
+            foreach(GameObject gameObject in gameObjects)
             {
                 GameObject root = gameObject.transform.root.gameObject;
                 if(!rootHash.Contains(root))
@@ -242,15 +242,15 @@ namespace RLD
 
             // Loop through each game object inside the collection and check if it has a parent which
             // resides in the same collection.
-            var parents = new List<GameObject>(10);
-            foreach(var gameObject in gameObjects)
+            List<GameObject> parents = new List<GameObject>(10);
+            foreach(GameObject gameObject in gameObjects)
             {
                 // Store data for easy access
                 bool foundParent = false;
                 Transform objectTransform = gameObject.transform;
 
                 // Now we need to check if the current object has a parent inside the collection
-                foreach(var possibleParent in gameObjects)
+                foreach(GameObject possibleParent in gameObjects)
                 {
                     // Same as current object?
                     if (possibleParent != gameObject)

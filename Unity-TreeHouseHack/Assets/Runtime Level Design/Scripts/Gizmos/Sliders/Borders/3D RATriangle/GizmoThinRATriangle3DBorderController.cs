@@ -20,8 +20,8 @@ namespace RLD
 
         public override void UpdateTransforms(float zoomFactor)
         {
-            var targetTri = _data.TargetTriangle;
-            var borderTri = _data.BorderTriangle;
+            RightAngTriangle3D targetTri = _data.TargetTriangle;
+            RightAngTriangle3D borderTri = _data.BorderTriangle;
 
             borderTri.Rotation = targetTri.Rotation;
             borderTri.RightAngleCorner = targetTri.RightAngleCorner;

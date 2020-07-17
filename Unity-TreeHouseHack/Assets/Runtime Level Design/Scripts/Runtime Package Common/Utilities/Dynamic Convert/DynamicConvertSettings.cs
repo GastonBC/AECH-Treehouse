@@ -28,7 +28,7 @@ namespace RLD
         {
             int newInt; string newString; bool newBool;
 
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
             content.text = "Object types";
             content.tooltip = "The types of objects that can participate in the conversion operation. Applies to both scene objects and prefabs.";
             newInt = (int)((GameObjectType)EditorGUILayout.EnumFlagsField(content, (GameObjectType)_convertableObjectTypes));

@@ -89,13 +89,13 @@ namespace RLD
             List<GizmoTransform> parents = GizmoTransform.FilterParentsOnly(_targetTransforms);
             if(DragChannel == GizmoDragChannel.Offset)
             {
-                foreach (var parentTransform in parents)
+                foreach (GizmoTransform parentTransform in parents)
                     parentTransform.Position3D = parentTransform.Position3D + _relativeDragOffset;
             }
             else
             if(DragChannel == GizmoDragChannel.Rotation)
             {
-                foreach (var parentTransform in parents)
+                foreach (GizmoTransform parentTransform in parents)
                     parentTransform.Rotation3D = _relativeDragRotation * parentTransform.Rotation3D;
             }
         }

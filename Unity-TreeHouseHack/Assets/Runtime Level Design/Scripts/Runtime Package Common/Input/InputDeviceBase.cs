@@ -38,7 +38,7 @@ namespace RLD
                 return false;
             }
 
-            var deltaCapture = new InputDeviceDeltaCapture(deltaCaptureId, deltaOrigin);
+            InputDeviceDeltaCapture deltaCapture = new InputDeviceDeltaCapture(deltaCaptureId, deltaOrigin);
             _deltaCaptures[deltaCaptureId] = deltaCapture;
 
             return true;

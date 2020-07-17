@@ -138,7 +138,7 @@ namespace RLD
             if (polyPoints.Count < (isClosed ? 4 : 3)) return false;
 
             List<Vector2> quadPoints = new List<Vector2>(4);
-            var eps = new PolygonEpsilon();
+            PolygonEpsilon eps = new PolygonEpsilon();
             eps.AreaEps = epsilon.ThickWireEps;
             for (int ptIndex = 0; ptIndex < polyPoints.Count - 1; ++ptIndex)
             {

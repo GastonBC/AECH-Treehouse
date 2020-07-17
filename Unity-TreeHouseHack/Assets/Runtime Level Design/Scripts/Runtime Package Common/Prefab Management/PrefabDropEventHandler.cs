@@ -15,8 +15,8 @@ namespace RLD
             EditorUndoEx.Record(PrefabLibDb);
 
             PrefabLibDb.EditorPrefabPreviewGen.BeginGenSession(PrefabLibDb.PrefabPreviewLookAndFeel);
-            var objectRefs = DragAndDrop.objectReferences;
-            foreach(var objectRef in objectRefs)
+            Object[] objectRefs = DragAndDrop.objectReferences;
+            foreach(Object objectRef in objectRefs)
             {
                 GameObject prefab = objectRef as GameObject;
                 if (prefab == null || prefab.IsSceneObject()) continue;
@@ -25,8 +25,8 @@ namespace RLD
                 PrefabLibDb.ActiveLib.CreatePrefab(prefab, prefabPreview);
             }
 
-            var paths = DragAndDrop.paths;
-            var allFolders = FileSystem.GetFoldersAndChildFolderPaths(paths);
+            string[] paths = DragAndDrop.paths;
+            System.Collections.Generic.List<string> allFolders = FileSystem.GetFoldersAndChildFolderPaths(paths);
 
             RTPrefabLib lastCreatedLib = null;
             for (int folderIndex = 0; folderIndex < allFolders.Count; ++folderIndex)
@@ -36,8 +36,8 @@ namespace RLD
                 RTPrefabLib newPrefabLib = PrefabLibDb.CreateLib(FileSystem.GetLastFolderNameInPath(folderPath));
                 lastCreatedLib = newPrefabLib;
 
-                var prefabsInFolder = AssetDatabaseEx.LoadPrefabsInFolder(folderPath, false, false);
-                foreach(var prefab in prefabsInFolder)
+                System.Collections.Generic.List<GameObject> prefabsInFolder = AssetDatabaseEx.LoadPrefabsInFolder(folderPath, false, false);
+                foreach(GameObject prefab in prefabsInFolder)
                 {
                     Texture2D prefabPreview = PrefabLibDb.EditorPrefabPreviewGen.Generate(prefab);
                     newPrefabLib.CreatePrefab(prefab, prefabPreview);

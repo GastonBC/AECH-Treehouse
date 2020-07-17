@@ -26,7 +26,7 @@ namespace RLD
         protected override void RenderContent(UnityEngine.Object undoRecordObject)
         {
             EditorGUILayout.BeginVertical();
-            var content = new GUIContent();
+            GUIContent content = new GUIContent();
             content.text = "Move speed";
             content.tooltip = "Allows you to specify the speed that is used to move the camera in the scene (defualt keys: WASDQE + RMB). The value is expressed in world units/second.";
             float newFloat = EditorGUILayout.FloatField(content, MoveSpeed);

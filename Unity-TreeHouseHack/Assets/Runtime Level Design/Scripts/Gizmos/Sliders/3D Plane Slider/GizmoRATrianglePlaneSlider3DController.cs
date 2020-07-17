@@ -28,8 +28,8 @@ namespace RLD
 
         public override void UpdateTransforms(float zoomFactor)
         {
-            var raTri = _data.RATriangle;
-            var slider = _data.Slider;
+            RightAngTriangle3D raTri = _data.RATriangle;
+            GizmoPlaneSlider3D slider = _data.Slider;
             Vector2 triSize = slider.GetRealRATriSize(zoomFactor);
 
             raTri.RightAngleCorner = slider.Position;
