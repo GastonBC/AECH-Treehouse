@@ -16,7 +16,7 @@ public class Treehouse : MonoBehaviour
 
     private void Start()
     {
-        foreach (GameObject t in Trees)
+        foreach (var t in Trees)
         {
             TreeAnchor ta = t.gameObject.AddComponent<TreeAnchor>();
             GameObject anchor = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -35,7 +35,7 @@ public class Treehouse : MonoBehaviour
     }
 
     void Update()   {
-        foreach (GameObject t in Trees)    {
+        foreach (var t in Trees)    {
             GameObject anchor = t.GetComponent<TreeAnchor>().Anchor;
             if (anchor != null && !NeedRefresh) { if (anchor.transform.hasChanged) { NeedRefresh = true; } }            //  If we don't need to refresh, check if the anchor has changed.
     }   }
@@ -58,11 +58,6 @@ public class Treehouse : MonoBehaviour
         GameObject t2 = Trees[2];
         GameObject tt;
 
-        /*
-        b1 = Vector3.Distance(t0.GetComponent<TreeAnchor>().CP, t1.GetComponent<TreeAnchor>().CP);
-        b2 = Vector3.Distance(t1.GetComponent<TreeAnchor>().CP, t2.GetComponent<TreeAnchor>().CP);
-        b3 = Vector3.Distance(t2.GetComponent<TreeAnchor>().CP, t0.GetComponent<TreeAnchor>().CP);
-        */
         b1 = Vector3.Distance(t0.GetComponent<TreeAnchor>().CP, t1.GetComponent<TreeAnchor>().CP) + Vector3.Distance(t0.GetComponent<TreeAnchor>().CP, t2.GetComponent<TreeAnchor>().CP);
         b2 = Vector3.Distance(t1.GetComponent<TreeAnchor>().CP, t2.GetComponent<TreeAnchor>().CP) + Vector3.Distance(t1.GetComponent<TreeAnchor>().CP, t0.GetComponent<TreeAnchor>().CP); 
         b3 = Vector3.Distance(t2.GetComponent<TreeAnchor>().CP, t0.GetComponent<TreeAnchor>().CP) + Vector3.Distance(t2.GetComponent<TreeAnchor>().CP, t1.GetComponent<TreeAnchor>().CP); 
@@ -106,7 +101,7 @@ public class Treehouse : MonoBehaviour
         NeedRefresh = false;            //  Reset our flag.
         OrderTrees();                   //  Figure out my trees.
 
-        foreach (GameObject t in Trees)        //  We're assuming all tree anchors need to change.  (Good assumption.)
+        foreach (var t in Trees)        //  We're assuming all tree anchors need to change.  (Good assumption.)
         {
             GameObject anchor = t.GetComponent<TreeAnchor>().Anchor;
 
@@ -115,7 +110,7 @@ public class Treehouse : MonoBehaviour
                 t.transform.position = anchor.transform.position - new Vector3(0, t.GetComponent<TreeAnchor>().elevation, 0);       //  If we've moved the anchor, move the tree.  Account for elevation.
 
                 List<GameObject> otherTrees = new List<GameObject>();                       //  Get a list of other trees.  
-                foreach (GameObject o in Trees) { if (o != t) { otherTrees.Add(o); } }
+                foreach (var o in Trees) { if (o != t) { otherTrees.Add(o); } }
 
                 if (otherTrees.Count == 1)                  //  If there are other trees.
                 {
