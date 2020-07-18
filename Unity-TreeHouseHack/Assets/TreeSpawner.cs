@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DelaunayVoronoi;
 using System;
-using TriangleNet;
+using HabradorDelaunay;
 
 public class TreeSpawner : MonoBehaviour
 {
@@ -11,6 +10,9 @@ public class TreeSpawner : MonoBehaviour
     public int TreeCount;
     public GameObject TreePrefab;
     public GameObject DeckObject;
+    public GameObject DeckNode;
+
+    public double MinAngle;
 
     // Start is called before the first frame update
     void Start()
@@ -29,37 +31,52 @@ public class TreeSpawner : MonoBehaviour
 
     void GenDelaunayTreeDecks()
     {
-        DelaunayTriangulator delaunay = new DelaunayTriangulator();
-
         System.Random rnd = new System.Random();
-        IEnumerable<Point> points = delaunay.GeneratePoints(TreeCount, MaxCoordinate, MaxCoordinate);
+        Quaternion rot = new Quaternion(0, 0, 0, 0);
 
+        List<Vector3> points = new List<Vector3>();
 
-        IEnumerable<Triangle> triangulation = delaunay.BowyerWatson(points);
+        for (int n = 1; n <= TreeCount; n++)
+        {
+            Vector3 RandomPoint = new Vector3(Convert.ToSingle(rnd.NextDouble() * MaxCoordinate),
+                                              0,
+                                              Convert.ToSingle(rnd.NextDouble() * MaxCoordinate));
+
+            GameObject newTree = Instantiate(TreePrefab, RandomPoint, rot);
+            PineTree PineTreeComp1 = newTree.AddComponent<PineTree>();
+
+            points.Add(RandomPoint);
+        }
+
+        List<Triangle> triangulation = Delaunay.TriangulateByFlippingEdges(points);
+
 
         foreach (Triangle tri in triangulation) // Triangulation not working
         {
-            Point[] three_points = tri.Vertices;
+            Vector3 P1 = tri.v1.position;
+            Vector3 P2 = tri.v2.position;
+            Vector3 P3 = tri.v3.position;
 
-            GameObject TreeDeck = Instantiate(DeckObject);
-            Treehouse TreehouseComp = TreeDeck.AddComponent<Treehouse>();
-            TreeHouseHack.Deck DeckComp = TreeDeck.AddComponent<TreeHouseHack.Deck>();
+            List<double> TriAngles = MathFilter.AngleDegrees(tri);
 
-            foreach (Point pt in tri.Vertices)
+            if (TriAngles.TrueForAll(angle => angle >= MinAngle))
             {
 
-                Vector3 coords = new Vector3(Convert.ToSingle(pt.X),
-                                         2f,  // this is 3rd dimension
-                                         Convert.ToSingle(pt.Y));
-                Quaternion rot = new Quaternion(0, 0, 0, 0);
+                GameObject TreeDeck = Instantiate(DeckObject);
+                Treehouse TreehouseComp = TreeDeck.AddComponent<Treehouse>();
+                TreeHouseHack.Deck DeckComp = TreeDeck.AddComponent<TreeHouseHack.Deck>();
 
-                GameObject newTree = Instantiate(TreePrefab, coords, rot);
-                PineTree PineTreeComp = newTree.AddComponent<PineTree>();
+                GameObject newTreeNode1 = Instantiate(DeckNode, P1, rot);
+                GameObject newTreeNode2 = Instantiate(DeckNode, P2, rot);
+                GameObject newTreeNode3 = Instantiate(DeckNode, P3, rot);
 
-                TreehouseComp.Trees.Add(newTree);
+                List<GameObject> TreesTri = new List<GameObject>();
+                TreesTri.Add(newTreeNode1);
+                TreesTri.Add(newTreeNode2);
+                TreesTri.Add(newTreeNode3);
+
+                TreehouseComp.Trees = TreesTri;
             }
-
         }
-
     }
 }

@@ -1,8 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Spatial;
+using System.Linq;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace HabradorDelaunay
 {
@@ -12,7 +11,7 @@ namespace HabradorDelaunay
 		public static List<HalfEdge> TransformFromTriangleToHalfEdge(List<Triangle> triangles)
 		{
 			//Make sure the triangles have the same orientation
-			MeshOperations.OrientTrianglesClockwise(triangles);
+			Delaunay.OrientTrianglesClockwise(triangles);
 
 			//First create a list with all possible half-edges
 			List<HalfEdge> halfEdges = new List<HalfEdge>(triangles.Count * 3);
@@ -94,7 +93,7 @@ namespace HabradorDelaunay
 				Vector2 v2 = new Vector2(tri.v2.position.x, tri.v2.position.z);
 				Vector2 v3 = new Vector2(tri.v3.position.x, tri.v3.position.z);
 
-				if (!Geometry.IsTriangleOrientedClockwise(v1, v2, v3))
+				if (!Delaunay.IsTriangleOrientedClockwise(v1, v2, v3))
 				{
 					tri.ChangeOrientation();
 				}
@@ -143,10 +142,10 @@ namespace HabradorDelaunay
 		{
 			bool isConvex = false;
 
-			bool abc = Geometry.IsTriangleOrientedClockwise(a, b, c);
-			bool abd = Geometry.IsTriangleOrientedClockwise(a, b, d);
-			bool bcd = Geometry.IsTriangleOrientedClockwise(b, c, d);
-			bool cad = Geometry.IsTriangleOrientedClockwise(c, a, d);
+			bool abc = Delaunay.IsTriangleOrientedClockwise(a, b, c);
+			bool abd = Delaunay.IsTriangleOrientedClockwise(a, b, d);
+			bool bcd = Delaunay.IsTriangleOrientedClockwise(b, c, d);
+			bool cad = Delaunay.IsTriangleOrientedClockwise(c, a, d);
 
 			if (abc && abd && bcd & !cad)
 			{
@@ -191,11 +190,11 @@ namespace HabradorDelaunay
 			}
 
 			//Triangulate the convex hull of the sites
-			List<Triangle> triangles = TriangulatePoints.IncrementalTriangulation(vertices);
+			List<Triangle> triangles = IncrementalTriangulationAlgorithm.TriangulatePoints(vertices);
 			//List triangles = TriangulatePoints.TriangleSplitting(vertices);
 
 			//Step 2. Change the structure from triangle to half-edge to make it faster to flip edges
-			List<HalfEdge> halfEdges = TransformRepresentation.TransformFromTriangleToHalfEdge(triangles);
+			List<HalfEdge> halfEdges = Delaunay.TransformFromTriangleToHalfEdge(triangles);
 
 			//Step 3. Flip edges until we have a delaunay triangulation
 			int safety = 0;
@@ -238,15 +237,15 @@ namespace HabradorDelaunay
 					Vector2 dPos = d.GetPos2D_XZ();
 
 					//Use the circle test to test if we need to flip this edge
-					if (Geometry.IsPointInsideOutsideOrOnCircle(aPos, bPos, cPos, dPos) < 0f)
+					if (Delaunay.IsPointInsideOutsideOrOnCircle(aPos, bPos, cPos, dPos) < 0f)
 					{
 						//Are these the two triangles that share this edge forming a convex quadrilateral?
 						//Otherwise the edge cant be flipped
-						if (Geometry.IsQuadrilateralConvex(aPos, bPos, cPos, dPos))
+						if (Delaunay.IsQuadrilateralConvex(aPos, bPos, cPos, dPos))
 						{
 							//If the new triangle after a flip is not better, then dont flip
 							//This will also stop the algoritm from ending up in an endless loop
-							if (Geometry.IsPointInsideOutsideOrOnCircle(bPos, cPos, dPos, aPos) < 0f)
+							if (Delaunay.IsPointInsideOutsideOrOnCircle(bPos, cPos, dPos, aPos) < 0f)
 							{
 								continue;
 							}
