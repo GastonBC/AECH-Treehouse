@@ -196,7 +196,7 @@ crashlytics-build.properties
 Unity-TreeHouseHack/[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
 
 # Temporary auto-generated Android Assets
-Unity-TreeHouseHack/[Aa]ssets/[Ss]treamingAssets/aa.meta
+!Unity-TreeHouseHack/[Aa]ssets/[Ss]treamingAssets/aa.meta
 Unity-TreeHouseHack/[Aa]ssets/[Ss]treamingAssets/aa/*
 
 # Windows thumbnail cache files
