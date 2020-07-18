@@ -242,15 +242,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8da62d2ae1d5bb54b95932c93bbcdd07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxCoordinate: 2000
-  TreeCount: 500
+  MaxCoordinate: 100
+  TreeCount: 50
+  RelativeArea: 3
   TreePrefab: {fileID: 9078023891827341894, guid: fb12cd21fb1e19f46bd974feb6467dab,
     type: 3}
   DeckObject: {fileID: 2269118682193857279, guid: 4847d6e79dfc3f9418293e000d398b09,
     type: 3}
   DeckNode: {fileID: 1105130240863779996, guid: c3842d5eb46d5ef4e82ad21650f4fcad,
     type: 3}
-  MinAngle: 30
+  MinAngle: 25
 --- !u!4 &1022838599
 Transform:
   m_ObjectHideFlags: 0
@@ -341,8 +342,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1125646967}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.77, y: 7.91, z: -15.13}
+  m_LocalRotation: {x: 0.42122057, y: 0.027201971, z: -0.012640431, w: 0.9064621}
+  m_LocalPosition: {x: 47.66802, y: 62.930347, z: -18.54684}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
