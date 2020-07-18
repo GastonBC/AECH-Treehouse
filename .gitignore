@@ -144,7 +144,7 @@ Unity-TreeHouseHack/[Uu]ser[Ss]ettings/
 Unity-TreeHouseHack/[Mm]emoryCaptures/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
-Unity-TreeHouseHack/[Aa]ssets/**/*.meta
+!Unity-TreeHouseHack/[Aa]ssets/**/*.meta
 
 # Uncomment this line if you wish to ignore the asset store tools plugin
 # /[Aa]ssets/AssetStoreTools*
@@ -196,7 +196,7 @@ crashlytics-build.properties
 Unity-TreeHouseHack/[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
 
 # Temporary auto-generated Android Assets
-!Unity-TreeHouseHack/[Aa]ssets/[Ss]treamingAssets/aa.meta
+Unity-TreeHouseHack/[Aa]ssets/[Ss]treamingAssets/aa.meta
 Unity-TreeHouseHack/[Aa]ssets/[Ss]treamingAssets/aa/*
 
 # Windows thumbnail cache files
