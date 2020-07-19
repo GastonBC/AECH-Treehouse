@@ -333,9 +333,7 @@ MonoBehaviour:
     type: 3}
   DeckObject: {fileID: 2269118682193857279, guid: 4847d6e79dfc3f9418293e000d398b09,
     type: 3}
-  DeckNode: {fileID: 1105130240863779996, guid: c3842d5eb46d5ef4e82ad21650f4fcad,
-    type: 3}
-  MinAngle: 40
+  MinAngle: 35
 --- !u!4 &882182206
 Transform:
   m_ObjectHideFlags: 0

@@ -13,15 +13,15 @@ namespace TreehouseHack
         public AreaRange RelativeArea;
         public GameObject TreePrefab;
         public GameObject DeckObject;
-        public GameObject DeckNode;
-
         public double MinAngle;
 
+        private GameObject DeckNode;
         private double[] check_range;
 
         // Start is called before the first frame update
         void Start()
         {
+            DeckNode = new GameObject("Deck Node");
             GenDelaunayTreeDecks();
         }
 
@@ -36,7 +36,7 @@ namespace TreehouseHack
             for (int n = 1; n <= TreeCount; n++)
             {
                 Vector3 RandomPoint = new Vector3(Convert.ToSingle(rnd.NextDouble() * MaxCoordinate),
-                                                  11,
+                                                  0,
                                                   Convert.ToSingle(rnd.NextDouble() * MaxCoordinate));
 
                 GameObject newTree = Instantiate(TreePrefab, RandomPoint, rot);
