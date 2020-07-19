@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -21,7 +21,7 @@ namespace RLD
 
         public static void SortByHitDistance(List<GameObjectRayHit> hits)
         {
-            hits.Sort(delegate(GameObjectRayHit h0, GameObjectRayHit h1)
+            hits.Sort(delegate (GameObjectRayHit h0, GameObjectRayHit h1)
             {
                 return h0.HitEnter.CompareTo(h1.HitEnter);
             });
@@ -30,7 +30,7 @@ namespace RLD
         public static List<GameObjectRayHit> Create(Ray hitRay, IEnumerable<RaycastHit> hits3D)
         {
             List<GameObjectRayHit> hits = new List<GameObjectRayHit>(10);
-            foreach(RaycastHit hit3D in hits3D)
+            foreach (RaycastHit hit3D in hits3D)
             {
                 hits.Add(new GameObjectRayHit(hitRay, hit3D));
             }

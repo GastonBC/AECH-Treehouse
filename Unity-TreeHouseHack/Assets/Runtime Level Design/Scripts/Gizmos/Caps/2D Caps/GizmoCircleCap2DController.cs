@@ -5,8 +5,8 @@ namespace RLD
     public class GizmoCircleCap2DController : GizmoCap2DController
     {
         public GizmoCircleCap2DController(GizmoCap2DControllerData controllerData)
-            :base(controllerData)
-        {}
+            : base(controllerData)
+        { }
 
         public override void UpdateHandles()
         {

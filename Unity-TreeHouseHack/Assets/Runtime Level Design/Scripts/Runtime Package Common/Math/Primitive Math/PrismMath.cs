@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -16,7 +16,7 @@ namespace RLD
 
     public static class PrismMath
     {
-        public static List<Vector3> CalcTriangPrismCornerPoints(Vector3 baseCenter, float baseWidth, float baseDepth, 
+        public static List<Vector3> CalcTriangPrismCornerPoints(Vector3 baseCenter, float baseWidth, float baseDepth,
             float topWidth, float topDepth, float height, Quaternion prismRotation)
         {
             float halfBaseWidth = baseWidth * 0.5f;
@@ -107,7 +107,7 @@ namespace RLD
 
             if (tValues.Count == 0) return false;
 
-            tValues.Sort(delegate(float t0, float t1) { return t0.CompareTo(t1); });
+            tValues.Sort(delegate (float t0, float t1) { return t0.CompareTo(t1); });
             t = tValues[0];
 
             return true;
@@ -135,7 +135,7 @@ namespace RLD
             // Check bottom plane
             plane = new Plane(-Vector3.up, baseForwardPt);
             if (plane.GetDistanceToPoint(point) > epsilon.PtContainEps) return false;
-  
+
             // Check left plane
             plane = new Plane(baseLeftPt, baseForwardPt, topForwardPt);
             if (plane.GetDistanceToPoint(point) > epsilon.PtContainEps) return false;

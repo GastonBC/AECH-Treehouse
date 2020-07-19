@@ -58,7 +58,7 @@ namespace RLD
             return 0.0f;
         }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         protected override void RenderContent(UnityEngine.Object undoRecordObject)
         {
             float newFloat; bool newBool;
@@ -87,7 +87,7 @@ namespace RLD
             }
 
             // Zoom settings
-            if(ZoomMode == CameraZoomMode.Standard)
+            if (ZoomMode == CameraZoomMode.Standard)
             {
                 // Perspective sensitivity
                 content.text = "Sensitivity (perspective)";
@@ -105,14 +105,14 @@ namespace RLD
                 content.tooltip = "(ORTHO CAMERAS ONLY) Allows you to control how sensitive camera zooming is to the movement of the input device when " +
                                   "the zoom mode is set to \'" + CameraZoomMode.Standard + "\'.";
                 newFloat = EditorGUILayout.FloatField(content, OrthoStandardZoomSensitivity);
-                if(newFloat != OrthoStandardZoomSensitivity)
+                if (newFloat != OrthoStandardZoomSensitivity)
                 {
                     EditorUndoEx.Record(undoRecordObject);
                     OrthoStandardZoomSensitivity = newFloat;
                 }
             }
             else
-            if(ZoomMode == CameraZoomMode.Smooth)
+            if (ZoomMode == CameraZoomMode.Smooth)
             {
                 // Perspective sensitivity
                 content.text = "Sensitivity (perspective)";
@@ -163,7 +163,7 @@ namespace RLD
             content.text = "Invert axis";
             content.tooltip = "If checked, it inverts the zoom axis.";
             newBool = EditorGUILayout.ToggleLeft(content, InvertZoomAxis);
-            if(newBool != InvertZoomAxis)
+            if (newBool != InvertZoomAxis)
             {
                 EditorUndoEx.Record(undoRecordObject);
                 InvertZoomAxis = newBool;
@@ -171,6 +171,6 @@ namespace RLD
 
             EditorGUILayout.EndVertical();
         }
-        #endif
+#endif
     }
 }

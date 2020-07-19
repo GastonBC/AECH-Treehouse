@@ -20,7 +20,7 @@ namespace RLD
         public UniversalGizmoSettingsType InheritType { get { return _inheritType; } set { _inheritType = value; } }
         public UniversalGizmoSettingsCategory DisplayCategory { get { return _displayCategory; } set { _displayCategory = value; } }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         protected override void RenderContent(UnityEngine.Object undoRecordObject)
         {
             RTObjectSelectionGizmos gizmos = RTObjectSelectionGizmos.Get;
@@ -118,12 +118,12 @@ namespace RLD
             gizmos.UniversalGizmoSettings3D.CanBeDisplayed = true;
             gizmos.UniversalGizmoLookAndFeel3D.CanBeDisplayed = true;
 
-            if(DisplayCategory != UniversalGizmoSettingsCategory.Move)
+            if (DisplayCategory != UniversalGizmoSettingsCategory.Move)
             {
                 gizmos.UniversalGizmoSettings2D.CanBeDisplayed = false;
                 gizmos.UniversalGizmoLookAndFeel2D.CanBeDisplayed = false;
             }
         }
-        #endif
+#endif
     }
 }

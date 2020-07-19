@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -168,7 +168,7 @@ namespace RLD
             return false;
         }
 
-        public static bool Contains3DPoint(Vector3 point, bool checkOnPlane, Vector3 quadCenter, float quadWidth, float quadHeight, Vector3 quadRight, 
+        public static bool Contains3DPoint(Vector3 point, bool checkOnPlane, Vector3 quadCenter, float quadWidth, float quadHeight, Vector3 quadRight,
             Vector3 quadUp, QuadEpsilon epsilon = new QuadEpsilon())
         {
             Plane quadPlane = new Plane(Vector3.Cross(quadRight, quadUp).normalized, quadCenter);
@@ -187,7 +187,7 @@ namespace RLD
             return true;
         }
 
-        public static bool Contains2DPoint(Vector2 point, Vector2 quadCenter, float quadWidth, float quadHeight, 
+        public static bool Contains2DPoint(Vector2 point, Vector2 quadCenter, float quadWidth, float quadHeight,
             float degreeRotation, QuadEpsilon epsilon = new QuadEpsilon())
         {
             Vector2 right, up;
@@ -226,7 +226,7 @@ namespace RLD
             segmentEps.PtOnSegmentEps = epsilon.WireEps;
 
             List<Vector2> corners = Calc2DQuadCornerPoints(quadCenter, new Vector2(quadWidth, quadHeight), quadRight, quadUp);
-            for(int ptIndex = 0; ptIndex < corners.Count; ++ptIndex)
+            for (int ptIndex = 0; ptIndex < corners.Count; ++ptIndex)
             {
                 Vector2 startPt = corners[ptIndex];
                 Vector2 endPt = corners[(ptIndex + 1) % corners.Count];

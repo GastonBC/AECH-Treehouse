@@ -203,10 +203,10 @@ namespace RLD
             else return _sglSlidersLookAndFeel[3 + axisIndex];
         }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         protected override void RenderContent(UnityEngine.Object undoRecordObject)
         {
-            float newFloat; bool newBool;  Color newColor;
+            float newFloat; bool newBool; Color newColor;
             GizmoShadeMode newShadeMode;
             GizmoFillMode3D newFillMode3D;
             GizmoCap3DType newCap3DType;
@@ -462,6 +462,6 @@ namespace RLD
             }
             EditorGUILayout.EndHorizontal();
         }
-        #endif
+#endif
     }
 }

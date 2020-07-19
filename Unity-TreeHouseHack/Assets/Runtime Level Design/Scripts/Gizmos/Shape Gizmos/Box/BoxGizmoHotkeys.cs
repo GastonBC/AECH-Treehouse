@@ -1,7 +1,6 @@
-﻿using UnityEngine;
-using System;
+﻿using System;
+using UnityEngine;
 #if UNITY_EDITOR
-using UnityEditor;
 #endif
 
 namespace RLD
@@ -26,12 +25,12 @@ namespace RLD
         public Hotkeys EnableSnapping { get { return _enableSnapping; } }
         public Hotkeys EnableCenterPivot { get { return _enableCenterPivot; } }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         protected override void RenderContent(UnityEngine.Object undoRecordObject)
         {
             EnableSnapping.RenderEditorGUI(undoRecordObject);
             EnableCenterPivot.RenderEditorGUI(undoRecordObject);
         }
-        #endif
+#endif
     }
 }

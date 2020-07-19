@@ -12,7 +12,8 @@ namespace RLD
     {
         public event RLDAppInitializedHandler Initialized;
 
-        [SerializeField] [HideInInspector]
+        [SerializeField]
+        [HideInInspector]
         private DynamicConvertSettings _dynamicConvertSettings = new DynamicConvertSettings();
 
         public DynamicConvertSettings DynamicConvertSettings { get { return _dynamicConvertSettings; } }
@@ -47,7 +48,7 @@ namespace RLD
 
         private void OnCanDoGizmoHoverUpdate(YesNoAnswer answer)
         {
-            if (RTObjectSelection.Get != null && 
+            if (RTObjectSelection.Get != null &&
                 RTObjectSelection.Get.IsMultiSelectShapeVisible) answer.No();
             else answer.Yes();
         }
@@ -137,7 +138,7 @@ namespace RLD
             }
         }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         [MenuItem("Tools/Runtime Level Design/Initialize")]
         public static void Initialize()
         {
@@ -191,7 +192,7 @@ namespace RLD
             foreach (Type moduleType in allModuleTypes)
             {
                 UnityEngine.Object[] allModulesInScene = MonoBehaviour.FindObjectsOfType(moduleType);
-                foreach(UnityEngine.Object module in allModulesInScene)
+                foreach (UnityEngine.Object module in allModulesInScene)
                 {
                     MonoBehaviour moduleMono = module as MonoBehaviour;
                     if (moduleMono != null) DestroyImmediate(moduleMono.gameObject);
@@ -203,12 +204,12 @@ namespace RLD
         {
             return new Type[]
             {
-                typeof(RLDApp), typeof(RTFocusCamera), typeof(RTCameraBackground), 
-                typeof(RTObjectSelection), typeof(RTObjectSelection), typeof(RTScene), typeof(RTSceneGrid), 
+                typeof(RLDApp), typeof(RTFocusCamera), typeof(RTCameraBackground),
+                typeof(RTObjectSelection), typeof(RTObjectSelection), typeof(RTScene), typeof(RTSceneGrid),
                 typeof(RTInputDevice), typeof(RTUndoRedo), typeof(RTGizmosEngine), typeof(RTObjectGroupDb),
                 typeof(RTPrefabLibDb),
             };
         }
-        #endif
+#endif
     }
 }

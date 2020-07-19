@@ -13,7 +13,7 @@ namespace RLD
         private bool _canProcessInput = true;
         public bool CanProcessInput { get { return _canProcessInput; } set { _canProcessInput = value; } }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         protected override void RenderContent(UnityEngine.Object undoRecordObject)
         {
             bool newBool;
@@ -30,6 +30,6 @@ namespace RLD
                 CanProcessInput = newBool;
             }
         }
-        #endif
+#endif
     }
 }

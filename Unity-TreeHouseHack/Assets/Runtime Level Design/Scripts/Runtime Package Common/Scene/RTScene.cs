@@ -1,8 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
-using System;
-using System.Collections.Generic;
 
 namespace RLD
 {
@@ -66,13 +65,13 @@ namespace RLD
             boundsQConfig.ObjectTypes = GameObjectType.Mesh | GameObjectType.Sprite;
 
             AABB sceneAABB = new AABB();
-            foreach(GameObject root in roots)
+            foreach (GameObject root in roots)
             {
                 List<GameObject> allChildrenAndSelf = root.GetAllChildrenAndSelf();
-                foreach(GameObject sceneObject in allChildrenAndSelf)
+                foreach (GameObject sceneObject in allChildrenAndSelf)
                 {
                     AABB aabb = ObjectBounds.CalcWorldAABB(sceneObject, boundsQConfig);
-                    if(aabb.IsValid)
+                    if (aabb.IsValid)
                     {
                         if (sceneAABB.IsValid) sceneAABB.Encapsulate(aabb);
                         else sceneAABB = aabb;
@@ -130,7 +129,7 @@ namespace RLD
 
         public List<GameObject> OverlapBox(OBB obb)
         {
-            if(Settings.PhysicsMode == ScenePhysicsMode.UnityColliders)
+            if (Settings.PhysicsMode == ScenePhysicsMode.UnityColliders)
             {
                 // Retrieve the overlapped 3D objects and store them inside the output list
                 Collider[] overlapped3DColliders = Physics.OverlapBox(obb.Center, obb.Extents, obb.Rotation);
@@ -150,7 +149,7 @@ namespace RLD
                 // overlapped 2D colliders.
                 Collider2D[] overlapped2DColliders = Physics2D.OverlapAreaAll(projectedPtsAABB.Min, projectedPtsAABB.Max);
                 foreach (Collider2D collider in overlapped2DColliders) overlappedObjects.Add(collider.gameObject);
-               
+
                 return overlappedObjects;
             }
             else return _sceneTree.OverlapBox(obb);
@@ -192,13 +191,13 @@ namespace RLD
         {
             List<GameObjectRayHit> allHits = RaycastAllObjects(ray, raycastPresicion);
             GameObjectRayHit.SortByHitDistance(allHits);
-  
+
             return allHits;
         }
 
         public List<GameObjectRayHit> RaycastAllObjectsSorted(Ray ray, SceneRaycastPrecision rtRaycastPrecision, SceneRaycastFilter raycastFilter)
         {
-            if (raycastFilter != null && 
+            if (raycastFilter != null &&
                 raycastFilter.AllowedObjectTypes.Count == 0) return new List<GameObjectRayHit>();
 
             List<GameObjectRayHit> sortedHits = RaycastAllObjectsSorted(ray, rtRaycastPrecision);
@@ -213,10 +212,10 @@ namespace RLD
             {
                 Collider raycastCollider = null;
                 MeshCollider meshCollider = meshObject.GetComponent<MeshCollider>();
-                if(meshCollider != null) raycastCollider = meshCollider;
-                if(raycastCollider == null) raycastCollider = meshObject.GetComponent<Collider>();
+                if (meshCollider != null) raycastCollider = meshCollider;
+                if (raycastCollider == null) raycastCollider = meshObject.GetComponent<Collider>();
 
-                if(raycastCollider != null)
+                if (raycastCollider != null)
                 {
                     RaycastHit rayHit;
                     if (raycastCollider.Raycast(ray, out rayHit, float.MaxValue)) return new GameObjectRayHit(ray, rayHit);
@@ -273,7 +272,7 @@ namespace RLD
             if (!RTSceneGrid.Get.Settings.IsVisible) return null;
 
             float t;
-            if(RTSceneGrid.Get.Raycast(ray, out t))
+            if (RTSceneGrid.Get.Raycast(ray, out t))
             {
                 XZGridCell hitCell = RTSceneGrid.Get.CellFromWorldPoint(ray.GetPoint(t));
                 return new XZGridRayHit(ray, hitCell, t);

@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -54,7 +54,7 @@ namespace RLD
                 t = rayEnter;
                 return true;
             }
-         
+
             if (epsilon.ExtrudeEps != 0.0f)
             {
                 float dot = Vector3Ex.AbsDot(ray.direction, circleNormal);
@@ -80,14 +80,14 @@ namespace RLD
                 Vector3 intersectPt = ray.GetPoint(rayEnter);
                 float distFromOrigin = (circleCenter - intersectPt).magnitude;
 
-                if(distFromOrigin >= circleRadius - epsilon.WireEps &&
+                if (distFromOrigin >= circleRadius - epsilon.WireEps &&
                    distFromOrigin <= circleRadius + epsilon.WireEps)
                 {
                     t = rayEnter;
                     return true;
                 }
             }
-    
+
             if (epsilon.ExtrudeEps != 0.0f)
             {
                 float dot = Vector3Ex.AbsDot(ray.direction, circleNormal);
@@ -123,7 +123,7 @@ namespace RLD
         {
             float distFromOrigin = (point - circleCenter).magnitude;
             return (distFromOrigin >= circleRadius - epsilon.WireEps &&
-                    distFromOrigin <= circleRadius + epsilon.WireEps) ;
+                    distFromOrigin <= circleRadius + epsilon.WireEps);
         }
     }
 }

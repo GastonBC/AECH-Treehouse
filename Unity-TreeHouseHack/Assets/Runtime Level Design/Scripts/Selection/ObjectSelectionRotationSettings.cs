@@ -17,7 +17,7 @@ namespace RLD
         public ObjectRotationPivot RotationPivot { get { return _rotationPivot; } set { _rotationPivot = value; } }
         public ObjectKeyRotationSettings KeyRotationSettings { get { return _keyRotationSettings; } }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         protected override void RenderContent(UnityEngine.Object undoRecordObject)
         {
             ObjectRotationPivot newRotationPivot;
@@ -34,6 +34,6 @@ namespace RLD
 
             KeyRotationSettings.RenderEditorGUI(undoRecordObject);
         }
-        #endif
+#endif
     }
 }

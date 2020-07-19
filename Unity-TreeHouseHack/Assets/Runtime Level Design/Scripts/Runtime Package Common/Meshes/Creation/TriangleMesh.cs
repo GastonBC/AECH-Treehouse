@@ -7,13 +7,13 @@ namespace RLD
         public static Mesh CreateEqXY(Vector3 centroid, float sideLength, Color color)
         {
             Vector3[] positions = TriangleMath.CalcEqTriangle3DPoints(centroid, sideLength, Quaternion.identity).ToArray();
-            Vector3[] normals = new Vector3[] { -Vector3.forward, -Vector3.forward, -Vector3.forward};
+            Vector3[] normals = new Vector3[] { -Vector3.forward, -Vector3.forward, -Vector3.forward };
 
             Mesh mesh = new Mesh();
             mesh.vertices = positions;
             mesh.colors = new Color[] { color, color, color };
             mesh.normals = normals;
-            mesh.SetIndices(new int[] {0, 1, 2}, MeshTopology.Triangles, 0);
+            mesh.SetIndices(new int[] { 0, 1, 2 }, MeshTopology.Triangles, 0);
             mesh.UploadMeshData(false);
 
             return mesh;

@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 #if UNITY_EDITOR
-using UnityEditor;
 #endif
 using System;
 
@@ -43,7 +42,7 @@ namespace RLD
         public Hotkeys RotateAroundZ { get { return _rotateAroundZ; } }
         public Hotkeys SetRotationToIdentity { get { return _setRotationToIdentity; } }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         protected override void RenderContent(UnityEngine.Object undoRecordObject)
         {
             RotateAroundX.RenderEditorGUI(undoRecordObject);
@@ -51,6 +50,6 @@ namespace RLD
             RotateAroundZ.RenderEditorGUI(undoRecordObject);
             SetRotationToIdentity.RenderEditorGUI(undoRecordObject);
         }
-        #endif
+#endif
     }
 }

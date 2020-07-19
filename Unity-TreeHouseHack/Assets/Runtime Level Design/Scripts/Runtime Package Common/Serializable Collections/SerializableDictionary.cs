@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using System;
-using System.Linq;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 namespace RLD
 {
@@ -16,7 +16,7 @@ namespace RLD
         private List<SerializedValueType> _serializedValues = new List<SerializedValueType>();
 
         public Dictionary<SerializedKeyType, SerializedValueType> Dictionary { get { return _dictionary; } }
-        public SerializedValueType this[SerializedKeyType index] { get { return _dictionary[index]; } set { _dictionary[index] = value; } } 
+        public SerializedValueType this[SerializedKeyType index] { get { return _dictionary[index]; } set { _dictionary[index] = value; } }
 
         public void OnBeforeSerialize()
         {
@@ -63,7 +63,7 @@ namespace RLD
         public void Copy(SerializableDictionary<SerializedKeyType, SerializedValueType> other)
         {
             Clear();
-            foreach(KeyValuePair<SerializedKeyType, SerializedValueType> pair in other.Dictionary)
+            foreach (KeyValuePair<SerializedKeyType, SerializedValueType> pair in other.Dictionary)
             {
                 _dictionary.Add(pair.Key, pair.Value);
             }

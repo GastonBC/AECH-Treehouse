@@ -2,7 +2,7 @@
 
 namespace RLD
 {
-    public class SphereTreeNodeRayHit<T> 
+    public class SphereTreeNodeRayHit<T>
     {
         private SphereTreeNode<T> _hitNode;
         private Vector3 _hitPoint;

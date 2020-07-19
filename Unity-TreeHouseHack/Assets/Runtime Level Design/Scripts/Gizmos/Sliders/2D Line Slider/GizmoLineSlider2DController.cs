@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace RLD
+﻿namespace RLD
 {
     public abstract class GizmoLineSlider2DController : IGizmoLineSlider2DController
     {
@@ -13,6 +11,6 @@ namespace RLD
 
         public abstract void UpdateHandles();
         public abstract void UpdateTransforms();
-        public abstract void UpdateEpsilons(); 
+        public abstract void UpdateEpsilons();
     }
 }

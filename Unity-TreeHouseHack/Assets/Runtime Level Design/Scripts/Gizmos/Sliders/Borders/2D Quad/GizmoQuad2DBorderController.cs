@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace RLD
+﻿namespace RLD
 {
     public abstract class GizmoQuad2DBorderController : IGizmoQuad2DBorderController
     {

@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace RLD
+﻿namespace RLD
 {
     public class AxisDescriptor
     {
@@ -26,7 +24,7 @@ namespace RLD
 
         public BoxFace GetAssociatedBoxFace()
         {
-            if(_sign == AxisSign.Negative)
+            if (_sign == AxisSign.Negative)
             {
                 if (_index == 0) return BoxFace.Left;
                 if (_index == 1) return BoxFace.Bottom;

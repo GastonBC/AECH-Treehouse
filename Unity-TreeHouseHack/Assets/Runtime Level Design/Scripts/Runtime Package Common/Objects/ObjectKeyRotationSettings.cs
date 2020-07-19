@@ -20,7 +20,7 @@ namespace RLD
         public float YRotationStep { get { return _yRotationStep; } set { _yRotationStep = Mathf.Max(1e-4f, value); } }
         public float ZRotationStep { get { return _zRotationStep; } set { _zRotationStep = Mathf.Max(1e-4f, value); } }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         protected override void RenderContent(UnityEngine.Object undoRecordObject)
         {
             float newFloat;
@@ -53,6 +53,6 @@ namespace RLD
                 ZRotationStep = newFloat;
             }
         }
-        #endif
+#endif
     }
 }

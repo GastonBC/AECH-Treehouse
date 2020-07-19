@@ -1,6 +1,6 @@
-﻿using UnityEngine;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -60,7 +60,7 @@ namespace RLD
         {
             RTPrefabLibDb.Get.EditorPrefabPreviewGen.BeginGenSession(RTPrefabLibDb.Get.PrefabPreviewLookAndFeel);
             List<RTPrefab> createdPrefabs = new List<RTPrefab>();
-            foreach(GameObject sceneObject in sceneObjects)
+            foreach (GameObject sceneObject in sceneObjects)
             {
                 GameObject unityPrefab = GameObject.Instantiate(sceneObject);
                 Texture2D prefabPreview = RTPrefabLibDb.Get.EditorPrefabPreviewGen.Generate(unityPrefab);

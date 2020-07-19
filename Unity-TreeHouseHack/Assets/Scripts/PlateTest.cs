@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using TreehouseHack;
 using UnityEngine;
-using TreeHouseHack;
 
 public class PlateTest : MonoBehaviour
 {

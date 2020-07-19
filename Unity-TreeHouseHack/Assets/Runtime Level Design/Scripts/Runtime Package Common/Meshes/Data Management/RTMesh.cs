@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -91,7 +91,7 @@ namespace RLD
             int vertIndex1 = _vertIndices[baseIndex + 1];
             int vertIndex2 = _vertIndices[baseIndex + 2];
 
-            return new MeshTriangle(new Vector3[]{_vertices[vertIndex0], _vertices[vertIndex1], _vertices[vertIndex2]}, triangleIndex, vertIndex0, vertIndex1, vertIndex2);
+            return new MeshTriangle(new Vector3[] { _vertices[vertIndex0], _vertices[vertIndex1], _vertices[vertIndex2] }, triangleIndex, vertIndex0, vertIndex1, vertIndex2);
         }
 
         public MeshRayHit Raycast(Ray ray, Matrix4x4 meshTransform)

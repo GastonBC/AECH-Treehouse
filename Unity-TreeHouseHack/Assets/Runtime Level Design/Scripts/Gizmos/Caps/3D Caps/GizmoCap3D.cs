@@ -30,9 +30,9 @@ namespace RLD
         public IGizmoDragSession DragSession { get { return Handle.DragSession; } set { Handle.DragSession = value; } }
         public GizmoCap3DLookAndFeel LookAndFeel { get { return _sharedLookAndFeel != null ? _sharedLookAndFeel : _lookAndFeel; } }
         public GizmoCap3DLookAndFeel SharedLookAndFeel { get { return _sharedLookAndFeel; } set { _sharedLookAndFeel = value; } }
-       
+
         public GizmoCap3D(Gizmo gizmo, int handleId)
-            :base(gizmo, handleId)
+            : base(gizmo, handleId)
         {
             _coneIndex = Handle.Add3DShape(_cone);
             _pyramidIndex = Handle.Add3DShape(_pyramid);
@@ -41,7 +41,7 @@ namespace RLD
             _trPrismIndex = Handle.Add3DShape(_trPrism);
 
             SetZoomFactorTransform(_transform);
-           
+
             _controllerData.Gizmo = Gizmo;
             _controllerData.Cap = this;
             _controllerData.CapHandle = Handle;
@@ -273,7 +273,7 @@ namespace RLD
 
         private void OnTransformChanged(GizmoTransform transform, GizmoTransform.ChangeData changeData)
         {
-            if (changeData.ChangeReason == GizmoTransform.ChangeReason.ParentChange || 
+            if (changeData.ChangeReason == GizmoTransform.ChangeReason.ParentChange ||
                 changeData.TRSDimension == GizmoDimension.Dim3D) _controllers[(int)LookAndFeel.CapType].UpdateTransforms(GetZoomFactor(Gizmo.GetWorkCamera()));
         }
 

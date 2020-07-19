@@ -20,7 +20,7 @@ namespace RLD
         public string FoldoutLabel { get { return _foldoutLabel; } set { if (value != null) _foldoutLabel = value; } }
         public bool IsExpanded { get { return _isExpanded; } set { _isExpanded = value; } }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         public void RenderEditorGUI(UnityEngine.Object undoRecordObject)
         {
             if (!CanBeDisplayed) return;
@@ -34,6 +34,6 @@ namespace RLD
         }
 
         protected abstract void RenderContent(UnityEngine.Object undoRecordObject);
-        #endif
+#endif
     }
 }

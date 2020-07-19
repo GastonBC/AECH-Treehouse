@@ -1,9 +1,7 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -78,8 +76,8 @@ namespace RLD
         public float PrjSwitchProgress { get { return _prjSwitchTranstion.Progress; } }
         public float PrjSwitchDurationInSeconds { get { return _projectionSwitchSettings.TransitionDurationInSeconds; } }
         public bool IsDoingFocus { get { return _isDoingFocus; } }
-        public Vector3 WorldPosition 
-        { 
+        public Vector3 WorldPosition
+        {
             get { return _targetTransform.position; }
             set
             {
@@ -88,9 +86,9 @@ namespace RLD
                 SetFocusPoint(focusPt);
             }
         }
-        public Quaternion WorldRotation 
-        { 
-            get { return _targetTransform.rotation; } 
+        public Quaternion WorldRotation
+        {
+            get { return _targetTransform.rotation; }
             set
             {
                 _targetTransform.rotation = value;
@@ -142,7 +140,7 @@ namespace RLD
 
                 _isObjectVisibilityDirty = true;
             }
-            #if UNITY_EDITOR
+#if UNITY_EDITOR
             else
             {
                 if (GameObjectEx.IsSceneObject(camera.gameObject))
@@ -151,7 +149,7 @@ namespace RLD
                     _fieldOfView = camera.fieldOfView;
                 }
             }
-            #endif
+#endif
         }
 
         public void SetFieldOfView(float fov)
@@ -182,12 +180,12 @@ namespace RLD
 
             StopCamTransform();
             StopFocus();
-        
+
             if (RotationSwitchSettings.SwitchMode == CameraRotationSwitchMode.Constant) StartCoroutine(_genricCamTransformCrtn = DoConstantRotationSwitch(targetRotation));
             else
             if (RotationSwitchSettings.SwitchMode == CameraRotationSwitchMode.Smooth) StartCoroutine(_genricCamTransformCrtn = DoSmoothRotationSwitch(targetRotation));
             else
-            {              
+            {
                 _targetTransform.rotation = targetRotation;
             }
         }
@@ -239,7 +237,7 @@ namespace RLD
 
         private void Awake()
         {
-            if(TargetCamera == null)
+            if (TargetCamera == null)
             {
                 Debug.Break();
                 Debug.LogError("RTCamera: No target camera was specified.");
@@ -258,7 +256,7 @@ namespace RLD
         {
             _lastFocusPoint = Vector3.zero;
             SetFocusPoint(_lastFocusPoint);
-            AdjustOrthoSizeForFocusPt(); 
+            AdjustOrthoSizeForFocusPt();
         }
 
         private void HandleMouseAndKeyboardInput()
@@ -284,7 +282,7 @@ namespace RLD
             else if (IsMovingDown) moveVector -= _targetTransform.up * moveAmount;
 
             bool needsToMove = moveVector.sqrMagnitude != 0.0f;
-            if (needsToMove)  _targetTransform.position += moveVector;
+            if (needsToMove) _targetTransform.position += moveVector;
 
             if (needsToMove || wasZoomed)
             {
@@ -292,7 +290,7 @@ namespace RLD
                 _currentAcceleration += accelAdd;
             }
             else _currentAcceleration = 0.0f;
-           
+
             // Get the mouse axes values. We need these for panning and rotation.
             float mouseX = Input.GetAxis("Mouse X");
             float mouseY = Input.GetAxis("Mouse Y");
@@ -302,7 +300,7 @@ namespace RLD
             {
                 if (_panSettings.IsPanningEnabled && Hotkeys.Pan.IsActive())
                 {
-                    if(_panSettings.PanMode == CameraPanMode.Standard) Pan(CalculatePanAmount(mouseX, mouseY));
+                    if (_panSettings.PanMode == CameraPanMode.Standard) Pan(CalculatePanAmount(mouseX, mouseY));
                     else
                     {
                         StopCamTransform();
@@ -448,9 +446,9 @@ namespace RLD
         {
             Vector2 rotation = Vector2.zero;
             rotation.x = -deviceAxisY * _lookAroundSettings.Sensitivity;
-            if (_lookAroundSettings.InvertY) rotation.x *= -1.0f;       
+            if (_lookAroundSettings.InvertY) rotation.x *= -1.0f;
             rotation.y = deviceAxisX * _lookAroundSettings.Sensitivity;
-            if (_lookAroundSettings.InvertX) rotation.y *= -1.0f;       
+            if (_lookAroundSettings.InvertX) rotation.y *= -1.0f;
 
             return rotation;
         }
@@ -459,9 +457,9 @@ namespace RLD
         {
             Vector2 rotation = Vector2.zero;
             rotation.x = -deviceAxisY * _orbitSettings.OrbitSensitivity;
-            if (_orbitSettings.InvertY) rotation.x *= -1.0f;       
+            if (_orbitSettings.InvertY) rotation.x *= -1.0f;
             rotation.y = deviceAxisX * _orbitSettings.OrbitSensitivity;
-            if (_orbitSettings.InvertX) rotation.y *= -1.0f;      
+            if (_orbitSettings.InvertX) rotation.y *= -1.0f;
 
             return rotation;
         }
@@ -470,7 +468,7 @@ namespace RLD
         {
             Vector2 panAmount = Vector2.zero;
             panAmount.x = -deviceAxisX * _panSettings.Sensitivity;
-            if (_panSettings.InvertX) panAmount.x *= -1.0f;         
+            if (_panSettings.InvertX) panAmount.x *= -1.0f;
             panAmount.y = -deviceAxisY * _panSettings.Sensitivity;
             if (_panSettings.InvertY) panAmount.y *= -1.0f;
 
@@ -490,7 +488,7 @@ namespace RLD
 
         private void StopFocus()
         {
-            if(_focusCrtn != null)
+            if (_focusCrtn != null)
             {
                 StopCoroutine(_focusCrtn);
                 _focusCrtn = null;
@@ -511,7 +509,7 @@ namespace RLD
         {
             Vector2 panAmount = CalculatePanAmount(deviceAxisX, deviceAxisY);
 
-            while(true)
+            while (true)
             {
                 Pan(panAmount);
                 panAmount = Vector2.Lerp(panAmount, Vector2.zero, _panSettings.SmoothValue * Time.deltaTime);
@@ -553,7 +551,7 @@ namespace RLD
         {
             float zoomAmount = CalculateScrollZoomAmount(deviceScroll);
 
-            while(true)
+            while (true)
             {
                 Zoom(zoomAmount);
                 zoomAmount = Mathf.Lerp(zoomAmount, 0.0f, _zoomSettings.GetZoomSmoothValue(TargetCamera) * Time.deltaTime);
@@ -569,7 +567,7 @@ namespace RLD
             float elapsedTime = 0.0f;
 
             _isDoingRotationSwitch = true;
-            while(true)
+            while (true)
             {
                 _targetTransform.rotation = Quaternion.Slerp(sourceRotation, targetRotation, elapsedTime / RotationSwitchSettings.ConstantSwitchDurationInSeconds);
                 elapsedTime += Time.deltaTime;
@@ -612,7 +610,7 @@ namespace RLD
             float initialCamOrthoSize = TargetCamera.orthographicSize;
 
             _isDoingFocus = true;
-            while(true)
+            while (true)
             {
                 _targetTransform.position += camMoveDir * FocusSettings.ConstantSpeed * Time.deltaTime;
                 float t = 1.0f - (_targetTransform.position - focusData.CameraWorldPosition).magnitude / distanceToTravel;

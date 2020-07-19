@@ -1,6 +1,6 @@
-﻿using UnityEngine;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -148,7 +148,7 @@ namespace RLD
 
                 _isEnabled = false;
 
-                foreach (IGizmoBehaviour behaviour in _behaviours) 
+                foreach (IGizmoBehaviour behaviour in _behaviours)
                     if (behaviour.IsEnabled) behaviour.OnGizmoDisabled();
 
                 if (PostDisabled != null) PostDisabled(this);
@@ -178,8 +178,8 @@ namespace RLD
             if (behaviour == null || behaviour.Gizmo != null) return false;
 
             GizmoBehaviorInitParams initParams = new GizmoBehaviorInitParams();
-            initParams.Gizmo = this;      
-         
+            initParams.Gizmo = this;
+
             behaviour.Init_SystemCall(initParams);
             if (!_behaviours.Add(behaviour)) return false;
 
@@ -201,7 +201,7 @@ namespace RLD
 
         public bool RemoveBehaviour(IGizmoBehaviour behaviour)
         {
-            if (behaviour == null ) return false;
+            if (behaviour == null) return false;
 
             if (behaviour == _moveGizmo) _moveGizmo = null;
             else if (behaviour == _rotationGizmo) _rotationGizmo = null;
@@ -215,7 +215,7 @@ namespace RLD
             return _behaviours.Remove(behaviour);
         }
 
-        public List<BehaviourType> GetBehavioursOfType<BehaviourType>() 
+        public List<BehaviourType> GetBehavioursOfType<BehaviourType>()
             where BehaviourType : class, IGizmoBehaviour
         {
             return _behaviours.GetBehavioursOfType<BehaviourType>();
@@ -246,8 +246,8 @@ namespace RLD
         {
             if (!IsEnabled) return;
 
-            foreach (IGizmoBehaviour behaviour in _behaviours) 
-                if(behaviour.IsEnabled) behaviour.OnGUI();
+            foreach (IGizmoBehaviour behaviour in _behaviours)
+                if (behaviour.IsEnabled) behaviour.OnGUI();
         }
 
         public void OnUpdateBegin_SystemCall()
@@ -372,8 +372,8 @@ namespace RLD
             if (SceneGizmo == null && isSceneGizmoCamera) return;
             else if (SceneGizmo != null && !isSceneGizmoCamera) return;
 
-            foreach (IGizmoBehaviour behaviour in _behaviours) 
-                if(behaviour.IsEnabled) behaviour.OnGizmoRender(camera);
+            foreach (IGizmoBehaviour behaviour in _behaviours)
+                if (behaviour.IsEnabled) behaviour.OnGizmoRender(camera);
         }
 
         public void HandleInputDeviceEvents_SystemCall()
@@ -393,7 +393,7 @@ namespace RLD
                 if (PreHandlePicked != null) PreHandlePicked(this, _hoveredHandle.Id);
                 foreach (IGizmoBehaviour behaviour in _behaviours)
                 {
-                    if(behaviour.IsEnabled)
+                    if (behaviour.IsEnabled)
                         behaviour.OnGizmoHandlePicked(_hoveredHandle.Id);
                 }
                 if (PostHandlePicked != null) PostHandlePicked(this, _hoveredHandle.Id);
@@ -404,7 +404,7 @@ namespace RLD
 
         private void OnInputDevicePickButtonUp()
         {
-            EndDragSession();      
+            EndDragSession();
         }
 
         private void EndDragSession()
@@ -432,7 +432,7 @@ namespace RLD
             {
                 if (_activeDragSession != null && _activeDragSession.IsActive)
                 {
-                    if(_activeDragSession.Update())
+                    if (_activeDragSession.Update())
                     {
                         _dragInfo.TotalOffset = _activeDragSession.TotalDragOffset;
                         _dragInfo.TotalRotation = _activeDragSession.TotalDragRotation;

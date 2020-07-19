@@ -1,6 +1,6 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -60,16 +60,16 @@ namespace RLD
             float minDistSqr = float.MaxValue;
             MeshVertexChunk closestChunk = null;
 
-            foreach(MeshVertexChunk chunk in _vertexChunks)
+            foreach (MeshVertexChunk chunk in _vertexChunks)
             {
                 AABB chunkAABB = chunk.ModelSpaceAABB;
                 chunkAABB.Transform(worldMtx);
 
                 List<Vector2> screenPts = chunkAABB.GetScreenCenterAndCornerPoints(camera);
-                foreach(Vector2 pt in screenPts)
+                foreach (Vector2 pt in screenPts)
                 {
                     float distSqr = (pt - screenPoint).sqrMagnitude;
-                    if(distSqr < minDistSqr)
+                    if (distSqr < minDistSqr)
                     {
                         minDistSqr = distSqr;
                         closestChunk = chunk;
@@ -83,7 +83,7 @@ namespace RLD
         public bool FromMesh(Mesh mesh)
         {
             if (mesh == null || !mesh.isReadable) return false;
-          
+
             Bounds meshBounds = mesh.bounds;
             Vector3[] meshVertices = mesh.vertices;
 
@@ -93,7 +93,7 @@ namespace RLD
             float chunkSizeZ = meshBounds.size.z / numChunksPerWorldUnit;
 
             Dictionary<VertexChunkIndices, List<Vector3>> chunkIndicesToModelVerts = new Dictionary<VertexChunkIndices, List<Vector3>>();
-            foreach(Vector3 vertex in meshVertices)
+            foreach (Vector3 vertex in meshVertices)
             {
                 int chunkIndexX = Mathf.FloorToInt(vertex.x / chunkSizeX);
                 int chunkIndexY = Mathf.FloorToInt(vertex.y / chunkSizeY);
@@ -111,7 +111,7 @@ namespace RLD
 
             _mesh = mesh;
             _vertexChunks.Clear();
-            foreach(KeyValuePair<VertexChunkIndices, List<Vector3>> pair in chunkIndicesToModelVerts)
+            foreach (KeyValuePair<VertexChunkIndices, List<Vector3>> pair in chunkIndicesToModelVerts)
             {
                 if (pair.Value.Count != 0)
                     _vertexChunks.Add(new MeshVertexChunk(pair.Value, _mesh));

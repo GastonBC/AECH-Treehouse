@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -10,9 +10,9 @@ namespace RLD
             Vector2[] spriteModelVerts = sprite.vertices;
             List<Vector3> collectedVerts = new List<Vector3>(7);
 
-            foreach(Vector2 vertPos in spriteModelVerts)
+            foreach (Vector2 vertPos in spriteModelVerts)
             {
-                if(BoxMath.ContainsPoint(vertPos, collectAABB.Center, collectAABB.Size, Quaternion.identity))
+                if (BoxMath.ContainsPoint(vertPos, collectAABB.Center, collectAABB.Size, Quaternion.identity))
                     collectedVerts.Add(vertPos);
             }
 
@@ -51,7 +51,7 @@ namespace RLD
 
             float sizeEps = collectEps * 2.0f;
             Vector3 collectAABBSize = hierarchyOBB.Size;
-            collectAABBSize[faceAxisIndex] = (hierarchyOBB.Size[faceAxisIndex] * collectBoxScale) + sizeEps;   
+            collectAABBSize[faceAxisIndex] = (hierarchyOBB.Size[faceAxisIndex] * collectBoxScale) + sizeEps;
             collectAABBSize[(faceAxisIndex + 1) % 3] += sizeEps;
             collectAABBSize[(faceAxisIndex + 2) % 3] += sizeEps;
 
@@ -59,7 +59,7 @@ namespace RLD
             collectOBB.Rotation = hierarchyOBB.Rotation;
 
             List<Vector3> collectedVerts = new List<Vector3>(80);
-            foreach(GameObject meshObject in meshObjects)
+            foreach (GameObject meshObject in meshObjects)
             {
                 Mesh mesh = meshObject.GetMesh();
                 RTMesh rtMesh = RTMeshDb.Get.GetRTMesh(mesh);

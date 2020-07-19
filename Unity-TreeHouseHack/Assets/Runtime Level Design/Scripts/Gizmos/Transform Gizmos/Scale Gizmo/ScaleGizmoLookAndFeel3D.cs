@@ -344,7 +344,7 @@ namespace RLD
 
         public void SetMidCapType(GizmoCap3DType capType)
         {
-            if(IsMidCapTypeAllowed(capType))
+            if (IsMidCapTypeAllowed(capType))
             {
                 _midCapLookAndFeel.CapType = capType;
             }
@@ -509,7 +509,7 @@ namespace RLD
             return _dblSlidersLookAndFeel[(int)planeId];
         }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         protected override void RenderContent(UnityEngine.Object undoRecordObject)
         {
             float newFloat; bool newBool; Color newColor;
@@ -599,7 +599,7 @@ namespace RLD
                 EditorUndoEx.Record(undoRecordObject);
                 SetDblSliderSize(newFloat);
             }
-           
+
             EditorGUILayout.Separator();
             EditorGUILayoutEx.SectionHeader("Cap shape");
             content.text = "Slider cap type";
@@ -890,7 +890,7 @@ namespace RLD
             EditorGUILayout.Separator();
             EditorGUILayoutEx.SectionHeader("Scale guide");
             content.text = "Is visible";
-            content.tooltip = "If this is checked, the gizmo will draw a scale guide for each entity that is being scaled during a scale session. The guide is shown " + 
+            content.tooltip = "If this is checked, the gizmo will draw a scale guide for each entity that is being scaled during a scale session. The guide is shown " +
                               "in the form of a collection of coordinate system axes.";
             newBool = EditorGUILayout.ToggleLeft(content, IsScaleGuideVisible);
             if (newBool != IsScaleGuideVisible)
@@ -907,7 +907,7 @@ namespace RLD
                 EditorUndoEx.Record(undoRecordObject);
                 SetScaleGuideAxisLength(newFloat);
             }
-           
+
             EditorGUILayout.Separator();
             EditorGUILayoutEx.SectionHeader("Slider visibility");
             DrawSliderVisibilityControls(AxisSign.Positive, undoRecordObject);
@@ -1034,6 +1034,6 @@ namespace RLD
             }
             EditorGUILayout.EndHorizontal();
         }
-        #endif
+#endif
     }
 }

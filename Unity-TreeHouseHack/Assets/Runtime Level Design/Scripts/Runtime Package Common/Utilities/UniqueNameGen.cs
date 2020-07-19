@@ -9,10 +9,10 @@ namespace RLD
             string finalName = desiredName;
             int suffix = 0;
 
-            while(true)
+            while (true)
             {
                 bool found = false;
-                foreach(string name in existingNames)
+                foreach (string name in existingNames)
                 {
                     if (name == finalName)
                     {

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 #if UNITY_EDITOR
-using UnityEditor;
 #endif
 
 namespace RLD
@@ -11,7 +10,7 @@ namespace RLD
     public class ObjectGrabHotkeys : Settings
     {
         [SerializeField]
-        private Hotkeys _toggleGrab = new Hotkeys("Toggle on/off", new HotkeysStaticData { CanHaveMouseButtons = false } )
+        private Hotkeys _toggleGrab = new Hotkeys("Toggle on/off", new HotkeysStaticData { CanHaveMouseButtons = false })
         {
             UseStrictModifierCheck = true,
             UseStrictMouseCheck = true,
@@ -82,7 +81,7 @@ namespace RLD
             EstablishPotentialOverlaps();
         }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         protected override void RenderContent(UnityEngine.Object undoRecordObject)
         {
             ToggleGrab.RenderEditorGUI(undoRecordObject);
@@ -94,7 +93,7 @@ namespace RLD
             EnableOffsetFromAnchor.RenderEditorGUI(undoRecordObject);
             NextAlignmentAxis.RenderEditorGUI(undoRecordObject);
         }
-        #endif
+#endif
 
         private void EstablishPotentialOverlaps()
         {

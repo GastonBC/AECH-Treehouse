@@ -70,7 +70,7 @@ namespace RLD
         public bool IsScaling { get { return _scaleDrag.IsActive; } }
 
         public GizmoPlaneSlider3D(Gizmo gizmo, int handleId)
-            :base(gizmo, handleId)
+            : base(gizmo, handleId)
         {
             _quadIndex = Handle.Add3DShape(_quad);
             _raTriangleIndex = Handle.Add3DShape(_raTriangle);
@@ -107,7 +107,7 @@ namespace RLD
             AddTargetTransform(_transform);
             AddTargetTransform(Gizmo.Transform);
             _transform.SetParent(Gizmo.Transform);
-        }      
+        }
 
         public void SetBorderVisible(bool isVisible)
         {
@@ -174,7 +174,7 @@ namespace RLD
                 dragScaleUp = _scaleDrag.TotalScale1;
             }
 
-            return new Vector2(LookAndFeel.QuadWidth * LookAndFeel.Scale * zoomFactor * dragScaleRight, 
+            return new Vector2(LookAndFeel.QuadWidth * LookAndFeel.Scale * zoomFactor * dragScaleRight,
                                LookAndFeel.QuadHeight * LookAndFeel.Scale * zoomFactor * dragScaleUp);
         }
 
@@ -390,7 +390,7 @@ namespace RLD
 
         private void OnTransformChanged(GizmoTransform transform, GizmoTransform.ChangeData changeData)
         {
-            if (changeData.ChangeReason == GizmoTransform.ChangeReason.ParentChange || 
+            if (changeData.ChangeReason == GizmoTransform.ChangeReason.ParentChange ||
                  changeData.TRSDimension == GizmoDimension.Dim3D)
             {
                 float zoomFactor = GetZoomFactor(Gizmo.GetWorkCamera());

@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace TreeHouseHack
+namespace TreehouseHack
 {
     public class Rail : MonoBehaviour
     {
@@ -13,7 +12,7 @@ namespace TreeHouseHack
 
         private int ActivePickets = 0;
         private float PicketWidth;
-        private Bounds  PicketBounds;
+        private Bounds PicketBounds;
         private Bounds RailBounds;
 
         void Start()
@@ -67,7 +66,8 @@ namespace TreeHouseHack
 
         void LateUpdate()
         {
-            if (this.transform.hasChanged) {
+            if (this.transform.hasChanged)
+            {
                 ManagePickets();
             }
         }
@@ -76,14 +76,14 @@ namespace TreeHouseHack
         {
             for (int i = 0; i < ActivePickets; i++)
             {
-            float space = RailLength / (ActivePickets - 1);
+                float space = RailLength / (ActivePickets - 1);
 
-            Pickets[i].transform.rotation = this.transform.rotation * Quaternion.Euler(-Vector3.left * 90 + Vector3.forward * 90);
+                Pickets[i].transform.rotation = this.transform.rotation * Quaternion.Euler(-Vector3.left * 90 + Vector3.forward * 90);
 
-            if (i == 0) { Pickets[i].transform.position = this.transform.position; }
-            else { Pickets[i].transform.position = this.transform.position + i * space * this.transform.forward; }
+                if (i == 0) { Pickets[i].transform.position = this.transform.position; }
+                else { Pickets[i].transform.position = this.transform.position + i * space * this.transform.forward; }
 
-            Pickets[i].transform.localScale = new Vector3(1, 1, this.transform.GetComponentInParent<Treehouse>().RailElevation * 1.1f / 2.4384f);
+                Pickets[i].transform.localScale = new Vector3(1, 1, this.transform.GetComponentInParent<Treehouse>().RailElevation * 1.1f / 2.4384f);
             }
         }
     }

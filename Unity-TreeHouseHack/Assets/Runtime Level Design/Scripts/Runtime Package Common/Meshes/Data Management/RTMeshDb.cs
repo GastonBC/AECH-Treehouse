@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -33,7 +33,7 @@ namespace RLD
         public RTMesh GetRTMesh(Mesh unityMesh)
         {
             if (unityMesh == null) return null;
-            
+
             if (!_meshes.ContainsKey(unityMesh)) return CreateRTMesh(unityMesh);
             else return _meshes[unityMesh];
         }

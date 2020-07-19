@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -78,7 +78,7 @@ namespace RLD
 
             if (tValues.Count == 0) return false;
 
-            tValues.Sort(delegate(float t0, float t1) { return t0.CompareTo(t1); });
+            tValues.Sort(delegate (float t0, float t1) { return t0.CompareTo(t1); });
             t = tValues[0];
 
             return true;

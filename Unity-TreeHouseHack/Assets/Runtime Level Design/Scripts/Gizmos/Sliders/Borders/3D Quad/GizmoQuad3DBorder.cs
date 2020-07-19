@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -172,7 +172,7 @@ namespace RLD
                 solidMaterial.SetPass(0);
 
                 Vector3 camPos = camera.transform.position;
-                _sortedBoxIndices.Sort(delegate(int i0, int i1)
+                _sortedBoxIndices.Sort(delegate (int i0, int i1)
                 {
                     BoxShape3D b0 = _targetHandle.Get3DShape(i0) as BoxShape3D;
                     BoxShape3D b1 = _targetHandle.Get3DShape(i1) as BoxShape3D;

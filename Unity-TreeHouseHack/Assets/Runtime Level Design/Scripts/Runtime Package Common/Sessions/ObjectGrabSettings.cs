@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System;
-using System.Collections.Generic;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -35,10 +34,10 @@ namespace RLD
         [SerializeField]
         private int _terrainMeshLayers = 0;
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         [SerializeField]
         private int _newLayer = 0;
-        #endif
+#endif
 
         public bool AlignAxis { get { return _alignAxis; } set { _alignAxis = value; } }
         public TransformAxis AlignmentAxis { get { return _alignmentAxis; } set { _alignmentAxis = value; } }
@@ -54,7 +53,7 @@ namespace RLD
 
         public ObjectGrabSettings()
         {
-            for (int index = 0; index < _layerGrabSettings.Length; ++index )
+            for (int index = 0; index < _layerGrabSettings.Length; ++index)
             {
                 _layerGrabSettings[index] = new ObjectLayerGrabSettings(index);
             }
@@ -65,7 +64,7 @@ namespace RLD
             return _layerGrabSettings[layer];
         }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         protected override void RenderContent(UnityEngine.Object undoRecordObject)
         {
             bool newBool; float newFloat; int newInt;
@@ -76,7 +75,7 @@ namespace RLD
             content.text = "Align axis";
             content.tooltip = "If this is checked, the grabbed objects will have their local axes aligned with the grab surface normal.";
             newBool = EditorGUILayout.ToggleLeft(content, AlignAxis);
-            if(newBool != AlignAxis)
+            if (newBool != AlignAxis)
             {
                 EditorUndoEx.Record(undoRecordObject);
                 AlignAxis = newBool;
@@ -85,7 +84,7 @@ namespace RLD
             content.text = "Alignment axis";
             content.tooltip = "When axis alignment is turned on, this is the axis that will be aligned to the surface normal.";
             newTransformAxis = (TransformAxis)EditorGUILayout.EnumPopup(content, AlignmentAxis);
-            if(newTransformAxis != AlignmentAxis)
+            if (newTransformAxis != AlignmentAxis)
             {
                 EditorUndoEx.Record(undoRecordObject);
                 AlignmentAxis = newTransformAxis;
@@ -96,7 +95,7 @@ namespace RLD
             content.text = "Rotation";
             content.tooltip = "Allows you to control how sensitive object rotation is to the input device.";
             newFloat = EditorGUILayout.FloatField(content, RotationSensitivity);
-            if(newFloat != RotationSensitivity)
+            if (newFloat != RotationSensitivity)
             {
                 EditorUndoEx.Record(undoRecordObject);
                 RotationSensitivity = newFloat;
@@ -159,7 +158,7 @@ namespace RLD
             }
 
             content.text = "Spherical mesh layers";
-            content.tooltip = "Objects that belong to these layers will be treated as spherical meshes (spheres). This allows the system to make " + 
+            content.tooltip = "Objects that belong to these layers will be treated as spherical meshes (spheres). This allows the system to make " +
                               "certain assumptions about the surface geometry in order to produce the correct results.";
             newInt = EditorGUILayoutEx.LayerMaskField(content, SphericalMeshLayers);
             if (newInt != SphericalMeshLayers)
@@ -183,7 +182,7 @@ namespace RLD
             EditorGUILayout.BeginHorizontal();
             content.text = "Add";
             content.tooltip = "Adds grab settings which apply only to the chosen layer. Objects which belong to that layer will use these settings during a grab session.";
-            if(GUILayout.Button(content, GUILayout.Width(70.0f)))
+            if (GUILayout.Button(content, GUILayout.Width(70.0f)))
             {
                 EditorUndoEx.Record(undoRecordObject);
                 GetLayerGrabSettings(_newLayer).IsActive = true;
@@ -197,7 +196,7 @@ namespace RLD
             }
             EditorGUILayout.EndHorizontal();
 
-            foreach(ObjectLayerGrabSettings layerGrabSettings in _layerGrabSettings)
+            foreach (ObjectLayerGrabSettings layerGrabSettings in _layerGrabSettings)
             {
                 if (layerGrabSettings.IsActive)
                 {
@@ -242,6 +241,6 @@ namespace RLD
                 }
             }
         }
-        #endif
+#endif
     }
 }

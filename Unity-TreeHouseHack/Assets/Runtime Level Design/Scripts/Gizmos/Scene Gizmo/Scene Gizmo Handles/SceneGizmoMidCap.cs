@@ -5,7 +5,7 @@ namespace RLD
     public class SceneGizmoMidCap : SceneGizmoCap
     {
         public SceneGizmoMidCap(SceneGizmo sceneGizmo)
-            :base(sceneGizmo, GizmoHandleId.SceneGizmoMidCap)
+            : base(sceneGizmo, GizmoHandleId.SceneGizmoMidCap)
         {
             sceneGizmo.LookAndFeel.ConnectMidCapLookAndFeel(_cap);
             sceneGizmo.Gizmo.PreHandlePicked += OnGizmoHandlePicked;

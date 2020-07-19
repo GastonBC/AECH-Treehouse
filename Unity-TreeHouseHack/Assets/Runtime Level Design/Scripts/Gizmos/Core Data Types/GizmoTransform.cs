@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -117,10 +117,10 @@ namespace RLD
             if (transforms == null) return new List<GizmoTransform>();
 
             List<GizmoTransform> parents = new List<GizmoTransform>(10);
-            foreach(GizmoTransform transform in transforms)
+            foreach (GizmoTransform transform in transforms)
             {
                 bool foundParent = false;
-                foreach(GizmoTransform possibleParent in transforms)
+                foreach (GizmoTransform possibleParent in transforms)
                 {
                     if (possibleParent == transform) continue;
                     if (transform.IsChildOf(possibleParent))
@@ -495,7 +495,7 @@ namespace RLD
 
         private void UpdateChildTransforms3D()
         {
-            foreach(GizmoTransform child in _children)
+            foreach (GizmoTransform child in _children)
             {
                 child._position3D = _rotation3D * child._localPosition3D + _position3D;
                 child._rotation3D = QuaternionEx.Normalize(_rotation3D * child._localRotation3D);

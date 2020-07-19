@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -69,7 +69,7 @@ namespace RLD
         {
             if (_ptContainMode == Shape2DPtContainMode.InsideArea)
                 return CircleMath.Contains2DPoint(point, _center, _radius, _epsilon);
-            else 
+            else
                 return CircleMath.Is2DPointOnBorder(point, _center, _radius, _epsilon);
         }
 

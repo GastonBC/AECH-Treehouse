@@ -5,7 +5,7 @@ namespace RLD
     public class GizmoQuadCap2DController : GizmoCap2DController
     {
         public GizmoQuadCap2DController(GizmoCap2DControllerData controllerData)
-            :base(controllerData)
+            : base(controllerData)
         { }
 
         public override void UpdateHandles()

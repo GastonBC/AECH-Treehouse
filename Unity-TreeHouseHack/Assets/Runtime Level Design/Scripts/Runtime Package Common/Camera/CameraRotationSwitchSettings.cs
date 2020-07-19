@@ -16,9 +16,9 @@ namespace RLD
     [Serializable]
     public class CameraRotationSwitchSettings : Settings
     {
-        private static readonly float _minConstantDuration= 1e-1f;
+        private static readonly float _minConstantDuration = 1e-1f;
 
-        [SerializeField]       
+        [SerializeField]
         private CameraRotationSwitchMode _switchMode = CameraRotationSwitchMode.Smooth;
         [SerializeField]
         private float _constantSwitchDurationInSeconds = 0.3f;
@@ -29,7 +29,7 @@ namespace RLD
         public float ConstantSwitchDurationInSeconds { get { return _constantSwitchDurationInSeconds; } set { _constantSwitchDurationInSeconds = Mathf.Max(value, _minConstantDuration); } }
         public float SmoothValue { get { return _smoothValue; } set { _smoothValue = Mathf.Max(value, 1e-3f); } }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         protected override void RenderContent(UnityEngine.Object undoRecordObject)
         {
             float newFloat;
@@ -48,12 +48,12 @@ namespace RLD
             }
 
             // Constant switch mode settings
-            if(SwitchMode == CameraRotationSwitchMode.Constant)
+            if (SwitchMode == CameraRotationSwitchMode.Constant)
             {
                 content.text = "~Duration (in seconds)";
                 content.tooltip = "The amount of time in seconds it takes the rotation switch to complete. This value is an approximation.";
                 newFloat = EditorGUILayout.FloatField(content, ConstantSwitchDurationInSeconds);
-                if(newFloat != ConstantSwitchDurationInSeconds)
+                if (newFloat != ConstantSwitchDurationInSeconds)
                 {
                     EditorUndoEx.Record(undoRecordObject);
                     ConstantSwitchDurationInSeconds = newFloat;
@@ -61,11 +61,11 @@ namespace RLD
             }
             else
             // Smooth switch mode settings
-            if(SwitchMode == CameraRotationSwitchMode.Smooth)
+            if (SwitchMode == CameraRotationSwitchMode.Smooth)
             {
                 // Smooth value
                 content.text = "Smooth value";
-                content.tooltip = "The smooth value used to adjust the switch speed over time. The bigger the value, the faster " + 
+                content.tooltip = "The smooth value used to adjust the switch speed over time. The bigger the value, the faster " +
                                   "the target rotation is reached.";
                 newFloat = EditorGUILayout.FloatField(content, SmoothValue);
                 if (newFloat != SmoothValue)
@@ -77,6 +77,6 @@ namespace RLD
 
             EditorGUILayout.EndVertical();
         }
-        #endif
+#endif
     }
 }

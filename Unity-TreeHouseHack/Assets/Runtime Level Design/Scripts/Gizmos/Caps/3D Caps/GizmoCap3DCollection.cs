@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -74,7 +74,7 @@ namespace RLD
             List<GizmoCap3D> sortedCaps = new List<GizmoCap3D>(_caps);
             Vector3 cameraPos = renderCamera.transform.position;
 
-            sortedCaps.Sort(delegate(GizmoCap3D c0, GizmoCap3D c1)
+            sortedCaps.Sort(delegate (GizmoCap3D c0, GizmoCap3D c1)
             {
                 float d0 = (c0.Position - cameraPos).sqrMagnitude;
                 float d1 = (c1.Position - cameraPos).sqrMagnitude;

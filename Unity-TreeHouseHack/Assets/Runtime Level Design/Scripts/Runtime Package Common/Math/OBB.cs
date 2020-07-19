@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -150,16 +150,16 @@ namespace RLD
             float bestAxisSign = -1.0f;
             Vector3 bestAxis = Vector3.zero;
 
-            for(int axisIndex = 0; axisIndex < 3; ++axisIndex)
+            for (int axisIndex = 0; axisIndex < 3; ++axisIndex)
             {
                 Vector3 axis = boxAxes[axisIndex];
                 float projection = Vector3.Dot(fromCenterToPt, axis);
 
                 float diff = Mathf.Abs(Mathf.Abs(projection) - extents[axisIndex]);
-                if(diff < smallestDiff)
+                if (diff < smallestDiff)
                 {
                     smallestDiff = diff;
-                    bestAxis = axis;                   
+                    bestAxis = axis;
                     bestAxisSign = Mathf.Sign(projection);
                 }
             }

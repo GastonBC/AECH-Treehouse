@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -7,7 +7,7 @@ namespace RLD
     {
         public static void TransformPoints(this Transform transform, List<Vector3> points)
         {
-            for(int ptIndex = 0; ptIndex < points.Count; ++ptIndex)
+            for (int ptIndex = 0; ptIndex < points.Count; ++ptIndex)
             {
                 points[ptIndex] = transform.TransformPoint(points[ptIndex]);
             }

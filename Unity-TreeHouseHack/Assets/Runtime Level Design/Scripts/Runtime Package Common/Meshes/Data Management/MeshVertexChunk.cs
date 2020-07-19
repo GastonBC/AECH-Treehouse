@@ -1,6 +1,6 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -37,13 +37,13 @@ namespace RLD
             float minDistSqr = float.MaxValue;
             Vector3 closestWorldVert = Vector3.zero;
 
-            foreach(Vector3 vert in _modelSpaceVerts)
+            foreach (Vector3 vert in _modelSpaceVerts)
             {
                 Vector3 worldVert = worldMtx.MultiplyPoint(vert);
                 Vector2 screenVert = camera.WorldToScreenPoint(worldVert);
 
                 float distSqr = (screenVert - screenPoint).sqrMagnitude;
-                if(distSqr < minDistSqr)
+                if (distSqr < minDistSqr)
                 {
                     minDistSqr = distSqr;
                     closestWorldVert = worldVert;

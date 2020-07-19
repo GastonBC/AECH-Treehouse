@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -50,7 +50,7 @@ namespace RLD
             _cameras.Remove(camera);
             if (CameraRemoved != null) CameraRemoved(camera);
         }
-        
+
         public void SetFocusCamera(int cameraIndex)
         {
             if (cameraIndex < 0 || cameraIndex >= NumCameras) return;

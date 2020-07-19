@@ -19,7 +19,7 @@ namespace RLD
             {
                 if (_linearGradientCameraBk == null) _linearGradientCameraBk = Shader.Find("RTUnityApp/LinearGradientCameraBk");
                 return _linearGradientCameraBk;
-            }          
+            }
         }
         public Shader XZGrid_Plane
         {

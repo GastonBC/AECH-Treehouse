@@ -1,6 +1,6 @@
-﻿using UnityEngine;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -36,10 +36,10 @@ namespace RLD
 
         public static List<GameObject> CloneHierarchies(List<GameObject> roots, Config cloneConfig)
         {
-            if(roots.Count == 0) return new List<GameObject>();
+            if (roots.Count == 0) return new List<GameObject>();
 
             List<GameObject> clones = new List<GameObject>(roots.Count);
-            foreach(GameObject root in roots)
+            foreach (GameObject root in roots)
             {
                 GameObject clone = CloneHierarchy(root, cloneConfig);
                 if (clone != null) clones.Add(clone);

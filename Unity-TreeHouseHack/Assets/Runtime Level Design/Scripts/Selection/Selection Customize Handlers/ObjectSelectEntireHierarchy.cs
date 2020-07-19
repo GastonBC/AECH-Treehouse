@@ -46,7 +46,7 @@ namespace RLD
             else
             {
                 HashSet<GameObject> selectedObjects = new HashSet<GameObject>();
-                foreach(GameObject gameObj in toBeSelected)
+                foreach (GameObject gameObj in toBeSelected)
                 {
                     // If this is an object group, ignore it
                     if (RTObjectGroupDb.Get.IsGroup(gameObj)) continue;
@@ -65,7 +65,7 @@ namespace RLD
             }
         }
 
-        private  void OnPreDeselectCustomize(ObjectPreDeselectCustomizeInfo customizeInfo, List<GameObject> toBeDeselected)
+        private void OnPreDeselectCustomize(ObjectPreDeselectCustomizeInfo customizeInfo, List<GameObject> toBeDeselected)
         {
             if (IgnoreObjectGroups)
             {

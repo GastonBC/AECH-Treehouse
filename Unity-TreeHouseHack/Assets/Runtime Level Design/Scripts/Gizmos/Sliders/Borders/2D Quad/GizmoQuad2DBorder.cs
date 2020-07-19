@@ -1,6 +1,5 @@
-﻿using UnityEngine;
-using System;
-using System.Collections.Generic;
+﻿using System;
+using UnityEngine;
 
 namespace RLD
 {
@@ -81,7 +80,7 @@ namespace RLD
             lineMaterial.SetColor(color);
             lineMaterial.SetPass(0);
 
-            _targetHandle.Render2DWire(camera, _borderQuadIndex);          
+            _targetHandle.Render2DWire(camera, _borderQuadIndex);
         }
 
         private void OnGizmoPreUpdateBegin(Gizmo gizmo)

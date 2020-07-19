@@ -115,7 +115,7 @@ namespace RLD
             Color color = _planeSlider.LookAndFeel.BorderColor;
             if (_targetHandle.Gizmo.HoverHandleId == _targetHandle.Id) color = _planeSlider.LookAndFeel.HoveredBorderColor;
 
-            if(_planeSlider.LookAndFeel.CircleBorderType == GizmoCircle3DBorderType.Thin)
+            if (_planeSlider.LookAndFeel.CircleBorderType == GizmoCircle3DBorderType.Thin)
             {
                 GizmoCircularMaterial circularMaterial = GizmoCircularMaterial.Get;
                 circularMaterial.CircularType = GizmoCircularMaterial.Type.Circle;
@@ -129,7 +129,7 @@ namespace RLD
                 _targetHandle.Render3DWire(_borderCircleIndex);
             }
             else
-            if(_planeSlider.LookAndFeel.CircleBorderType == GizmoCircle3DBorderType.Torus)
+            if (_planeSlider.LookAndFeel.CircleBorderType == GizmoCircle3DBorderType.Torus)
             {
                 float zoomFactor = GetZoomFactor(camera);
                 float torusThickness = GetRealTorusThickness(zoomFactor);
@@ -157,7 +157,7 @@ namespace RLD
                 }
             }
             else
-            if(_planeSlider.LookAndFeel.CircleBorderType == GizmoCircle3DBorderType.CylindricalTorus)
+            if (_planeSlider.LookAndFeel.CircleBorderType == GizmoCircle3DBorderType.CylindricalTorus)
             {
                 float zoomFactor = GetZoomFactor(camera);
                 float torusWidth = GetRealCylTorusWidth(zoomFactor);

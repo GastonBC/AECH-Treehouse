@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -36,11 +36,11 @@ namespace RLD
         {
             if (_sharedLookAndFeel == null) return;
 
-            if(IsActive)
+            if (IsActive)
             {
                 Material material = MaterialPool.Get.SimpleColor;
 
-                if(_sharedLookAndFeel.DrawBoxes)
+                if (_sharedLookAndFeel.DrawBoxes)
                 {
                     material.SetColor(_sharedLookAndFeel.BoxLineColor);
                     material.SetZTestEnabled(true);
@@ -68,7 +68,7 @@ namespace RLD
                     List<Vector2> pivotCirclePoints = PrimitiveFactory.Generate2DCircleBorderPointsCW(screenSnapPivot, _sharedLookAndFeel.PivotCircleRadius, numCirclePoints);
                     GLRenderer.DrawTriangleFan2D(screenSnapPivot, pivotCirclePoints, camera);
 
-                    if(_sharedLookAndFeel.DrawPivotBorder)
+                    if (_sharedLookAndFeel.DrawPivotBorder)
                     {
                         material.SetColor(_sharedLookAndFeel.PivotPointBorderColor);
                         material.SetPass(0);
@@ -76,7 +76,7 @@ namespace RLD
                     }
                 }
                 else
-                if(_sharedLookAndFeel.PivotShapeType == PivotPointShapeType.Square)
+                if (_sharedLookAndFeel.PivotShapeType == PivotPointShapeType.Square)
                 {
                     material.SetZTestEnabled(false);
                     material.SetColor(_sharedLookAndFeel.PivotPointFillColor);
@@ -105,7 +105,7 @@ namespace RLD
             }
             else if (!_sharedHotkeys.BeginGridSnap.IsActive()) End();
 
-            if(_state != State.Inactive)
+            if (_state != State.Inactive)
             {
                 if (RTInputDevice.Get.Device.IsButtonPressed(0)) _state = State.Snap;
                 else _state = State.SelectPivot;
@@ -160,7 +160,7 @@ namespace RLD
         {
             _targetObjects.Clear();
 
-            foreach(GameObject targetObject in targetObjects)
+            foreach (GameObject targetObject in targetObjects)
             {
                 if (targetObject == null) continue;
 
@@ -185,7 +185,7 @@ namespace RLD
 
             Vector2 inputDevicePos = RTInputDevice.Get.Device.GetPositionYAxisUp();
             float minDistFromDevice = float.MaxValue;
-            foreach(GameObject targetObject in _targetObjects)
+            foreach (GameObject targetObject in _targetObjects)
             {
                 if (targetObject == null) continue;
 
@@ -195,10 +195,10 @@ namespace RLD
                     Camera camera = RTFocusCamera.Get.TargetCamera;
                     List<Vector3> centerAndCorners = worldOBB.GetCenterAndCornerPoints();
                     List<Vector2> screenCenterAndCorners = camera.ConvertWorldToScreenPoints(centerAndCorners);
-                    for(int ptIndex = 0; ptIndex < screenCenterAndCorners.Count; ++ptIndex)
+                    for (int ptIndex = 0; ptIndex < screenCenterAndCorners.Count; ++ptIndex)
                     {
                         float distance = (inputDevicePos - screenCenterAndCorners[ptIndex]).magnitude;
-                        if(distance < minDistFromDevice)
+                        if (distance < minDistFromDevice)
                         {
                             minDistFromDevice = distance;
                             _snapPivotPoint = centerAndCorners[ptIndex];

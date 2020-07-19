@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace RLD
+﻿namespace RLD
 {
     public class GizmoThinPolygon2DBorderController : GizmoPolygon2DBorderController
     {

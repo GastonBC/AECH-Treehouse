@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace RLD
 {
@@ -40,7 +39,7 @@ namespace RLD
         public Vector3 Min
         {
             get { return _center - Extents; }
-            set 
+            set
             {
                 Vector3 max = Max;
                 _center = (value + max) * 0.5f;

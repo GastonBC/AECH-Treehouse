@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -18,7 +18,7 @@ namespace RLD
             if (gameObjects == null) return new List<LocalTransformSnapshot>();
 
             List<LocalTransformSnapshot> localTransformSnapshots = new List<LocalTransformSnapshot>(20);
-            foreach(GameObject gameObject in gameObjects)
+            foreach (GameObject gameObject in gameObjects)
             {
                 if (gameObject != null)
                 {

@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -32,9 +32,9 @@ namespace RLD
         private bool _areBorderPointsDirty = true;
         private ArcEpsilon _epsilon = new ArcEpsilon();
 
-        public float Radius 
+        public float Radius
         {
-            get { return _radius; } 
+            get { return _radius; }
             set
             {
                 _radius = value;
@@ -106,7 +106,7 @@ namespace RLD
 
             if ((_borderRenderDesc.BorderFlags & BorderRenderFlags.ArcBorder) != 0)
                 GLRenderer.DrawLines2D(_borderPoints, camera);
-            if ((_borderRenderDesc.BorderFlags & BorderRenderFlags.ExtremitiesBorder) != 0) 
+            if ((_borderRenderDesc.BorderFlags & BorderRenderFlags.ExtremitiesBorder) != 0)
                 GLRenderer.DrawLines2D(new List<Vector2>() { _origin, StartPoint, _origin, EndPoint }, camera);
         }
 

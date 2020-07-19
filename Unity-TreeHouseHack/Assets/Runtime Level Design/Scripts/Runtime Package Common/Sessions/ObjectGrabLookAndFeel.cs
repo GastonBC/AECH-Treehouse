@@ -41,7 +41,7 @@ namespace RLD
         public bool DrawObjectBoxes { get { return _drawObjectBoxes; } set { _drawObjectBoxes = value; } }
         public Color ObjectBoxWireColor { get { return _objectBoxWireColor; } set { _objectBoxWireColor = value; } }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         protected override void RenderContent(UnityEngine.Object undoRecordObject)
         {
             bool newBool; Color newColor; float newFloat;
@@ -51,7 +51,7 @@ namespace RLD
             content.text = "Visible";
             content.tooltip = "If this is checked, a line will be drawn between each object's position and the anchor position.";
             newBool = EditorGUILayout.ToggleLeft(content, DrawAnchorLines);
-            if(newBool != DrawAnchorLines)
+            if (newBool != DrawAnchorLines)
             {
                 EditorUndoEx.Record(undoRecordObject);
                 DrawAnchorLines = newBool;
@@ -144,6 +144,6 @@ namespace RLD
                 ObjectBoxWireColor = newColor;
             }
         }
-        #endif
+#endif
     }
 }

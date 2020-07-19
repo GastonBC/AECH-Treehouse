@@ -35,7 +35,7 @@ namespace RLD
 
         public RotationGizmoSettings3D()
         {
-            for(int sliderIndex = 0; sliderIndex < _sliderSettings.Length; ++sliderIndex)
+            for (int sliderIndex = 0; sliderIndex < _sliderSettings.Length; ++sliderIndex)
             {
                 _sliderSettings[sliderIndex] = new GizmoPlaneSlider3DSettings();
             }
@@ -119,7 +119,7 @@ namespace RLD
             slider.SharedSettings = _camLookSliderSettings;
         }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         protected override void RenderContent(UnityEngine.Object undoRecordObject)
         {
             float newFloat; bool newBool;
@@ -177,7 +177,7 @@ namespace RLD
             content.text = "Snap mode";
             content.tooltip = "The rotation snap mode. Relative rotation counts from the current rotation angle. Absolute rotation counts from 0.";
             newSnapMode = (GizmoSnapMode)EditorGUILayout.EnumPopup(content, SnapMode);
-            if(newSnapMode != SnapMode)
+            if (newSnapMode != SnapMode)
             {
                 EditorUndoEx.Record(undoRecordObject);
                 SetSnapMode(newSnapMode);
@@ -248,6 +248,6 @@ namespace RLD
                 SetDragSensitivity(newFloat);
             }
         }
-        #endif
+#endif
     }
 }

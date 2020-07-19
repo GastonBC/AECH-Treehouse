@@ -1,6 +1,6 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -11,13 +11,13 @@ namespace RLD
 
         public int Count { get { return _vertexChunkCollections.Count; } }
         public MeshVertexChunkCollection this[int collectionIndex] { get { return _vertexChunkCollections[collectionIndex]; } }
-        public MeshVertexChunkCollection this[Mesh mesh] 
-        { 
-            get 
+        public MeshVertexChunkCollection this[Mesh mesh]
+        {
+            get
             {
                 if (!HasChunkCollectionForMesh(mesh) && !CreateMeshVertChunkCollection(mesh)) return null;
-                return _meshToVChunkCollection[mesh]; 
-            } 
+                return _meshToVChunkCollection[mesh];
+            }
         }
 
         public IEnumerator<MeshVertexChunkCollection> GetEnumerator()
@@ -38,7 +38,7 @@ namespace RLD
         private bool CreateMeshVertChunkCollection(Mesh mesh)
         {
             MeshVertexChunkCollection meshVertexChunkCollection = new MeshVertexChunkCollection();
-            if(!meshVertexChunkCollection.FromMesh(mesh)) return false;
+            if (!meshVertexChunkCollection.FromMesh(mesh)) return false;
 
             _vertexChunkCollections.Add(meshVertexChunkCollection);
             _meshToVChunkCollection.Add(mesh, meshVertexChunkCollection);

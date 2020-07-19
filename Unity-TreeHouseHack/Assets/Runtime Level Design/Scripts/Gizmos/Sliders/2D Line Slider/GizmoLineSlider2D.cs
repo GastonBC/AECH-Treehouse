@@ -62,18 +62,18 @@ namespace RLD
         public GizmoLineSlider2DSettings Settings { get { return _sharedSettings != null ? _sharedSettings : _settings; } }
         public GizmoLineSlider2DSettings SharedSettings { get { return _sharedSettings; } set { _sharedSettings = value; } }
         public GizmoLineSlider2DLookAndFeel LookAndFeel { get { return _sharedLookAndFeel != null ? _sharedLookAndFeel : _lookAndFeel; } }
-        public GizmoLineSlider2DLookAndFeel SharedLookAndFeel 
-        { 
-            get { return _sharedLookAndFeel; } 
-            set 
-            { 
+        public GizmoLineSlider2DLookAndFeel SharedLookAndFeel
+        {
+            get { return _sharedLookAndFeel; }
+            set
+            {
                 _sharedLookAndFeel = value;
                 SetupSharedLookAndFeel();
-            } 
+            }
         }
 
         public GizmoLineSlider2D(Gizmo gizmo, int handleId, int capHandleId)
-            :base(gizmo, handleId)
+            : base(gizmo, handleId)
         {
             _segmentIndex = Handle.Add2DShape(_segment);
             _quadIndex = Handle.Add2DShape(_quad);
@@ -218,8 +218,8 @@ namespace RLD
 
             if (IsVisible)
             {
-                if (LookAndFeel.LineType == GizmoLine2DType.Thin || 
-                    LookAndFeel.FillMode == GizmoFillMode2D.FilledAndBorder || 
+                if (LookAndFeel.LineType == GizmoLine2DType.Thin ||
+                    LookAndFeel.FillMode == GizmoFillMode2D.FilledAndBorder ||
                     LookAndFeel.FillMode == GizmoFillMode2D.Filled)
                 {
                     Color fillColor = new Color();
@@ -239,7 +239,7 @@ namespace RLD
                     Handle.Render2DSolid(camera);
                 }
 
-                if (LookAndFeel.LineType != GizmoLine2DType.Thin && 
+                if (LookAndFeel.LineType != GizmoLine2DType.Thin &&
                    (LookAndFeel.FillMode == GizmoFillMode2D.FilledAndBorder || LookAndFeel.FillMode == GizmoFillMode2D.Border))
                 {
                     Color borderColor = new Color();
@@ -303,7 +303,7 @@ namespace RLD
         {
             if (handleId == Handle.Id || handleId == _cap2D.HandleId)
             {
-                if(_dragChannel == GizmoDragChannel.Offset)
+                if (_dragChannel == GizmoDragChannel.Offset)
                 {
                     GizmoSglAxisOffsetDrag3D.WorkData workData = new GizmoSglAxisOffsetDrag3D.WorkData();
                     workData.Axis = Vector2Ex.ConvertDirTo3D(StartPosition, GetRealEndPosition(), OffsetDragOrigin, Gizmo.FocusCamera).normalized;
@@ -312,7 +312,7 @@ namespace RLD
                     _offsetDrag.SetWorkData(workData);
                 }
                 else
-                if(_dragChannel == GizmoDragChannel.Rotation)
+                if (_dragChannel == GizmoDragChannel.Rotation)
                 {
                     GizmoSglAxisRotationDrag3D.WorkData workData = new GizmoSglAxisRotationDrag3D.WorkData();
                     workData.Axis = Gizmo.FocusCamera.transform.forward;
@@ -324,7 +324,7 @@ namespace RLD
                     _rotationDrag.SetWorkData(workData);
                 }
                 else
-                if(_dragChannel == GizmoDragChannel.Scale)
+                if (_dragChannel == GizmoDragChannel.Scale)
                 {
                     _scaleAxis = Vector2Ex.ConvertDirTo3D(StartPosition, GetRealEndPosition(), ScaleDragOrigin, Gizmo.FocusCamera);
                     GizmoSglAxisScaleDrag3D.WorkData workData = new GizmoSglAxisScaleDrag3D.WorkData();
@@ -377,7 +377,7 @@ namespace RLD
                 _cap2D.OverrideFillColor.IsActive = false;
                 _cap2D.OverrideBorderColor.IsActive = false;
             }
-            else 
+            else
             if (handleId == _cap2D.HandleId)
             {
                 OverrideFillColor.IsActive = false;

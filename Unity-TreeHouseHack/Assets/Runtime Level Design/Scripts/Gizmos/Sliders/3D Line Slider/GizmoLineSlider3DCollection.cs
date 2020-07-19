@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -28,7 +28,7 @@ namespace RLD
 
         public void Add(GizmoLineSlider3D slider)
         {
-            if(!Contains(slider))
+            if (!Contains(slider))
             {
                 _sliders.Add(slider);
                 _handleIdToSlider.Add(slider.HandleId, slider);
@@ -37,7 +37,7 @@ namespace RLD
 
         public void Remove(GizmoLineSlider3D slider)
         {
-            if(Contains(slider))
+            if (Contains(slider))
             {
                 _sliders.Remove(slider);
                 _handleIdToSlider.Remove(slider.HandleId);
@@ -103,7 +103,7 @@ namespace RLD
             List<GizmoLineSlider3D> sortedSliders = new List<GizmoLineSlider3D>(_sliders);
             Vector3 cameraPos = renderCamera.transform.position;
 
-            sortedSliders.Sort(delegate(GizmoLineSlider3D s0, GizmoLineSlider3D s1)
+            sortedSliders.Sort(delegate (GizmoLineSlider3D s0, GizmoLineSlider3D s1)
             {
                 float d0 = (s0.GetRealEndPosition(s0.GetZoomFactor(renderCamera)) - cameraPos).sqrMagnitude;
                 float d1 = (s1.GetRealEndPosition(s1.GetZoomFactor(renderCamera)) - cameraPos).sqrMagnitude;

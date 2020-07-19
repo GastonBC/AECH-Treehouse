@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -44,14 +43,14 @@ namespace RLD
             return null;
         }
 
-        public List<Type> GetBehavioursOfType<Type>() 
+        public List<Type> GetBehavioursOfType<Type>()
             where Type : class, IGizmoBehaviour
         {
-            if(Count == 0) return new List<Type>();
+            if (Count == 0) return new List<Type>();
 
             List<Type> outputList = new List<Type>(Count);
             System.Type queryType = typeof(Type);
-            foreach(IGizmoBehaviour behaviour in _behaviours)
+            foreach (IGizmoBehaviour behaviour in _behaviours)
             {
                 System.Type bhvType = behaviour.GetType();
                 if (bhvType == queryType || bhvType.IsSubclassOf(queryType)) outputList.Add(behaviour as Type);

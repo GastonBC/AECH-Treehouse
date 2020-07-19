@@ -1,8 +1,8 @@
 ﻿#if UNITY_EDITOR
-using UnityEngine;
-using UnityEditor;
-using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using UnityEditor;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace RLD
 {
@@ -81,7 +81,7 @@ namespace RLD
             if (string.IsNullOrEmpty(settings.PrefabFolder)) return;
 
             List<GameObject> allPrefabs = AssetDatabaseEx.LoadPrefabsInFolder(settings.PrefabFolder, settings.ProcessPrefabSubfolders, true);
-            foreach(GameObject prefab in allPrefabs)
+            foreach (GameObject prefab in allPrefabs)
             {
                 if (prefab.HierarchyHasObjectsOfType(settings.ConvertableObjectTypes))
                     prefab.SetStatic(false, true);

@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 #if UNITY_EDITOR
-using UnityEditor;
 #endif
 using System;
 
@@ -32,13 +31,13 @@ namespace RLD
         public Hotkeys EnableSnapping { get { return _enableSnapping; } }
         public Hotkeys EnableVertexSnapping { get { return _enableVertexSnapping; } }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         protected override void RenderContent(UnityEngine.Object undoRecordObject)
         {
             _enable2DMode.RenderEditorGUI(undoRecordObject);
             _enableSnapping.RenderEditorGUI(undoRecordObject);
             _enableVertexSnapping.RenderEditorGUI(undoRecordObject);
         }
-        #endif
+#endif
     }
 }

@@ -51,8 +51,8 @@ namespace RLD
 
         public Vector3 GetCaptureDelta(int deltaCaptureId)
         {
-     
-            if (deltaCaptureId >= 0 && 
+
+            if (deltaCaptureId >= 0 &&
                 deltaCaptureId < _maxNumDeltaCaptures && _deltaCaptures[deltaCaptureId] != null) return _deltaCaptures[deltaCaptureId].Delta;
             return Vector3.zero;
         }

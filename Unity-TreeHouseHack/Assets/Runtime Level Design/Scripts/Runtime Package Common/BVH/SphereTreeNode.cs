@@ -1,9 +1,9 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
-    public class SphereTreeNode<T> 
+    public class SphereTreeNode<T>
     {
         private Sphere _sphere;
         private T _data;

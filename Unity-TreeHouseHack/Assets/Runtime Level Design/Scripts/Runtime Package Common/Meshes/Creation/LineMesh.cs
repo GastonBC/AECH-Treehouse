@@ -10,13 +10,13 @@ namespace RLD
 
             Vector3[] positions = new Vector3[]
             {
-                Vector3.zero, 
+                Vector3.zero,
                 Vector3.right * axisLength,
                 Vector3.up * axisLength,
                 Vector3.forward * axisLength
             };
 
-            int[] indices = new int[] 
+            int[] indices = new int[]
             {
                 0, 1,
                 0, 2,

@@ -37,13 +37,13 @@ namespace RLD
             return _tabs[tabIndex];
         }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         public void RenderEditorGUI(UnityEngine.Object undoRecordObject)
         {
             GUIContent content = new GUIContent();
-            for(int tabIndex = 0; tabIndex < _tabs.Length; ++tabIndex)
+            for (int tabIndex = 0; tabIndex < _tabs.Length; ++tabIndex)
             {
-                if(tabIndex % _numTabsPerRow == 0)
+                if (tabIndex % _numTabsPerRow == 0)
                 {
                     if (tabIndex == 0) EditorGUILayout.BeginHorizontal(EditorStyles.toolbar);
                     else
@@ -58,7 +58,7 @@ namespace RLD
 
                 if (tabIndex == _activeTabIndex) GUIEx.PushColor(_activeTabColor);
                 else GUIEx.PushColor(Color.white);
-                if(GUILayout.Button(content, EditorStyles.toolbarButton))
+                if (GUILayout.Button(content, EditorStyles.toolbarButton))
                 {
                     EditorUndoEx.Record(undoRecordObject);
                     _activeTabIndex = tabIndex;
@@ -72,6 +72,6 @@ namespace RLD
             else
             if (activeTab.TargetToolbar != null) activeTab.TargetToolbar.RenderEditorGUI(undoRecordObject);
         }
-        #endif
+#endif
     }
 }

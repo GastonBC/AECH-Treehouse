@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace RLD
+﻿namespace RLD
 {
     public class GizmoThinRATriangle3DBorderController : GizmoRATriangle3DBorderController
     {

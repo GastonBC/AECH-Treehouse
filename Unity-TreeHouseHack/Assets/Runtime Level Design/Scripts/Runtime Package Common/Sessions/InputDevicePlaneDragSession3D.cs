@@ -2,7 +2,7 @@
 
 namespace RLD
 {
-    public class InputDevicePlaneDragSession3D 
+    public class InputDevicePlaneDragSession3D
     {
         private Plane _plane;
         private Camera _raycastCamera;
@@ -50,7 +50,7 @@ namespace RLD
             if (!_isActive) return false;
 
             Vector3 prevDragPoint = _dragPoint;
-            if(!UpdateDragPoint()) 
+            if (!UpdateDragPoint())
             {
                 _dragDelta = Vector3.zero;
                 return false;
@@ -69,7 +69,7 @@ namespace RLD
             float t;
             if (!_plane.Raycast(pickRay, out t)) return false;
             _dragPoint = pickRay.GetPoint(t);
-          
+
             return true;
         }
     }

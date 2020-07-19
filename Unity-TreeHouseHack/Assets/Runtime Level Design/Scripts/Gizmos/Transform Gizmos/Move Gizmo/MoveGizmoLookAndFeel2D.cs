@@ -157,7 +157,7 @@ namespace RLD
 
         public void SetSliderHoveredFillColor(Color color)
         {
-            foreach(GizmoLineSlider2DLookAndFeel lookAndFeel in _sglSliderLookAndFeel)
+            foreach (GizmoLineSlider2DLookAndFeel lookAndFeel in _sglSliderLookAndFeel)
             {
                 lookAndFeel.HoveredColor = color;
                 lookAndFeel.CapLookAndFeel.HoveredColor = color;
@@ -311,7 +311,7 @@ namespace RLD
             else return _sglSliderLookAndFeel[2 + axisIndex];
         }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         protected override void RenderContent(UnityEngine.Object undoRecordObject)
         {
             float newFloat; Color newColor; bool newBool;
@@ -641,7 +641,7 @@ namespace RLD
         {
             GUIContent content = new GUIContent();
             EditorGUILayout.BeginHorizontal();
-            string[] sliderLabels = axisSign == AxisSign.Positive ? new string[] { "+X", "+Y"} : new string[] { "-X", "-Y" };
+            string[] sliderLabels = axisSign == AxisSign.Positive ? new string[] { "+X", "+Y" } : new string[] { "-X", "-Y" };
             for (int sliderIndex = 0; sliderIndex < 2; ++sliderIndex)
             {
                 content.text = sliderLabels[sliderIndex];
@@ -681,6 +681,6 @@ namespace RLD
             }
             EditorGUILayout.EndHorizontal();
         }
-        #endif
+#endif
     }
 }

@@ -48,23 +48,23 @@ namespace RLD
         public ScaleGizmoSettings3D Settings3D { get { return _sharedSettings3D == null ? _settings3D : _sharedSettings3D; } }
         public ScaleGizmoHotkeys Hotkeys { get { return _sharedHotkeys == null ? _hotkeys : _sharedHotkeys; } }
         public ScaleGizmoHotkeys SharedHotkeys { get { return _sharedHotkeys; } set { if (Application.isPlaying) _sharedHotkeys = value; } }
-        public ScaleGizmoSettings3D SharedSettings3D 
-        { 
-            get { return _sharedSettings3D; } 
-            set 
-            { 
+        public ScaleGizmoSettings3D SharedSettings3D
+        {
+            get { return _sharedSettings3D; }
+            set
+            {
                 _sharedSettings3D = value;
                 SetupSharedSettings();
-            } 
+            }
         }
-        public ScaleGizmoLookAndFeel3D SharedLookAndFeel3D 
-        { 
-            get { return _sharedLookAndFeel3D; } 
-            set 
-            { 
+        public ScaleGizmoLookAndFeel3D SharedLookAndFeel3D
+        {
+            get { return _sharedLookAndFeel3D; }
+            set
+            {
                 _sharedLookAndFeel3D = value;
                 SetupSharedLookAndFeel();
-            } 
+            }
         }
         public bool UseSnapEnableHotkey { get { return _useSnapEnableHotkey; } set { _useSnapEnableHotkey = value; } }
         public bool UseMultiAxisScaleModeHotkey { get { return _useMultiAxisScaleModeHotkey; } set { _useMultiAxisScaleModeHotkey = value; } }
@@ -109,13 +109,13 @@ namespace RLD
             if (Gizmo.IsDragged || scaleMode == _multiAxisScaleMode) return;
 
             _multiAxisScaleMode = scaleMode;
-            if(_multiAxisScaleMode == GizmoMultiAxisScaleMode.DoubleAxis)
+            if (_multiAxisScaleMode == GizmoMultiAxisScaleMode.DoubleAxis)
             {
                 _dblSliders.SetVisible(true, true);
                 _midCap.SetVisible(false);
             }
             else
-            if(_multiAxisScaleMode == GizmoMultiAxisScaleMode.Uniform)
+            if (_multiAxisScaleMode == GizmoMultiAxisScaleMode.Uniform)
             {
                 _dblSliders.SetVisible(false, true);
                 _midCap.SetVisible(true);
@@ -174,7 +174,7 @@ namespace RLD
             _axesSliders.Add(_negYSlider);
             _axesSliders.Add(_negZSlider);
             _axesSliders.Make3DHoverPriorityLowerThan(_midCap.HoverPriority3D);
-            _axesSliders.RegisterScalerHandle(_midCap.HandleId, new int[] { 0, 1, 2} );
+            _axesSliders.RegisterScalerHandle(_midCap.HandleId, new int[] { 0, 1, 2 });
 
             _xySlider = new GizmoPlaneSlider3D(Gizmo, GizmoHandleId.XYDblSlider);
             _xySlider.SetDragChannel(GizmoDragChannel.Scale);
@@ -231,7 +231,7 @@ namespace RLD
             _negZSlider.SetVisible(LookAndFeel3D.IsNegativeSliderVisible(2));
             _negZSlider.Set3DCapVisible(LookAndFeel3D.IsNegativeSliderCapVisible(2));
 
-            if(_multiAxisScaleMode == GizmoMultiAxisScaleMode.DoubleAxis)
+            if (_multiAxisScaleMode == GizmoMultiAxisScaleMode.DoubleAxis)
             {
                 _xySlider.SetVisible(LookAndFeel3D.IsDblSliderVisible(PlaneId.XY));
                 _xySlider.SetBorderVisible(_xySlider.IsVisible);
@@ -251,7 +251,7 @@ namespace RLD
                 _midCap.ApplyZoomFactor(camera);
                 _axesSliders.ApplyZoomFactor(camera);
                 _dblSliders.ApplyZoomFactor(camera);
-                if(_multiAxisScaleMode == GizmoMultiAxisScaleMode.DoubleAxis) PlaceDblSlidersInSliderPlanes(camera);
+                if (_multiAxisScaleMode == GizmoMultiAxisScaleMode.DoubleAxis) PlaceDblSlidersInSliderPlanes(camera);
             }
 
             List<GizmoLineSlider3D> sortedSliders = _axesSliders.GetRenderSortedSliders(camera);

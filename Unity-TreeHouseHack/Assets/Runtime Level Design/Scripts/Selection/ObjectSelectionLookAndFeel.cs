@@ -48,11 +48,11 @@ namespace RLD
         public Color SelectionRectBorderColor { get { return _selectionRectBorderColor; } set { _selectionRectBorderColor = value; } }
         public Color SelectionRectFillColor { get { return _selectionRectFillColor; } set { _selectionRectFillColor = value; } }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         protected override void RenderContent(UnityEngine.Object undoRecordObject)
         {
-            bool newBool; Color newColor; 
-            float newFloat; 
+            bool newBool; Color newColor;
+            float newFloat;
             SelectionBoxBorderStyle newBoxBorderStyle;
             SelectionBoxRenderMode newBoxRenderMode;
 
@@ -61,7 +61,7 @@ namespace RLD
             content.text = "Draw highlight";
             content.tooltip = "Allows you to toggle selection highlight drawing on/off.";
             newBool = EditorGUILayout.ToggleLeft(content, DrawHighlight);
-            if(newBool != DrawHighlight)
+            if (newBool != DrawHighlight)
             {
                 EditorUndoEx.Record(undoRecordObject);
                 DrawHighlight = newBool;
@@ -83,7 +83,7 @@ namespace RLD
                 content.text = "Corner line percentage";
                 content.tooltip = "When the border style is set to \'WireCorners\', this controls the length of the corner lines as a percentage of half the box edge along which they extend.";
                 newFloat = EditorGUILayout.FloatField(content, WireCornerLinePercentage);
-                if(newFloat != WireCornerLinePercentage)
+                if (newFloat != WireCornerLinePercentage)
                 {
                     EditorUndoEx.Record(undoRecordObject);
                     WireCornerLinePercentage = newFloat;
@@ -104,7 +104,7 @@ namespace RLD
             content.text = "Box inflate amount";
             content.tooltip = "Allows you to inflate the selection boxes to avoid Z wars with the object's volume.";
             newFloat = EditorGUILayout.FloatField(content, SelectionBoxInflateAmount);
-            if(newFloat != SelectionBoxInflateAmount)
+            if (newFloat != SelectionBoxInflateAmount)
             {
                 EditorUndoEx.Record(undoRecordObject);
                 SelectionBoxInflateAmount = newFloat;
@@ -114,7 +114,7 @@ namespace RLD
             content.text = "Box border color";
             content.tooltip = "Allows you to modify the color of the selection box border lines.";
             newColor = EditorGUILayout.ColorField(content, SelectionBoxBorderColor);
-            if(newColor != SelectionBoxBorderColor)
+            if (newColor != SelectionBoxBorderColor)
             {
                 EditorUndoEx.Record(undoRecordObject);
                 SelectionBoxBorderColor = newColor;
@@ -140,6 +140,6 @@ namespace RLD
                 SelectionRectFillColor = newColor;
             }
         }
-        #endif
+#endif
     }
 }

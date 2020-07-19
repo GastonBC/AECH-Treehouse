@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -14,7 +14,7 @@ namespace RLD
             GL.LoadOrtho();
 
             GL.Begin(GL.QUADS);
-            for (int quadIndex = 0; quadIndex < numQuads; ++quadIndex )
+            for (int quadIndex = 0; quadIndex < numQuads; ++quadIndex)
             {
                 int basePtIndex = quadIndex * 4;
                 GL.Vertex(camera.ScreenToViewportPoint(quadPoints[basePtIndex]));
@@ -293,7 +293,7 @@ namespace RLD
             GL.Begin(GL.TRIANGLES);
 
             origin = camera.ScreenToViewportPoint(Vector2.Scale(origin, scale) + translation);
-            for(int triangleIndex = 0; triangleIndex < numTriangles; ++triangleIndex)
+            for (int triangleIndex = 0; triangleIndex < numTriangles; ++triangleIndex)
             {
                 GL.Vertex(origin);
                 GL.Vertex(camera.ScreenToViewportPoint(Vector2.Scale(points[triangleIndex], scale) + translation));

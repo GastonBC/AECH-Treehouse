@@ -36,7 +36,7 @@ namespace RLD
         public Color BoxLineColor { get { return _boxLineColor; } set { _boxLineColor = value; } }
         public bool DrawBoxes { get { return _drawBoxes; } set { _drawBoxes = value; } }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         protected override void RenderContent(UnityEngine.Object undoRecordObject)
         {
             bool newBool; Color newColor; float newFloat;
@@ -46,7 +46,7 @@ namespace RLD
             content.text = "Pivot shape type";
             content.tooltip = "Allows you to choose the shape that is drawn for the snap pivot point.";
             newPivotShapeType = (PivotPointShapeType)EditorGUILayout.EnumPopup(content, PivotShapeType);
-            if(newPivotShapeType != PivotShapeType)
+            if (newPivotShapeType != PivotShapeType)
             {
                 EditorUndoEx.Record(undoRecordObject);
                 PivotShapeType = newPivotShapeType;
@@ -55,7 +55,7 @@ namespace RLD
             content.text = "Pivot fill color";
             content.tooltip = "Allows you to choose the fill color for the snap pivot point.";
             newColor = EditorGUILayout.ColorField(content, PivotPointFillColor);
-            if(newColor != PivotPointFillColor)
+            if (newColor != PivotPointFillColor)
             {
                 EditorUndoEx.Record(undoRecordObject);
                 PivotPointFillColor = newColor;
@@ -70,19 +70,19 @@ namespace RLD
                 PivotPointBorderColor = newColor;
             }
 
-            if(PivotShapeType == PivotPointShapeType.Circle)
+            if (PivotShapeType == PivotPointShapeType.Circle)
             {
                 content.text = "Pivot circle radius";
                 content.tooltip = "Allows you to control the radius of the pivot circle.";
                 newFloat = EditorGUILayout.FloatField(content, PivotCircleRadius);
-                if(newFloat != PivotCircleRadius)
+                if (newFloat != PivotCircleRadius)
                 {
                     EditorUndoEx.Record(undoRecordObject);
                     PivotCircleRadius = newFloat;
                 }
             }
             else
-            if(PivotShapeType == PivotPointShapeType.Square)
+            if (PivotShapeType == PivotPointShapeType.Square)
             {
                 content.text = "Pivot square side length";
                 content.tooltip = "Allows you to control the length of the pivot square side.";
@@ -97,7 +97,7 @@ namespace RLD
             content.text = "Draw pivot border";
             content.tooltip = "If this is checked, the pivot will be drawn with a border.";
             newBool = EditorGUILayout.ToggleLeft(content, DrawPivotBorder);
-            if(newBool != DrawPivotBorder)
+            if (newBool != DrawPivotBorder)
             {
                 EditorUndoEx.Record(undoRecordObject);
                 DrawPivotBorder = newBool;
@@ -107,7 +107,7 @@ namespace RLD
             content.text = "Box line color";
             content.tooltip = "Allows you to choose the line color for the boxes that are drawn for each mesh object involved in the snap session.";
             newColor = EditorGUILayout.ColorField(content, BoxLineColor);
-            if(newColor != BoxLineColor)
+            if (newColor != BoxLineColor)
             {
                 EditorUndoEx.Record(undoRecordObject);
                 BoxLineColor = newColor;
@@ -122,6 +122,6 @@ namespace RLD
                 DrawBoxes = newBool;
             }
         }
-        #endif
+#endif
     }
 }

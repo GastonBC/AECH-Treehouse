@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -8,7 +8,7 @@ namespace RLD
         private GizmoScaleGuideLookAndFeel _lookAndFeel = new GizmoScaleGuideLookAndFeel();
         private GizmoScaleGuideLookAndFeel _sharedLookAndFeel;
 
-        public GizmoScaleGuideLookAndFeel LookAndFeel { get { return _sharedLookAndFeel == null ? _lookAndFeel : _sharedLookAndFeel;} }
+        public GizmoScaleGuideLookAndFeel LookAndFeel { get { return _sharedLookAndFeel == null ? _lookAndFeel : _sharedLookAndFeel; } }
         public GizmoScaleGuideLookAndFeel SharedLookAndFeel { get { return _sharedLookAndFeel; } set { _sharedLookAndFeel = value; } }
 
         public void Render(IEnumerable<GameObject> gameObjects, Camera camera)
@@ -18,7 +18,7 @@ namespace RLD
             GizmoLineMaterial material = GizmoLineMaterial.Get;
             material.ResetValuesToSensibleDefaults();
 
-            foreach(GameObject gameObj in gameObjects)
+            foreach (GameObject gameObj in gameObjects)
             {
                 Transform transform = gameObj.transform;
                 Vector3 axesOrigin = transform.position;
@@ -27,7 +27,7 @@ namespace RLD
                 Vector3 look = transform.forward;
 
                 float zoomFactor = 1.0f;
-                if(LookAndFeel.UseZoomFactor) zoomFactor = camera.EstimateZoomFactor(axesOrigin);
+                if (LookAndFeel.UseZoomFactor) zoomFactor = camera.EstimateZoomFactor(axesOrigin);
                 float axisLength = LookAndFeel.AxisLength * zoomFactor;
 
                 Vector3 startPt = axesOrigin - right * axisLength;

@@ -2,12 +2,12 @@
 
 namespace RLD
 {
-    public static class RTMeshCompiler 
+    public static class RTMeshCompiler
     {
         public static void CompileEntireScene()
         {
             GameObject[] sceneObjects = RTScene.Get.GetSceneObjects();
-            foreach(GameObject sceneObject in sceneObjects)
+            foreach (GameObject sceneObject in sceneObjects)
                 CompileForObject(sceneObject);
         }
 

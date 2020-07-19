@@ -1,6 +1,6 @@
-﻿using UnityEngine;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -154,7 +154,7 @@ namespace RLD
                 _targetHierarchy = targetHierarchy;
                 _targetHierarchyTransform = _targetHierarchy.transform;
 
-                if(!FitBoxToTargetHierarchy())
+                if (!FitBoxToTargetHierarchy())
                 {
                     _targetHierarchy = null;
                     _targetHierarchyTransform = null;
@@ -166,7 +166,7 @@ namespace RLD
 
             if (BoxUsage == Usage.ObjectScale)
             {
-                if(_targetHierarchy != null)
+                if (_targetHierarchy != null)
                 {
                     _ticks.SetVisible(true);
                     _ticks.SetHoverable(true);
@@ -338,7 +338,7 @@ namespace RLD
                 if (_scaleFromCenter) _scalePivot = BoxCenter;
                 _scaleDrag.SetWorkData(_scaleDragWorkData);
 
-                if (BoxUsage == Usage.ObjectScale && _targetHierarchyTransform != null) 
+                if (BoxUsage == Usage.ObjectScale && _targetHierarchyTransform != null)
                     _dragBeginTargetTransformSnapshot.Snapshot(_targetHierarchyTransform);
             }
         }

@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -20,7 +20,7 @@ namespace RLD
         {
             if (_isBuilt) return;
 
-            for(int triIndex = 0; triIndex < _mesh.NumTriangles; ++triIndex)
+            for (int triIndex = 0; triIndex < _mesh.NumTriangles; ++triIndex)
             {
                 MeshTriangle meshTriangle = _mesh.GetTriangle(triIndex);
                 _tree.AddNode(meshTriangle, new Sphere(meshTriangle.Vertices));
@@ -126,7 +126,7 @@ namespace RLD
             bool foundTriangle = false;
 
             // Loop through each node hit
-            foreach(SphereTreeNodeRayHit<MeshTriangle> nodeHit in nodeHits)
+            foreach (SphereTreeNodeRayHit<MeshTriangle> nodeHit in nodeHits)
             {
                 // Get the associated mesh triangle and check if the ray intersects it
                 MeshTriangle meshTriangle = nodeHit.HitNode.Data;

@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -88,11 +88,11 @@ namespace RLD
             BoxFace bestFace = BoxFace.Front;
             List<BoxFace> allFaces = AllBoxFaces;
 
-            foreach(BoxFace face in allFaces)
+            foreach (BoxFace face in allFaces)
             {
                 Plane facePlane = BoxMath.CalcBoxFacePlane(boxCenter, boxSize, boxRotation, face);
                 float dist = facePlane.GetAbsDistanceToPoint(point);
-                if(dist < minDist)
+                if (dist < minDist)
                 {
                     bestFace = face;
                     bestPlane = facePlane;
@@ -266,7 +266,7 @@ namespace RLD
             Vector3 upAxis = boxRotation * Vector3.up;
             Vector3 lookAxis = boxRotation * Vector3.forward;
 
-            switch(boxFace)
+            switch (boxFace)
             {
                 case BoxFace.Front:
 

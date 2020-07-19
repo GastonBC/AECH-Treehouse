@@ -81,7 +81,7 @@ namespace RLD
 
         public void SetTorusCoreRadius(float radius)
         {
-            if (_circularType == Type.Torus || 
+            if (_circularType == Type.Torus ||
                 _circularType == Type.CylindricalTorus) Material.SetFloat("_TorusCoreRadius", radius);
         }
 

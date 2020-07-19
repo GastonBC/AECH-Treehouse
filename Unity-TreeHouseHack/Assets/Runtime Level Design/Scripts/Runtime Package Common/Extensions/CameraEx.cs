@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -48,7 +48,7 @@ namespace RLD
             Vector3 bottomLeftFar = topLeftFar - camTransform.up * frustumHeight;
             Vector3 bottomRightFar = bottomLeftFar + camTransform.right * frustumWidth;
 
-            return new AABB(new Vector3[] { camTransform.position, topLeftFar, topRightFar, bottomLeftFar, bottomRightFar });        
+            return new AABB(new Vector3[] { camTransform.position, topLeftFar, topRightFar, bottomLeftFar, bottomRightFar });
         }
 
         public static AABB CalculateOrthoAABB(this Camera camera)
@@ -142,7 +142,7 @@ namespace RLD
             if (worldPoints.Count == 0) return new List<Vector2>();
 
             List<Vector2> screenPoints = new List<Vector2>(worldPoints.Count);
-            foreach(Vector3 pt in worldPoints)
+            foreach (Vector3 pt in worldPoints)
             {
                 screenPoints.Add(camera.WorldToScreenPoint(pt));
             }
@@ -194,7 +194,7 @@ namespace RLD
         }
 
         public static List<GameObject> GetVisibleObjects(this Camera camera, CameraViewVolume viewVolume)
-        {         
+        {
             // Retrieve the objects which are overlapped by the camera volume's OBB
             List<GameObject> overlappedObjects = RTScene.Get.OverlapBox(viewVolume.WorldOBB);
             if (overlappedObjects.Count == 0) return new List<GameObject>();

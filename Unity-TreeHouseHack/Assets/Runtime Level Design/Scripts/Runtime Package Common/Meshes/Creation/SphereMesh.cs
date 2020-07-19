@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections.Generic;
 
 namespace RLD
 {
@@ -29,7 +28,7 @@ namespace RLD
                 {
                     float centralAxisRotAngle = angleStep * vertIndex * Mathf.Deg2Rad;
                     Vector3 rotatedAxis = Vector3.right * Mathf.Sin(centralAxisRotAngle) +
-                                          Vector3.forward * Mathf.Cos(centralAxisRotAngle); 
+                                          Vector3.forward * Mathf.Cos(centralAxisRotAngle);
                     positions[vertexPtr] = rotatedAxis * sinTheta * radius + Vector3.up * cosTheta * radius;
                     normals[vertexPtr] = Vector3.Normalize(positions[vertexPtr]);
                     ++vertexPtr;

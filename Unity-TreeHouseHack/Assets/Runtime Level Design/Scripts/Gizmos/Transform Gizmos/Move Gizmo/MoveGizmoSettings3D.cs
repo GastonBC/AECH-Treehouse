@@ -117,7 +117,7 @@ namespace RLD
             return _dblSliderSettings[(int)planeId];
         }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         protected override void RenderContent(UnityEngine.Object undoRecordObject)
         {
             float newFloat;
@@ -125,7 +125,7 @@ namespace RLD
             EditorGUILayoutEx.SectionHeader("Hover epsilon");
             GUIContent content = new GUIContent();
             content.text = "Line slider";
-            content.tooltip = "Controls the precision used when hovering line sliders.";          
+            content.tooltip = "Controls the precision used when hovering line sliders.";
             newFloat = EditorGUILayout.FloatField(content, LineSliderHoverEps);
             if (newFloat != LineSliderHoverEps)
             {
@@ -195,6 +195,6 @@ namespace RLD
             EditorGUILayoutEx.SectionHeader("Vertex snapping");
             _vertexSnapSettings.RenderEditorGUI(undoRecordObject);
         }
-        #endif
+#endif
     }
 }

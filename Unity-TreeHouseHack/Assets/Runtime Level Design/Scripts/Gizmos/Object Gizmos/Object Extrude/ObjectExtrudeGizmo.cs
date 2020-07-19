@@ -1,6 +1,6 @@
-﻿using UnityEngine;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -142,12 +142,12 @@ namespace RLD
             if (ExtrudeSpace == GizmoSpace.Global)
             {
                 AABB worldAABB = AABB.GetInvalid();
-                foreach(GameObject parent in _targetParents)
+                foreach (GameObject parent in _targetParents)
                 {
                     if (_ignoredParentObjects.Contains(parent)) continue;
 
                     AABB aabb = ObjectBounds.CalcHierarchyWorldAABB(parent, _boundsQConfig);
-                    if(aabb.IsValid)
+                    if (aabb.IsValid)
                     {
                         if (worldAABB.IsValid) worldAABB.Encapsulate(aabb);
                         else worldAABB = aabb;
@@ -175,7 +175,7 @@ namespace RLD
                 }
 
                 OBB worldOBB = ObjectBounds.CalcHierarchyWorldOBB(_targetParents[firstParentIndex], _boundsQConfig);
-                for (int parentIndex = firstParentIndex; parentIndex < NumTargetParents; ++parentIndex )
+                for (int parentIndex = firstParentIndex; parentIndex < NumTargetParents; ++parentIndex)
                 {
                     GameObject parent = _targetParents[parentIndex];
                     if (_ignoredParentObjects.Contains(parent)) continue;
@@ -359,9 +359,9 @@ namespace RLD
                 List<GameObject> createdClones = new List<GameObject>(10);
                 ObjectCloning.Config cloneConfig = ObjectCloning.DefaultConfig;
                 Vector3 cloneOffset = _handleDragExtrData.ExtrudeDir * boxSize;
-                for(int cloneIndex = 0; cloneIndex < iNumClones; ++cloneIndex)
+                for (int cloneIndex = 0; cloneIndex < iNumClones; ++cloneIndex)
                 {
-                    foreach(GameObject targetParent in _targetParents)
+                    foreach (GameObject targetParent in _targetParents)
                     {
                         if (_ignoredParentObjects.Contains(targetParent)) continue;
 

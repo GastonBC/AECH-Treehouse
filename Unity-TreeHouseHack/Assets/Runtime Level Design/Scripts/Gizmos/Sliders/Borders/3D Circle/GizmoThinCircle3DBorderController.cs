@@ -1,11 +1,9 @@
-﻿using UnityEngine;
-
-namespace RLD
+﻿namespace RLD
 {
     public class GizmoThinCircle3DBorderController : GizmoCircle3DBorderController
     {
         public GizmoThinCircle3DBorderController(GizmoCircle3DBorderControllerData controllerData)
-            :base(controllerData)
+            : base(controllerData)
         {
         }
 

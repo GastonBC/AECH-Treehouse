@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -64,7 +64,7 @@ namespace RLD
 
             // If this point is not inside this sphere, it means the sphere is not encapsulated
             // and we need to encapsulate it.
-            if(!ContainsPoint(otherExtremePt))
+            if (!ContainsPoint(otherExtremePt))
             {
                 // Calculate the extreme point on this sphere (along the reverse of the direction
                 // vector calculated earlier). Then use this point to calculate the new radius and

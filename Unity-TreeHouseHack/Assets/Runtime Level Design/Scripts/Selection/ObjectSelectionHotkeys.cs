@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 #if UNITY_EDITOR
-using UnityEditor;
 #endif
 using System;
 
@@ -44,7 +43,7 @@ namespace RLD
         public Hotkeys FocusCameraOnSelection { get { return _focusCameraOnSelection; } }
         public Hotkeys DuplicateSelection { get { return _duplicateSelection; } }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         protected override void RenderContent(UnityEngine.Object undoRecordObject)
         {
             AppendToSelection.RenderEditorGUI(undoRecordObject);
@@ -53,6 +52,6 @@ namespace RLD
             FocusCameraOnSelection.RenderEditorGUI(undoRecordObject);
             DuplicateSelection.RenderEditorGUI(undoRecordObject);
         }
-        #endif
+#endif
     }
 }

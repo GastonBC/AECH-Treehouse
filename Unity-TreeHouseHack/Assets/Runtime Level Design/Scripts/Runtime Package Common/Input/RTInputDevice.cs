@@ -1,5 +1,4 @@
 ﻿//#define INPUT_DEVICE_VR_CONTROLLER
-using UnityEngine;
 
 namespace RLD
 {
@@ -17,13 +16,13 @@ namespace RLD
 
         private void Awake()
         {
-            #if !UNITY_EDITOR && (UNITY_IOS || UNITY_ANDROID || UNITY_WP_8_1)
+#if !UNITY_EDITOR && (UNITY_IOS || UNITY_ANDROID || UNITY_WP_8_1)
             _inputDevice = new TouchInputDevice(10);
-            #elif INPUT_DEVICE_VR_CONTROLLER
+#elif INPUT_DEVICE_VR_CONTROLLER
             //_inputDevice = new MyVRCtrlImplementation(...);
-            #else
+#else
             _inputDevice = new MouseInputDevice();
-            #endif
+#endif
         }
     }
 }

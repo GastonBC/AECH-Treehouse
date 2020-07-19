@@ -289,10 +289,10 @@ namespace RLD
 
         public void ConnectCamLookSliderLookAndFeel(GizmoPlaneSlider2D slider)
         {
-            slider.SharedLookAndFeel = _camLookSliderLookAndFeel;  
+            slider.SharedLookAndFeel = _camLookSliderLookAndFeel;
         }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         protected override void RenderContent(UnityEngine.Object undoRecordObject)
         {
             float newFloat; bool newBool; Color newColor; int newInt;
@@ -346,7 +346,7 @@ namespace RLD
                 content.text = "Torus thickness";
                 content.tooltip = "The torus thickness for the axis sliders when the border type is set to \'Torus\'.";
                 newFloat = EditorGUILayout.FloatField(content, AxisTorusThickness);
-                if(newFloat != AxisTorusThickness)
+                if (newFloat != AxisTorusThickness)
                 {
                     EditorUndoEx.Record(undoRecordObject);
                     SetAxisTorusThickness(newFloat);
@@ -379,7 +379,7 @@ namespace RLD
             content.text = "X border";
             content.tooltip = "The border color of the X axis slider.";
             newColor = EditorGUILayout.ColorField(content, XBorderColor);
-            if(newColor != XBorderColor)
+            if (newColor != XBorderColor)
             {
                 EditorUndoEx.Record(undoRecordObject);
                 SetAxisBorderColor(0, newColor);
@@ -406,7 +406,7 @@ namespace RLD
             content.text = "Hovered";
             content.tooltip = "The hovered color.";
             newColor = EditorGUILayout.ColorField(content, HoveredColor);
-            if(newColor != HoveredColor)
+            if (newColor != HoveredColor)
             {
                 EditorUndoEx.Record(undoRecordObject);
                 SetHoveredColor(newColor);
@@ -514,7 +514,7 @@ namespace RLD
             content.text = "Border type";
             content.tooltip = "The type of border which is used to draw the circle that rotates around the camera look axis.";
             newPolyBorder2DType = (GizmoPolygon2DBorderType)EditorGUILayout.EnumPopup(content, CamLookSliderPolyBorderType);
-            if(newPolyBorder2DType != CamLookSliderPolyBorderType)
+            if (newPolyBorder2DType != CamLookSliderPolyBorderType)
             {
                 EditorUndoEx.Record(undoRecordObject);
                 SetCamLookSliderPolyBorderType(newPolyBorder2DType);
@@ -525,7 +525,7 @@ namespace RLD
                 content.text = "Border thickness";
                 content.tooltip = "When a thick border is used, this property represents the border thickness.";
                 newFloat = EditorGUILayout.FloatField(content, CamLookSliderPolyBorderThickness);
-                if(newFloat != CamLookSliderPolyBorderThickness)
+                if (newFloat != CamLookSliderPolyBorderThickness)
                 {
                     EditorUndoEx.Record(undoRecordObject);
                     SetCamLookSliderPolyBorderThickness(newFloat);
@@ -615,6 +615,6 @@ namespace RLD
                 SetMidCapBorderVisible(newBool);
             }
         }
-        #endif
+#endif
     }
 }

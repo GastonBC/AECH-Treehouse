@@ -1,8 +1,8 @@
 ﻿#if UNITY_EDITOR
-using UnityEngine;
-using UnityEditor;
 using System;
 using System.Collections.Generic;
+using UnityEditor;
+using UnityEngine;
 
 namespace RLD
 {
@@ -41,11 +41,11 @@ namespace RLD
             // We first need to build a mask that is mapped to each element in 'allLayerNames'.
             // A 0 bit indicates that the layer with the same index as the bit position is masked.
             int indexMask = 0;
-            for(int layerNameIndex = 0; layerNameIndex < allLayerNames.Count; ++layerNameIndex)
+            for (int layerNameIndex = 0; layerNameIndex < allLayerNames.Count; ++layerNameIndex)
             {
                 // If the layer is set inside the layer mask, set the bit in the index mask also
                 string layerName = allLayerNames[layerNameIndex];
-                if (LayerEx.IsLayerBitSet(layerMask, LayerMask.NameToLayer(layerName))) indexMask |= (1 << layerNameIndex); 
+                if (LayerEx.IsLayerBitSet(layerMask, LayerMask.NameToLayer(layerName))) indexMask |= (1 << layerNameIndex);
             }
 
             // Now we need to show the mask field to the user and use the returned index mask

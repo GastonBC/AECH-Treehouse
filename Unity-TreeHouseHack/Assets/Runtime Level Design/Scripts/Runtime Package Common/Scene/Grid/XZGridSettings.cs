@@ -28,8 +28,8 @@ namespace RLD
         public Vector3 RotationAngles { get { return _rotationAngles; } set { _rotationAngles = value; } }
         public float YOffset { get { return _yOffset; } set { _yOffset = value; } }
         public float UpDownStep { get { return _upDownStep; } set { _upDownStep = Mathf.Max(1e-4f, value); } }
-        
-        #if UNITY_EDITOR
+
+#if UNITY_EDITOR
         protected override void RenderContent(UnityEngine.Object undoRecordObject)
         {
             float newFloat; bool newBool; Vector3 newVec3;
@@ -48,7 +48,7 @@ namespace RLD
             content.text = "Cell size X";
             content.tooltip = "Allows you to change the cell size along the X axis.";
             newFloat = EditorGUILayout.FloatField(content, CellSizeX);
-            if(newFloat != CellSizeX)
+            if (newFloat != CellSizeX)
             {
                 EditorUndoEx.Record(undoRecordObject);
                 CellSizeX = newFloat;
@@ -80,7 +80,7 @@ namespace RLD
             {
                 EditorUndoEx.Record(undoRecordObject);
                 YOffset = newFloat;
-            } 
+            }
 
             content.text = "Up/down step";
             content.tooltip = "Allows you to specify the step value that is used to modify the grid Y offset via input.";
@@ -89,9 +89,9 @@ namespace RLD
             {
                 EditorUndoEx.Record(undoRecordObject);
                 UpDownStep = newFloat;
-            } 
+            }
             EditorGUILayout.EndVertical();
         }
-        #endif
+#endif
     }
 }

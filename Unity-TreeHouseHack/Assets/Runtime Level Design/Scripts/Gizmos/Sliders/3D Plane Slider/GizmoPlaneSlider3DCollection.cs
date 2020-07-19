@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -120,7 +120,7 @@ namespace RLD
             List<GizmoPlaneSlider3D> sortedSliders = new List<GizmoPlaneSlider3D>(_sliders);
             Vector3 cameraPos = renderCamera.transform.position;
 
-            sortedSliders.Sort(delegate(GizmoPlaneSlider3D s0, GizmoPlaneSlider3D s1)
+            sortedSliders.Sort(delegate (GizmoPlaneSlider3D s0, GizmoPlaneSlider3D s1)
             {
                 float d0 = (s0.Position - cameraPos).sqrMagnitude;
                 float d1 = (s1.Position - cameraPos).sqrMagnitude;

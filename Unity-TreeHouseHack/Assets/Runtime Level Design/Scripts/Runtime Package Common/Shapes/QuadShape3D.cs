@@ -44,7 +44,7 @@ namespace RLD
         public float WidthEps { get { return _epsilon.WidthEps; } set { _epsilon.WidthEps = value; } }
         public float HeightEps { get { return _epsilon.HeightEps; } set { _epsilon.HeightEps = value; } }
         public float ExtrudeEps { get { return _epsilon.ExtrudeEps; } set { _epsilon.ExtrudeEps = value; } }
-        public float WireEps { get { return _epsilon.WireEps; } set { _epsilon.WireEps = value;} }
+        public float WireEps { get { return _epsilon.WireEps; } set { _epsilon.WireEps = value; } }
         public Shape3DRaycastMode RaycastMode { get { return _raycastMode; } set { _raycastMode = value; } }
         public WireRenderDescriptor WireRenderDesc { get { return _wireRenderDesc; } }
 
@@ -94,7 +94,7 @@ namespace RLD
 
         public override void RenderWire()
         {
-            if(_wireRenderDesc.WireEdgeFlags == WireEdgeFlags.All)
+            if (_wireRenderDesc.WireEdgeFlags == WireEdgeFlags.All)
                 Graphics.DrawMeshNow(MeshPool.Get.UnitWireQuadXY, Matrix4x4.TRS(_center, _rotation, new Vector3(_size.x, _size.y, 1.0f)));
             else
             {

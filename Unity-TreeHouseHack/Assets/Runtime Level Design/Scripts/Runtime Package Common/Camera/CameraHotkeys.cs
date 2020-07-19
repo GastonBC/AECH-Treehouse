@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 #if UNITY_EDITOR
-using UnityEditor;
 #endif
 using System;
 
@@ -88,7 +87,7 @@ namespace RLD
         public Hotkeys Orbit { get { return _orbit; } }
         public Hotkeys AlternateMoveSpeed { get { return _alternateMoveSpeed; } }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         protected override void RenderContent(UnityEngine.Object undoRecordObject)
         {
             MoveForward.RenderEditorGUI(undoRecordObject);
@@ -102,6 +101,6 @@ namespace RLD
             Orbit.RenderEditorGUI(undoRecordObject);
             AlternateMoveSpeed.RenderEditorGUI(undoRecordObject);
         }
-        #endif
+#endif
     }
 }

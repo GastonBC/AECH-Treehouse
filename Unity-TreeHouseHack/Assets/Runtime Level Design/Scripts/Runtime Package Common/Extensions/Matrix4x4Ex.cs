@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -7,9 +7,9 @@ namespace RLD
     {
         public static Matrix4x4 GetInverse(this Matrix4x4 mtx)
         {
-            float invDet = mtx.m00 * (mtx.m11 * (mtx.m22 * mtx.m33 - mtx.m23 * mtx.m32) - mtx.m12 * (mtx.m21 * mtx.m33 - mtx.m23 * mtx.m31) + mtx.m13 * (mtx.m21 * mtx.m32 - mtx.m22 * mtx.m31)) - 
-                           mtx.m01 * (mtx.m10 * (mtx.m22 * mtx.m33 - mtx.m23 * mtx.m32) - mtx.m12 * (mtx.m20 * mtx.m33 - mtx.m23 * mtx.m30) + mtx.m13 * (mtx.m20 * mtx.m32 - mtx.m22 * mtx.m30)) + 
-                           mtx.m02 * (mtx.m10 * (mtx.m21 * mtx.m33 - mtx.m23 - mtx.m31) - mtx.m11 * (mtx.m20 * mtx.m33 - mtx.m23 * mtx.m30) + mtx.m13 * (mtx.m20 * mtx.m31 - mtx.m21 * mtx.m30)) - 
+            float invDet = mtx.m00 * (mtx.m11 * (mtx.m22 * mtx.m33 - mtx.m23 * mtx.m32) - mtx.m12 * (mtx.m21 * mtx.m33 - mtx.m23 * mtx.m31) + mtx.m13 * (mtx.m21 * mtx.m32 - mtx.m22 * mtx.m31)) -
+                           mtx.m01 * (mtx.m10 * (mtx.m22 * mtx.m33 - mtx.m23 * mtx.m32) - mtx.m12 * (mtx.m20 * mtx.m33 - mtx.m23 * mtx.m30) + mtx.m13 * (mtx.m20 * mtx.m32 - mtx.m22 * mtx.m30)) +
+                           mtx.m02 * (mtx.m10 * (mtx.m21 * mtx.m33 - mtx.m23 - mtx.m31) - mtx.m11 * (mtx.m20 * mtx.m33 - mtx.m23 * mtx.m30) + mtx.m13 * (mtx.m20 * mtx.m31 - mtx.m21 * mtx.m30)) -
                            mtx.m03 * (mtx.m10 * (mtx.m21 * mtx.m32 - mtx.m22 * mtx.m31) - mtx.m11 * (mtx.m20 * mtx.m32 - mtx.m22 * mtx.m30) + mtx.m12 * (mtx.m20 * mtx.m31 - mtx.m21 * mtx.m30));
             if (Mathf.Abs(invDet) < 1e-5f) return mtx;
             invDet = 1.0f / invDet;
@@ -18,7 +18,7 @@ namespace RLD
             float m10 = mtx.m01, m11 = mtx.m11, m12 = mtx.m21, m13 = mtx.m31;
             float m20 = mtx.m02, m21 = mtx.m12, m22 = mtx.m22, m23 = mtx.m32;
             float m30 = mtx.m03, m31 = mtx.m13, m32 = mtx.m23, m33 = mtx.m33;
-            
+
             mtx.m00 = invDet * (m11 * (m22 * m33 - m23 * m32) - m12 * (m21 * m33 - m31 * m23) + m13 * (m21 * m32 - m22 * m31));
             mtx.m01 = -invDet * (m10 * (m22 * m33 - m23 * m32) - m12 * (m20 * m33 - m23 * m30) + m13 * (m20 * m32 - m23 * m30));
             mtx.m02 = invDet * (m10 * (m21 * m33 - m23 * m31) - m11 * (m20 * m33 - m23 * m30) + m13 * (m20 * m31 - m21 * m30));

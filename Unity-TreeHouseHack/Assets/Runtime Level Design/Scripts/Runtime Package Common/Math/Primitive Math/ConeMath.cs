@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -35,7 +35,7 @@ namespace RLD
             float xzAABBSize = coneBaseRadius * 2.0f;
             Vector3 aabbSize = new Vector3(xzAABBSize, coneHeight + epsilon.VertEps * 2.0f, xzAABBSize);
             if (!BoxMath.Raycast(coneSpaceRay, Vector3.up * coneHeight * 0.5f, aabbSize, Quaternion.identity)) return false;
-          
+
             // We will first perform a preliminary check to see if the ray intersects the bottom cap of the cone.
             // This is necessary because the cone equation views the cone as infinite (i.e. no bottom cap), and
             // if we didn't perform this check, we would never be able to tell when the bottom cap was hit.

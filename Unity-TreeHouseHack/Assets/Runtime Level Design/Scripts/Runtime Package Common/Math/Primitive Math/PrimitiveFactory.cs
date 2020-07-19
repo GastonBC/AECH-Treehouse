@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -72,7 +72,7 @@ namespace RLD
                 float t;
                 Vector2 rayDir = (end1 - start1).normalized;
                 Vector2 rayOrigin = start1 + normal1 * borderWidth;
-                if (PlaneMath.Raycast2D(rayOrigin, rayDir, normal0, start0 + normal0 * borderWidth, out t)) outputPoints.Add(rayOrigin + rayDir * t);                 
+                if (PlaneMath.Raycast2D(rayOrigin, rayDir, normal0, start0 + normal0 * borderWidth, out t)) outputPoints.Add(rayOrigin + rayDir * t);
                 else outputPoints.Add(start0);
 
                 for (int segmentIndex = 0; segmentIndex < numSegments - 1; ++segmentIndex)
@@ -93,7 +93,7 @@ namespace RLD
                 }
 
                 outputPoints.Add(outputPoints[0]);
-                
+
                 return outputPoints;
             }
             else
@@ -104,7 +104,7 @@ namespace RLD
                 outputPoints.Add(start + normal * borderWidth);
 
                 float t;
-                for(int segmentIndex = 0; segmentIndex < numSegments - 1; ++segmentIndex)
+                for (int segmentIndex = 0; segmentIndex < numSegments - 1; ++segmentIndex)
                 {
                     Vector2 segmentStart = cwPolyPoints[segmentIndex];
                     Vector2 segmentEnd = cwPolyPoints[segmentIndex + 1];

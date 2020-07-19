@@ -2,7 +2,7 @@
 
 namespace RLD
 {
-    public class GizmoRATriangle3DBorder 
+    public class GizmoRATriangle3DBorder
     {
         private GizmoPlaneSlider3D _planeSlider;
 

@@ -38,7 +38,7 @@ namespace RLD
             destination.CanSnapToObjectVerts = CanSnapToObjectVerts;
         }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         protected override void RenderContent(UnityEngine.Object undoRecordObject)
         {
             int newInt; bool newBool;
@@ -71,6 +71,6 @@ namespace RLD
                 SnapDestinationLayers = newInt;
             }
         }
-        #endif
+#endif
     }
 }

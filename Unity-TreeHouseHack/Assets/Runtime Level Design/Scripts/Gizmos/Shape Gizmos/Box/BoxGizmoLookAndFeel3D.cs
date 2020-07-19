@@ -29,7 +29,7 @@ namespace RLD
 
         public BoxGizmoLookAndFeel3D()
         {
-            for(int tickIndex = 0; tickIndex < _tickLookAndFeel.Length; ++tickIndex)
+            for (int tickIndex = 0; tickIndex < _tickLookAndFeel.Length; ++tickIndex)
             {
                 _tickLookAndFeel[tickIndex] = new GizmoCap2DLookAndFeel();
             }
@@ -121,7 +121,7 @@ namespace RLD
             else return _tickLookAndFeel[axisIndex + 3];
         }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         protected override void RenderContent(UnityEngine.Object undoRecordObject)
         {
             Color newColor; float newFloat;
@@ -236,6 +236,6 @@ namespace RLD
                 SetTickHoveredBorderColor(newColor);
             }
         }
-        #endif
+#endif
     }
 }

@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -68,7 +68,7 @@ namespace RLD
 
         public void MarkAllAsUnused()
         {
-            foreach(GameObject poolObject in _pooledObjects)
+            foreach (GameObject poolObject in _pooledObjects)
             {
                 MarkAsUnused(poolObject);
             }

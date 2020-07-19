@@ -1,6 +1,5 @@
-﻿using UnityEngine;
-using System;
-using System.Collections.Generic;
+﻿using System;
+using UnityEngine;
 
 namespace RLD
 {
@@ -34,23 +33,23 @@ namespace RLD
         public RotationGizmoSettings3D Settings3D { get { return _sharedSettings3D == null ? _settings3D : _sharedSettings3D; } }
         public RotationGizmoLookAndFeel3D LookAndFeel3D { get { return _sharedLookAndFeel3D == null ? _lookAndFeel3D : _sharedLookAndFeel3D; } }
         public RotationGizmoHotkeys Hotkeys { get { return _sharedHotkeys == null ? _hotkeys : _sharedHotkeys; } }
-        public RotationGizmoSettings3D SharedSettings3D 
-        { 
-            get { return _sharedSettings3D; } 
-            set 
-            { 
+        public RotationGizmoSettings3D SharedSettings3D
+        {
+            get { return _sharedSettings3D; }
+            set
+            {
                 _sharedSettings3D = value;
                 SetupSharedSettings();
-            } 
+            }
         }
-        public RotationGizmoLookAndFeel3D SharedLookAndFeel3D 
+        public RotationGizmoLookAndFeel3D SharedLookAndFeel3D
         {
-            get { return _sharedLookAndFeel3D; } 
-            set 
-            { 
+            get { return _sharedLookAndFeel3D; }
+            set
+            {
                 _sharedLookAndFeel3D = value;
                 SetupSharedLookAndFeel();
-            } 
+            }
         }
         public RotationGizmoHotkeys SharedHotkeys { get { return _sharedHotkeys; } set { _sharedHotkeys = value; } }
         public bool UseSnapEnableHotkey { get { return _useSnapEnableHotkey; } set { _useSnapEnableHotkey = value; } }
@@ -211,7 +210,7 @@ namespace RLD
 
         private void OnGizmoTransformChanged(GizmoTransform gizmoTransform, GizmoTransform.ChangeData changeData)
         {
-            if(changeData.ChangeReason == GizmoTransform.ChangeReason.ParentChange ||
+            if (changeData.ChangeReason == GizmoTransform.ChangeReason.ParentChange ||
                changeData.TRSDimension == GizmoDimension.Dim3D)
             {
                 UpdateCamLookSlider(Gizmo.GetWorkCamera());

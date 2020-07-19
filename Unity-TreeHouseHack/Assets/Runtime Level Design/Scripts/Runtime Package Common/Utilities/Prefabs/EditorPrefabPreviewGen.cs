@@ -1,6 +1,5 @@
-﻿using UnityEngine;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -86,7 +85,7 @@ namespace RLD
             }
 
             GameObject previewObject = null;
-            if (previewObjectType == PreviewObjectType.Mesh || previewObjectType == PreviewObjectType.Sprite) 
+            if (previewObjectType == PreviewObjectType.Mesh || previewObjectType == PreviewObjectType.Sprite)
                 previewObject = GameObject.Instantiate(unityPrefab);
             else previewObject = _nonMeshPreviewObject;
 
@@ -100,7 +99,7 @@ namespace RLD
             AABB previewAABB = new AABB();
             previewAABB = ObjectBounds.CalcHierarchyWorldAABB(previewObject, _boundsQConfig);
             Sphere previewSphere = new Sphere(previewAABB);
-            
+
             Vector3 previewSphereCenter = sceneSphere.Center - Vector3.right * (sceneSphere.Radius + previewSphere.Radius + 90.0f);
             previewObjectTransform.position += (previewSphereCenter - previewSphere.Center);
             previewAABB = ObjectBounds.CalcHierarchyWorldAABB(previewObject, _boundsQConfig);
@@ -110,9 +109,9 @@ namespace RLD
             if (previewObjectType == PreviewObjectType.Mesh || previewObjectType == PreviewObjectType.Sprite)
             {
                 camTransform.rotation = Quaternion.identity;
-                if (previewObjectType != PreviewObjectType.Sprite) 
+                if (previewObjectType != PreviewObjectType.Sprite)
                     camTransform.rotation = Quaternion.AngleAxis(-45.0f, Vector3.up) * Quaternion.AngleAxis(35.0f, camTransform.right);
-                camTransform.position = previewSphere.Center - camTransform.forward * (previewSphere.Radius * 2.0f + _renderCamera.nearClipPlane);             
+                camTransform.position = previewSphere.Center - camTransform.forward * (previewSphere.Radius * 2.0f + _renderCamera.nearClipPlane);
             }
             else
             {
@@ -186,7 +185,7 @@ namespace RLD
 
         private void RestoreSceneLights()
         {
-            foreach(KeyValuePair<Light, bool> pair in _lightToState)
+            foreach (KeyValuePair<Light, bool> pair in _lightToState)
             {
                 Light light = pair.Key;
                 if (light == null) continue;

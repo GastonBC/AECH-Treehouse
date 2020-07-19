@@ -57,7 +57,7 @@ namespace RLD
 
         private bool UpdateDragPoint()
         {
-            if(_inputDevice.HasPointer())
+            if (_inputDevice.HasPointer())
             {
                 _dragPoint = _inputDevice.GetPositionYAxisUp();
                 return true;

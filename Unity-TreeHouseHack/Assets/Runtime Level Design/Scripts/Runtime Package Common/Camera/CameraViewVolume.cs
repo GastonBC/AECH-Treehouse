@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -38,7 +38,7 @@ namespace RLD
         private AABB _worldAABB;
         private OBB _worldOBB;
 
-        public Plane LeftPlane { get { return _worldPlanes[(int)VPlane.Left];} }
+        public Plane LeftPlane { get { return _worldPlanes[(int)VPlane.Left]; } }
         public Plane RightPlane { get { return _worldPlanes[(int)VPlane.Right]; } }
         public Plane BottomPlane { get { return _worldPlanes[(int)VPlane.Bottom]; } }
         public Plane TopPlane { get { return _worldPlanes[(int)VPlane.Top]; } }
@@ -107,7 +107,7 @@ namespace RLD
         {
             return new List<Vector3>
             {
-                NearTopLeft, NearTopRight, 
+                NearTopLeft, NearTopRight,
                 NearBottomRight, NearBottomLeft,
             };
         }
@@ -184,9 +184,9 @@ namespace RLD
             Plane nearPlane = NearPlane;
             bool camInFrontOfNearPlane = nearPlane.GetDistanceToPoint(camTransform.position) >= 0.0f;
             Vector3 rayDir = camInFrontOfNearPlane ? -nearPlane.normal : nearPlane.normal;
-           
+
             ray = new Ray(camTransform.position, rayDir);
-            if(nearPlane.Raycast(ray, out t))
+            if (nearPlane.Raycast(ray, out t))
             {
                 Vector3 ptOnMidNear = ray.GetPoint(t);
                 Vector3 ptOnMidTopNear = Vector3.zero, ptOnMidRightFar = Vector3.zero;

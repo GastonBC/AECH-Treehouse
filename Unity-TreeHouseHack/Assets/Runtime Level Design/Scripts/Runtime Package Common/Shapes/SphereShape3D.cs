@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace RLD
 {
@@ -56,7 +55,7 @@ namespace RLD
         public override void RenderWire()
         {
             float wireRadius = WireRadius;
-            if(_wireRenderDesc.WireMode == WireRenderMode.Basic)
+            if (_wireRenderDesc.WireMode == WireRenderMode.Basic)
             {
                 Vector3 circleMeshScale = new Vector3(wireRadius, wireRadius, 1.0f);
                 Graphics.DrawMeshNow(MeshPool.Get.UnitWireCircleXY, Matrix4x4.TRS(_center, _rotation, circleMeshScale));
@@ -65,11 +64,11 @@ namespace RLD
             }
             else
             {
-                if(_wireRenderDesc.NumDetailSliceRings != 0)
+                if (_wireRenderDesc.NumDetailSliceRings != 0)
                 {
                     Vector3 circleMeshScale = new Vector3(wireRadius, wireRadius, 1.0f);
                     float angleStep = 360.0f / Mathf.Max(1, _wireRenderDesc.NumDetailSliceRings - 1);
-                    for(int sliceIndex = 0; sliceIndex < _wireRenderDesc.NumDetailSliceRings; ++sliceIndex)
+                    for (int sliceIndex = 0; sliceIndex < _wireRenderDesc.NumDetailSliceRings; ++sliceIndex)
                     {
                         float angle = angleStep * sliceIndex;
                         Matrix4x4 circleTransform = Matrix4x4.TRS(_center, _rotation * Quaternion.AngleAxis(angle, Vector3.up), circleMeshScale);
@@ -81,7 +80,7 @@ namespace RLD
                 Vector3 sphereTop = _center + Vector3.up * wireRadius;
                 float downStep = 2.0f * wireRadius / _wireRenderDesc.NumDetailAxialRings;
 
-                for(int ringIndex = 0; ringIndex < _wireRenderDesc.NumDetailAxialRings; ++ringIndex)
+                for (int ringIndex = 0; ringIndex < _wireRenderDesc.NumDetailAxialRings; ++ringIndex)
                 {
                     Vector3 ringCenter = sphereTop - Vector3.up * downStep * (float)ringIndex;
                     float ringRadius = Mathf.Sqrt(wireRadius * wireRadius - (ringCenter - _center).sqrMagnitude);

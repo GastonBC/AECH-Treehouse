@@ -121,7 +121,7 @@ namespace RLD
             return mesh;
         }
 
-        public static Mesh CreateTorus(Vector3 center,  float coreRadius, float tubeRadius, int numTubeSlices, int numSlices, Color color)
+        public static Mesh CreateTorus(Vector3 center, float coreRadius, float tubeRadius, int numTubeSlices, int numSlices, Color color)
         {
             if (coreRadius < 1e-4f || tubeRadius < 1e-4f || numTubeSlices < 3 || numSlices < 3) return null;
 

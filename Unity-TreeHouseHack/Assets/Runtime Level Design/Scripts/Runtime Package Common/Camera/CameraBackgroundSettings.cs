@@ -23,7 +23,7 @@ namespace RLD
         public float GradientOffset { get { return _gradientOffset; } set { _gradientOffset = Mathf.Clamp(value, -1.0f, 1.0f); } }
         public bool IsVisible { get { return _isVisible; } set { _isVisible = value; } }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         protected override void RenderContent(UnityEngine.Object undoRecordObject)
         {
             float newFloat; bool newBool; Color newColor;
@@ -49,7 +49,7 @@ namespace RLD
             content.text = "First color";
             content.tooltip = "Allows you to control the first color in the gradient.";
             newColor = EditorGUILayout.ColorField(content, FirstColor);
-            if(newColor != FirstColor)
+            if (newColor != FirstColor)
             {
                 EditorUndoEx.Record(undoRecordObject);
                 FirstColor = newColor;
@@ -66,15 +66,15 @@ namespace RLD
 
             // Gradient offset
             content.text = "Gradient offset";
-            content.tooltip = "Allows you to control the gradient offset. Possible values are in the [-1, 1] interval. " + 
+            content.tooltip = "Allows you to control the gradient offset. Possible values are in the [-1, 1] interval. " +
                               "A value of -1 will render only the first color. A value of 1 will render only the second color.";
             newFloat = EditorGUILayout.Slider(content, GradientOffset, -1.0f, 1.0f);
-            if(newFloat != GradientOffset)
+            if (newFloat != GradientOffset)
             {
                 EditorUndoEx.Record(undoRecordObject);
                 GradientOffset = newFloat;
             }
         }
-        #endif
+#endif
     }
 }

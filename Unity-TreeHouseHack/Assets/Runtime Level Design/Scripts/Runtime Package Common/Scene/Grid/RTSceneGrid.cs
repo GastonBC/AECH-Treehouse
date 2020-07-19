@@ -1,6 +1,6 @@
-﻿using UnityEngine;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -68,7 +68,7 @@ namespace RLD
             if (!Settings.IsVisible) return;
 
             if (Hotkeys.GridUp.IsActiveInFrame()) MoveUp();
-            else if (Hotkeys.GridDown.IsActiveInFrame()) MoveDown();     
+            else if (Hotkeys.GridDown.IsActiveInFrame()) MoveDown();
 
             if (!RTInputDevice.Get.Device.DidDoubleTap &&
                  RTInputDevice.Get.Device.WasButtonPressedInCurrentFrame(0))

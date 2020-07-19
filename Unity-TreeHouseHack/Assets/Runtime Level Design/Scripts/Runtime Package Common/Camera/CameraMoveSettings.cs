@@ -22,7 +22,7 @@ namespace RLD
         public float AlternateMoveSpeed { get { return _alternateMoveSpeed; } set { _alternateMoveSpeed = Mathf.Max(_minMoveSpeed, value); } }
         public float AccelerationRate { get { return _accelerationRate; } set { _accelerationRate = Mathf.Max(0.0f, value); } }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         protected override void RenderContent(UnityEngine.Object undoRecordObject)
         {
             EditorGUILayout.BeginVertical();
@@ -46,7 +46,7 @@ namespace RLD
             }
 
             content.text = "Acceleration rate";
-            content.tooltip = "When moving the camera around, an acceleration will be applied to the camera move speed. This field " + 
+            content.tooltip = "When moving the camera around, an acceleration will be applied to the camera move speed. This field " +
                               "allows you to control how fast the acceleration increases.";
             newFloat = EditorGUILayout.FloatField(content, AccelerationRate);
             if (newFloat != AccelerationRate)
@@ -56,6 +56,6 @@ namespace RLD
             }
             EditorGUILayout.EndVertical();
         }
-        #endif
+#endif
     }
 }

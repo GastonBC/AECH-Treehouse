@@ -5,7 +5,7 @@ namespace RLD
     public class GizmoSphereCap3DController : GizmoCap3DController
     {
         public GizmoSphereCap3DController(GizmoCap3DControllerData controllerData)
-            :base(controllerData)
+            : base(controllerData)
         {
         }
 

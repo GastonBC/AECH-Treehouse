@@ -13,7 +13,7 @@ namespace RLD
         public static Color[] GetFilledColorArray(int arrayLength, Color fillValue)
         {
             Color[] colorArray = new Color[arrayLength];
-            for(int colorIndex = 0; colorIndex < arrayLength; ++colorIndex)
+            for (int colorIndex = 0; colorIndex < arrayLength; ++colorIndex)
             {
                 colorArray[colorIndex] = fillValue;
             }

@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -200,7 +200,7 @@ namespace RLD
                         {
                             Vector3 sitOnPlaneOffset = ObjectSurfaceSnap.CalculateSitOnSurfaceOffset(hierarchyOBB, surfaceHit.HitPlane, 0.0f);
                             rootTransform.position += sitOnPlaneOffset;
-                            
+
                             if (isSurfaceTerrain)
                             {
                                 hierarchyOBB.Center += sitOnPlaneOffset;

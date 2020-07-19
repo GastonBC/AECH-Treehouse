@@ -1,6 +1,6 @@
-﻿using UnityEngine;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -78,7 +78,7 @@ namespace RLD
             // The handles are rendered with ZTest disabled so we will first sort 
             // the handle list by their render sorting position and then render them.
             Vector3 cameraPos = _sceneGizmoCamera.WorldPosition;
-            _renderSortedHandles.Sort(delegate(SceneGizmoCap h0, SceneGizmoCap h1)
+            _renderSortedHandles.Sort(delegate (SceneGizmoCap h0, SceneGizmoCap h1)
             {
                 float d0 = (h0.Position - cameraPos).sqrMagnitude;
                 float d1 = (h1.Position - cameraPos).sqrMagnitude;

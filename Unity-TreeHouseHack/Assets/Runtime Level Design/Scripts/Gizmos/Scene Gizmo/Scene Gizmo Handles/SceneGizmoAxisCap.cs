@@ -93,7 +93,7 @@ namespace RLD
             float alignment = Vector3Ex.AbsDot(axis, _sceneGizmo.SceneGizmoCamera.Look);
             if (alignment > sgLookAndFeel.AxisCamAlignFadeOutThreshold)
             {
-                if(ctState != ColorTransition.State.CompleteFadeOut &&
+                if (ctState != ColorTransition.State.CompleteFadeOut &&
                    ctState != ColorTransition.State.FadingOut)
                 {
                     _colorTransition.DurationInSeconds = sgLookAndFeel.AxisCamAlignFadeOutDuration;
@@ -136,7 +136,7 @@ namespace RLD
 
         private void OnGizmoHandlePicked(Gizmo gizmo, int handleId)
         {
-            if(handleId == HandleId)
+            if (handleId == HandleId)
             {
                 Quaternion targetRotation = Quaternion.LookRotation(-_sceneGizmo.Gizmo.Transform.GetAxis3D(_axisDesc), Vector3.up);
                 RTFocusCamera.Get.PerformRotationSwitch(targetRotation);

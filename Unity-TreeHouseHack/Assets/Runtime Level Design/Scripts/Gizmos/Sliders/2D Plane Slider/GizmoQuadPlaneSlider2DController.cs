@@ -6,7 +6,7 @@ namespace RLD
     {
         public GizmoQuadPlaneSlider2DController(GizmoPlaneSlider2DControllerData controllerData)
             : base(controllerData)
-        {}
+        { }
 
         public override void UpdateHandles()
         {

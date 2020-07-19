@@ -39,7 +39,7 @@ namespace RLD
         public bool InvertY { get { return _invertY; } set { _invertY = value; } }
         public bool IsPanningEnabled { get { return _isPanningEnabled; } set { _isPanningEnabled = value; } }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         protected override void RenderContent(UnityEngine.Object undoRecordObject)
         {
             float newFloat; bool newBool;
@@ -51,7 +51,7 @@ namespace RLD
             content.text = "Enabled";
             content.tooltip = "If checked, camera panning is enabled. Otherwise it is disabled.";
             newBool = EditorGUILayout.ToggleLeft(content, IsPanningEnabled);
-            if(newBool != IsPanningEnabled)
+            if (newBool != IsPanningEnabled)
             {
                 EditorUndoEx.Record(undoRecordObject);
                 IsPanningEnabled = newBool;
@@ -124,6 +124,6 @@ namespace RLD
             }
             EditorGUILayout.EndVertical();
         }
-        #endif
+#endif
     }
 }

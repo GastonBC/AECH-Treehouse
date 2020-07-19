@@ -30,7 +30,7 @@ namespace RLD
         public float SmoothTime { get { return _smoothTime; } set { _smoothTime = Mathf.Max(value, 1e-4f); } }
         public float FocusDistanceAdd { get { return _focusDistanceAdd; } set { _focusDistanceAdd = Mathf.Max(value, 0.0001f); } }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         protected override void RenderContent(UnityEngine.Object undoRecordObject)
         {
             float newFloat;
@@ -41,7 +41,7 @@ namespace RLD
             content.text = "Focus mode";
             content.tooltip = "Allows you to control the focus mode.";
             newFocusMode = (CameraFocusMode)EditorGUILayout.EnumPopup(content, FocusMode);
-            if(newFocusMode != FocusMode)
+            if (newFocusMode != FocusMode)
             {
                 EditorUndoEx.Record(undoRecordObject);
                 FocusMode = newFocusMode;
@@ -49,22 +49,22 @@ namespace RLD
 
             // Distance add
             content.text = "Focus distance add";
-            content.tooltip = "When a camera is focused, it will be placed at some distance away from the focus target. " + 
+            content.tooltip = "When a camera is focused, it will be placed at some distance away from the focus target. " +
                               "This value can be used to increase this distance if needed. It can not take on negative values.";
             newFloat = EditorGUILayout.FloatField(content, FocusDistanceAdd);
-            if(newFloat != FocusDistanceAdd)
+            if (newFloat != FocusDistanceAdd)
             {
                 EditorUndoEx.Record(undoRecordObject);
                 FocusDistanceAdd = newFloat;
             }
 
             // Constant speed
-            if(FocusMode == CameraFocusMode.Constant)
+            if (FocusMode == CameraFocusMode.Constant)
             {
                 content.text = "Speed (units/sec)";
                 content.tooltip = "Allows you to control the speed at which the camera is focused.";
                 newFloat = EditorGUILayout.FloatField(content, ConstantSpeed);
-                if(newFloat != ConstantSpeed)
+                if (newFloat != ConstantSpeed)
                 {
                     EditorUndoEx.Record(undoRecordObject);
                     ConstantSpeed = newFloat;
@@ -72,7 +72,7 @@ namespace RLD
             }
             else
             // Smooth duration
-            if(FocusMode == CameraFocusMode.Smooth)
+            if (FocusMode == CameraFocusMode.Smooth)
             {
                 content.text = "Smooth time (seconds)";
                 content.tooltip = "Allows you to control the duration of the smooth focus.";
@@ -84,6 +84,6 @@ namespace RLD
                 }
             }
         }
-        #endif
+#endif
     }
 }

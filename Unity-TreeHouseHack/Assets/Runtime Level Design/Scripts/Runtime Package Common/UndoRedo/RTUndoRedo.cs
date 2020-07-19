@@ -1,6 +1,5 @@
-﻿using UnityEngine;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -62,7 +61,7 @@ namespace RLD
             // actions and effectively moving the stack pointer somewhere in the middle of the
             // stack. In that case, when a new action is recorded, this action will invalidate
             // all actions which follow.
-            if (_actionGroupStack.Count != 0 && 
+            if (_actionGroupStack.Count != 0 &&
                 _stackPointer < _actionGroupStack.Count - 1)
             {
                 // Calculate the index of the first action to be removed and the number of actions to remove
@@ -112,7 +111,7 @@ namespace RLD
 
             --_stackPointer;
 
-            foreach(IUndoRedoAction action in group.Actions)
+            foreach (IUndoRedoAction action in group.Actions)
             {
                 if (UndoStart != null) UndoStart(action);
                 action.Undo();
@@ -143,11 +142,11 @@ namespace RLD
         private void RemoveGroups(int startIndex, int count)
         {
             List<ActionGroup> groupsToRemove = _actionGroupStack.GetRange(startIndex, count);
-        
+
             _actionGroupStack.RemoveRange(startIndex, count);
             foreach (ActionGroup group in groupsToRemove)
             {
-                foreach(IUndoRedoAction action in group.Actions)
+                foreach (IUndoRedoAction action in group.Actions)
                     action.OnRemovedFromUndoRedoStack();
             }
         }

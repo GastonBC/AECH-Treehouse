@@ -14,7 +14,7 @@ namespace RLD
 
         public bool EnableGizmoSorting { get { return _enableGizmoSorting; } set { _enableGizmoSorting = value; } }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         protected override void RenderContent(UnityEngine.Object undoRecordObject)
         {
             bool newBool;
@@ -29,6 +29,6 @@ namespace RLD
                 EnableGizmoSorting = newBool;
             }
         }
-        #endif
+#endif
     }
 }

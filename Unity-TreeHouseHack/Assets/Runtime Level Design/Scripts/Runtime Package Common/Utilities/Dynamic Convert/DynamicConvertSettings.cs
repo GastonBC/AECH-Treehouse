@@ -23,7 +23,7 @@ namespace RLD
         public bool ProcessPrefabSubfolders { get { return _processPrefabSubfolders; } set { _processPrefabSubfolders = value; } }
         public Rect PrefabFolderDropRect { get { return _prefabFolderDropRect; } }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         protected override void RenderContent(UnityEngine.Object undoRecordObject)
         {
             int newInt; string newString; bool newBool;
@@ -39,7 +39,7 @@ namespace RLD
             }
 
             content.text = "Prefab folder";
-            content.tooltip = "Allows you to specify a folder which contains prefabs that need to be converted. You can either write the path manually or " + 
+            content.tooltip = "Allows you to specify a folder which contains prefabs that need to be converted. You can either write the path manually or " +
                               "simply drag and drop a folder onto the text field to have the path automatically extracted for you.";
             newString = EditorGUILayout.TextField(content, PrefabFolder);
             if (newString != PrefabFolder)
@@ -50,7 +50,7 @@ namespace RLD
             _prefabFolderDropRect = GUILayoutUtility.GetLastRect();
 
             content.text = "Process prefab subfolders";
-            content.tooltip = "If this is checked, the conversion utility will also convert prefabs which reside in any subfolders that reside in the specified folder. Otherwise, " + 
+            content.tooltip = "If this is checked, the conversion utility will also convert prefabs which reside in any subfolders that reside in the specified folder. Otherwise, " +
                               "subfolders are ignored.";
             newBool = EditorGUILayout.ToggleLeft(content, ProcessPrefabSubfolders);
             if (newBool != ProcessPrefabSubfolders)
@@ -59,6 +59,6 @@ namespace RLD
                 ProcessPrefabSubfolders = newBool;
             }
         }
-        #endif
+#endif
     }
 }

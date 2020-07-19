@@ -5,8 +5,8 @@ namespace RLD
     public class GizmoBoxLineSlider2DController : GizmoLineSlider2DController
     {
         public GizmoBoxLineSlider2DController(GizmoLineSlider2DControllerData controllerData)
-            :base(controllerData)
-        {}
+            : base(controllerData)
+        { }
 
         public override void UpdateHandles()
         {

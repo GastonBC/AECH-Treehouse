@@ -40,7 +40,7 @@ namespace RLD
         public Texture2D ParticleSystemIcon { get { return _particleSystemIcon; } set { _particleSystemIcon = value; } }
         public Texture2D CameraIcon { get { return _cameraIcon; } set { _cameraIcon = value; } }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         protected override void RenderContent(UnityEngine.Object undoRecordObject)
         {
             bool newBool; Texture2D newTexture; float newFloat;
@@ -129,6 +129,6 @@ namespace RLD
                 CameraIcon = newTexture;
             }
         }
-        #endif
+#endif
     }
 }

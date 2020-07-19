@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -33,7 +33,7 @@ namespace RLD
 
         public void AddTargetTransform(GizmoTransform transform)
         {
-            if (!IsActive && 
+            if (!IsActive &&
                 !ContainsTargetTransform(transform)) _targetTransforms.Add(transform);
         }
 
@@ -87,13 +87,13 @@ namespace RLD
         protected void ApplyDrag()
         {
             List<GizmoTransform> parents = GizmoTransform.FilterParentsOnly(_targetTransforms);
-            if(DragChannel == GizmoDragChannel.Offset)
+            if (DragChannel == GizmoDragChannel.Offset)
             {
                 foreach (GizmoTransform parentTransform in parents)
                     parentTransform.Position3D = parentTransform.Position3D + _relativeDragOffset;
             }
             else
-            if(DragChannel == GizmoDragChannel.Rotation)
+            if (DragChannel == GizmoDragChannel.Rotation)
             {
                 foreach (GizmoTransform parentTransform in parents)
                     parentTransform.Rotation3D = _relativeDragRotation * parentTransform.Rotation3D;

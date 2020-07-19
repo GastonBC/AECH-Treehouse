@@ -78,7 +78,7 @@ namespace RLD
             else return _sglSliderSettings[2 + axisIndex];
         }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         protected override void RenderContent(UnityEngine.Object undoRecordObject)
         {
             float newFloat;
@@ -134,6 +134,6 @@ namespace RLD
                 SetDragSensitivity(newFloat);
             }
         }
-        #endif
+#endif
     }
 }

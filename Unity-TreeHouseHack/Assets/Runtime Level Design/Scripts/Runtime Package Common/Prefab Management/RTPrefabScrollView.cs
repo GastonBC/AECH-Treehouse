@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace RLD
 {
@@ -76,7 +76,7 @@ namespace RLD
             System.Collections.Generic.List<RaycastResult> hoveredUIElements = RTScene.Get.GetHoveredUIElements();
             if (hoveredUIElements.Count != 0)
             {
-                foreach(RaycastResult uiElement in hoveredUIElements)
+                foreach (RaycastResult uiElement in hoveredUIElements)
                 {
                     RTPrefabPreviewButton prefabPreviewBtn = uiElement.gameObject.GetComponent<RTPrefabPreviewButton>();
                     if (prefabPreviewBtn != null)

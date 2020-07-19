@@ -74,7 +74,7 @@ namespace RLD
                 Vector3.right, Vector3.right, Vector3.right, Vector3.right
             };
 
-            int[] indices = new int[] 
+            int[] indices = new int[]
             {
                 // Front face
                 0, 1, 2, 2, 3, 0,   
@@ -175,7 +175,7 @@ namespace RLD
                 Vector3.right, Vector3.right, Vector3.right, Vector3.right
             };
 
-            int[] indices = new int[] 
+            int[] indices = new int[]
             {
                 // Front face
                 0, 1, 1, 2, 2, 3, 3, 0,  

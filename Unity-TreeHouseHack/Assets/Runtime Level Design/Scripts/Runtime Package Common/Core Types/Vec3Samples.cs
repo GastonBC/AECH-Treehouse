@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -32,7 +32,7 @@ namespace RLD
             {
                 int surplus = maxNumSamples - NumSamples;
                 int counter = 0;
-                while(counter < surplus)
+                while (counter < surplus)
                 {
                     _samples.RemoveAt(_samples.Count - 1);
                     ++counter;

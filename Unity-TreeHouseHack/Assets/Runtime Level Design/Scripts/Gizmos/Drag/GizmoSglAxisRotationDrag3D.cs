@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace RLD
 {
@@ -47,7 +46,7 @@ namespace RLD
                 return;
             }
 
-            if(CanSnap())
+            if (CanSnap())
             {
                 _accumSnapDrag += _relativeRotation;
                 _accumSnapDrag %= 360.0f;

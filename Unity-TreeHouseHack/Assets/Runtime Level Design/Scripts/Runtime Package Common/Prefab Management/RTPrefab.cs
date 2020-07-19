@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System;
+﻿using System;
+using UnityEngine;
 
 namespace RLD
 {
@@ -15,16 +15,16 @@ namespace RLD
 
         public GameObject UnityPrefab { get { return _unityPrefab; } set { _unityPrefab = value; } }
         public Texture2D PreviewTexture { get { return _previewTexture; } set { _previewTexture = value; } }
-        public Sprite PreviewSprite 
-        { 
-            get 
+        public Sprite PreviewSprite
+        {
+            get
             {
                 if (_previewTexture == null) return null;
-                if (_previewSprite == null) _previewSprite = Sprite.Create(_previewTexture, new Rect(0.0f, 0.0f, _previewTexture.width, 
+                if (_previewSprite == null) _previewSprite = Sprite.Create(_previewTexture, new Rect(0.0f, 0.0f, _previewTexture.width,
                     _previewTexture.height), new Vector2(_previewTexture.width, _previewTexture.height));
 
-                return _previewSprite; 
-            } 
+                return _previewSprite;
+            }
         }
 
         public GameObject Instantiate()

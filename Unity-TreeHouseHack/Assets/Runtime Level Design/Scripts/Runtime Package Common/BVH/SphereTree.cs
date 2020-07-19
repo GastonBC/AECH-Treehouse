@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -75,7 +75,7 @@ namespace RLD
         {
             // The root node can never be removed
             if (node.IsFlagBitSet(BVHNodeFlags.Root)) return;
-     
+
             // Keep moving up the hierarchy and remove all nodes which don't
             // have any child nodes any more. There's no point in keeping these
             // around as they're nothing but noise inside the tree.
@@ -102,7 +102,7 @@ namespace RLD
             if (!node.IsFlagBitSet(BVHNodeFlags.Terminal)) return;
 
             // Check if the node is now outside of its parent
-            if(node.IsOutsideParent())
+            if (node.IsOutsideParent())
             {
                 // The node is outside of its parent. In this case, the first step
                 // is to detach it from its parent.
@@ -153,7 +153,7 @@ namespace RLD
         private void IntegrateNodeRecurse(SphereTreeNode<T> node, SphereTreeNode<T> parent)
         {
             // Are we dealing with a terminal node?
-            if(!parent.IsFlagBitSet(BVHNodeFlags.Terminal))
+            if (!parent.IsFlagBitSet(BVHNodeFlags.Terminal))
             {
                 // This is not a terminal node. First thing to do is check if this node has 
                 // room for one more child. If it does, we add the node here. Otherwise, we 
@@ -181,7 +181,7 @@ namespace RLD
                 parent.SetParent(newParentNode);
 
                 node.SetParent(newParentNode);
-                node.SetFlagsBits(BVHNodeFlags.Terminal);              
+                node.SetFlagsBits(BVHNodeFlags.Terminal);
                 newParentNode.EncapsulateChildrenBottomUp();
             }
         }
@@ -194,7 +194,7 @@ namespace RLD
         private void RaycastAllRecurse(Ray ray, SphereTreeNode<T> node, List<SphereTreeNodeRayHit<T>> hitList)
         {
             // Is this a terminal node?
-            if(!node.IsFlagBitSet(BVHNodeFlags.Terminal))
+            if (!node.IsFlagBitSet(BVHNodeFlags.Terminal))
             {
                 // This is not a terminal node. We will check if the ray intersects the node's 
                 // sphere and if it does, we will go further down the hierarchy. If it doesn't

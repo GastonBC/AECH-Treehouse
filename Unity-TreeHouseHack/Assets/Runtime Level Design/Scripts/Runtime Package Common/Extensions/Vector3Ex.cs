@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -98,12 +98,12 @@ namespace RLD
             float minDistSq = float.MaxValue;
             int closestPtIndex = -1;
 
-            for(int ptIndex = 0; ptIndex < points.Count; ++ptIndex)
+            for (int ptIndex = 0; ptIndex < points.Count; ++ptIndex)
             {
                 Vector3 point = points[ptIndex];
 
                 float distSq = (point - pt).sqrMagnitude;
-                if(distSq < minDistSq)
+                if (distSq < minDistSq)
                 {
                     minDistSq = distSq;
                     closestPtIndex = ptIndex;
@@ -118,7 +118,7 @@ namespace RLD
             Vector3 max = Vector3Ex.FromValue(float.MinValue);
             Vector3 min = Vector3Ex.FromValue(float.MaxValue);
 
-            foreach(Vector3 pt in ptCloud)
+            foreach (Vector3 pt in ptCloud)
             {
                 max = Vector3.Max(max, pt);
                 min = Vector3.Min(min, pt);
@@ -159,17 +159,17 @@ namespace RLD
             float bestAlignment = float.MinValue;
             int bestIndex = -1;
 
-            if(!checkSameDirection)
+            if (!checkSameDirection)
             {
                 // Loop through each test vector
-                for(int dirIndex = 0; dirIndex < vectors.Length; ++dirIndex)
+                for (int dirIndex = 0; dirIndex < vectors.Length; ++dirIndex)
                 {
                     // Calculate the absolute dot product with 'dir'. If this is gerater
                     // than what we have so far, it means we found vector which is more
                     // aligned with 'dir'.
                     Vector3 testDir = vectors[dirIndex];
                     float absDot = testDir.AbsDot(dir);
-                    if(absDot > bestAlignment)
+                    if (absDot > bestAlignment)
                     {
                         bestAlignment = absDot;
                         bestIndex = dirIndex;

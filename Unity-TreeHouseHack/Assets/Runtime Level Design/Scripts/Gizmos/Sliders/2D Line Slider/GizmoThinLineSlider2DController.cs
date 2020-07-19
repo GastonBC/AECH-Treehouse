@@ -1,12 +1,10 @@
-﻿using UnityEngine;
-
-namespace RLD
+﻿namespace RLD
 {
     public class GizmoThinLineSlider2DController : GizmoLineSlider2DController
     {
         public GizmoThinLineSlider2DController(GizmoLineSlider2DControllerData controllerData)
-            :base(controllerData)
-        {}
+            : base(controllerData)
+        { }
 
         public override void UpdateHandles()
         {

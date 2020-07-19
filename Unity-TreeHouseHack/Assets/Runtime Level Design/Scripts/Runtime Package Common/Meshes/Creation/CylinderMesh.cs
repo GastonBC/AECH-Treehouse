@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -39,11 +39,11 @@ namespace RLD
             Vector3 cylinderUp = Vector3.up;
             float yPosStep = height / numStacks;
             float angleStep = 360.0f / numSlices;
-            for(int axialRowIndex = 0; axialRowIndex < numAxialRows; ++axialRowIndex)
+            for (int axialRowIndex = 0; axialRowIndex < numAxialRows; ++axialRowIndex)
             {
                 float rowYPos = basePosition.y + axialRowIndex * yPosStep;
                 float radius = Mathf.Lerp(bottomRadius, topRadius, rowYPos / topPosition.y);
-                for(int vIndex = 0; vIndex < numVertsPerRow; ++vIndex)
+                for (int vIndex = 0; vIndex < numVertsPerRow; ++vIndex)
                 {
                     float angle = vIndex * angleStep;
                     Vector3 normal = (new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad), 0.0f, Mathf.Sin(angle * Mathf.Deg2Rad))).normalized;
@@ -95,7 +95,7 @@ namespace RLD
                 for (int ringIndex = 0; ringIndex < numVertRings; ++ringIndex)
                 {
                     float radius = Mathf.Lerp(bottomRadius, 0.0f, ringIndex / (float)(numVertRings - 1));
-                    for(int vIndex = 0; vIndex < numVertsPerRing; ++vIndex)
+                    for (int vIndex = 0; vIndex < numVertsPerRing; ++vIndex)
                     {
                         float angle = vIndex * angleStep;
                         Vector3 positionDir = (new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad), 0.0f, Mathf.Sin(angle * Mathf.Deg2Rad))).normalized;

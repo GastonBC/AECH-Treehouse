@@ -61,7 +61,7 @@ namespace RLD
         public override void RenderWire()
         {
             Vector3 coneTip = Tip;
-            if(_wireRenderDesc.WireMode == WireRenderMode.Basic)
+            if (_wireRenderDesc.WireMode == WireRenderMode.Basic)
             {
                 Graphics.DrawMeshNow(MeshPool.Get.UnitWireCircleXY, Matrix4x4.TRS(_baseCenter,
                     _rotation * Quaternion.AngleAxis(90.0f, Vector3.right), new Vector3(_baseRadius, _baseRadius, 1.0f)));
@@ -89,7 +89,7 @@ namespace RLD
                 // Axial segments
                 List<Vector3> axialSegmentPts = new List<Vector3>(_wireRenderDesc.NumDetailAxialSegments * 2);
                 float angleStep = 360.0f / (float)_wireRenderDesc.NumDetailAxialSegments;
-                for(int segIndex = 0; segIndex < _wireRenderDesc.NumDetailAxialSegments; ++segIndex)
+                for (int segIndex = 0; segIndex < _wireRenderDesc.NumDetailAxialSegments; ++segIndex)
                 {
                     Vector3 pivotAxis = (Quaternion.AngleAxis(segIndex * angleStep, centralAxis) * Vector3.right).normalized;
                     Vector3 ptOnBorder = _baseCenter + pivotAxis * _baseRadius;

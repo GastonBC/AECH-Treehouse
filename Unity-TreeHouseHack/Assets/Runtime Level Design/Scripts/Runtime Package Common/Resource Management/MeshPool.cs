@@ -49,7 +49,7 @@ namespace RLD
             {
                 if (_unitQuadXY == null) _unitQuadXY = QuadMesh.CreateQuadXY(1.0f, 1.0f, Color.white);
                 return _unitQuadXY;
-            }        
+            }
         }
         public Mesh UnitQuadXZ
         {

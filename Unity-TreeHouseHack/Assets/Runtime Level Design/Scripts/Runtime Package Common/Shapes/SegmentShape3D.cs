@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace RLD
 {
@@ -75,7 +74,7 @@ namespace RLD
 
         public override AABB GetAABB()
         {
-            return new AABB(new Vector3[] { _startPoint, _endPoint});
+            return new AABB(new Vector3[] { _startPoint, _endPoint });
         }
     }
 }

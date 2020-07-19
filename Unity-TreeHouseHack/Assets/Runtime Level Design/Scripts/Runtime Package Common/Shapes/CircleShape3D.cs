@@ -57,9 +57,9 @@ namespace RLD
 
         public override bool Raycast(Ray ray, out float t)
         {
-            if(_raycastMode == Shape3DRaycastMode.Solid)
+            if (_raycastMode == Shape3DRaycastMode.Solid)
                 return CircleMath.Raycast(ray, out t, _center, _radius, Normal, _epsilon);
-            else 
+            else
                 return CircleMath.RaycastWire(ray, out t, _center, _radius, Normal, _epsilon);
         }
 

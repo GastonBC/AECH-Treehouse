@@ -19,7 +19,7 @@ namespace RLD
 
         public Vector3 NoVolumeObjectSize { get { return _noVolumeObjectSize; } set { if (!Application.isPlaying) _noVolumeObjectSize = Vector3.Max(Vector3.zero, value); } }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         protected override void RenderContent(UnityEngine.Object undoRecordObject)
         {
             Vector3 newVector3;
@@ -30,12 +30,12 @@ namespace RLD
             content.tooltip = "The custom interaction system needs to know the size of objects that have no volume. This defines a volume for these objects in the 3D world so that they " +
                               "can still be involved in raycasts, overlap tests etc";
             newVector3 = EditorGUILayout.Vector3Field(content, NoVolumeObjectSize);
-            if(newVector3 != NoVolumeObjectSize)
+            if (newVector3 != NoVolumeObjectSize)
             {
                 EditorUndoEx.Record(undoRecordObject);
                 NoVolumeObjectSize = newVector3;
             }
         }
-        #endif
+#endif
     }
 }

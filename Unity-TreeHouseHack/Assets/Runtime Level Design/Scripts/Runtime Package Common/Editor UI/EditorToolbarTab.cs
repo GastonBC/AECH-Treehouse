@@ -29,18 +29,18 @@ namespace RLD
 
         public void AddTargetSettings(Settings targetSettings)
         {
-            if(!_targetSettings.Contains(targetSettings))
+            if (!_targetSettings.Contains(targetSettings))
                 _targetSettings.Add(targetSettings);
         }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         public void RenderTargetSettingsEditorGUI(UnityEngine.Object undoRecordObject)
         {
-            foreach(Settings targetSettings in _targetSettings)
+            foreach (Settings targetSettings in _targetSettings)
             {
                 targetSettings.RenderEditorGUI(undoRecordObject);
             }
         }
-        #endif
+#endif
     }
 }

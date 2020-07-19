@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System;
+﻿using System;
+using UnityEngine;
 
 namespace RLD
 {
@@ -32,7 +32,7 @@ namespace RLD
         public GizmoCap2DLookAndFeel SharedLookAndFeel { get { return _sharedLookAndFeel; } set { _sharedLookAndFeel = value; } }
 
         public GizmoCap2D(Gizmo gizmo, int handleId)
-            :base(gizmo, handleId)
+            : base(gizmo, handleId)
         {
             _quadIndex = Handle.Add2DShape(_quad);
             _circleIndex = Handle.Add2DShape(_circle);
@@ -114,7 +114,7 @@ namespace RLD
         {
             if (!IsVisible) return;
 
-            if (LookAndFeel.FillMode == GizmoFillMode2D.FilledAndBorder || 
+            if (LookAndFeel.FillMode == GizmoFillMode2D.FilledAndBorder ||
                 LookAndFeel.FillMode == GizmoFillMode2D.Filled)
             {
                 Color fillColor = new Color();
@@ -134,7 +134,7 @@ namespace RLD
                 Handle.Render2DSolid(camera);
             }
 
-            if (LookAndFeel.FillMode == GizmoFillMode2D.FilledAndBorder || 
+            if (LookAndFeel.FillMode == GizmoFillMode2D.FilledAndBorder ||
                 LookAndFeel.FillMode == GizmoFillMode2D.Border)
             {
                 Color borderColor = new Color();

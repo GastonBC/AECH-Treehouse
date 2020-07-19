@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -31,7 +31,7 @@ namespace RLD
 
             if (isClosed)
             {
-                for(int ptIndex = 0; ptIndex < cwPolyPoints.Count - 1; ++ptIndex)
+                for (int ptIndex = 0; ptIndex < cwPolyPoints.Count - 1; ++ptIndex)
                 {
                     Vector3 segmentDir = cwPolyPoints[ptIndex + 1] - cwPolyPoints[ptIndex];
                     Vector3 egdeNormal = Vector3.Cross(segmentDir, polyNormal).normalized;

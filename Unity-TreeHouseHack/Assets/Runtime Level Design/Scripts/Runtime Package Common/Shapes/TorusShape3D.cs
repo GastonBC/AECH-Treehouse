@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -64,7 +64,7 @@ namespace RLD
             {
                 Vector3 circleScale = new Vector3(_tubeRadius, _tubeRadius, 1.0f);
                 float angleStep = 360.0f / _wireRenderDesc.NumTubeSlices;
-                for(int sliceIndex = 0; sliceIndex < _wireRenderDesc.NumTubeSlices; ++sliceIndex)
+                for (int sliceIndex = 0; sliceIndex < _wireRenderDesc.NumTubeSlices; ++sliceIndex)
                 {
                     float angle = angleStep * sliceIndex * Mathf.Deg2Rad;
                     float cos = Mathf.Cos(angle);

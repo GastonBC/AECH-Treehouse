@@ -1,6 +1,6 @@
-﻿using UnityEngine;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -247,7 +247,7 @@ namespace RLD
         public void SetObjectCustomLocalPivot(GameObject gameObj, Vector3 pivot)
         {
             if (gameObj == null || _gizmo.IsDragged) return;
- 
+
             if (_objectToCustomLocalPivot.ContainsKey(gameObj)) _objectToCustomLocalPivot[gameObj] = pivot;
             else _objectToCustomLocalPivot.Add(gameObj, pivot);
 
@@ -278,7 +278,7 @@ namespace RLD
 
             ObjectBounds.QueryConfig boundsQConfig = GetObjectBoundsQConfig();
             AABB targetGroupAABB = AABB.GetInvalid();
-            foreach(GameObject targetObject in _targetObjects)
+            foreach (GameObject targetObject in _targetObjects)
             {
                 AABB targetAABB = ObjectBounds.CalcWorldAABB(targetObject, boundsQConfig);
                 if (targetGroupAABB.IsValid) targetGroupAABB.Encapsulate(targetAABB);
@@ -319,7 +319,7 @@ namespace RLD
             }
             if (_transformPivot == GizmoObjectTransformPivot.CustomWorldPivot) gizmoTransform.Position3D = _customWorldPivot;
             else
-            if(_transformPivot == GizmoObjectTransformPivot.CustomObjectLocalPivot)
+            if (_transformPivot == GizmoObjectTransformPivot.CustomObjectLocalPivot)
             {
                 if (_targetPivotObject == null) gizmoTransform.Position3D = GetTargetObjectGroupWorldAABB().Center;
                 else gizmoTransform.Position3D = _targetPivotObject.transform.TransformPoint(GetObjectCustomLocalPivot(_targetPivotObject));
@@ -379,7 +379,7 @@ namespace RLD
                 IRTTransformGizmoListener transformGizmoListener = parent.GetComponent<IRTTransformGizmoListener>();
                 if (transformGizmoListener != null && !transformGizmoListener.OnCanBeTransformed(Gizmo)) continue;
 
-                if (Settings.IsLayerTransformable(parent.layer) && 
+                if (Settings.IsLayerTransformable(parent.layer) &&
                     Settings.IsObjectTransformable(parent)) transformableParents.Add(parent);
             }
 

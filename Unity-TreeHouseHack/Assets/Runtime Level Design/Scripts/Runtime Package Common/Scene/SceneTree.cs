@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -42,7 +42,7 @@ namespace RLD
             OBB worldOBB = ObjectBounds.CalcSpriteWorldOBB(gameObject);
             if (!worldOBB.IsValid) return null;
 
-            if (BoxMath.Raycast(ray, out t, worldOBB.Center, worldOBB.Size, worldOBB.Rotation)) 
+            if (BoxMath.Raycast(ray, out t, worldOBB.Center, worldOBB.Size, worldOBB.Rotation))
                 return new GameObjectRayHit(ray, gameObject, worldOBB.GetPointFaceNormal(ray.GetPoint(t)), t);
 
             return null;
@@ -79,14 +79,14 @@ namespace RLD
                     if (objectType == GameObjectType.Terrain)
                     {
                         TerrainCollider terrainCollider = sceneObject.GetComponent<TerrainCollider>();
-                        if(terrainCollider != null)
+                        if (terrainCollider != null)
                         {
                             RaycastHit hitInfo;
                             if (terrainCollider.Raycast(ray, out hitInfo, float.MaxValue)) hitList.Add(new GameObjectRayHit(ray, hitInfo));
                         }
                     }
                     else
-                    if(objectType == GameObjectType.Sprite)
+                    if (objectType == GameObjectType.Sprite)
                     {
                         GameObjectRayHit objectHit = RaycastSpriteObject(ray, sceneObject);
                         if (objectHit != null) hitList.Add(objectHit);
@@ -136,7 +136,7 @@ namespace RLD
 
                 return hitList;
             }
-            
+
             return new List<GameObjectRayHit>();
         }
 
@@ -205,7 +205,7 @@ namespace RLD
             Dictionary<GameObject, SphereTreeNode<GameObject>> newObjectToNodeDictionary = new Dictionary<GameObject, SphereTreeNode<GameObject>>();
             foreach (KeyValuePair<GameObject, SphereTreeNode<GameObject>> pair in _objectToNode)
             {
-                if (pair.Key == null)  _objectTree.RemoveNode(pair.Value);
+                if (pair.Key == null) _objectTree.RemoveNode(pair.Value);
                 else newObjectToNodeDictionary.Add(pair.Key, pair.Value);
             }
 

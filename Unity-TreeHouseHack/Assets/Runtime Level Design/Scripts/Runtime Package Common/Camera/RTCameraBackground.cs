@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -52,7 +52,7 @@ namespace RLD
             {
                 CameraBackgroundSettings bkSettings = _bkSettings;
                 if (_cameraToBkSettings.ContainsKey(bkCamera)) bkSettings = _cameraToBkSettings[bkCamera];
-                if(bkSettings.IsVisible)
+                if (bkSettings.IsVisible)
                 {
                     Transform cameraTransform = bkCamera.transform;
 

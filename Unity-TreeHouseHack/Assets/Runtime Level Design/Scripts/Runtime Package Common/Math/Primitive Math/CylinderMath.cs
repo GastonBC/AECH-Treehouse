@@ -27,13 +27,13 @@ namespace RLD
             };
         }
 
-        public static bool Raycast(Ray ray, out float t, Vector3 cylinderAxisPt0, 
+        public static bool Raycast(Ray ray, out float t, Vector3 cylinderAxisPt0,
             Vector3 cylinderAxisPt1, float cylinderRadius, CylinderEpsilon epsilon = new CylinderEpsilon())
         {
             return Raycast(ray, out t, cylinderAxisPt0, cylinderAxisPt1, cylinderRadius, (cylinderAxisPt1 - cylinderAxisPt0).magnitude, epsilon);
         }
 
-        public static bool Raycast(Ray ray, out float t, Vector3 cylinderAxisPt0, 
+        public static bool Raycast(Ray ray, out float t, Vector3 cylinderAxisPt0,
             Vector3 cylinderAxisPt1, float cylinderRadius, float cylinderHeight, CylinderEpsilon epsilon = new CylinderEpsilon())
         {
             t = 0.0f;

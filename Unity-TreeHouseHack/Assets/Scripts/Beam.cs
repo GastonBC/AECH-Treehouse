@@ -1,10 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using TreeHouseHack;
+﻿using UnityEngine;
 
 
-namespace TreeHouseHack
+namespace TreehouseHack
 {
     public class Beam : MonoBehaviour
     {

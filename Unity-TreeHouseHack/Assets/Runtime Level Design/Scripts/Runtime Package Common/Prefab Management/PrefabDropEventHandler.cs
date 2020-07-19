@@ -1,6 +1,6 @@
 ﻿#if UNITY_EDITOR
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
 
 namespace RLD
 {
@@ -16,7 +16,7 @@ namespace RLD
 
             PrefabLibDb.EditorPrefabPreviewGen.BeginGenSession(PrefabLibDb.PrefabPreviewLookAndFeel);
             Object[] objectRefs = DragAndDrop.objectReferences;
-            foreach(Object objectRef in objectRefs)
+            foreach (Object objectRef in objectRefs)
             {
                 GameObject prefab = objectRef as GameObject;
                 if (prefab == null || prefab.IsSceneObject()) continue;
@@ -37,7 +37,7 @@ namespace RLD
                 lastCreatedLib = newPrefabLib;
 
                 System.Collections.Generic.List<GameObject> prefabsInFolder = AssetDatabaseEx.LoadPrefabsInFolder(folderPath, false, false);
-                foreach(GameObject prefab in prefabsInFolder)
+                foreach (GameObject prefab in prefabsInFolder)
                 {
                     Texture2D prefabPreview = PrefabLibDb.EditorPrefabPreviewGen.Generate(prefab);
                     newPrefabLib.CreatePrefab(prefab, prefabPreview);

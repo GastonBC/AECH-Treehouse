@@ -25,7 +25,7 @@ namespace RLD
         public int PreviewHeight { get { return _previewHeight; } set { _previewHeight = Mathf.Max(4, value); } }
         public float LightIntensity { get { return _lightIntensity; } set { _lightIntensity = Mathf.Max(1e-4f, value); } }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         protected override void RenderContent(UnityEngine.Object undoRecordObject)
         {
             Color newColor; int newInt; float newFloat;
@@ -67,6 +67,6 @@ namespace RLD
                 LightIntensity = newFloat;
             }
         }
-        #endif
+#endif
     }
 }

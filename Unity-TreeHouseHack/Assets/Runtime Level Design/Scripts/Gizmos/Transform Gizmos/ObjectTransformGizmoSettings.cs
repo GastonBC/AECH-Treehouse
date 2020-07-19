@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 #if UNITY_EDITOR
-using UnityEditor;
 #endif
 using System;
 using System.Collections.Generic;
@@ -49,7 +48,7 @@ namespace RLD
             }
         }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         protected override void RenderContent(UnityEngine.Object undoRecordObject)
         {
             int newInt;
@@ -64,6 +63,6 @@ namespace RLD
                 TransformableLayers = newInt;
             }
         }
-        #endif
+#endif
     }
 }

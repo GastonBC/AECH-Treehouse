@@ -20,7 +20,7 @@ namespace RLD
         public bool CanClimbObjects { get { return _canClimbObjects; } set { _canClimbObjects = value; } }
         public float SnapRadius { get { return _snapRadius; } set { _snapRadius = Mathf.Max(0.0f, value); } }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         protected override void RenderContent(UnityEngine.Object undoRecordObject)
         {
             int newInt; bool newBool; float newFloat;
@@ -36,7 +36,7 @@ namespace RLD
             }
 
             content.text = "Can climb objects";
-            content.tooltip = "This toggle controls what happens when the mouse cursor hovers other objects. If checked, the target obejcts " + 
+            content.tooltip = "This toggle controls what happens when the mouse cursor hovers other objects. If checked, the target obejcts " +
                               "will climb the hovered objects. Otherwise, they will sit on the scene grid.";
             newBool = EditorGUILayout.ToggleLeft(content, CanClimbObjects);
             if (newBool != CanClimbObjects)
@@ -54,6 +54,6 @@ namespace RLD
                 SnapRadius = newFloat;
             }
         }
-        #endif
+#endif
     }
 }

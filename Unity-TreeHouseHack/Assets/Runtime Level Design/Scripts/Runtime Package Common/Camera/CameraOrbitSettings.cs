@@ -39,7 +39,7 @@ namespace RLD
         public bool InvertY { get { return _invertY; } set { _invertY = value; } }
         public bool IsOrbitEnabled { get { return _isOrbitEnabled; } set { _isOrbitEnabled = value; } }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         protected override void RenderContent(UnityEngine.Object undoRecordObject)
         {
             bool newBool; float newFloat;
@@ -60,26 +60,26 @@ namespace RLD
             content.text = "Orbit mode";
             content.tooltip = "Allows you to control the way in which the camera will orbit.";
             newOrbitMode = (CameraOrbitMode)EditorGUILayout.EnumPopup(content, OrbitMode);
-            if(newOrbitMode != OrbitMode)
+            if (newOrbitMode != OrbitMode)
             {
                 EditorUndoEx.Record(undoRecordObject);
                 OrbitMode = newOrbitMode;
             }
 
             // Standard sensitivity
-            if(OrbitMode == CameraOrbitMode.Standard)
+            if (OrbitMode == CameraOrbitMode.Standard)
             {
                 content.text = "Sensitivity";
                 content.tooltip = "Allows you to specify how sensitive the camera is to the movement of the input device when performing a standard orbit.";
                 newFloat = EditorGUILayout.FloatField(content, StandardOrbitSensitivity);
-                if(newFloat != StandardOrbitSensitivity)
+                if (newFloat != StandardOrbitSensitivity)
                 {
                     EditorUndoEx.Record(undoRecordObject);
                     StandardOrbitSensitivity = newFloat;
                 }
             }
             else
-            if(OrbitMode == CameraOrbitMode.Smooth)
+            if (OrbitMode == CameraOrbitMode.Smooth)
             {
                 // Smooth sensitivity
                 content.text = "Sensitivity";
@@ -93,10 +93,10 @@ namespace RLD
 
                 // Smooth value
                 content.text = "Smooth value";
-                content.tooltip = "This is a value which allows you to control how fast the orbit speed decreases over time when performing a smooth orbit. " + 
+                content.tooltip = "This is a value which allows you to control how fast the orbit speed decreases over time when performing a smooth orbit. " +
                                   "Bigger values will decrease the speed more rapidly.";
                 newFloat = EditorGUILayout.FloatField(content, SmoothValue);
-                if(newFloat != SmoothValue)
+                if (newFloat != SmoothValue)
                 {
                     EditorUndoEx.Record(undoRecordObject);
                     SmoothValue = newFloat;
@@ -122,6 +122,6 @@ namespace RLD
                 InvertY = newBool;
             }
         }
-        #endif
+#endif
     }
 }

@@ -1,6 +1,6 @@
-﻿using UnityEngine;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -114,7 +114,7 @@ namespace RLD
         private UniversalGizmoHotkeys _universalGizmoHotkeys = new UniversalGizmoHotkeys() { IsExpanded = false };
         [SerializeField]
         private ObjectTransformGizmoSettings _objectUniversalGizmoSettings = new ObjectTransformGizmoSettings() { IsExpanded = false };
-  
+
         [SerializeField]
         private BoxGizmoSettings3D _boxScaleGizmoSettings3D = new BoxGizmoSettings3D() { IsExpanded = false };
         [SerializeField]
@@ -156,11 +156,11 @@ namespace RLD
         public BoxGizmoHotkeys BoxScaleGizmoHotkeys { get { return _boxScaleGizmoHotkeys; } }
         public ObjectExtrudeGizmoLookAndFeel3D ExtrudeGizmoLookAndFeel3D { get { return _extrudeGizmoLookAndFeel3D; } }
         public ObjectExtrudeGizmoHotkeys ExtrudeGozmoHotkeys { get { return _extrudeGizmoHotkeys; } }
-             
-        #if UNITY_EDITOR
+
+#if UNITY_EDITOR
         public EditorToolbar MainToolbar { get { return _mainToolbar; } }
         public UniversalGizmoConfig UniversalGizmoConfig { get { return _universalGizmoConfig; } }
-        #endif
+#endif
 
         public void SetTargetObjectCollection(IEnumerable<GameObject> targetObjectCollection)
         {
@@ -235,7 +235,7 @@ namespace RLD
             if (_allGizmos.Count == 0) return new List<Gizmo>();
 
             List<Gizmo> allGizmos = new List<Gizmo>(_allGizmos.Count);
-            foreach(ObjectSelectionGizmo selectionGizmo in _allGizmos)
+            foreach (ObjectSelectionGizmo selectionGizmo in _allGizmos)
             {
                 allGizmos.Add(selectionGizmo.Gizmo);
             }
@@ -270,7 +270,7 @@ namespace RLD
             if (_transformSpace == transformSpace) return;
 
             _transformSpace = transformSpace;
-            foreach(ObjectSelectionGizmo gizmo in _allGizmos)
+            foreach (ObjectSelectionGizmo gizmo in _allGizmos)
             {
                 if (gizmo.IsTransformGizmo) gizmo.TransformGizmo.SetTransformSpace(transformSpace);
                 else if (gizmo.IsExtrudeGizmo) gizmo.ExtrudeGizmo.SetExtrudeSpace(transformSpace);
@@ -331,7 +331,7 @@ namespace RLD
                 if (gizmoId != ObjectSelectionGizmoId.None) SetWorkGizmo(gizmoId);
             }
 
-            if (!isManpiSessionActive && 
+            if (!isManpiSessionActive &&
                  Hotkeys.ToggleTransformSpace.IsActiveInFrame())
             {
                 GizmoSpace newSpace = _transformSpace == GizmoSpace.Global ? GizmoSpace.Local : GizmoSpace.Global;
@@ -343,7 +343,7 @@ namespace RLD
         {
             if (args.SelectReason != ObjectSelectReason.None)
             {
-                if(args.SelectReason == ObjectSelectReason.Undo || 
+                if (args.SelectReason == ObjectSelectReason.Undo ||
                    args.SelectReason == ObjectSelectReason.Redo)
                 {
                     _pivotObject = args.UndoRedoSnapshot.GizmosSnapshot.PivotObject;
@@ -447,7 +447,7 @@ namespace RLD
 
         private ObjectSelectionGizmo GetObjectSelectionGizmo(Gizmo gizmo)
         {
-            foreach(ObjectSelectionGizmo objectSelectionGizmo in _allGizmos)
+            foreach (ObjectSelectionGizmo objectSelectionGizmo in _allGizmos)
             {
                 if (objectSelectionGizmo.Gizmo == gizmo) return objectSelectionGizmo;
             }

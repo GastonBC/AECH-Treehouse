@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace RLD
 {
@@ -36,7 +35,7 @@ namespace RLD
                 _relativeDragOffset = Vector3.zero;
 
                 _accumSnapDrag += dragAlongAxis;
-                if(SnapMath.CanExtractSnap(_workData.SnapStep, _accumSnapDrag))
+                if (SnapMath.CanExtractSnap(_workData.SnapStep, _accumSnapDrag))
                 {
                     float snapAmount = SnapMath.ExtractSnap(_workData.SnapStep, ref _accumSnapDrag);
                     _relativeDragOffset = _workData.Axis * snapAmount;

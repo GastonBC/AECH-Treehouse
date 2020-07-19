@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace RLD
@@ -76,14 +75,14 @@ namespace RLD
 
         public override void RenderBorder(Camera camera)
         {
-            if(_borderRenderDesc.BorderType == Shape2DBorderType.Thin)
-                GLRenderer.DrawLines2D(_cwPolyPoints, camera);           
+            if (_borderRenderDesc.BorderType == Shape2DBorderType.Thin)
+                GLRenderer.DrawLines2D(_cwPolyPoints, camera);
             else
             {
                 if (_isThickBorderDirty) CalculateThickBorderPoints();
 
                 if (_borderRenderDesc.FillMode == ThickBorderFillMode.Border)
-                {         
+                {
                     GLRenderer.DrawLines2D(_cwPolyPoints, camera);
                     GLRenderer.DrawLines2D(_thickCwBorderPoints, camera);
                 }
@@ -122,11 +121,11 @@ namespace RLD
             int numPoints = cwBorderPoints.Count;
             _cwPolyPoints.Clear();
 
-            for(int ptIndex = 0; ptIndex < numPoints; ++ptIndex)
+            for (int ptIndex = 0; ptIndex < numPoints; ++ptIndex)
             {
                 Vector2 currentPt = cwBorderPoints[ptIndex];
                 Vector2 nextPt = cwBorderPoints[(ptIndex + 1) % numPoints];
-                
+
                 _cwPolyPoints.Add(currentPt);
             }
 
@@ -142,7 +141,7 @@ namespace RLD
 
         public override bool ContainsPoint(Vector2 point)
         {
-            if(_borderRenderDesc.BorderType == Shape2DBorderType.Thin)
+            if (_borderRenderDesc.BorderType == Shape2DBorderType.Thin)
             {
                 if (_ptContainMode == Shape2DPtContainMode.InsideArea)
                     return PolygonMath.Contains2DPoint(point, _cwPolyPoints, _isClosed, _epsilon);

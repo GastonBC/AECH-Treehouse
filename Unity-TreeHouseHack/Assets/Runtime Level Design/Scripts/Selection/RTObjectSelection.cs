@@ -1,6 +1,6 @@
-﻿using UnityEngine;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -150,9 +150,9 @@ namespace RLD
         public bool IsObject2ObjectSnapSessionActive { get { return ActiveManipSession == ObjectSelectionManipSession.Object2ObjectSnap; } }
         public List<GameObject> SelectedObjects { get { return new List<GameObject>(_selectedObjects); } }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         public EditorToolbar SettingsToolbar { get { return _settingsToolbar; } }
-        #endif
+#endif
 
         public void Initialize_SystemCall()
         {
@@ -246,7 +246,7 @@ namespace RLD
                 AABB aabb = GetWorldAABB();
                 List<GameObject> parents = GameObjectEx.FilterParentsOnly(_selectedObjects);
 
-                foreach(GameObject parent in parents)
+                foreach (GameObject parent in parents)
                 {
                     parent.transform.RotateAroundPivot(rotation, aabb.Center);
                 }
@@ -266,7 +266,7 @@ namespace RLD
                 }
             }
             else
-            if(rotationPivot == ObjectRotationPivot.IndividualPivot)
+            if (rotationPivot == ObjectRotationPivot.IndividualPivot)
             {
                 List<GameObject> parents = GameObjectEx.FilterParentsOnly(_selectedObjects);
                 foreach (GameObject parent in parents)
@@ -297,7 +297,7 @@ namespace RLD
             List<GameObject> objectsWhichWereSelected = new List<GameObject>();
 
             // Loop through each object and select it (if possible)           
-            foreach(GameObject gameObject in gameObjects)
+            foreach (GameObject gameObject in gameObjects)
             {
                 // Select the object if it can be selected
                 if (!IsObjectSelected(gameObject) && CanSelectObject(gameObject, SelectRestrictFlags.None, selectReason))
@@ -309,13 +309,13 @@ namespace RLD
             }
 
             // Was the selection changed?
-            if(selectionWasChanged)
+            if (selectionWasChanged)
             {
                 // Fire a selection changed event
                 OnSelectionChanged(new ObjectSelectionChangedEventArgs(selectReason, objectsWhichWereSelected, ObjectDeselectReason.None, null));
 
                 // Execute a post selection changed action if Undo/Redo is allowed
-                if(allowUndoRedo)
+                if (allowUndoRedo)
                 {
                     ObjectSelectionSnapshot postChangeSnapshot = new ObjectSelectionSnapshot();
                     postChangeSnapshot.Snapshot();
@@ -389,10 +389,10 @@ namespace RLD
 
             // First we need to deselect the objects which can not be found inside 'gameObjects'
             List<GameObject> selectedObjects = SelectedObjects;
-            foreach(GameObject selectedObject in selectedObjects)
+            foreach (GameObject selectedObject in selectedObjects)
             {
                 // If the object does not reside in the specified list, we must deselect it
-                if(!gameObjects.Contains(selectedObject))
+                if (!gameObjects.Contains(selectedObject))
                 {
                     DeselectObject(selectedObject, deselectReason);
                     objectsWhichWereDeselected.Add(selectedObject);
@@ -402,7 +402,7 @@ namespace RLD
             }
 
             // Now we need to select the objects inside 'gameObjects' which are not currently selected
-            foreach(GameObject objectToSelect in gameObjects)
+            foreach (GameObject objectToSelect in gameObjects)
             {
                 // Check if the game object can be selected
                 if (!IsObjectSelected(objectToSelect) && CanSelectObject(objectToSelect, SelectRestrictFlags.None, selectReason))
@@ -538,7 +538,7 @@ namespace RLD
         public bool CanBeDeleted()
         {
             return _isEnabled && !_willBeDeleted && !IsManipSessionActive &&
-                   !_doingPreSelectCustomize && !_doingPreDeselectCustomize && 
+                   !_doingPreSelectCustomize && !_doingPreDeselectCustomize &&
                    NumSelectedObjects != 0;
         }
 
@@ -562,7 +562,7 @@ namespace RLD
             if (!CanBeDuplicated()) return emptyResult;
 
             List<GameObject> objectsToDuplicate = new List<GameObject>();
-            foreach(GameObject selectedObject in _selectedObjects)
+            foreach (GameObject selectedObject in _selectedObjects)
             {
                 if (_settings.IsObjectLayerDuplicatable(selectedObject.layer)) objectsToDuplicate.Add(selectedObject);
             }
@@ -880,7 +880,7 @@ namespace RLD
                 }
             }
             else
-            if(Hotkeys.AppendToSelection.IsActive())
+            if (Hotkeys.AppendToSelection.IsActive())
             {
                 List<GameObject> potentialList = FilterByRestrictions(overlappedObjects, SelectRestrictFlags.All, ObjectSelectReason.MultiSelectAppend);
                 ObjectPreSelectCustomizeInfo preSelectCustomizeInfo = DoPreSelectCustomize(potentialList, ObjectSelectReason.MultiSelectAppend);
@@ -984,7 +984,7 @@ namespace RLD
 
                     _cyclicalClickSelectInfo.LastPickedObject = filteredHits[0].HitObject;
                     pickedObject = filteredHits[_cyclicalClickSelectInfo.LastSelectedIndex].HitObject;
-                }              
+                }
 
                 // Should we append the object to the selection
                 if (Hotkeys.AppendToSelection.IsActive())
@@ -996,7 +996,7 @@ namespace RLD
                     {
                         deselectReason = ObjectDeselectReason.CickAppendAlreadySelected;
                         List<GameObject> toBeDeselected = DoPreDeselectCustomize(new List<GameObject> { pickedObject }, deselectReason);
-                        foreach(GameObject objectToDeselect in toBeDeselected)
+                        foreach (GameObject objectToDeselect in toBeDeselected)
                         {
                             if (IsObjectSelected(objectToDeselect))
                             {
@@ -1120,7 +1120,7 @@ namespace RLD
         private List<GameObject> FilterByRestrictions(IEnumerable<GameObject> gameObjects, SelectRestrictFlags restrictFlags, ObjectSelectReason selectReason)
         {
             List<GameObject> filtered = new List<GameObject>(10);
-            foreach(GameObject gameObj in gameObjects)
+            foreach (GameObject gameObj in gameObjects)
             {
                 if (CanSelectObject(gameObj, restrictFlags, selectReason)) filtered.Add(gameObj);
             }
@@ -1180,7 +1180,7 @@ namespace RLD
 
         private void ClearSelection(ObjectDeselectReason deselectReason)
         {
-            if(NumSelectedObjects != 0)
+            if (NumSelectedObjects != 0)
             {
                 // Store a copy of the currently selected objects so we can still access
                 // these objects after the selection was cleared.
@@ -1189,12 +1189,12 @@ namespace RLD
 
                 // Now inform the objects that they were deselected
                 ObjectDeselectEventArgs deselectEventArgs = new ObjectDeselectEventArgs(deselectReason);
-                foreach(GameObject gameObject in selectedObjects)
+                foreach (GameObject gameObject in selectedObjects)
                 {
                     IRTObjectSelectionListener selectionListener = gameObject.GetComponent<IRTObjectSelectionListener>();
                     if (selectionListener != null) selectionListener.OnDeselected(deselectEventArgs);
                 }
-            }         
+            }
         }
 
         private void OnSelectionChanged(ObjectSelectionChangedEventArgs args)
@@ -1217,7 +1217,7 @@ namespace RLD
             Settings.RemoveNullObjectRefs();
 
             // If any inactive objects were found, fire an object selection changed event
-            if (inactiveObjects.Count != 0) 
+            if (inactiveObjects.Count != 0)
                 OnSelectionChanged(new ObjectSelectionChangedEventArgs(ObjectSelectReason.None, null, ObjectDeselectReason.Inactive, inactiveObjects));
         }
 
@@ -1229,7 +1229,7 @@ namespace RLD
                 HandleUndoRedo(postChangeAction.PreChangeSnapshot, true);
             }
             else
-            if(action is DeleteSelectedObjectsAction)
+            if (action is DeleteSelectedObjectsAction)
             {
                 DeleteSelectedObjectsAction deleteObjectsAction = action as DeleteSelectedObjectsAction;
                 HandleUndoRedo(deleteObjectsAction.PreDeleteSnapshot, true);

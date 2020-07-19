@@ -5,7 +5,7 @@ namespace RLD
     public class GizmoRATrianglePlaneSlider3DController : GizmoPlaneSlider3DController
     {
         public GizmoRATrianglePlaneSlider3DController(GizmoPlaneSlider3DControllerData controllerData)
-            :base(controllerData)
+            : base(controllerData)
         {
         }
 

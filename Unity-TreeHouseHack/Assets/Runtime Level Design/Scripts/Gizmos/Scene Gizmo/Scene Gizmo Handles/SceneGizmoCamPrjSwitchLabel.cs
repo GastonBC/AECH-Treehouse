@@ -2,7 +2,7 @@
 
 namespace RLD
 {
-    public class SceneGizmoCamPrjSwitchLabel 
+    public class SceneGizmoCamPrjSwitchLabel
     {
         private SceneGizmo _sceneGizmo;
 

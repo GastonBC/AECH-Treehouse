@@ -1,6 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
-using System;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -60,7 +59,7 @@ namespace RLD
                 if (GetWorldPointClosestToInputDevice(focusCamera, _destinationObjects, out worldDestPos)) _relativeDragOffset = worldDestPos - _snapPivot;
             }
             else
-            if(_settings.CanSnapToGrid)
+            if (_settings.CanSnapToGrid)
             {
                 Ray ray = RTInputDevice.Get.Device.GetRay(focusCamera);
                 XZGridRayHit gridHit = RTScene.Get.RaycastSceneGridIfVisible(ray);

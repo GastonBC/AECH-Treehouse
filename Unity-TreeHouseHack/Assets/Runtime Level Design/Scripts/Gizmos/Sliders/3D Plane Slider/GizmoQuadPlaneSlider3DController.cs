@@ -1,11 +1,9 @@
-﻿using UnityEngine;
-
-namespace RLD
+﻿namespace RLD
 {
     public class GizmoQuadPlaneSlider3DController : GizmoPlaneSlider3DController
     {
         public GizmoQuadPlaneSlider3DController(GizmoPlaneSlider3DControllerData controllerData)
-            :base(controllerData)
+            : base(controllerData)
         {
         }
 

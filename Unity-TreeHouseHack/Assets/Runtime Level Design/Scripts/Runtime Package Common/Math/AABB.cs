@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -13,9 +13,9 @@ namespace RLD
         public Vector3 Center { get { return _center; } set { _center = value; } }
         public Vector3 Size { get { return _size; } set { _size = value; } }
         public Vector3 Extents { get { return Size * 0.5f; } }
-        public Vector3 Min 
-        { 
-            get { return Center - Extents; } 
+        public Vector3 Min
+        {
+            get { return Center - Extents; }
             set
             {
                 if (!_isValid) return;
@@ -23,9 +23,9 @@ namespace RLD
                 RecalculateCenterAndSize(newMin, Max);
             }
         }
-        public Vector3 Max 
-        { 
-            get { return Center + Extents; } 
+        public Vector3 Max
+        {
+            get { return Center + Extents; }
             set
             {
                 if (!_isValid) return;

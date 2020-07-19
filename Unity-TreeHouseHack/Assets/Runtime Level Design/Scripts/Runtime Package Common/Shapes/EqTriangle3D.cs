@@ -13,10 +13,10 @@ namespace RLD
         private bool _arePointsDirty = true;
 
         public float SideLength { get { return _sideLength; } set { _sideLength = Mathf.Abs(value); _arePointsDirty = true; } }
-        public Vector3 Centroid 
-        { 
-            get { return _centroid; } 
-            set 
+        public Vector3 Centroid
+        {
+            get { return _centroid; }
+            set
             {
                 Vector3 offset = value - _centroid;
                 _centroid = value;
@@ -24,7 +24,7 @@ namespace RLD
                 _points[0] += offset;
                 _points[1] += offset;
                 _points[2] += offset;
-            } 
+            }
         }
         public float Altitude { get { return _sideLength * TriangleMath.EqTriangleAltFactor; } }
         public float CentroidAltitude { get { return Altitude / 3.0f; } }
@@ -34,7 +34,7 @@ namespace RLD
         public float ExtrudeEps { get { return _epsilon.ExtrudeEps; } set { _epsilon.ExtrudeEps = value; } }
         public float WireEps { get { return _epsilon.WireEps; } set { _epsilon.WireEps = value; } }
         public Vector3 Normal { get { return Look; } }
-        public Vector3 Right { get { return _rotation * ModelRight;} }
+        public Vector3 Right { get { return _rotation * ModelRight; } }
         public Vector3 Up { get { return _rotation * ModelUp; } }
         public Vector3 Look { get { return _rotation * ModelLook; } }
 
@@ -80,7 +80,7 @@ namespace RLD
         }
 
         public Vector3 GetEdge(EqTriangleEdge edge)
-        { 
+        {
             if (edge == EqTriangleEdge.LeftTop) return GetPoint(EqTrianglePoint.Top) - GetPoint(EqTrianglePoint.Left);
             if (edge == EqTriangleEdge.TopRight) return GetPoint(EqTrianglePoint.Right) - GetPoint(EqTrianglePoint.Top);
             return GetPoint(EqTrianglePoint.Left) - GetPoint(EqTrianglePoint.Right);

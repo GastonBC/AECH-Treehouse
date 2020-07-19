@@ -39,7 +39,7 @@ namespace RLD
                         }
 
                         // Only one instance was found, so we can store it
-                        _instance = singletonInstances[0];     
+                        _instance = singletonInstances[0];
                     }
                 }
 

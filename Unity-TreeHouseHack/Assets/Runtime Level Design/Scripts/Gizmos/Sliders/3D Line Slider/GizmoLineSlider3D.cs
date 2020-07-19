@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -20,7 +20,7 @@ namespace RLD
 
         private IGizmoLineSlider3DController[] _controllers = new IGizmoLineSlider3DController[System.Enum.GetValues(typeof(GizmoLine3DType)).Length];
         private GizmoLineSlider3DControllerData _controllerData = new GizmoLineSlider3DControllerData();
-        
+
         private GizmoDragChannel _dragChannel = GizmoDragChannel.Scale;
         private GizmoSglAxisOffsetDrag3D _offsetDrag = new GizmoSglAxisOffsetDrag3D();
         private GizmoSglAxisRotationDrag3D _rotationDrag = new GizmoSglAxisRotationDrag3D();
@@ -156,14 +156,14 @@ namespace RLD
         /// <summary>
         /// Allows the client code to retrieve or set the slider's shared look and feel settings.
         /// </summary>
-        public GizmoLineSlider3DLookAndFeel SharedLookAndFeel 
+        public GizmoLineSlider3DLookAndFeel SharedLookAndFeel
         {
-            get { return _sharedLookAndFeel; } 
-            set 
-            { 
+            get { return _sharedLookAndFeel; }
+            set
+            {
                 _sharedLookAndFeel = value;
                 SetupSharedLookAndFeel();
-            } 
+            }
         }
 
         /// <summary>
@@ -173,7 +173,7 @@ namespace RLD
         /// <param name="handleId">The id of the slider handle.</param>
         /// <param name="capHandleId">The id of the slider's cap handle.</param>
         public GizmoLineSlider3D(Gizmo gizmo, int handleId, int capHandleId)
-            :base(gizmo, handleId)
+            : base(gizmo, handleId)
         {
             _segmentIndex = Handle.Add3DShape(_segment);
             _boxIndex = Handle.Add3DShape(_box);
@@ -339,7 +339,7 @@ namespace RLD
         {
             float sign = 1.0f;
             if (_scaleDrag.IsActive) sign = Mathf.Sign(TotalDragScale);
-            else 
+            else
             if (Gizmo.IsDragged && IsScalerHandleRegistered(Gizmo.DragHandleId, ScaleDragAxisIndex)) sign = Mathf.Sign(Gizmo.TotalDragScale[ScaleDragAxisIndex]);
 
             return Direction * sign;
@@ -593,7 +593,7 @@ namespace RLD
         /// slider, a rotation slider or a scale slider.
         /// </summary>
         public void SetDragChannel(GizmoDragChannel dragChannel)
-        {   
+        {
             _dragChannel = dragChannel;
             if (_dragChannel == GizmoDragChannel.Offset) _selectedDragSession = _offsetDrag;
             else if (_dragChannel == GizmoDragChannel.Rotation) _selectedDragSession = _rotationDrag;
@@ -729,7 +729,7 @@ namespace RLD
         }
 
         private void OnGizmoAttemptHandleDragBegin(Gizmo gizmo, int handleId)
-        { 
+        {
             if (handleId == Handle.Id || handleId == _cap3D.HandleId)
             {
                 if (_dragChannel == GizmoDragChannel.Offset)
@@ -772,7 +772,7 @@ namespace RLD
 
         private void OnTransformChanged(GizmoTransform transform, GizmoTransform.ChangeData changeData)
         {
-            if (changeData.ChangeReason == GizmoTransform.ChangeReason.ParentChange || 
+            if (changeData.ChangeReason == GizmoTransform.ChangeReason.ParentChange ||
                 changeData.TRSDimension == GizmoDimension.Dim3D)
             {
                 Camera camera = Gizmo.GetWorkCamera();

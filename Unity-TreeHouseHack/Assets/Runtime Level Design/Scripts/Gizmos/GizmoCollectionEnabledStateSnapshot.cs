@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace RLD
 {
@@ -15,7 +14,7 @@ namespace RLD
 
         public void Apply()
         {
-            foreach(KeyValuePair<Gizmo, bool> pair in _gizmoToState)
+            foreach (KeyValuePair<Gizmo, bool> pair in _gizmoToState)
             {
                 pair.Key.SetEnabled(pair.Value);
             }

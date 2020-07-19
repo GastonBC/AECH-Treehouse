@@ -5,7 +5,7 @@ namespace RLD
     public class GizmoTorusCircle3DBorderController : GizmoCircle3DBorderController
     {
         public GizmoTorusCircle3DBorderController(GizmoCircle3DBorderControllerData controllerData)
-            :base(controllerData)
+            : base(controllerData)
         {
         }
 

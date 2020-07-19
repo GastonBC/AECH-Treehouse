@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -47,7 +47,7 @@ namespace RLD
         public void Undo()
         {
             // Only undo if we deleted anything
-            if(_deletedObjects != null)
+            if (_deletedObjects != null)
             {
                 // Enable the objects
                 foreach (GameObject deletedObject in _deletedObjects)
@@ -74,8 +74,8 @@ namespace RLD
 
         public void OnRemovedFromUndoRedoStack()
         {
-            if(_deletedObjects != null && _deletedObjects.Count != 0)
-            { 
+            if (_deletedObjects != null && _deletedObjects.Count != 0)
+            {
                 if (_canDestroyObjects)
                 {
                     // Delete the objects
@@ -103,7 +103,7 @@ namespace RLD
 
         public void Execute()
         {
-            if(_preChangeSnapshot != null && _postChangeSnapshot != null)
+            if (_preChangeSnapshot != null && _postChangeSnapshot != null)
                 RTUndoRedo.Get.RecordAction(this);
         }
 

@@ -1,12 +1,10 @@
-﻿using UnityEngine;
-
-namespace RLD
+﻿namespace RLD
 {
     public class GizmoThinQuad3DBorderController : GizmoQuad3DBorderController
     {
         public GizmoThinQuad3DBorderController(GizmoQuad3DBorderControllerData data)
             : base(data)
-        { 
+        {
         }
 
         public override void UpdateHandles()

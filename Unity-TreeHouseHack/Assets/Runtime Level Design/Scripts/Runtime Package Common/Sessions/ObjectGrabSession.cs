@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -74,8 +74,8 @@ namespace RLD
         private GrabSurfaceInfo _grabSurfaceInfo = new GrabSurfaceInfo();
         private int _deltaCaptureId;
 
-        private TransformAxis[] _possibleAlignmentAxes = new TransformAxis[] 
-        {   
+        private TransformAxis[] _possibleAlignmentAxes = new TransformAxis[]
+        {
             TransformAxis.PositiveX,
             TransformAxis.NegativeX,
             TransformAxis.PositiveY,
@@ -190,10 +190,10 @@ namespace RLD
                 else if (SharedHotkeys.EnableOffsetFromSurface.IsActive()) _state = State.ActiveOffsetFromSurface;
                 else _state = State.ActiveSnapToSurface;
 
-                if (_state != State.ActiveScale && 
+                if (_state != State.ActiveScale &&
                     _state != State.ActiveOffsetFromAnchor) inputDevice.RemoveDeltaCapture(_deltaCaptureId);
 
-                if (_state != State.ActiveOffsetFromAnchor && 
+                if (_state != State.ActiveOffsetFromAnchor &&
                     _state != State.ActiveRotateAroundAnchor)
                 {
                     if (!IdentifyGrabSurface()) return;
@@ -205,7 +205,7 @@ namespace RLD
                     CalculateGrabTargetsAnchorVectors();
                 }
 
-                if (_state == State.ActiveSnapToSurface && 
+                if (_state == State.ActiveSnapToSurface &&
                     SharedHotkeys.NextAlignmentAxis.IsActiveInFrame())
                 {
                     SwitchToNextAlignmentAxis();
@@ -217,7 +217,7 @@ namespace RLD
                     else if (_state == State.ActiveAnchorAdjust) CalculateGrabTargetsAnchorVectors();
                     else if (_state == State.ActiveSnapToSurface) SnapTargetsToSurface();
                     else if (_state == State.ActiveRotate) RotateTargets();
-                    else if (_state == State.ActiveRotateAroundAnchor)  RotateTargetsAroundAnchor();
+                    else if (_state == State.ActiveRotateAroundAnchor) RotateTargetsAroundAnchor();
                     else if (_state == State.ActiveScale) ScaleTargets();
                     else if (_state == State.ActiveOffsetFromSurface) OffsetTargetsFromSurface();
                 }
@@ -251,7 +251,7 @@ namespace RLD
                 return false;
             }
             CalculateGrabTargetsAnchorVectors();
-     
+
             _state = State.ActiveSnapToSurface;
             _preTargetTransformSnapshots = LocalTransformSnapshot.GetSnapshotCollection(_targetParents);
 
@@ -338,7 +338,7 @@ namespace RLD
             if (!inputDevice.WasMoved()) return;
 
             float rotationAmount = inputDevice.GetFrameDelta().x * SharedSettings.RotationSensitivity;
-            foreach(GrabTarget grabTarget in _grabTargets)
+            foreach (GrabTarget grabTarget in _grabTargets)
             {
                 if (grabTarget == null) continue;
 
@@ -507,7 +507,7 @@ namespace RLD
                 _grabSurfaceInfo.AnchorNormal = raycastHit.ObjectHit.HitNormal;
                 _grabSurfaceInfo.AnchorPoint = raycastHit.ObjectHit.HitPoint;
                 _grabSurfaceInfo.AnchorPlane = raycastHit.ObjectHit.HitPlane;
-         
+
                 GameObjectType hitObjectType = raycastHit.ObjectHit.HitObject.GetGameObjectType();
                 if (hitObjectType == GameObjectType.Mesh)
                 {

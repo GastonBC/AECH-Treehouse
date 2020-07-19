@@ -42,11 +42,11 @@ namespace RLD
 
         public SceneGizmoScreenCorner ScreenCorner { get { return _screenCorner; } set { _screenCorner = value; } }
         public Vector2 ScreenOffset { get { return _screenOffset; } set { _screenOffset = value; } }
-        public float ScreenSize 
-        { 
-            get { return _screenSize; } 
-            set 
-            { 
+        public float ScreenSize
+        {
+            get { return _screenSize; }
+            set
+            {
                 _screenSize = Mathf.Max(2, value);
                 OnScreenSizeChanged();
             }
@@ -73,7 +73,7 @@ namespace RLD
 
         public SceneGizmoLookAndFeel()
         {
-            for(int axisIndex = 0; axisIndex < _axesCapsLookAndFeel.Length; ++axisIndex)
+            for (int axisIndex = 0; axisIndex < _axesCapsLookAndFeel.Length; ++axisIndex)
             {
                 _axesCapsLookAndFeel[axisIndex] = new GizmoCap3DLookAndFeel();
             }
@@ -203,14 +203,14 @@ namespace RLD
             _midCapLookAndFeel.BoxDepth = MidCapBoxSize;
             _midCapLookAndFeel.SphereRadius = MidCapSphereRadius;
 
-            foreach(GizmoCap3DLookAndFeel axisCapLookAndFeel in _axesCapsLookAndFeel)
+            foreach (GizmoCap3DLookAndFeel axisCapLookAndFeel in _axesCapsLookAndFeel)
             {
                 axisCapLookAndFeel.ConeHeight = AxisConeHeight;
                 axisCapLookAndFeel.ConeRadius = AxisConeRadius;
-            }    
+            }
         }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         protected override void RenderContent(UnityEngine.Object undoRecordObject)
         {
             bool newBool; Color newColor; Vector2 newVec2; float newFloat;
@@ -291,7 +291,7 @@ namespace RLD
             string[] axesCapLabels = new string[] { "Positive X", "Positive Y", "Positive Z", "Negative X", "Negative Y", "Negative Z" };
             int[] axesIndices = new int[] { 0, 1, 2, 0, 1, 2 };
             AxisSign[] axesSigns = new AxisSign[] { AxisSign.Positive, AxisSign.Positive, AxisSign.Positive, AxisSign.Negative, AxisSign.Negative, AxisSign.Negative };
-            for (int axisIndex = 0; axisIndex < 6; ++axisIndex )
+            for (int axisIndex = 0; axisIndex < 6; ++axisIndex)
             {
                 content.text = axesCapLabels[axisIndex];
                 content.tooltip = "The color of the " + axesCapLabels[axisIndex].ToLower() + ".";
@@ -327,7 +327,7 @@ namespace RLD
             EditorGUILayoutEx.SectionHeader("Labels");
             EditorGUILayout.HelpBox("The alpha value of the axes labels is ignored. The alpha component will always have the same value as the corresponding axis.", MessageType.Info);
             content.text = "Axes label tint";
-            content.tooltip = "Allows you to change the color of the labels associated with the gizmo axes. Note: The alpha component is ignored. The alpha value will " + 
+            content.tooltip = "Allows you to change the color of the labels associated with the gizmo axes. Note: The alpha component is ignored. The alpha value will " +
                               "always be retrieved from the color of the associated axis.";
             newColor = EditorGUILayout.ColorField(content, AxesLabelTint);
             if (newColor != AxesLabelTint)
@@ -349,12 +349,12 @@ namespace RLD
             content.tooltip = "If this is checked, the gizmo will render a label which indicates the current camera projection type (perspective or ortho). " +
                               "This label can also be used to switch between the 2 camera projection modes.";
             newBool = EditorGUILayout.ToggleLeft(content, IsCamPrjSwitchLabelVisible);
-            if(newBool != IsCamPrjSwitchLabelVisible)
+            if (newBool != IsCamPrjSwitchLabelVisible)
             {
                 EditorUndoEx.Record(undoRecordObject);
                 IsCamPrjSwitchLabelVisible = newBool;
             }
         }
-        #endif
+#endif
     }
 }

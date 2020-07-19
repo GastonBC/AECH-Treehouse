@@ -6,7 +6,7 @@ namespace RLD
     {
         public static Ray InverseTransform(this Ray ray, Matrix4x4 transformMatrix)
         {
-            Matrix4x4 inverseTransform = transformMatrix.inverse; 
+            Matrix4x4 inverseTransform = transformMatrix.inverse;
             Vector3 origin = inverseTransform.MultiplyPoint(ray.origin);
             Vector3 direction = inverseTransform.MultiplyVector(ray.direction).normalized;
 

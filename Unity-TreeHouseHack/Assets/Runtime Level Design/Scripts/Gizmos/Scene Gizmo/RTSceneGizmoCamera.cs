@@ -15,17 +15,17 @@ namespace RLD
         private ISceneGizmoCamViewportUpdater _viewportUpdater;
 
         public Camera Camera { get { return _camera; } }
-        public Camera SceneCamera 
-        { 
-            get { return _sceneCamera; } 
-            set 
+        public Camera SceneCamera
+        {
+            get { return _sceneCamera; }
+            set
             {
                 if (value != null && _camera != null)
                 {
                     _sceneCamera = value;
                     _camera.depth = _sceneCamera.depth + 1.0f;
                 }
-            } 
+            }
         }
         public ISceneGizmoCamViewportUpdater ViewportUpdater { get { return _viewportUpdater; } set { if (value != null) _viewportUpdater = value; } }
         public Vector3 WorldPosition { get { return _transform.position; } set { _transform.position = value; } }

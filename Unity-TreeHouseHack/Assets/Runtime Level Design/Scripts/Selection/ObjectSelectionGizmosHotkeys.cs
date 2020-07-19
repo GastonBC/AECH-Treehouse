@@ -1,7 +1,6 @@
-﻿using UnityEngine;
-using System;
+﻿using System;
+using UnityEngine;
 #if UNITY_EDITOR
-using UnityEditor;
 #endif
 
 namespace RLD
@@ -10,7 +9,7 @@ namespace RLD
     public class ObjectSelectionGizmosHotkeys : Settings
     {
         [SerializeField]
-        private Hotkeys _activateMoveGizmo = new Hotkeys("Activate move gizmo", new HotkeysStaticData() { CanHaveMouseButtons = false } )
+        private Hotkeys _activateMoveGizmo = new Hotkeys("Activate move gizmo", new HotkeysStaticData() { CanHaveMouseButtons = false })
         {
             UseStrictMouseCheck = true, // Needed to avoid camera keys collision
             Key = KeyCode.W
@@ -61,7 +60,7 @@ namespace RLD
         public Hotkeys ActivateExtrudeGizmo { get { return _activateExtrudeGizmo; } }
         public Hotkeys ToggleTransformSpace { get { return _toggleTransformSpace; } }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         protected override void RenderContent(UnityEngine.Object undoRecordObject)
         {
             ActivateMoveGizmo.RenderEditorGUI(undoRecordObject);
@@ -72,6 +71,6 @@ namespace RLD
             ActivateExtrudeGizmo.RenderEditorGUI(undoRecordObject);
             ToggleTransformSpace.RenderEditorGUI(undoRecordObject);
         }
-        #endif
+#endif
     }
 }

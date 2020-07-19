@@ -1,6 +1,6 @@
-﻿using UnityEngine;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -80,11 +80,11 @@ namespace RLD
                 SetupSharedSettings();
             }
         }
-        public MoveGizmoSettings3D SharedSettings3D 
-        { 
-            get { return _sharedSettings3D; } 
-            set 
-            { 
+        public MoveGizmoSettings3D SharedSettings3D
+        {
+            get { return _sharedSettings3D; }
+            set
+            {
                 _sharedSettings3D = value;
                 SetupSharedSettings();
             }
@@ -98,14 +98,14 @@ namespace RLD
                 SetupSharedLookAndFeel();
             }
         }
-        public MoveGizmoLookAndFeel3D SharedLookAndFeel3D 
-        { 
+        public MoveGizmoLookAndFeel3D SharedLookAndFeel3D
+        {
             get { return _sharedLookAndFeel3D; }
-            set 
+            set
             {
                 _sharedLookAndFeel3D = value;
                 SetupSharedLookAndFeel();
-            } 
+            }
         }
         public MoveGizmoHotkeys SharedHotkeys { get { return _sharedHotkeys; } set { _sharedHotkeys = value; } }
         public bool UseSnapEnableHotkey { get { return _useSnapEnableHotkey; } set { _useSnapEnableHotkey = value; } }
@@ -159,7 +159,7 @@ namespace RLD
 
         public void SetVertexSnapEnabled(bool isEnabled)
         {
-            if (_isVertexSnapEnabled == isEnabled || 
+            if (_isVertexSnapEnabled == isEnabled ||
                 _is2DModeEnabled || !_isEnabled ||
                 Gizmo.IsDragged) return;
 
@@ -176,7 +176,7 @@ namespace RLD
 
         public void Set2DModeEnabled(bool isEnabled)
         {
-            if (_is2DModeEnabled == isEnabled || 
+            if (_is2DModeEnabled == isEnabled ||
                 _isVertexSnapEnabled || !_isEnabled ||
                 Gizmo.IsDragged) return;
 
@@ -396,7 +396,7 @@ namespace RLD
                     _dblSliders.ApplyZoomFactor(camera);
                     PlaceDblSlidersInSliderPlanes(camera);
                 }
-             
+
                 Update2DGizmoPosition();
                 if (_is2DModeEnabled) Update2DModeHandlePositions();
             }

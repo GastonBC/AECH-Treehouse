@@ -87,7 +87,7 @@ namespace RLD
 
             Color sourceColor = _fadeOutColor;
             Color destColor = _fadeInColor;
-            if(_state == State.FadingOut)
+            if (_state == State.FadingOut)
             {
                 sourceColor = _fadeInColor;
                 destColor = _fadeOutColor;
@@ -110,7 +110,7 @@ namespace RLD
             if (_isActive)
             {
                 _isActive = false;
-                
+
                 if (_state == State.FadingOut) _state = State.CompleteFadeOut;
                 else if (_state == State.FadingIn) _state = State.CompleteFadeIn;
 

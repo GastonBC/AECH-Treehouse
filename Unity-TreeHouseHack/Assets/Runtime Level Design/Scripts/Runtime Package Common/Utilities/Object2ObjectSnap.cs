@@ -1,6 +1,6 @@
-﻿using UnityEngine;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -98,12 +98,12 @@ namespace RLD
             float minSnapDistance = float.MaxValue;
             SnapResult bestResult = new SnapResult(SnapFailReson.NoDestinationFound);
 
-            foreach(GameObject root in roots)
+            foreach (GameObject root in roots)
             {
                 SnapResult snapResult = CalculateSnapResult(root, snapConfig);
 
                 if (snapResult.FailReason == SnapFailReson.MaxObjectsExceeded) return snapResult;
-                else if(snapResult.FailReason == SnapFailReson.None)
+                else if (snapResult.FailReason == SnapFailReson.None)
                 {
                     if (snapResult.SnapDistance < minSnapDistance)
                     {
@@ -160,7 +160,7 @@ namespace RLD
                 if (sourceSnapData == null) continue;
 
                 sortData.SrcObject = sourceObject;
-                foreach(BoxFace srcSnapFace in allSnapFaces)
+                foreach (BoxFace srcSnapFace in allSnapFaces)
                 {
                     BoxFaceAreaDesc srcAreaDesc = sourceSnapData.GetWorldSnapAreaDesc(srcSnapFace);
                     OBB srcAreaBounds = sourceSnapData.GetWorldSnapAreaBounds(srcSnapFace);
@@ -173,7 +173,7 @@ namespace RLD
                         if (destSnapData == null) continue;
 
                         sortData.DestObject = destObject;
-                        foreach(BoxFace destSnapFace in allSnapFaces)
+                        foreach (BoxFace destSnapFace in allSnapFaces)
                         {
                             sortData.DestSnapFace = destSnapFace;
                             BoxFaceAreaDesc destAreaDesc = destSnapData.GetWorldSnapAreaDesc(destSnapFace);
@@ -206,27 +206,27 @@ namespace RLD
                             }
                         }
                     }
-                }      
+                }
             }
 
             if (sortedSnapData.Count != 0)
             {
                 if (!tryMatchAreas || !foundMatchingAreas)
                 {
-                    sortedSnapData.Sort(delegate(SnapSortData s0, SnapSortData s1)
+                    sortedSnapData.Sort(delegate (SnapSortData s0, SnapSortData s1)
                     {
                         return s0.SnapDistance.CompareTo(s1.SnapDistance);
                     });
                 }
                 else
                 {
-                    while(true)
+                    while (true)
                     {
                         if (!sortedSnapData[0].FaceAreasMatch) sortedSnapData.RemoveAt(0);
                         else break;
                     }
 
-                    sortedSnapData.Sort(delegate(SnapSortData s0, SnapSortData s1)
+                    sortedSnapData.Sort(delegate (SnapSortData s0, SnapSortData s1)
                     {
                         return s0.FaceAreaDiff.CompareTo(s1.FaceAreaDiff);
                     });
@@ -235,6 +235,6 @@ namespace RLD
                 return new SnapResult(sortedSnapData[0].SnapPivot, sortedSnapData[0].SnapDest, sortedSnapData[0].SnapDistance);
             }
             return new SnapResult(SnapFailReson.NoDestinationFound);
-        }     
+        }
     }
 }

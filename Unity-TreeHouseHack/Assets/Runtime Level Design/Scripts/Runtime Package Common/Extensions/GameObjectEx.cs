@@ -8,13 +8,13 @@ namespace RLD
 {
     public static class GameObjectEx
     {
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         public static bool IsSceneObject(this GameObject gameObject)
         {
             PrefabAssetType prefabAssetType = PrefabUtility.GetPrefabAssetType(gameObject);
             return prefabAssetType == PrefabAssetType.NotAPrefab;
         }
-        #endif
+#endif
 
         public static void SetStatic(this GameObject gameObject, bool isStatic, bool affectChildren)
         {
@@ -22,7 +22,7 @@ namespace RLD
             else
             {
                 List<GameObject> allObjects = gameObject.GetAllChildrenAndSelf();
-                foreach(GameObject gameObj in allObjects)
+                foreach (GameObject gameObj in allObjects)
                 {
                     gameObj.isStatic = isStatic;
                 }
@@ -112,7 +112,7 @@ namespace RLD
             List<GameObject> allObjects = root.GetAllChildrenAndSelf();
             List<GameObject> allMeshObjects = new List<GameObject>(allObjects.Count);
 
-            foreach(GameObject gameObj in allObjects)
+            foreach (GameObject gameObj in allObjects)
             {
                 if (gameObj.GetMesh() != null) allMeshObjects.Add(gameObj);
             }
@@ -155,9 +155,9 @@ namespace RLD
             Transform[] childTransforms = gameObject.GetComponentsInChildren<Transform>();
             List<GameObject> allChildren = new List<GameObject>(childTransforms.Length);
 
-            foreach(Transform child in childTransforms)
+            foreach (Transform child in childTransforms)
             {
-                if(child.gameObject != gameObject) allChildren.Add(child.gameObject);
+                if (child.gameObject != gameObject) allChildren.Add(child.gameObject);
             }
 
             return allChildren;
@@ -221,10 +221,10 @@ namespace RLD
 
             List<GameObject> roots = new List<GameObject>();
             HashSet<GameObject> rootHash = new HashSet<GameObject>();
-            foreach(GameObject gameObject in gameObjects)
+            foreach (GameObject gameObject in gameObjects)
             {
                 GameObject root = gameObject.transform.root.gameObject;
-                if(!rootHash.Contains(root))
+                if (!rootHash.Contains(root))
                 {
                     rootHash.Add(root);
                     roots.Add(root);
@@ -243,20 +243,20 @@ namespace RLD
             // Loop through each game object inside the collection and check if it has a parent which
             // resides in the same collection.
             List<GameObject> parents = new List<GameObject>(10);
-            foreach(GameObject gameObject in gameObjects)
+            foreach (GameObject gameObject in gameObjects)
             {
                 // Store data for easy access
                 bool foundParent = false;
                 Transform objectTransform = gameObject.transform;
 
                 // Now we need to check if the current object has a parent inside the collection
-                foreach(GameObject possibleParent in gameObjects)
+                foreach (GameObject possibleParent in gameObjects)
                 {
                     // Same as current object?
                     if (possibleParent != gameObject)
                     {
                         // Is the current object a child of the possible parent object?
-                        if(objectTransform.IsChildOf(possibleParent.transform))
+                        if (objectTransform.IsChildOf(possibleParent.transform))
                         {
                             // Yes, it is. Set the boolean flag and break out of the loop. There
                             // is no need to go any further because we found a parent so we know

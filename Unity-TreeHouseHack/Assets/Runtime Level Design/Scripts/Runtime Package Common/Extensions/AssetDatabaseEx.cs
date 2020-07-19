@@ -1,7 +1,7 @@
 ﻿#if UNITY_EDITOR
-using UnityEngine;
-using UnityEditor;
 using System.Collections.Generic;
+using UnityEditor;
+using UnityEngine;
 
 namespace RLD
 {
@@ -46,7 +46,7 @@ namespace RLD
         public static List<UnityEngine.Object> LoadAssetsInFolder(string folderPath, AssetType assetType)
         {
             string assetTypeFilter = "t:";
-            if(assetType == AssetType.Prefab) assetTypeFilter += "GameObject";
+            if (assetType == AssetType.Prefab) assetTypeFilter += "GameObject";
 
             string[] assetGUIDs = AssetDatabase.FindAssets(assetTypeFilter, new string[] { folderPath });
             return ConvertGUIDsToAssets(assetGUIDs);
@@ -71,7 +71,7 @@ namespace RLD
             if (assets == null || assets.Count == 0) return new List<GameObject>();
 
             List<GameObject> prefabs = new List<GameObject>(assets.Count);
-            foreach(Object asset in assets)
+            foreach (Object asset in assets)
             {
                 GameObject prefab = asset as GameObject;
                 if (prefab != null) prefabs.Add(prefab);

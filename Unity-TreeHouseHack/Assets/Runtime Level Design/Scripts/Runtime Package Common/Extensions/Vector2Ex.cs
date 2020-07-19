@@ -1,12 +1,12 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
     public static class Vector2Ex
     {
         public static Vector3 ConvertDirTo3D(Vector2 start, Vector2 end, Vector3 zPos, Camera camera)
-        {           
+        {
             float z = camera.GetPointZDistance(zPos);
             Vector3 start3D = camera.ScreenToWorldPoint(new Vector3(start.x, start.y, z));
             Vector3 end3D = camera.ScreenToWorldPoint(new Vector3(end.x, end.y, z));

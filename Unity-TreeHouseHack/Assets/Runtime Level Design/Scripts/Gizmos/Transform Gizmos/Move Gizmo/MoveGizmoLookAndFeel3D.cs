@@ -195,7 +195,7 @@ namespace RLD
 
         public void SetMidCapType(GizmoCap3DType capType)
         {
-            if(IsMidCapTypeAllowed(capType))
+            if (IsMidCapTypeAllowed(capType))
             {
                 _midCapLookAndFeel.CapType = capType;
             }
@@ -210,7 +210,7 @@ namespace RLD
         {
             _midCapLookAndFeel.BoxHeight = height;
         }
-        
+
         public void SetMidCapBoxDepth(float depth)
         {
             _midCapLookAndFeel.BoxDepth = depth;
@@ -350,7 +350,7 @@ namespace RLD
 
         public void SetDblSliderSize(float size)
         {
-            foreach(GizmoPlaneSlider3DLookAndFeel lookAndFeel in _dblSlidersLookAndFeel)
+            foreach (GizmoPlaneSlider3DLookAndFeel lookAndFeel in _dblSlidersLookAndFeel)
             {
                 lookAndFeel.QuadWidth = size;
                 lookAndFeel.QuadHeight = size;
@@ -365,7 +365,7 @@ namespace RLD
                 lookAndFeel.CapLookAndFeel.Scale = scale;
             }
 
-            foreach(GizmoPlaneSlider3DLookAndFeel lookAndFeel in _dblSlidersLookAndFeel)
+            foreach (GizmoPlaneSlider3DLookAndFeel lookAndFeel in _dblSlidersLookAndFeel)
             {
                 lookAndFeel.Scale = scale;
             }
@@ -585,7 +585,7 @@ namespace RLD
             return _dblSlidersLookAndFeel[(int)planeId];
         }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         protected override void RenderContent(UnityEngine.Object undoRecordObject)
         {
             float newFloat; bool newBool; Color newColor;
@@ -1137,20 +1137,20 @@ namespace RLD
             GUIContent content = new GUIContent();
             content.text = "Show all";
             content.tooltip = "Show all " + (forCaps ? "caps." : "sliders.");
-            if(GUILayout.Button(content, GUILayout.Width(80.0f)))
+            if (GUILayout.Button(content, GUILayout.Width(80.0f)))
             {
                 EditorUndoEx.Record(undoRecordObject);
                 bool[] visFlags = forCaps ? _sglSliderCapVis : _sglSliderVis;
-                for(int index = 0; index < visFlags.Length; ++index) visFlags[index] = true;
+                for (int index = 0; index < visFlags.Length; ++index) visFlags[index] = true;
             }
 
             content.text = "Hide all";
             content.tooltip = "Hide all " + (forCaps ? "caps." : "sliders.");
-            if(GUILayout.Button(content, GUILayout.Width(80.0f)))
+            if (GUILayout.Button(content, GUILayout.Width(80.0f)))
             {
                 EditorUndoEx.Record(undoRecordObject);
                 bool[] visFlags = forCaps ? _sglSliderCapVis : _sglSliderVis;
-                for(int index = 0; index < visFlags.Length; ++index) visFlags[index] = false;
+                for (int index = 0; index < visFlags.Length; ++index) visFlags[index] = false;
             }
             EditorGUILayout.EndHorizontal();
         }
@@ -1239,6 +1239,6 @@ namespace RLD
             }
             EditorGUILayout.EndHorizontal();
         }
-        #endif
+#endif
     }
 }

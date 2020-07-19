@@ -101,7 +101,7 @@ namespace RLD
 
         public void SetObjectCollectionSelectable(List<GameObject> gameObjectCollection, bool areSelectable)
         {
-            foreach(GameObject gameObject in gameObjectCollection)
+            foreach (GameObject gameObject in gameObjectCollection)
             {
                 SetObjectSelectable(gameObject, areSelectable);
             }
@@ -128,7 +128,7 @@ namespace RLD
             return LayerEx.IsLayerBitSet(_deletableLayers, objectLayer);
         }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         protected override void RenderContent(UnityEngine.Object undoRecordObject)
         {
             bool newBool; int newInt;
@@ -139,7 +139,7 @@ namespace RLD
             content.text = "Can click select";
             content.tooltip = "Allows you to specify if objects can be selected via mouse clicks.";
             newBool = EditorGUILayout.ToggleLeft(content, CanClickSelect);
-            if(newBool != CanClickSelect)
+            if (newBool != CanClickSelect)
             {
                 EditorUndoEx.Record(undoRecordObject);
                 CanClickSelect = newBool;
@@ -188,7 +188,7 @@ namespace RLD
             content.text = "Selectable layers";
             content.tooltip = "Allows you to specify which layers can be selected.";
             newInt = EditorGUILayoutEx.LayerMaskField(content, _selectableLayers);
-            if(newInt != _selectableLayers)
+            if (newInt != _selectableLayers)
             {
                 EditorUndoEx.Record(undoRecordObject);
                 _selectableLayers = newInt;
@@ -224,6 +224,6 @@ namespace RLD
                 MinMultiSelectSize = newInt;
             }
         }
-        #endif
+#endif
     }
 }

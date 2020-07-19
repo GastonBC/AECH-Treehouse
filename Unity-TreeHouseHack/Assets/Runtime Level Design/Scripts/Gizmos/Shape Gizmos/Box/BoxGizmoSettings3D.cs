@@ -43,7 +43,7 @@ namespace RLD
             _dragSensitivity = Mathf.Max(1e-4f, sensitivity);
         }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         protected override void RenderContent(UnityEngine.Object undoRecordObject)
         {
             float newFloat;
@@ -88,6 +88,6 @@ namespace RLD
                 SetDragSensitivity(newFloat);
             }
         }
-        #endif
+#endif
     }
 }

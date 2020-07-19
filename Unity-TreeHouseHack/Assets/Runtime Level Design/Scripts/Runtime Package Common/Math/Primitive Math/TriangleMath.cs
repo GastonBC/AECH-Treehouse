@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -27,7 +27,7 @@ namespace RLD
     {
         private static readonly float _eqTriangleAltFactor = Mathf.Sqrt(3.0f) * 0.5f;
         public static float EqTriangleAltFactor { get { return _eqTriangleAltFactor; } }
-        
+
         public static float GetEqTriangleAltitude(float sideLength)
         {
             return sideLength * _eqTriangleAltFactor;
@@ -113,7 +113,7 @@ namespace RLD
 
         public static OBB Calc3DTriangleOBB(Vector3 p0, Vector3 p1, Vector3 p2, Vector3 normal, TriangleEpsilon epsilon = new TriangleEpsilon())
         {
-            const float eps = 1e-5f;    
+            const float eps = 1e-5f;
             Vector3 lgEdgeStart = p0;
             Vector3 lgEdgeEnd = p1;
             Vector3 oppositePt = p2;
@@ -148,7 +148,7 @@ namespace RLD
             obb.Size = new Vector3(obbWidth, obbHeight, obbDepth);
 
             Vector3 right = obb.Right * Mathf.Sign(dotRight);
-            obb.Center = right * obbWidth * 0.5f - right * epsilon.AreaEps + 
+            obb.Center = right * obbWidth * 0.5f - right * epsilon.AreaEps +
                           lgEdgeStart - obb.Look * epsilon.AreaEps + obb.Look * obbDepth * 0.5f;
 
             return obb;
@@ -160,13 +160,13 @@ namespace RLD
 
             float rayEnter;
             Plane trianglePlane = new Plane(p0, p1, p2);
-            if (trianglePlane.Raycast(ray, out rayEnter) && 
+            if (trianglePlane.Raycast(ray, out rayEnter) &&
                 Contains3DPoint(ray.GetPoint(rayEnter), false, p0, p1, p2, epsilon))
             {
                 t = rayEnter;
                 return true;
             }
-       
+
             if (epsilon.ExtrudeEps != 0.0f)
             {
                 float dot = Vector3Ex.AbsDot(ray.direction, trianglePlane.normal);
@@ -231,7 +231,7 @@ namespace RLD
             Vector3 edge2 = p0 - p2;
             Vector3 normal = Vector3.Cross(edge0, -edge2).normalized;
 
-            if(checkOnPlane)
+            if (checkOnPlane)
             {
                 float distanceToPt = Vector3.Dot(point - p0, normal);
                 if (Mathf.Abs(distanceToPt) > epsilon.ExtrudeEps) return false;

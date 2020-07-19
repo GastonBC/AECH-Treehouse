@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace RLD
+﻿namespace RLD
 {
     public enum GizmoFillMode2D
     {

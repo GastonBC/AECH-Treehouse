@@ -5,7 +5,7 @@ namespace RLD
     public class GizmoBoxLineSlider3DController : GizmoLineSlider3DController
     {
         public GizmoBoxLineSlider3DController(GizmoLineSlider3DControllerData controllerData)
-            :base(controllerData)
+            : base(controllerData)
         {
         }
 

@@ -1,6 +1,6 @@
-﻿using UnityEngine;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -22,7 +22,7 @@ namespace RLD
         {
             if (enabled == _isEnabled) return;
 
-            if(enabled)
+            if (enabled)
             {
                 _isEnabled = enabled;
                 OnEnabled();
@@ -59,10 +59,10 @@ namespace RLD
 
         protected void CheckRequiredBehaviours(List<Type> reqBehaviourTypes)
         {
-            foreach(Type bhvType in reqBehaviourTypes)
+            foreach (Type bhvType in reqBehaviourTypes)
             {
                 IGizmoBehaviour behaviour = Gizmo.GetFirstBehaviourOfType(bhvType);
-                if(behaviour == null)
+                if (behaviour == null)
                 {
                     ThrowReqBehaviourExeception(bhvType);
                     break;
@@ -72,7 +72,7 @@ namespace RLD
 
         private void ThrowReqBehaviourExeception(Type reqBehaviorType)
         {
-            if(Application.isEditor)
+            if (Application.isEditor)
             {
                 Debug.Break();
                 throw new UnityException(GetType().ToString() + " requires a behaviour of type " + reqBehaviorType.ToString());

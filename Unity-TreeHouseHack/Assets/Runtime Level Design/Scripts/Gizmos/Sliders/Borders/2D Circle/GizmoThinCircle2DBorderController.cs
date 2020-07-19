@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace RLD
+﻿namespace RLD
 {
     public class GizmoThinCircle2DBorderController : GizmoCircle2DBorderController
     {

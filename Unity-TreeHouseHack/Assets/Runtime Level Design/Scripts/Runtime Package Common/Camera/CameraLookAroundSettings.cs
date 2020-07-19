@@ -39,7 +39,7 @@ namespace RLD
         public bool InvertY { get { return _invertY; } set { _invertY = value; } }
         public bool IsLookAroundEnabled { get { return _isLookAroundEnabled; } set { _isLookAroundEnabled = value; } }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         protected override void RenderContent(UnityEngine.Object undoRecordObject)
         {
             float newFloat; bool newBool;
@@ -124,6 +124,6 @@ namespace RLD
             }
             EditorGUILayout.EndVertical();
         }
-        #endif
+#endif
     }
 }

@@ -97,7 +97,7 @@ namespace RLD
         }
         #endregion
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         protected override void RenderContent(UnityEngine.Object undoRecordObject)
         {
             if (DisplayCategory == UniversalGizmoSettingsCategory.Move) RenderMoveContent(undoRecordObject);
@@ -158,6 +158,6 @@ namespace RLD
                 SetMvDragSensitivity(newFloat);
             }
         }
-        #endif
+#endif
     }
 }

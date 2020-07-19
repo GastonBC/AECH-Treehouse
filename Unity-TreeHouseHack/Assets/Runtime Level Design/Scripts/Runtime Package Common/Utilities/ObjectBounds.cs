@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -192,13 +192,13 @@ namespace RLD
             }
             else
             if (objectType == GameObjectType.Sprite) return CalcSpriteModelAABB(gameObject);
-            else if(objectType == GameObjectType.Terrain)
+            else if (objectType == GameObjectType.Terrain)
             {
                 Terrain terrain = gameObject.GetComponent<Terrain>();
                 TerrainData terrainData = terrain.terrainData;
                 if (terrainData == null) return AABB.GetInvalid();
 
-                Vector3 terrainSize = terrainData.bounds.size;        
+                Vector3 terrainSize = terrainData.bounds.size;
                 return new AABB(terrainData.bounds.center, terrainSize);
             }
             else return new AABB(Vector3.zero, queryConfig.NoVolumeSize);

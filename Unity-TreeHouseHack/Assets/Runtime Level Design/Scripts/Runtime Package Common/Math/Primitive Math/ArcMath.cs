@@ -190,7 +190,7 @@ namespace RLD
             return false;
         }
 
-        public static bool ShArcContains3DPoint(Vector3 point, bool checkOnPlane, Vector3 arcOrigin, Vector3 arcStartPoint, 
+        public static bool ShArcContains3DPoint(Vector3 point, bool checkOnPlane, Vector3 arcOrigin, Vector3 arcStartPoint,
             Vector3 arcPlaneNormal, float degreesFromStart, ArcEpsilon epsilon = new ArcEpsilon())
         {
             Vector3 toStartPt = (arcStartPoint - arcOrigin);
@@ -257,7 +257,7 @@ namespace RLD
             return ShArcContains3DPoint(point.ToVector3(), false, arcOrigin.ToVector3(), arcStartPoint.ToVector3(), Vector3.forward, degreesFromStart, epsilon);
         }
 
-        public static bool LgArcContains3DPoint(Vector3 point, bool checkOnPlane, Vector3 arcOrigin, Vector3 arcStartPoint, 
+        public static bool LgArcContains3DPoint(Vector3 point, bool checkOnPlane, Vector3 arcOrigin, Vector3 arcStartPoint,
             Vector3 arcPlaneNormal, float degreesFromStart, ArcEpsilon epsilon = new ArcEpsilon())
         {
             degreesFromStart %= 360.0f;

@@ -1,7 +1,6 @@
-﻿using UnityEngine;
-using System;
+﻿using System;
+using UnityEngine;
 #if UNITY_EDITOR
-using UnityEditor;
 #endif
 
 namespace RLD
@@ -10,7 +9,7 @@ namespace RLD
     public class Object2ObjectSnapHotkeys : Settings
     {
         [SerializeField]
-        private Hotkeys _toggleSnap = new Hotkeys("Toggle on/off", new HotkeysStaticData { CanHaveMouseButtons = false} )
+        private Hotkeys _toggleSnap = new Hotkeys("Toggle on/off", new HotkeysStaticData { CanHaveMouseButtons = false })
         {
             UseStrictModifierCheck = true,
             UseStrictMouseCheck = true,
@@ -43,14 +42,14 @@ namespace RLD
         public Hotkeys EnableMoreControl { get { return _enableMoreControl; } }
         public Hotkeys EnableFlexiSnap { get { return _enableFlexiSnap; } }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         protected override void RenderContent(UnityEngine.Object undoRecordObject)
         {
             ToggleSnap.RenderEditorGUI(undoRecordObject);
             ToggleSitBelowSurface.RenderEditorGUI(undoRecordObject);
             EnableMoreControl.RenderEditorGUI(undoRecordObject);
             EnableFlexiSnap.RenderEditorGUI(undoRecordObject);
-        } 
-        #endif
+        }
+#endif
     }
 }

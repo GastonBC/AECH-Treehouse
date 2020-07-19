@@ -23,7 +23,7 @@ namespace RLD
         public CameraProjectionSwitchMode SwitchMode { get { return _switchMode; } set { _switchMode = value; } }
         public float TransitionDurationInSeconds { get { return _transitionDurationInSeconds; } set { _transitionDurationInSeconds = Mathf.Max(value, 1e-2f); } }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         protected override void RenderContent(UnityEngine.Object undoRecordObject)
         {
             float newFloat;
@@ -55,6 +55,6 @@ namespace RLD
 
             EditorGUILayout.EndVertical();
         }
-        #endif
+#endif
     }
 }

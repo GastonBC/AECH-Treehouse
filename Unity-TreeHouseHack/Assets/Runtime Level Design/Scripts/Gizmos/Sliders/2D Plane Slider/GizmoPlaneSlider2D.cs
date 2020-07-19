@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -74,7 +74,7 @@ namespace RLD
         public bool IsScaling { get { return _scaleDrag.IsActive; } }
 
         public GizmoPlaneSlider2D(Gizmo gizmo, int handleId)
-            :base(gizmo, handleId)
+            : base(gizmo, handleId)
         {
             _quadIndex = Handle.Add2DShape(_quad);
             _circleIndex = Handle.Add2DShape(_circle);
@@ -137,7 +137,7 @@ namespace RLD
         }
 
         public void SetPolyCwPoints(List<Vector2> cwPoints, bool isClosed)
-        {          
+        {
             if (LookAndFeel.PlaneType == GizmoPlane2DType.Polygon)
             {
                 _polygon.SetClockwisePoints(cwPoints, isClosed);
@@ -248,16 +248,16 @@ namespace RLD
         {
             if (!IsVisible && !IsBorderVisible) return;
 
-            if (IsRotating && LookAndFeel.IsRotationArcVisible && 
-                (LookAndFeel.PlaneType == GizmoPlane2DType.Circle || LookAndFeel.PlaneType == GizmoPlane2DType.Polygon) && 
+            if (IsRotating && LookAndFeel.IsRotationArcVisible &&
+                (LookAndFeel.PlaneType == GizmoPlane2DType.Circle || LookAndFeel.PlaneType == GizmoPlane2DType.Polygon) &&
                 camera == Gizmo.FocusCamera)
             {
                 _rotationArc.RotationAngle = TotalDragRotation;
                 _rotationArc.Render(LookAndFeel.RotationArcLookAndFeel, camera);
             }
 
-            if (IsVisible && 
-               (LookAndFeel.FillMode == GizmoFillMode2D.Filled || 
+            if (IsVisible &&
+               (LookAndFeel.FillMode == GizmoFillMode2D.Filled ||
                 LookAndFeel.FillMode == GizmoFillMode2D.FilledAndBorder))
             {
                 Color fillColor = LookAndFeel.Color;
@@ -271,7 +271,7 @@ namespace RLD
                 Handle.Render2DSolid(camera);
             }
 
-            if (IsBorderVisible && 
+            if (IsBorderVisible &&
                (LookAndFeel.FillMode == GizmoFillMode2D.Border ||
                 LookAndFeel.FillMode == GizmoFillMode2D.FilledAndBorder))
             {
@@ -316,7 +316,7 @@ namespace RLD
 
         private void OnTransformChanged(GizmoTransform transform, GizmoTransform.ChangeData changeData)
         {
-            if(changeData.TRSDimension == GizmoDimension.Dim2D || 
+            if (changeData.TRSDimension == GizmoDimension.Dim2D ||
                changeData.ChangeReason == GizmoTransform.ChangeReason.ParentChange)
             {
                 _controllers[(int)LookAndFeel.PlaneType].UpdateTransforms();

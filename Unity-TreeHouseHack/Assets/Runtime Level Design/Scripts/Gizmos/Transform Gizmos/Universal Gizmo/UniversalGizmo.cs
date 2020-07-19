@@ -1,6 +1,6 @@
-﻿using UnityEngine;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -91,44 +91,44 @@ namespace RLD
         private bool _use2DModeEnableHotkey = true;
 
         public UniversalGizmoSettings2D Settings2D { get { return _sharedSettings2D == null ? _settings2D : _sharedSettings2D; } }
-        public UniversalGizmoSettings2D SharedSettings2D 
-        { 
-            get { return _sharedSettings2D; } 
+        public UniversalGizmoSettings2D SharedSettings2D
+        {
+            get { return _sharedSettings2D; }
             set
-            { 
+            {
                 _sharedSettings2D = value;
                 SetupSharedSettings();
-            } 
+            }
         }
         public UniversalGizmoSettings3D Settings3D { get { return _sharedSettings3D == null ? _settings3D : _sharedSettings3D; } }
-        public UniversalGizmoSettings3D SharedSettings3D 
-        { 
-            get { return _sharedSettings3D; } 
-            set 
-            { 
+        public UniversalGizmoSettings3D SharedSettings3D
+        {
+            get { return _sharedSettings3D; }
+            set
+            {
                 _sharedSettings3D = value;
                 SetupSharedSettings();
-            } 
+            }
         }
         public UniversalGizmoLookAndFeel2D LookAndFeel2D { get { return _sharedLookAndFeel2D == null ? _lookAndFeel2D : _sharedLookAndFeel2D; } }
-        public UniversalGizmoLookAndFeel2D SharedLookAndFeel2D 
-        { 
-            get { return _sharedLookAndFeel2D; } 
-            set 
-            { 
+        public UniversalGizmoLookAndFeel2D SharedLookAndFeel2D
+        {
+            get { return _sharedLookAndFeel2D; }
+            set
+            {
                 _sharedLookAndFeel2D = value;
                 SetupSharedLookAndFeel();
-            } 
+            }
         }
         public UniversalGizmoLookAndFeel3D LookAndFeel3D { get { return _sharedLookAndFeel3D == null ? _lookAndFeel3D : _sharedLookAndFeel3D; } }
-        public UniversalGizmoLookAndFeel3D SharedLookAndFeel3D 
-        { 
-            get { return _sharedLookAndFeel3D; } 
-            set 
-            { 
+        public UniversalGizmoLookAndFeel3D SharedLookAndFeel3D
+        {
+            get { return _sharedLookAndFeel3D; }
+            set
+            {
                 _sharedLookAndFeel3D = value;
                 SetupSharedLookAndFeel();
-            } 
+            }
         }
         public UniversalGizmoHotkeys Hotkeys { get { return _sharedHotkeys == null ? _hotkeys : _sharedHotkeys; } }
         public UniversalGizmoHotkeys SharedHotkeys { get { return _sharedHotkeys; } set { _sharedHotkeys = value; } }
@@ -469,7 +469,7 @@ namespace RLD
             {
                 bool vSnapWasEnabled = _isMvVertexSnapEnabled;
                 if (!vSnapWasEnabled) _mvPostVSnapPosRestore = Gizmo.Transform.Position3D;
-                if (UseVertSnapEnableHotkey) 
+                if (UseVertSnapEnableHotkey)
                     SetMvVertexSnapEnabled(Hotkeys.EnableVertexSnapping.IsActive());
                 if (vSnapWasEnabled && !_isMvVertexSnapEnabled) Gizmo.Transform.Position3D = _mvPostVSnapPosRestore;
 

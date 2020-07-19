@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace TreeHouseHack
+namespace TreehouseHack
 {
     public class RailPicket : MonoBehaviour
     {

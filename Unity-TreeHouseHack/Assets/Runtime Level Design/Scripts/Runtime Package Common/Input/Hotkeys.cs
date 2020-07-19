@@ -180,7 +180,7 @@ namespace RLD
             if (LAlt) modifiers.Add(KeyCode.LeftAlt);
             if (LShift) modifiers.Add(KeyCode.LeftShift);
             if (LCtrl) modifiers.Add(KeyCode.LeftControl);
-            
+
             return modifiers;
         }
 
@@ -211,10 +211,10 @@ namespace RLD
         {
             if (hotkeys == null || ReferenceEquals(hotkeys, this)) return false;
 
-            if (GetNumModifiers() <= hotkeys.GetNumModifiers() && 
+            if (GetNumModifiers() <= hotkeys.GetNumModifiers() &&
                 GetNumMouseButtons() <= hotkeys.GetNumMouseButtons())
             {
-                if (hotkeys.Key == Key && 
+                if (hotkeys.Key == Key &&
                     hotkeys.UsesModifiers(GetAllUsedModifiers()) &&
                     hotkeys.UsesMouseButtons(GetAllUsedMouseButtons())) return true;
             }
@@ -329,7 +329,7 @@ namespace RLD
             return HasNoKeys() && HasNoModifiers() && HasNoMouseButtons();
         }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         public void RenderEditorGUI(UnityEngine.Object undoRecordObject)
         {
             bool newBool;
@@ -344,7 +344,7 @@ namespace RLD
             content.text = "Is enabled";
             content.tooltip = "Allows you to enable/disable a shortcut key.";
             newBool = EditorGUILayout.ToggleLeft(content, IsEnabled);
-            if(newBool != IsEnabled)
+            if (newBool != IsEnabled)
             {
                 EditorUndoEx.Record(undoRecordObject);
                 IsEnabled = newBool;
@@ -431,7 +431,7 @@ namespace RLD
             }
             EditorGUILayout.EndVertical();
         }
-        #endif
+#endif
 
         /// <summary>
         /// Checks if at least one modifier key is pressed.

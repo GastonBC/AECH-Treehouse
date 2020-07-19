@@ -18,7 +18,7 @@ namespace RLD
         public void Render(GizmoRotationArc3DLookAndFeel lookAndFeel)
         {
             _arc.ForceShortestArc = lookAndFeel.UseShortestRotation;
-            if((lookAndFeel.FillFlags & GizmoRotationArcFillFlags.Area) != 0)
+            if ((lookAndFeel.FillFlags & GizmoRotationArcFillFlags.Area) != 0)
             {
                 GizmoSolidMaterial solidMaterial = GizmoSolidMaterial.Get;
                 solidMaterial.ResetValuesToSensibleDefaults();

@@ -48,13 +48,13 @@ namespace RLD
         public PrefabLibDbSettings Settings { get { return _settings; } }
         public EditorPrefabPreviewGen EditorPrefabPreviewGen { get { return _editorPrefabPreviewGen; } }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         public string NewLibName { get { return _newLibName; } set { if (value != null) _newLibName = value; } }
         public Vector2 PrefabScrollPos { get { return _prefabScrollPos; } set { _prefabScrollPos = value; } }
         public int NumPrefabsPerRow { get { return _numPrefabsPerRow; } set { _numPrefabsPerRow = Mathf.Max(1, value); } }
-        #endif
+#endif
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         public void RefreshEditorPrefabPreviews()
         {
             EditorPrefabPreviewGen.BeginGenSession(PrefabPreviewLookAndFeel);
@@ -92,7 +92,7 @@ namespace RLD
                 esObject.AddComponent<StandaloneInputModule>();
             }
         }
-        #endif
+#endif
 
         public RTPrefabLib CreateLib(string libName)
         {
@@ -109,7 +109,7 @@ namespace RLD
             lib.PrefabCreated += OnPrefabCreatedInLib;
             lib.PrefabRemoved += OnPrefabRemovedFromLib;
             lib.Cleared += OnPrefabLibCleared;
-       
+
             return lib;
         }
 
@@ -117,7 +117,7 @@ namespace RLD
         {
             RTPrefabLib activeLib = ActiveLib;
 
-            _libs.Sort(delegate(RTPrefabLib l0, RTPrefabLib l1)
+            _libs.Sort(delegate (RTPrefabLib l0, RTPrefabLib l1)
             { return l0.Name.CompareTo(l1.Name); });
 
             if (activeLib != null) SetActiveLib(activeLib);
@@ -180,7 +180,7 @@ namespace RLD
             {
                 RTPrefabLib removedLib = _libs[libIndex];
                 RTPrefabLib activeLib = ActiveLib;
-         
+
                 _libs.RemoveAt(libIndex);
                 _activeLibIndex = _libs.IndexOf(activeLib);
                 if (_activeLibIndex < 0) _activeLibIndex = 0;

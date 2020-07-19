@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RLD
 {
@@ -54,9 +54,9 @@ namespace RLD
         public int NumRenderCameras { get { return _renderCameras.Count; } }
         public SceneGizmoLookAndFeel SharedSceneGizmoLookAndFeel { get { return _sharedSceneGizmoLookAndFeel; } }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         public EditorToolbar MainToolbar { get { return _mainToolbar; } }
-        #endif
+#endif
 
         public void AddRenderCamera(Camera camera)
         {
@@ -251,7 +251,7 @@ namespace RLD
                 if (answer.HasNo) canUpdateHoverInfo = false;
             }
 
-            if (canUpdateHoverInfo) 
+            if (canUpdateHoverInfo)
             {
                 _hoveredGizmo = null;
                 _gizmoHoverInfo.Reset();
@@ -303,7 +303,7 @@ namespace RLD
             List<GizmoHandleHoverData> hoverDataCollection = gizmo.GetAllHandlesHoverData(hoverRay);
 
             Vector3 screenRayOrigin = focusCamera.WorldToScreenPoint(hoverRay.origin);
-            hoverDataCollection.Sort(delegate(GizmoHandleHoverData h0, GizmoHandleHoverData h1)
+            hoverDataCollection.Sort(delegate (GizmoHandleHoverData h0, GizmoHandleHoverData h1)
             {
                 IGizmoHandle handle0 = gizmo.GetHandleById_SystemCall(h0.HandleId);
                 IGizmoHandle handle1 = gizmo.GetHandleById_SystemCall(h1.HandleId);
@@ -364,7 +364,7 @@ namespace RLD
             {
                 Vector3 camPos = RenderStageCamera.transform.position;
                 List<Gizmo> sortedGizmos = new List<Gizmo>(_gizmos);
-                sortedGizmos.Sort(delegate(Gizmo g0, Gizmo g1)
+                sortedGizmos.Sort(delegate (Gizmo g0, Gizmo g1)
                 {
                     float d0 = (g0.Transform.Position3D - camPos).sqrMagnitude;
                     float d1 = (g1.Transform.Position3D - camPos).sqrMagnitude;
@@ -395,14 +395,14 @@ namespace RLD
             if (hoverDataCollection.Count == 0) return;
 
             Ray hoverRay = hoverDataCollection[0].HoverRay;
-            hoverDataCollection.Sort(delegate(GizmoHandleHoverData h0, GizmoHandleHoverData h1)
+            hoverDataCollection.Sort(delegate (GizmoHandleHoverData h0, GizmoHandleHoverData h1)
             {
                 // Same dimensions?
                 bool sameDims = (h0.HandleDimension == h1.HandleDimension);
                 if (sameDims)
                 {
                     // 2D dimension?
-                    if(h0.HandleDimension == GizmoDimension.Dim2D)
+                    if (h0.HandleDimension == GizmoDimension.Dim2D)
                     {
                         // If the gizmo 2D hover priorities are equal, we sort by distance from input device position. 
                         // Otherwise, we sort by priority.
