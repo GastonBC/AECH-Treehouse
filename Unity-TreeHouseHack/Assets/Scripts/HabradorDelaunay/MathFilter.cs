@@ -80,10 +80,6 @@ namespace HabradorDelaunay
             double[] mid_range = new double[] { low_mid, high_mid };
             double[] high_range = new double[] { high_mid, max_area };
 
-            Debug.Log($"{min_area} to {low_mid}");
-            Debug.Log($"{low_mid} to {high_mid}");
-            Debug.Log($"{high_mid} to {max_area}");
-
             switch (RelativeArea)
             {
                 case AreaRange.Low:

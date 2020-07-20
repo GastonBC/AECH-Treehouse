@@ -327,13 +327,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxCoordinate: 100
-  TreeCount: 60
-  RelativeArea: 3
+  TreeCount: 100
+  MinAngle: 32
+  RelativeArea: 1
   TreePrefab: {fileID: 9078023891827341894, guid: fb12cd21fb1e19f46bd974feb6467dab,
     type: 3}
   DeckObject: {fileID: 2269118682193857279, guid: 4847d6e79dfc3f9418293e000d398b09,
     type: 3}
-  MinAngle: 35
 --- !u!4 &882182206
 Transform:
   m_ObjectHideFlags: 0

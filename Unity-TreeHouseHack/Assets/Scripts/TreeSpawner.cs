@@ -10,26 +10,27 @@ namespace TreehouseHack
     {
         public float MaxCoordinate;
         public int TreeCount;
+
+        public uint MinAngle;
         public AreaRange RelativeArea;
+
         public GameObject TreePrefab;
         public GameObject DeckObject;
-        public double MinAngle;
 
-        private GameObject DeckNode;
-
-        // Start is called before the first frame update
         void Start()
         {
-            DeckNode = new GameObject("Deck Node");
             GenDelaunayTreeDecks();
         }
 
 
         private void GenDelaunayTreeDecks()
         {
+            // Set up randomizer, zero rotation and empty deck node gameobject
             System.Random rnd = new System.Random();
-            Quaternion rot = new Quaternion(0, 0, 0, 0);
+            Quaternion rot = new Quaternion();
+            GameObject DeckNode = new GameObject("Deck Node");
 
+            // Random points list
             List<Vector3> points = new List<Vector3>();
 
             for (int n = 1; n <= TreeCount; n++)
