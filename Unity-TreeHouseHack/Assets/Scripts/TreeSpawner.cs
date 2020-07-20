@@ -16,7 +16,6 @@ namespace TreehouseHack
         public double MinAngle;
 
         private GameObject DeckNode;
-        private double[] check_range;
 
         // Start is called before the first frame update
         void Start()
@@ -47,60 +46,8 @@ namespace TreehouseHack
             // Magic and beautiful Delaunay triangulation
             List<Triangle> triangulation = Delaunay.TriangulateByFlippingEdges(points);
 
-            #region Area filter setup (small, medium, big, null, surprise)
-
-            List<double> areas = new List<double>();
-
-
-            // Here we get the areas for the triangles that PASS the angle filter
-            // That way, the min area wont be 0.02 for instance
-            // We check those areas against the range later
-            foreach (Triangle tri in triangulation)
-            {
-                List<double> TriAngles = MathFilter.AngleDegrees(tri);
-
-                if (TriAngles.TrueForAll(angle => angle >= MinAngle))
-                {
-                    areas.Add(MathFilter.TriangleArea(tri));
-                }
-            }
-
-            double area_range = areas.Max() - areas.Min();
-
-            double min_area = areas.Min();
-            double max_area = areas.Max();
-            double low_mid = min_area + (area_range / 3);
-            double high_mid = min_area + ((area_range / 3) * 2);
-
-            double[] no_range = new double[] { min_area, max_area };
-
-            double[] low_range = new double[] { min_area, low_mid };
-            double[] mid_range = new double[] { low_mid, high_mid };
-            double[] high_range = new double[] { high_mid, max_area };
-
-            switch (RelativeArea)
-            {
-                case AreaRange.Low:
-                    check_range = low_range;
-                    break;
-                case AreaRange.Mid:
-                    check_range = mid_range;
-                    break;
-                case AreaRange.High:
-                    check_range = high_range;
-                    break;
-                case AreaRange.Surprise:
-                    check_range = no_range; // Not implemented yet
-                    break;
-                case AreaRange.None:
-                default:
-                    check_range = no_range;
-                    break;
-
-            }
-
-            #endregion
-
+            // Area filter
+            double[] check_range = MathFilter.AreaFilter(triangulation, MinAngle, RelativeArea);
 
             foreach (Triangle tri in triangulation)
             {
@@ -109,7 +56,6 @@ namespace TreehouseHack
                 // Area check
                 if (check_range[0] <= area && area <= check_range[1])
                 {
-
                     List<double> TriAngles = MathFilter.AngleDegrees(tri);
 
                     // Angle check

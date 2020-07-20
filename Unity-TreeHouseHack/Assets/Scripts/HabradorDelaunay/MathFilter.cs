@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using TreehouseHack;
 using UnityEngine;
 
 namespace HabradorDelaunay
@@ -17,7 +19,10 @@ namespace HabradorDelaunay
             Vector3 B = tri.v2.position;
             Vector3 C = tri.v3.position;
 
-            return Math.Abs(0.5 * (((B.x - A.x) * (C.z - A.z)) - ((C.x - A.x) * (B.y - A.y))));
+            
+
+
+            return Math.Abs(0.5 * ((A.x * (B.z - C.z)) + (B.x * (C.z - A.z)) + (C.x * (A.z - B.z))));
         }
 
         internal static List<double> AngleDegrees(Triangle tri)
@@ -40,6 +45,67 @@ namespace HabradorDelaunay
 
             return new List<double> { A_angle, B_angle, C_angle };
 
+        }
+
+        internal static double[] AreaFilter(List<Triangle> triangulation, double MinAngle, AreaRange RelativeArea)
+        {
+            double[] check_range;
+
+            List<double> areas = new List<double>();
+
+
+            // Here we get the areas for the triangles that PASS the angle filter
+            // That way, the min area wont be 0.02 for instance
+            // We check those areas against the range later
+            foreach (Triangle tri in triangulation)
+            {
+                List<double> TriAngles = MathFilter.AngleDegrees(tri);
+
+                if (TriAngles.TrueForAll(angle => angle >= MinAngle))
+                {
+                    areas.Add(MathFilter.TriangleArea(tri));
+                }
+            }
+
+            double area_range = areas.Max() - areas.Min();
+
+            double min_area = areas.Min();
+            double max_area = areas.Max();
+            double low_mid = min_area + (area_range / 5);
+            double high_mid = min_area + ((area_range / 5)*3);
+
+            double[] no_range = new double[] { min_area, max_area };
+
+            double[] low_range = new double[] { min_area, low_mid };
+            double[] mid_range = new double[] { low_mid, high_mid };
+            double[] high_range = new double[] { high_mid, max_area };
+
+            Debug.Log($"{min_area} to {low_mid}");
+            Debug.Log($"{low_mid} to {high_mid}");
+            Debug.Log($"{high_mid} to {max_area}");
+
+            switch (RelativeArea)
+            {
+                case AreaRange.Low:
+                    check_range = low_range;
+                    break;
+                case AreaRange.Mid:
+                    check_range = mid_range;
+                    break;
+                case AreaRange.High:
+                    check_range = high_range;
+                    break;
+                case AreaRange.Surprise:
+                    check_range = no_range; // Not implemented yet
+                    break;
+                case AreaRange.None:
+                default:
+                    check_range = no_range;
+                    break;
+
+            }
+
+            return check_range;
         }
     }
 }
