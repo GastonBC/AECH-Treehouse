@@ -326,9 +326,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8da62d2ae1d5bb54b95932c93bbcdd07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxCoordinate: 100
-  TreeCount: 100
-  MinAngle: 32
+  MaxCoordinate: 50
+  TreeCount: 30
+  MinAngle: 30
+  MaxLength: 0
   RelativeArea: 1
   TreePrefab: {fileID: 9078023891827341894, guid: fb12cd21fb1e19f46bd974feb6467dab,
     type: 3}
