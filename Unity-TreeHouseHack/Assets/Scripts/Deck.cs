@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-namespace TreehouseHack
+namespace TreeHouseHack
 {
     public class Deck : MonoBehaviour
     {
@@ -46,7 +47,7 @@ namespace TreehouseHack
 
 
 
-            //   testsphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);      /// DEBUGGING
+         //   testsphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);      /// DEBUGGING
         }
 
         public void DrawDeck()
@@ -61,7 +62,7 @@ namespace TreehouseHack
 
         public void ManageBeams()
         {
-            if (this.Beams.Count < 3)
+            if (this.Beams.Count <3 )
             {
                 int total = this.Beams.Count;
 
@@ -72,23 +73,23 @@ namespace TreehouseHack
                 ActiveBeams = this.Beams.Count;
             }
 
-            PlaceBeam(Beams[0], th.OrderedTrees[0].GetComponent<TreeAnchor>().CP, th.OrderedTrees[1].GetComponent<TreeAnchor>().CP);
-            PlaceBeam(Beams[1], th.OrderedTrees[0].GetComponent<TreeAnchor>().CP, th.OrderedTrees[2].GetComponent<TreeAnchor>().CP);
-            PlaceBeam(Beams[2], th.OrderedTrees[2].GetComponent<TreeAnchor>().CP, th.OrderedTrees[1].GetComponent<TreeAnchor>().CP);
+        PlaceBeam(Beams[0], th.OrderedTrees[0].GetComponent<TreeAnchor>().CP, th.OrderedTrees[1].GetComponent<TreeAnchor>().CP);
+        PlaceBeam(Beams[1], th.OrderedTrees[0].GetComponent<TreeAnchor>().CP, th.OrderedTrees[2].GetComponent<TreeAnchor>().CP);
+        PlaceBeam(Beams[2], th.OrderedTrees[2].GetComponent<TreeAnchor>().CP, th.OrderedTrees[1].GetComponent<TreeAnchor>().CP);
 
-            void AddBeam()
-            {
-                GameObject NewBeam = Instantiate(BeamType);
-                NewBeam.transform.parent = this.transform;
-                Beams.Add(NewBeam.GetComponent<Beam>());
-            }
+        void AddBeam()
+        {
+            GameObject NewBeam = Instantiate(BeamType);
+            NewBeam.transform.parent = this.transform;
+            Beams.Add(NewBeam.GetComponent<Beam>());
+        }
 
-            void PlaceBeam(Beam beam, Vector3 start, Vector3 end)
-            {
-                beam.transform.position = start;
-                beam.transform.rotation = Quaternion.LookRotation(end - start);
-                beam.transform.localScale = new Vector3(1, 1, Vector3.Distance(end, start) / 2.4384f);
-            }
+        void PlaceBeam(Beam beam, Vector3 start, Vector3 end)
+        {
+            beam.transform.position = start;
+            beam.transform.rotation = Quaternion.LookRotation(end - start);
+            beam.transform.localScale = new Vector3(1, 1, Vector3.Distance(end, start) / 2.4384f);
+        }
         }
 
         public void ManageRails()
@@ -103,29 +104,29 @@ namespace TreehouseHack
                 ActiveRails = this.Rails.Count;
             }
 
-            PlaceRail(Rails[0], th.OrderedTrees[0].GetComponent<TreeAnchor>().CP, th.OrderedTrees[1].GetComponent<TreeAnchor>().CP);
-            PlaceRail(Rails[1], th.OrderedTrees[0].GetComponent<TreeAnchor>().CP, th.OrderedTrees[2].GetComponent<TreeAnchor>().CP);
-            PlaceRail(Rails[2], th.OrderedTrees[2].GetComponent<TreeAnchor>().CP, th.OrderedTrees[1].GetComponent<TreeAnchor>().CP);
+        PlaceRail(Rails[0], th.OrderedTrees[0].GetComponent<TreeAnchor>().CP, th.OrderedTrees[1].GetComponent<TreeAnchor>().CP);
+        PlaceRail(Rails[1], th.OrderedTrees[0].GetComponent<TreeAnchor>().CP, th.OrderedTrees[2].GetComponent<TreeAnchor>().CP);
+        PlaceRail(Rails[2], th.OrderedTrees[2].GetComponent<TreeAnchor>().CP, th.OrderedTrees[1].GetComponent<TreeAnchor>().CP);
 
-            void AddRail()
-            {
-                GameObject NewRail = Instantiate(RailType);
-                NewRail.transform.parent = this.transform;
-                Rails.Add(NewRail.GetComponent<Rail>());
-            }
+        void AddRail()
+        {
+            GameObject NewRail = Instantiate(RailType);
+            NewRail.transform.parent = this.transform;
+            Rails.Add(NewRail.GetComponent<Rail>());
+        }
 
-            void PlaceRail(Rail rail, Vector3 start, Vector3 end)
-            {
-                rail.transform.position = start + new Vector3(0, th.RailElevation, 0);
-                rail.transform.rotation = Quaternion.LookRotation(end - start, Vector3.up);
-                rail.transform.localScale = new Vector3(1, 1, Vector3.Distance(end, start) / 2.4384f);
-                rail.RailLength = Vector3.Distance(end, start);
+        void PlaceRail(Rail rail, Vector3 start, Vector3 end)
+        {
+            rail.transform.position = start + new Vector3(0, th.RailElevation, 0);
+            rail.transform.rotation = Quaternion.LookRotation(end - start, Vector3.up);
+            rail.transform.localScale = new Vector3(1, 1, Vector3.Distance(end, start) / 2.4384f);
+            rail.RailLength = Vector3.Distance(end, start);
             }
 
         }
 
         public void ManagePlates()
-        {
+        {      
             if (this.Plates.Count == 0)
             {
                 for (int i = 0; i < (DatumDistance / PlateWidth); i++)
@@ -152,7 +153,7 @@ namespace TreehouseHack
                         AddPlate();
                     }
                 }
-                ActivePlates = ActivePlates + delta;
+                ActivePlates = ActivePlates + delta; 
             }
 
             UpdateOrientation();
@@ -211,8 +212,8 @@ namespace TreehouseHack
             test1 = OT[0].GetComponent<TreeAnchor>().CP - OT[1].GetComponent<TreeAnchor>().CP;
             test2 = OT[2].GetComponent<TreeAnchor>().CP - OT[0].GetComponent<TreeAnchor>().CP;
 
-            //            test1 = OT[1].GetComponent<TreeAnchor>().CP - OT[0].GetComponent<TreeAnchor>().CP;
-            //            test2 = OT[2].GetComponent<TreeAnchor>().CP - OT[0].GetComponent<TreeAnchor>().CP;
+//            test1 = OT[1].GetComponent<TreeAnchor>().CP - OT[0].GetComponent<TreeAnchor>().CP;
+//            test2 = OT[2].GetComponent<TreeAnchor>().CP - OT[0].GetComponent<TreeAnchor>().CP;
 
             test1.Normalize();
             test2.Normalize();

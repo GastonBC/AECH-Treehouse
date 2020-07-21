@@ -327,7 +327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxCoordinate: 50
-  TreeCount: 30
+  TreeCount: 20
   MinAngle: 30
   MaxLength: 0
   RelativeArea: 1

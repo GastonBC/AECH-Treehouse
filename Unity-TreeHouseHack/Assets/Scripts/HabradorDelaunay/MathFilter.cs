@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using TreehouseHack;
+using TreeHouseHack;
 using UnityEngine;
 
 namespace HabradorDelaunay

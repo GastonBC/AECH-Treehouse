@@ -1,8 +1,10 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System;
 
 
-namespace TreehouseHack
-{
+namespace TreeHouseHack {
 
     public class Plate : MonoBehaviour
     {

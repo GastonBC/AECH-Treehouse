@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace TreehouseHack
+namespace TreeHouseHack
 {
     // TODO: On neighbor triangle sides, remove rails and pickets
 
@@ -93,7 +93,7 @@ namespace TreehouseHack
                             // Brett deck
                             GameObject TreeDeck = Instantiate(DeckObject);
                             Treehouse TreehouseComp = TreeDeck.AddComponent<Treehouse>();
-                            TreeDeck.AddComponent<TreehouseHack.Deck>();
+                            TreeDeck.AddComponent<TreeHouseHack.Deck>();
 
                             // Deck component needs 3 GameObjects. In the future this
                             // may become 3 Vector3s.

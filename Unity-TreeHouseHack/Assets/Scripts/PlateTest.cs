@@ -1,12 +1,16 @@
-﻿using TreehouseHack;
+﻿using TreeHouseHack;
 using UnityEngine;
 
-public class PlateTest : MonoBehaviour
+
+namespace TreeHouseHack
 {
-    public Deck MyDeck;
-
-    void Start()
+    public class PlateTest : MonoBehaviour
     {
+        public Deck MyDeck;
 
+        void Start()
+        {
+
+        }
     }
 }

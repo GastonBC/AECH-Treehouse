@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
-using TreehouseHack;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using System;
+using TreeHouseHack;
 
 public class Treehouse : MonoBehaviour
 {
@@ -23,7 +25,7 @@ public class Treehouse : MonoBehaviour
 
             ta.CPTreeOffset = 0.5f;
             ta.elevation = Elevation;
-            ta.PlateOffset = 0f;
+            ta.PlateOffset  = 0f;
             ta.diameter = 0.5f;
             anchor.transform.localScale = new Vector3(ta.diameter, ta.diameter, ta.diameter);
             ta.Anchor.layer = 8;
@@ -32,14 +34,11 @@ public class Treehouse : MonoBehaviour
         UpdateAnchors();
     }
 
-    void Update()
-    {
-        foreach (var t in Trees)
-        {
+    void Update()   {
+        foreach (var t in Trees)    {
             GameObject anchor = t.GetComponent<TreeAnchor>().Anchor;
             if (anchor != null && !NeedRefresh) { if (anchor.transform.hasChanged) { NeedRefresh = true; } }            //  If we don't need to refresh, check if the anchor has changed.
-        }
-    }
+    }   }
 
     private void LateUpdate()
     {
@@ -60,8 +59,8 @@ public class Treehouse : MonoBehaviour
         GameObject tt;
 
         b1 = Vector3.Distance(t0.GetComponent<TreeAnchor>().CP, t1.GetComponent<TreeAnchor>().CP) + Vector3.Distance(t0.GetComponent<TreeAnchor>().CP, t2.GetComponent<TreeAnchor>().CP);
-        b2 = Vector3.Distance(t1.GetComponent<TreeAnchor>().CP, t2.GetComponent<TreeAnchor>().CP) + Vector3.Distance(t1.GetComponent<TreeAnchor>().CP, t0.GetComponent<TreeAnchor>().CP);
-        b3 = Vector3.Distance(t2.GetComponent<TreeAnchor>().CP, t0.GetComponent<TreeAnchor>().CP) + Vector3.Distance(t2.GetComponent<TreeAnchor>().CP, t1.GetComponent<TreeAnchor>().CP);
+        b2 = Vector3.Distance(t1.GetComponent<TreeAnchor>().CP, t2.GetComponent<TreeAnchor>().CP) + Vector3.Distance(t1.GetComponent<TreeAnchor>().CP, t0.GetComponent<TreeAnchor>().CP); 
+        b3 = Vector3.Distance(t2.GetComponent<TreeAnchor>().CP, t0.GetComponent<TreeAnchor>().CP) + Vector3.Distance(t2.GetComponent<TreeAnchor>().CP, t1.GetComponent<TreeAnchor>().CP); 
 
         //  b1 is longest.  b3 is shortest.
         if (b1 < b2)  //  b1 is the longest.
@@ -106,7 +105,7 @@ public class Treehouse : MonoBehaviour
         {
             GameObject anchor = t.GetComponent<TreeAnchor>().Anchor;
 
-            if (anchor != null)
+            if (anchor != null)             
             {
                 t.transform.position = anchor.transform.position - new Vector3(0, t.GetComponent<TreeAnchor>().elevation, 0);       //  If we've moved the anchor, move the tree.  Account for elevation.
 
@@ -124,6 +123,6 @@ public class Treehouse : MonoBehaviour
                 t.GetComponent<TreeAnchor>().CP = anchor.transform.position + anchor.transform.forward * t.GetComponent<TreeAnchor>().CPTreeOffset;         // Change the Connection Point of the Tree Anchor.
             }
         }
-        gameObject.GetComponent<Deck>().DrawDeck();
+       gameObject.GetComponent<Deck>().DrawDeck();
     }
 }

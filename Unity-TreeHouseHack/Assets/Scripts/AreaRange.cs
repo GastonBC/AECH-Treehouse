@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TreehouseHack
+namespace TreeHouseHack
 {
     public enum AreaRange
     {
