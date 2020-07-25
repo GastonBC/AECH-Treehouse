@@ -4,11 +4,11 @@ using UnityEngine;
 using System;
 
 
-namespace TreeHouseHack {
+namespace TreehouseHack {
 
     public class Plate : MonoBehaviour
     {
         public int offset;
-        public int length;
+        public float length;
     }
 }

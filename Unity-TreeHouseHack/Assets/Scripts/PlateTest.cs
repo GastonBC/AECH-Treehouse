@@ -1,8 +1,8 @@
-﻿using TreeHouseHack;
+﻿using TreehouseHack;
 using UnityEngine;
 
 
-namespace TreeHouseHack
+namespace TreehouseHack
 {
     public class PlateTest : MonoBehaviour
     {

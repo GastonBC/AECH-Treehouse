@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace TreeHouseHack
+namespace TreehouseHack
 {
     public class Picket : MonoBehaviour
     {

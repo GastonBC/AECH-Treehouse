@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace TreeHouseHack
+namespace TreehouseHack
 {
     public class RailPicket : MonoBehaviour
     {

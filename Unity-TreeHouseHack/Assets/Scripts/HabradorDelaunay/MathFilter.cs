@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using TreeHouseHack;
+using TreehouseHack;
 using UnityEngine;
 
 namespace HabradorDelaunay
-{
+{ 
+
     internal static class MathFilter
     {
         internal static double CalculateDistance(Vector3 A, Vector3 B)
